@@ -2108,6 +2108,11 @@ footer {
   color: rgba(255,255,255,0.6);
   letter-spacing: -0.01em;
 }
+.num-unit-small {
+  font-size: 0.45em; font-weight: 700;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0;
+}
 
 /* ═══ CUSTO DA ENERGIA ═══ */
 .custo-section {
