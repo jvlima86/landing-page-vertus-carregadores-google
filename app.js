@@ -269,21 +269,28 @@
   stats.forEach(el => obs.observe(el));
 })();
 
-/* ── Press cards cinematic entrance ── */
+/* ── Press cards bounce-in on scroll ── */
 (function () {
   const grid = document.querySelector('.press-grid-animated');
   if (!grid) return;
   const cards = Array.from(grid.querySelectorAll('.press-card'));
-  const gridObs = new IntersectionObserver((entries) => {
+
+  /* assign per-column stagger delay so cards in the same row pop left→right */
+  const cols = 4;
+  cards.forEach((card, i) => {
+    const col = card.classList.contains('big') ? 0 : i % cols;
+    card.style.setProperty('--pc-delay', `${col * 70}ms`);
+  });
+
+  const obs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      cards.forEach((card, i) => {
-        setTimeout(() => card.classList.add('press-in'), i * 110);
-      });
-      gridObs.disconnect();
+      entry.target.classList.add('press-in');
+      obs.unobserve(entry.target);
     });
-  }, { threshold: 0.08 });
-  gridObs.observe(grid);
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  cards.forEach(card => obs.observe(card));
 })();
 
 /* ── 3D perspective tilt on card hover ── */
