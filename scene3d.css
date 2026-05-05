@@ -468,6 +468,27 @@
   to { transform: scaleX(1); }
 }
 
+.tarifa-price {
+  font-size: 1.9rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: rgba(255,255,255,0.6);
+  line-height: 1;
+  margin: 0.5rem 0 0.25rem;
+}
+.tarifa-price span {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.04em;
+  margin-left: 2px;
+}
+.tarifa-price.vertus {
+  color: #FF7E27;
+  text-shadow: 0 0 30px rgba(255,126,39,0.35);
+}
+.tarifa-price.vertus span { color: rgba(255,126,39,0.6); }
+
 .tarifa-mark {
   font-family: "Archivo", system-ui, sans-serif;
   font-size: 11px;
