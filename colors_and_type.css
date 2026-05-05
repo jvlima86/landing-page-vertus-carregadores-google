@@ -3,8 +3,7 @@
    Source: framer-guide.md, vertus-investidor/globals.css, site-usina-eletropostos.html
    ===================================================================== */
 
-/* Archivo is the brand typeface (Google Fonts). Load from CDN: */
-@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap");
+/* Archivo is loaded via <link rel="preconnect"> + <link rel="stylesheet"> in index.html */
 
 :root {
   /* ===== COLOR TOKENS — PRIMARIES ===== */

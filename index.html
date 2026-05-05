@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vertus Solar — Usinas Solares + Eletropostos | Investimento que gera renda</title>
 <meta name="description" content="Invista em usinas solares + eletropostos no Ceará. Receita previsível, payback de 3 a 4 anos, gestão completa Vertus.">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="styles.css?v=3">
 <link rel="stylesheet" href="scene3d.css">
 </head>
 <body>
@@ -33,14 +36,19 @@
 
 <!-- HERO -->
 <section class="hero hero-centered grain">
+  <div class="hero-video-bg">
+    <video autoplay muted loop playsinline preload="auto" poster="assets/img-hero-usina.jpg">
+      <source src="fundo-site-transicao.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="container">
-    <div class="hero-centered-inner">
-      <div class="hero-badge" data-reveal>Captando investidores · Ceará</div>
-      <h1 data-reveal>Usinas Solares <em>+</em> Eletropostos.<br>Energia que gera <em>renda.</em></h1>
-      <p class="hero-sub" data-reveal>Invista em uma operação completa de geração e distribuição de energia. Sua usina vende kWh para a rede e abastece seus próprios eletropostos — receita previsível, gestão Vertus, controle total da cadeia.</p>
+    <div class="hero-centered-inner stagger-hero">
+      <p class="hero-eyebrow" data-reveal>Eletropostos · Usinas Solares · Fortaleza, CE</p>
+      <h1 data-reveal>Seu eletroposto.<br>Com energia solar <em>própria.</em></h1>
+      <p class="hero-sub" data-reveal>A Vertus instala, opera e mantém o seu ponto de recarga abastecido pela sua própria usina solar — a mesma energia que custaria R$0,98/kWh na rede sai a <em>R$0,00</em> pra você.</p>
       <div class="hero-actions" data-reveal>
         <a href="#contato" class="btn btn-primary">
-          Quero investir agora
+          Quero minha simulação
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
         <a href="#como-funciona" class="btn btn-secondary">Como funciona</a>
@@ -64,7 +72,7 @@
 
     <div class="numbers-grid">
       <div class="num-stat" data-reveal>
-        <div class="num-stat-v">3,5<span>×</span></div>
+        <div class="num-stat-v"><span class="count-num" data-count="3.5" data-decimal="1">3,5</span><span>×</span></div>
         <div class="num-stat-l">Multiplicador de receita do eletroposto</div>
       </div>
       <div class="num-stat" data-reveal>
@@ -72,12 +80,16 @@
         <div class="num-stat-l">Payback do investimento</div>
       </div>
       <div class="num-stat" data-reveal>
-        <div class="num-stat-v">25<span> anos</span></div>
+        <div class="num-stat-v"><span class="count-num" data-count="25">25</span><span> anos</span></div>
         <div class="num-stat-l">Vida útil da usina</div>
       </div>
       <div class="num-stat" data-reveal>
-        <div class="num-stat-v">+40<span>%</span></div>
+        <div class="num-stat-v"><span class="count-num" data-count="40" data-prefix="+">+40</span><span>%</span></div>
         <div class="num-stat-l">Crescimento anual do mercado EV no Brasil</div>
+      </div>
+      <div class="num-stat num-stat-invest" data-reveal>
+        <div class="num-stat-v"><span class="num-currency">R$</span><span class="count-num" data-count="50">50</span><span class="num-unit">k</span></div>
+        <div class="num-stat-l">Investimento a partir de</div>
       </div>
     </div>
 
@@ -114,7 +126,7 @@
     <h2 class="section-title" data-reveal>Dois pilares. Uma operação <em>integrada</em>.</h2>
     <p class="section-desc" data-reveal>Combinamos geração solar própria com estações de recarga de veículos elétricos — o investidor controla toda a cadeia de valor da energia, da geração à venda final.</p>
     <div class="pillars-grid stagger">
-      <div class="pillar-card" data-num="1" data-reveal>
+      <div class="pillar-card" data-num="1" data-reveal="3d">
         <div class="pillar-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
         </div>
@@ -122,13 +134,47 @@
         <p>Usina turnkey instalada em terreno parceiro. Vertus cuida de permitting, obra, equipamentos, seguro, monitoramento e manutenção. Você é dono de um ativo gerador de receita por 25+ anos.</p>
         <span class="pillar-tag">Receita estável · Payback 3–4 anos</span>
       </div>
-      <div class="pillar-card" data-num="2" data-reveal>
+      <div class="pillar-card" data-num="2" data-reveal="3d">
         <div class="pillar-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         </div>
         <h3>Eletropostos</h3>
         <p>A energia da sua usina abastece diretamente seus próprios eletropostos. A mesma energia rende 3,5× a tarifa de locação. Receita previsível porque você controla a demanda.</p>
         <span class="pillar-tag">Receita potencializada · Mercado em alta</span>
+      </div>
+    </div>
+
+    <!-- Escalabilidade modular -->
+    <div class="scale-callout" data-reveal>
+      <div class="scale-callout-header">
+        <div class="scale-callout-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <div>
+          <div class="scale-callout-title">Renda modular e escalável</div>
+          <div class="scale-callout-desc">Cada eletroposto é uma unidade independente de receita. Adicione novos pontos conforme cresce — a usina solar potencializa cada EP adicionado.</div>
+        </div>
+      </div>
+      <div class="scale-steps">
+        <div class="scale-unit">
+          <div class="scale-unit-num">1 EP</div>
+          <div class="scale-unit-tag">1 fonte de receita</div>
+        </div>
+        <div class="scale-op">+</div>
+        <div class="scale-unit">
+          <div class="scale-unit-num">2 EPs</div>
+          <div class="scale-unit-tag">2 fontes independentes</div>
+        </div>
+        <div class="scale-op">+</div>
+        <div class="scale-unit featured">
+          <div class="scale-unit-num">+ Usina Solar</div>
+          <div class="scale-unit-tag">Potencializa todos os EPs</div>
+        </div>
+        <div class="scale-op">=</div>
+        <div class="scale-unit is-result">
+          <div class="scale-unit-num">n×</div>
+          <div class="scale-unit-tag">Crescimento sem teto</div>
+        </div>
       </div>
     </div>
   </div>
@@ -476,19 +522,139 @@
   </div>
 </section>
 
+<!-- CUSTO DA ENERGIA — Vantagem estrutural de margem -->
+<section class="custo-section grain" id="custo">
+  <div class="container">
+    <div class="section-badge" data-reveal>A vantagem de custo</div>
+    <h2 class="section-title" data-reveal>Enquanto a concorrência paga<br><em>R$0,98/kWh</em> para a ENEL…</h2>
+    <p class="section-desc" data-reveal>Todo eletroposto que compra energia da distribuidora carrega um custo estrutural permanente: tarifa alta, reajuste anual, margem comprimida. Quem tem usina própria joga um jogo diferente.</p>
+
+    <div class="custo-grid stagger">
+
+      <!-- Card 1: Concorrência -->
+      <div class="custo-card custo-bad" data-reveal>
+        <div class="custo-card-header">
+          <div class="custo-who-tag">Eletroposto comum</div>
+          <div class="custo-flag">Mercado atual</div>
+        </div>
+        <div class="custo-sub">Sem usina solar · Compra da distribuidora</div>
+        <div class="custo-price-row">
+          <span class="custo-currency">R$</span>
+          <span class="custo-num">0,98</span>
+          <span class="custo-unit">/kWh</span>
+        </div>
+        <div class="custo-source-label">Tarifa ENEL Ceará · 2024</div>
+        <div class="custo-verdict">Custo fixo. Reajuste anual garantido. Margem depende da distribuidora.</div>
+      </div>
+
+      <div class="custo-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <span class="custo-arrow-label">Vertus</span>
+      </div>
+
+      <!-- Card 2: Usina remota -->
+      <div class="custo-card custo-ok" data-reveal>
+        <div class="custo-card-header">
+          <div class="custo-who-tag">Eletroposto + Usina Remota</div>
+          <div class="custo-flag ok">−69%</div>
+        </div>
+        <div class="custo-sub">Usina em terreno parceiro · Crédito de GD</div>
+        <div class="custo-price-row">
+          <span class="custo-currency">R$</span>
+          <span class="custo-num">0,30</span>
+          <span class="custo-unit">/kWh</span>
+        </div>
+        <div class="custo-source-label">Via compensação de geração distribuída</div>
+        <div class="custo-verdict ok">69% mais barato que a ENEL. Parcialmente livre da distribuidora.</div>
+      </div>
+
+      <div class="custo-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <span class="custo-arrow-label">ideal</span>
+      </div>
+
+      <!-- Card 3: Usina no local -->
+      <div class="custo-card custo-best" data-reveal>
+        <div class="custo-card-header">
+          <div class="custo-who-tag">Eletroposto + Usina no Local</div>
+          <div class="custo-flag best">Cenário ideal ★</div>
+        </div>
+        <div class="custo-sub">Usina no mesmo ponto · Autoconsumo direto</div>
+        <div class="custo-price-row">
+          <span class="custo-currency">R$</span>
+          <span class="custo-num">0,00</span>
+          <span class="custo-unit">/kWh</span>
+        </div>
+        <div class="custo-source-label">Geração e consumo no mesmo local</div>
+        <div class="custo-verdict best">Energia gerada e consumida na hora. Custo efetivo zero.</div>
+      </div>
+
+    </div>
+
+    <div class="custo-insight" data-reveal>
+      <div class="custo-insight-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <p><strong>Dois motores de margem, simultâneos.</strong> Você vende a energia pelo preço premium do eletroposto — e paga quase nada pela geração. A concorrência enfrenta reajuste tarifário todo ano. Você não.</p>
+    </div>
+  </div>
+</section>
+
 <!-- PRESS / GIGANTES JÁ APOSTARAM -->
 <section class="press-section grain" id="mercado">
   <div class="press-bg-grid"></div>
   <div class="container">
+    <!-- TICKER -->
+    <div class="press-ticker" aria-hidden="true">
+      <div class="press-ticker-live"><span></span>AO VIVO</div>
+      <div class="press-ticker-mask">
+        <div class="press-ticker-track">
+          <span class="pti">BYD + Shell <em>·</em> 600 novos carregadores no Brasil</span>
+          <span class="pti-sep">◆</span>
+          <span class="pti">Brasil <em>triplica</em> eletropostos em 2024</span>
+          <span class="pti-sep">◆</span>
+          <span class="pti">Shell vende 1.000 postos de combustível para investir em <em>recarga elétrica</em></span>
+          <span class="pti-sep">◆</span>
+          <span class="pti">Vibra · eletroposto que carrega em <em>20 minutos</em></span>
+          <span class="pti-sep">◆</span>
+          <span class="pti">Custo de instalação cai <em>50%</em> · rede cresce acelerada</span>
+          <span class="pti-sep">◆</span>
+          <span class="pti">Raízen inaugura Shell Recharge com <em>energia limpa própria</em></span>
+          <span class="pti-sep">◆</span>
+          <span class="pti">BR Super Carga amplia para <em>80 pontos</em> em 2024</span>
+          <span class="pti-sep">◆</span>
+          <span class="pti">Vibra, Raízen e Ipiranga <em>expandem eletropostos</em> em todo o Brasil</span>
+          <span class="pti-sep">◆</span>
+          <!-- duplicate for seamless loop -->
+          <span class="pti">BYD + Shell <em>·</em> 600 novos carregadores no Brasil</span>
+          <span class="pti-sep">◆</span>
+          <span class="pti">Brasil <em>triplica</em> eletropostos em 2024</span>
+          <span class="pti-sep">◆</span>
+          <span class="pti">Shell vende 1.000 postos de combustível para investir em <em>recarga elétrica</em></span>
+          <span class="pti-sep">◆</span>
+          <span class="pti">Vibra · eletroposto que carrega em <em>20 minutos</em></span>
+          <span class="pti-sep">◆</span>
+          <span class="pti">Custo de instalação cai <em>50%</em> · rede cresce acelerada</span>
+          <span class="pti-sep">◆</span>
+          <span class="pti">Raízen inaugura Shell Recharge com <em>energia limpa própria</em></span>
+          <span class="pti-sep">◆</span>
+          <span class="pti">BR Super Carga amplia para <em>80 pontos</em> em 2024</span>
+          <span class="pti-sep">◆</span>
+          <span class="pti">Vibra, Raízen e Ipiranga <em>expandem eletropostos</em> em todo o Brasil</span>
+          <span class="pti-sep">◆</span>
+        </div>
+      </div>
+    </div>
+
     <div class="press-head">
       <div class="section-badge" data-reveal>Sinal de mercado</div>
       <h2 class="section-title" data-reveal>Os gigantes <em>já fizeram a aposta</em>.<br>Você está vendo o mesmo movimento?</h2>
       <p class="section-desc" data-reveal>Shell, Raízen, Vibra, Ipiranga, BYD, BR. Quando os maiores players de combustível e mobilidade do Brasil redirecionam capital para eletropostos, eles não estão apostando — estão se posicionando para os próximos 20 anos.</p>
     </div>
 
-    <div class="press-grid">
-      <a class="press-card big" data-reveal href="https://www.mundoconectado.com.br/carros/byd-e-shell-impulsionam-eletromobilidade-no-brasil-com-600-novos-carregadores/" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/01_shell_byd.png" alt="BYD e Shell impulsionam eletromobilidade no Brasil com 600 novos carregadores"></div>
+    <div class="press-grid press-grid-animated">
+      <a class="press-card big" href="https://www.mundoconectado.com.br/carros/byd-e-shell-impulsionam-eletromobilidade-no-brasil-com-600-novos-carregadores/" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/01_shell_byd.png" alt="BYD e Shell impulsionam eletromobilidade no Brasil com 600 novos carregadores" loading="lazy"></div>
         <div class="press-meta">
           <span class="press-source">Mundo Conectado</span>
           <span class="press-date">Fev 2024</span>
@@ -497,8 +663,8 @@
         <p class="press-sub">Parceria estratégica prevê hubs de recarga rápida em <strong>oito capitais</strong> até 2027.</p>
       </a>
 
-      <a class="press-card" data-reveal href="https://www.otempo.com.br/autotempo/shell-acelera-investimento-em-carregamento-de-carros-eletricos-1.3352788" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/08_shell_acelera.png" alt="Shell acelera investimento em carregamento de carros elétricos"></div>
+      <a class="press-card" href="https://www.otempo.com.br/autotempo/shell-acelera-investimento-em-carregamento-de-carros-eletricos-1.3352788" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/08_shell_acelera.png" alt="Shell acelera investimento em carregamento de carros elétricos" loading="lazy"></div>
         <div class="press-meta">
           <span class="press-source">O Tempo</span>
           <span class="press-date">Mar 2024</span>
@@ -506,8 +672,8 @@
         <h3 class="press-title">Shell <em>desfaz-se de 1.000 postos</em> de combustíveis até 2025 para investir em recarga elétrica</h3>
       </a>
 
-      <a class="press-card" data-reveal href="https://www.autodata.com.br/noticias/2024/12/18/brasil-triplica-numero-de-eletropostos-em-2024-e-agora-investimentos-sao-em-recarga-rapida/81845/" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/04_brasil_triplica.png" alt="Brasil triplica número de eletropostos em 2024"></div>
+      <a class="press-card" href="https://www.autodata.com.br/noticias/2024/12/18/brasil-triplica-numero-de-eletropostos-em-2024-e-agora-investimentos-sao-em-recarga-rapida/81845/" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/04_brasil_triplica.png" alt="Brasil triplica número de eletropostos em 2024" loading="lazy"></div>
         <div class="press-meta">
           <span class="press-source">AutoData</span>
           <span class="press-date">Dez 2024</span>
@@ -515,8 +681,8 @@
         <h3 class="press-title">Brasil <em>triplica número de eletropostos</em> em 2024 — investimento agora é em recarga rápida</h3>
       </a>
 
-      <a class="press-card" data-reveal href="https://epbr.com.br/os-planos-da-vibra-raizen-e-ipiranga-para-aumentar-a-rede-de-eletropostos/" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/03_vibra_raizen_ipiranga.png" alt="Vibra, Raízen e Ipiranga aumentam rede de eletropostos"></div>
+      <a class="press-card" href="https://epbr.com.br/os-planos-da-vibra-raizen-e-ipiranga-para-aumentar-a-rede-de-eletropostos/" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/03_vibra_raizen_ipiranga.png" alt="Vibra, Raízen e Ipiranga aumentam rede de eletropostos" loading="lazy"></div>
         <div class="press-meta">
           <span class="press-source">eixos</span>
           <span class="press-date">2024</span>
@@ -524,8 +690,8 @@
         <h3 class="press-title">Vibra, Raízen e Ipiranga: <em>líderes do combustível</em> se movimentam para expandir eletropostos</h3>
       </a>
 
-      <a class="press-card" data-reveal href="https://www.autodata.com.br/noticias/2025/10/07/custo-de-instalacao-cai-e-rede-de-eletropostos-cresce-50-no-brasil/94969/" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/07_custo_cai_50.png" alt="Custo de instalação cai e rede cresce 50%"></div>
+      <a class="press-card" href="https://www.autodata.com.br/noticias/2025/10/07/custo-de-instalacao-cai-e-rede-de-eletropostos-cresce-50-no-brasil/94969/" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/07_custo_cai_50.png" alt="Custo de instalação cai e rede cresce 50%" loading="lazy"></div>
         <div class="press-meta">
           <span class="press-source">AutoData</span>
           <span class="press-date">Out 2025</span>
@@ -533,8 +699,8 @@
         <h3 class="press-title">Custo de instalação cai e rede de eletropostos <em>cresce 50% no Brasil</em></h3>
       </a>
 
-      <a class="press-card" data-reveal href="https://www.canalenergia.com.br/noticias/53214993/raizen-inaugura-eletroposto-shell-recharge-no-brasil" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/02_raizen_shell.png" alt="Raízen inaugura eletroposto Shell Recharge"></div>
+      <a class="press-card" href="https://www.canalenergia.com.br/noticias/53214993/raizen-inaugura-eletroposto-shell-recharge-no-brasil" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/02_raizen_shell.png" alt="Raízen inaugura eletroposto Shell Recharge" loading="lazy"></div>
         <div class="press-meta">
           <span class="press-source">Canal Energia</span>
           <span class="press-date">Jun 2022</span>
@@ -542,8 +708,8 @@
         <h3 class="press-title">Raízen inaugura <em>Shell Recharge</em> com energia limpa própria</h3>
       </a>
 
-      <a class="press-card" data-reveal href="https://www.automotivebusiness.com.br/noticias/vibra-inaugura-eletroposto-que-carrega-carros-eletricos-em-20-minutos" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/06_vibra_20min.png" alt="Vibra inaugura eletroposto que carrega em 20 minutos"></div>
+      <a class="press-card" href="https://www.automotivebusiness.com.br/noticias/vibra-inaugura-eletroposto-que-carrega-carros-eletricos-em-20-minutos" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/06_vibra_20min.png" alt="Vibra inaugura eletroposto que carrega em 20 minutos" loading="lazy"></div>
         <div class="press-meta">
           <span class="press-source">Automotive Business</span>
           <span class="press-date">Jun 2022</span>
@@ -551,8 +717,8 @@
         <h3 class="press-title">Vibra inaugura eletroposto que carrega em <em>20 minutos</em> — corredor elétrico de 9 mil km</h3>
       </a>
 
-      <a class="press-card" data-reveal href="https://autoranking.com.br/br-super-carga-vai-ampliar-eletropostos-para-80-pontos-em-2024/" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/05_br_super_carga.png" alt="BR Super Carga amplia para 80 pontos"></div>
+      <a class="press-card" href="https://autoranking.com.br/br-super-carga-vai-ampliar-eletropostos-para-80-pontos-em-2024/" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/05_br_super_carga.png" alt="BR Super Carga amplia para 80 pontos" loading="lazy"></div>
         <div class="press-meta">
           <span class="press-source">AutoRanking</span>
           <span class="press-date">Set 2024</span>
@@ -627,44 +793,255 @@
   </div>
 </section>
 
+<!-- GRÁFICO EVOLUÇÃO DO CAPITAL -->
+<section class="chart-section grain" id="evolucao">
+  <div class="container">
+    <div class="section-badge" data-reveal>Evolução do capital</div>
+    <h2 class="section-title" data-reveal><em>R$ 100 mil</em> investidos hoje.<br>Onde você quer estar no Ano 10?</h2>
+    <p class="section-desc" data-reveal>Mesmo capital de partida. A renda fixa entrega o esperado. O eletroposto multiplica — porque o ativo trabalha por você enquanto o mercado cresce.</p>
+
+    <div class="chart-wrap" data-reveal="scale">
+      <div class="chart-legend">
+        <div class="clitem">
+          <span class="cll cll-ep"></span>
+          <span>Vertus — Usina + Eletroposto</span>
+        </div>
+        <div class="clitem">
+          <span class="cll cll-rf"></span>
+          <span>Renda Fixa (CDB · Tesouro · ~12% a.a.)</span>
+        </div>
+        <div class="clitem">
+          <span class="cll cll-zone"></span>
+          <span>Período de payback (~3 anos)</span>
+        </div>
+      </div>
+
+      <div class="chart-canvas">
+        <svg viewBox="0 0 880 400" id="capitalChart" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="epAreaGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FF7E27" stop-opacity="0.28"/>
+              <stop offset="100%" stop-color="#FF7E27" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="rfAreaGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.09)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </linearGradient>
+            <filter id="chartGlow">
+              <feGaussianBlur stdDeviation="4" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="softGlow">
+              <feGaussianBlur stdDeviation="2" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <clipPath id="chartClip">
+              <rect x="80" y="20" width="745" height="345"/>
+            </clipPath>
+          </defs>
+
+          <!-- Payback zone (anos 0–3) -->
+          <rect x="80" y="30" width="222" height="330" fill="rgba(255,255,255,0.022)"/>
+          <text x="191" y="48" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-family="Archivo,sans-serif" font-size="9" font-weight="800" letter-spacing="2.5">PAYBACK</text>
+
+          <!-- Grid lines horizontais -->
+          <line x1="80" y1="360" x2="820" y2="360" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <line x1="80" y1="294" x2="820" y2="294" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="80" y1="206" x2="820" y2="206" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="80" y1="118" x2="820" y2="118" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="80" y1="30"  x2="820" y2="30"  stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4 4"/>
+
+          <!-- Eixo Y -->
+          <line x1="80" y1="30" x2="80" y2="360" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+
+          <!-- Labels eixo Y -->
+          <text x="72" y="364" text-anchor="end" fill="rgba(255,255,255,0.38)" font-family="Archivo,sans-serif" font-size="11" font-weight="700">1×</text>
+          <text x="72" y="298" text-anchor="end" fill="rgba(255,255,255,0.38)" font-family="Archivo,sans-serif" font-size="11" font-weight="700">4×</text>
+          <text x="72" y="210" text-anchor="end" fill="rgba(255,255,255,0.38)" font-family="Archivo,sans-serif" font-size="11" font-weight="700">8×</text>
+          <text x="72" y="122" text-anchor="end" fill="rgba(255,255,255,0.38)" font-family="Archivo,sans-serif" font-size="11" font-weight="700">12×</text>
+          <text x="72" y="34"  text-anchor="end" fill="rgba(255,255,255,0.38)" font-family="Archivo,sans-serif" font-size="11" font-weight="700">16×</text>
+
+          <!-- Labels eixo X -->
+          <text x="80"  y="382" text-anchor="middle" fill="rgba(255,255,255,0.38)" font-family="Archivo,sans-serif" font-size="11" font-weight="600">Ano 0</text>
+          <text x="228" y="382" text-anchor="middle" fill="rgba(255,255,255,0.38)" font-family="Archivo,sans-serif" font-size="11" font-weight="600">Ano 2</text>
+          <text x="376" y="382" text-anchor="middle" fill="rgba(255,255,255,0.38)" font-family="Archivo,sans-serif" font-size="11" font-weight="600">Ano 4</text>
+          <text x="524" y="382" text-anchor="middle" fill="rgba(255,255,255,0.38)" font-family="Archivo,sans-serif" font-size="11" font-weight="600">Ano 6</text>
+          <text x="672" y="382" text-anchor="middle" fill="rgba(255,255,255,0.38)" font-family="Archivo,sans-serif" font-size="11" font-weight="600">Ano 8</text>
+          <text x="820" y="382" text-anchor="middle" fill="rgba(255,255,255,0.38)" font-family="Archivo,sans-serif" font-size="11" font-weight="600">Ano 10</text>
+
+          <!-- Área RF (preenche sob a linha) -->
+          <path id="rfArea" clip-path="url(#chartClip)"
+            d="M80,360 L117,359 L154,357 L191,356 L228,354 L265,353 L302,351 L339,349 L376,347 L413,345 L450,343 L487,341 L524,339 L561,336 L598,333 L635,331 L672,328 L709,324 L746,321 L783,317 L820,314 L820,360 Z"
+            fill="url(#rfAreaGrad)" opacity="0"/>
+
+          <!-- Área EP -->
+          <path id="epArea" clip-path="url(#chartClip)"
+            d="M80,360 L117,360 L154,359 L191,358 L228,358 L265,357 L302,357 L339,352 L376,345 L413,338 L450,329 L487,318 L524,305 L561,289 L598,270 L635,247 L672,220 L709,187 L746,147 L783,99 L820,41 L820,360 Z"
+            fill="url(#epAreaGrad)" opacity="0"/>
+
+          <!-- Linha Renda Fixa -->
+          <path id="rfPath" clip-path="url(#chartClip)"
+            d="M80,360 L117,359 L154,357 L191,356 L228,354 L265,353 L302,351 L339,349 L376,347 L413,345 L450,343 L487,341 L524,339 L561,336 L598,333 L635,331 L672,328 L709,324 L746,321 L783,317 L820,314"
+            fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <!-- Linha Eletroposto (laranja, brilho) -->
+          <path id="epPath" clip-path="url(#chartClip)"
+            d="M80,360 L117,360 L154,359 L191,358 L228,358 L265,357 L302,357 L339,352 L376,345 L413,338 L450,329 L487,318 L524,305 L561,289 L598,270 L635,247 L672,220 L709,187 L746,147 L783,99 L820,41"
+            fill="none" stroke="#FF7E27" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+            filter="url(#chartGlow)"/>
+
+          <!-- Crossover (payback completo ~ano 3,7) -->
+          <g id="crossoverGroup" opacity="0" style="transition:opacity 0.6s ease">
+            <circle cx="355" cy="349" r="6" fill="#FF7E27" filter="url(#softGlow)"/>
+            <line x1="355" y1="341" x2="355" y2="285" stroke="rgba(255,126,39,0.55)" stroke-width="1" stroke-dasharray="3 3"/>
+            <rect x="302" y="263" width="106" height="24" rx="5" fill="rgba(255,126,39,0.14)" stroke="rgba(255,126,39,0.45)" stroke-width="1"/>
+            <text x="355" y="279" text-anchor="middle" fill="#FF7E27" font-family="Archivo,sans-serif" font-size="10" font-weight="900" letter-spacing="1">PAYBACK COMPLETO ✓</text>
+          </g>
+
+          <!-- Dot final EP -->
+          <g id="epFinalGroup" opacity="0" style="transition:opacity 0.5s ease">
+            <circle cx="820" cy="41" r="7" fill="#FF7E27" filter="url(#chartGlow)"/>
+            <circle cx="820" cy="41" r="14" fill="none" stroke="#FF7E27" stroke-width="1.5" opacity="0.45"/>
+          </g>
+
+          <!-- Dot final RF -->
+          <g id="rfFinalGroup" opacity="0" style="transition:opacity 0.5s ease">
+            <circle cx="820" cy="314" r="5" fill="rgba(255,255,255,0.65)"/>
+          </g>
+
+          <!-- Badge valor final EP -->
+          <g id="epLabelGroup" opacity="0" style="transition:opacity 0.5s ease">
+            <rect x="755" y="22" width="64" height="30" rx="6" fill="#FF7E27"/>
+            <text x="787" y="42" text-anchor="middle" fill="#0a0807" font-family="Archivo,sans-serif" font-size="15" font-weight="900">15,5×</text>
+          </g>
+
+          <!-- Label valor final RF -->
+          <g id="rfLabelGroup" opacity="0" style="transition:opacity 0.5s ease">
+            <text x="826" y="312" fill="rgba(255,255,255,0.6)" font-family="Archivo,sans-serif" font-size="12" font-weight="700">3,1×</text>
+          </g>
+
+          <!-- Colchete 5× -->
+          <g id="gapGroup" opacity="0" style="transition:opacity 0.6s ease">
+            <line x1="836" y1="41"  x2="836" y2="314" stroke="rgba(255,126,39,0.5)" stroke-width="1.5"/>
+            <line x1="829" y1="41"  x2="843" y2="41"  stroke="rgba(255,126,39,0.5)" stroke-width="1.5"/>
+            <line x1="829" y1="314" x2="843" y2="314" stroke="rgba(255,126,39,0.5)" stroke-width="1.5"/>
+            <text x="852" y="182" fill="#FF7E27" font-family="Archivo,sans-serif" font-size="22" font-weight="900" filter="url(#softGlow)">5×</text>
+            <text x="852" y="200" fill="rgba(255,126,39,0.7)" font-family="Archivo,sans-serif" font-size="10" font-weight="800" letter-spacing="1">MAIS</text>
+          </g>
+        </svg>
+      </div>
+
+      <p class="chart-disclaimer">* Projeção ilustrativa. Taxa renda fixa: 12% a.a. (CDI/Tesouro). Eletroposto: payback em ~3 anos, retorno médio acelerado. Retornos reais variam conforme operação e tarifas vigentes. Não constitui garantia de rendimento.</p>
+    </div>
+  </div>
+</section>
+
 <!-- TIMELINE -->
 <section class="timeline-section grain">
   <div class="container">
     <div class="section-badge" data-reveal>Do contrato à operação</div>
-    <h2 class="section-title" data-reveal>Em <em>~90 dias</em> sua usina está gerando.</h2>
-    <p class="section-desc" data-reveal>Processo padronizado, conduzido pela Vertus de ponta a ponta. Você não precisa lidar com nenhum fornecedor, distribuidora ou empreiteiro.</p>
-    <div class="timeline">
-      <div class="timeline-step is-now" data-reveal>
-        <div class="timeline-dot">1</div>
-        <div class="timeline-week">Semana 1</div>
-        <h4>Contrato</h4>
-        <p>Análise da proposta, assinatura e sinal de entrada. Aqui começa o cronograma.</p>
+    <h2 class="section-title" data-reveal>Dois processos simultâneos.<br><em>~60 dias</em> para tudo operar.</h2>
+    <p class="section-desc" data-reveal>Enquanto a usina avança na aprovação da concessionária, nossa equipe já está levantando o ponto do eletroposto. Os dois chegam prontos juntos — você não espera por etapas separadas.</p>
+
+    <div class="timeline-dual" data-reveal>
+
+      <!-- TRACK 1: USINA SOLAR -->
+      <div class="td-row">
+        <div class="td-label">
+          <div class="td-label-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          </div>
+          <span>Usina Solar</span>
+        </div>
+        <div class="td-steps">
+          <div class="td-step td-is-now">
+            <div class="td-dot">1</div>
+            <div class="td-week">Semana 1</div>
+            <h4>Contrato</h4>
+            <p>Proposta aprovada, assinatura e entrada. Cronograma começa aqui.</p>
+          </div>
+          <div class="td-step">
+            <div class="td-dot">2</div>
+            <div class="td-week">Sem. 2–4</div>
+            <h4>Projeto</h4>
+            <p>Engenharia, dimensionamento e protocolo na ENEL.</p>
+          </div>
+          <div class="td-step">
+            <div class="td-dot">3</div>
+            <div class="td-week">Sem. 4–8</div>
+            <h4>Aprovação</h4>
+            <p>Homologação na concessionária e liberação de obra.</p>
+          </div>
+          <div class="td-step">
+            <div class="td-dot">4</div>
+            <div class="td-week">Sem. 8–12</div>
+            <h4>Instalação</h4>
+            <p>Civil, estruturas, módulos, inversores e comissionamento.</p>
+          </div>
+          <div class="td-step td-is-end">
+            <div class="td-dot">✓</div>
+            <div class="td-week">Sem. ~13</div>
+            <h4>Gerando</h4>
+            <p>Conexão ativa. Primeira receita no mês seguinte.</p>
+          </div>
+        </div>
       </div>
-      <div class="timeline-step" data-reveal>
-        <div class="timeline-dot">2</div>
-        <div class="timeline-week">Semanas 2–4</div>
-        <h4>Projeto</h4>
-        <p>Engenharia, dimensionamento, escolha do terreno e protocolo na ENEL.</p>
+
+      <!-- SEPARADOR PARALELO -->
+      <div class="td-parallel">
+        <div class="td-par-line"></div>
+        <div class="td-par-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+          Processos simultâneos
+        </div>
+        <div class="td-par-line"></div>
       </div>
-      <div class="timeline-step" data-reveal>
-        <div class="timeline-dot">3</div>
-        <div class="timeline-week">Semanas 4–8</div>
-        <h4>Aprovação</h4>
-        <p>Homologação na concessionária e liberação de obra. Acompanhamento semanal.</p>
+
+      <!-- TRACK 2: ELETROPOSTO -->
+      <div class="td-row td-row-ep">
+        <div class="td-label td-label-ep">
+          <div class="td-label-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <span>Eletroposto</span>
+        </div>
+        <div class="td-steps td-steps-ep">
+          <div class="td-step td-is-now">
+            <div class="td-dot">1</div>
+            <div class="td-week">Semana 1</div>
+            <h4>Contrato</h4>
+            <p>Mesmo contrato, processo já inicia em paralelo.</p>
+          </div>
+          <div class="td-step">
+            <div class="td-dot">2</div>
+            <div class="td-week">Sem. 2–4</div>
+            <h4>Prospecção</h4>
+            <p>Equipe Vertus identifica e valida o ponto de instalação ideal.</p>
+          </div>
+          <div class="td-step">
+            <div class="td-dot">3</div>
+            <div class="td-week">Sem. 4–6</div>
+            <h4>Adequações</h4>
+            <p>Adequações elétricas no local — padrão de entrada e carga.</p>
+          </div>
+          <div class="td-step">
+            <div class="td-dot">4</div>
+            <div class="td-week">Sem. 6–10</div>
+            <h4>Infraestrutura</h4>
+            <p>Cabeamento, quadros de proteção e obra civil do ponto.</p>
+          </div>
+          <div class="td-step td-is-end">
+            <div class="td-dot">✓</div>
+            <div class="td-week">Sem. ~10–12</div>
+            <h4>Operando</h4>
+            <p>Equipamento instalado, testado e gerando receita.</p>
+          </div>
+        </div>
       </div>
-      <div class="timeline-step" data-reveal>
-        <div class="timeline-dot">4</div>
-        <div class="timeline-week">Semanas 8–12</div>
-        <h4>Instalação</h4>
-        <p>Civil, estruturas, módulos, inversores, eletroposto e comissionamento.</p>
-      </div>
-      <div class="timeline-step" data-reveal>
-        <div class="timeline-dot">5</div>
-        <div class="timeline-week">Semana ~13</div>
-        <h4>Operação</h4>
-        <p>Conexão liberada, geração ativa, primeira receita no mês seguinte.</p>
-      </div>
-    </div>
+
+    </div><!-- /timeline-dual -->
+
     <div class="timeline-banner" data-reveal>
       <div class="left">
         <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
@@ -682,64 +1059,33 @@
 <section class="map-section grain" id="mapa">
   <div class="container">
     <div class="section-badge" data-reveal>Operação no Ceará</div>
-    <h2 class="section-title" data-reveal>Pontos de carregamento <em>já operando</em> em Fortaleza.</h2>
-    <p class="section-desc" data-reveal>11 eletropostos ativos em parceria com condomínios, hotéis, lojistas e grupos empresariais — distribuídos pela capital cearense. Clique em cada ponto para ver no Google Maps.</p>
+    <h2 class="section-title" data-reveal>Expansão acelerada em <em>Fortaleza</em>.</h2>
+    <p class="section-desc" data-reveal>3 eletropostos em operação e 8 em contratação — condomínios, hotéis, lojistas e grupos empresariais. Portfólio crescendo a cada mês. Clique em cada ponto para ver no Google Maps.</p>
 
     <div class="map-wrap">
-      <div class="map-canvas">
-        <svg viewBox="0 0 600 540" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <defs>
-            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,126,39,0.06)" stroke-width="1"/>
-            </pattern>
-            <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="rgba(255,126,39,0.14)"/>
-              <stop offset="100%" stop-color="rgba(255,126,39,0)"/>
-            </radialGradient>
-          </defs>
-          <rect width="600" height="540" fill="url(#grid)"/>
-          <ellipse cx="300" cy="270" rx="240" ry="200" fill="url(#glow)"/>
-          <!-- Stylized Fortaleza coastline -->
-          <path d="M 60 130 Q 130 100 220 95 T 380 90 T 530 110 L 540 140 L 530 170 L 510 200 L 490 240 L 470 280 L 450 320 L 420 360 L 380 400 L 330 430 L 270 445 L 210 440 L 160 420 L 120 380 L 90 330 L 70 270 L 60 200 Z"
-                fill="rgba(255,126,39,0.04)" stroke="rgba(255,126,39,0.45)" stroke-width="1.5" stroke-linejoin="round"/>
-          <path d="M 60 130 Q 130 100 220 95 T 380 90 T 530 110"
-                fill="none" stroke="rgba(255,126,39,0.75)" stroke-width="2.5" stroke-linejoin="round"/>
-          <text x="280" y="75" text-anchor="middle" fill="rgba(255,126,39,0.7)" font-family="Archivo" font-size="13" font-weight="800" letter-spacing="0.18em">FORTALEZA · CE</text>
-          <text x="100" y="115" fill="rgba(255,255,255,0.3)" font-family="Archivo" font-size="9" font-weight="600" letter-spacing="0.1em">OCEANO ATLÂNTICO</text>
-          <text x="200" y="200" fill="rgba(255,255,255,0.25)" font-family="Archivo" font-size="9" font-weight="600" letter-spacing="0.1em">MEIRELES</text>
-          <text x="370" y="280" fill="rgba(255,255,255,0.25)" font-family="Archivo" font-size="9" font-weight="600" letter-spacing="0.1em">MONTESE</text>
-          <text x="290" y="380" fill="rgba(255,255,255,0.25)" font-family="Archivo" font-size="9" font-weight="600" letter-spacing="0.1em">ZONA SUL</text>
-        </svg>
-
-        <!-- Real pins linking to Google Maps -->
-        <a class="map-pin ep" href="https://maps.app.goo.gl/RucaCwpC9zvBc5E46" target="_blank" rel="noopener" style="left:30%; top:40%"><div class="dot"></div><div class="ring"></div><div class="label">CJA</div></a>
-        <a class="map-pin ep" href="https://maps.app.goo.gl/u45zsBXsUwPaBTW99" target="_blank" rel="noopener" style="left:38%; top:32%"><div class="dot"></div><div class="ring"></div><div class="label">Pamil</div></a>
-        <a class="map-pin ep" href="https://maps.app.goo.gl/eudUGrN9tiMtGzEc8" target="_blank" rel="noopener" style="left:46%; top:36%"><div class="dot"></div><div class="ring"></div><div class="label">Cometa B. Rio Branco</div></a>
-        <a class="map-pin ep" href="https://maps.app.goo.gl/qjYuREXHVSQjakh66" target="_blank" rel="noopener" style="left:42%; top:46%"><div class="dot"></div><div class="ring"></div><div class="label">Hotel Laranjeiras</div></a>
-        <a class="map-pin ep" href="https://maps.app.goo.gl/nm7ceDKJs2TPhrdJ9" target="_blank" rel="noopener" style="left:62%; top:48%"><div class="dot"></div><div class="ring"></div><div class="label">Moove Montese · 3 pontos</div></a>
-        <a class="map-pin ep" href="https://maps.app.goo.gl/Zpxp9ocJgXZB6t4B8" target="_blank" rel="noopener" style="left:54%; top:54%"><div class="dot"></div><div class="ring"></div><div class="label">Grupo Cyclo</div></a>
-        <a class="map-pin ep" href="https://maps.app.goo.gl/pKFutvWuo41MMRSHA" target="_blank" rel="noopener" style="left:48%; top:62%"><div class="dot"></div><div class="ring"></div><div class="label">Mineiro Casa de Amigos</div></a>
-        <a class="map-pin ep" href="https://maps.app.goo.gl/tATcZqTie4jqoVwd7" target="_blank" rel="noopener" style="left:36%; top:64%"><div class="dot"></div><div class="ring"></div><div class="label">Cond. Alto do Parque</div></a>
-        <a class="map-pin ep" href="https://maps.app.goo.gl/wCk3rErrtyNScsBo7" target="_blank" rel="noopener" style="left:58%; top:68%"><div class="dot"></div><div class="ring"></div><div class="label">Cond. Hortus</div></a>
-      </div>
+      <div id="gmap" class="map-canvas"></div>
 
       <div class="map-side">
-        <div class="map-stat"><div class="v">11</div><div class="l">Pontos de carregamento ativos em Fortaleza</div></div>
+        <div class="map-stat"><div class="v">3</div><div class="l">Eletropostos operando agora em Fortaleza</div></div>
+        <div class="map-stat"><div class="v">+8</div><div class="l">Novos pontos em contratação — expansão em curso</div></div>
         <div class="map-stat"><div class="v">9</div><div class="l">Parceiros (condomínios, hotéis e empresas)</div></div>
         <div class="map-stat"><div class="v">5,5 kWh/m²</div><div class="l">Irradiação solar média no Ceará — melhor índice do país</div></div>
 
         <div class="map-list">
-          <h4>Pontos ativos</h4>
+          <h4>Operando agora</h4>
           <ul>
-            <li><a href="https://maps.app.goo.gl/RucaCwpC9zvBc5E46" target="_blank" rel="noopener">CJA</a></li>
-            <li><a href="https://maps.app.goo.gl/u45zsBXsUwPaBTW99" target="_blank" rel="noopener">Pamil</a></li>
-            <li><a href="https://maps.app.goo.gl/eudUGrN9tiMtGzEc8" target="_blank" rel="noopener">Cometa Barão do Rio Branco</a></li>
-            <li><a href="https://maps.app.goo.gl/qjYuREXHVSQjakh66" target="_blank" rel="noopener">Hotel Laranjeiras</a></li>
-            <li><a href="https://maps.app.goo.gl/nm7ceDKJs2TPhrdJ9" target="_blank" rel="noopener">Moove Montese <small>· 3 pontos</small></a></li>
-            <li><a href="https://maps.app.goo.gl/Zpxp9ocJgXZB6t4B8" target="_blank" rel="noopener">Grupo Cyclo</a></li>
-            <li><a href="https://maps.app.goo.gl/pKFutvWuo41MMRSHA" target="_blank" rel="noopener">Mineiro Casa de Amigos</a></li>
-            <li><a href="https://maps.app.goo.gl/tATcZqTie4jqoVwd7" target="_blank" rel="noopener">Condomínio Alto do Parque</a></li>
-            <li><a href="https://maps.app.goo.gl/wCk3rErrtyNScsBo7" target="_blank" rel="noopener">Condomínio Hortus</a></li>
+            <li class="list-active"><a href="https://maps.app.goo.gl/RucaCwpC9zvBc5E46" target="_blank" rel="noopener">CJA</a></li>
+            <li class="list-active"><a href="https://maps.app.goo.gl/u45zsBXsUwPaBTW99" target="_blank" rel="noopener">Pamil</a></li>
+            <li class="list-active"><a href="https://maps.app.goo.gl/eudUGrN9tiMtGzEc8" target="_blank" rel="noopener">Cometa Barão do Rio Branco</a></li>
+          </ul>
+          <h4 style="margin-top:1rem">Em breve</h4>
+          <ul>
+            <li class="list-future"><a href="https://maps.app.goo.gl/qjYuREXHVSQjakh66" target="_blank" rel="noopener">Hotel Laranjeiras</a></li>
+            <li class="list-future"><a href="https://maps.app.goo.gl/nm7ceDKJs2TPhrdJ9" target="_blank" rel="noopener">Moove Montese <small>· 3 pontos</small></a></li>
+            <li class="list-future"><a href="https://maps.app.goo.gl/Zpxp9ocJgXZB6t4B8" target="_blank" rel="noopener">Grupo Cyclo</a></li>
+            <li class="list-future"><a href="https://maps.app.goo.gl/pKFutvWuo41MMRSHA" target="_blank" rel="noopener">Mineiro Casa de Amigos</a></li>
+            <li class="list-future"><a href="https://maps.app.goo.gl/tATcZqTie4jqoVwd7" target="_blank" rel="noopener">Condomínio Alto do Parque</a></li>
+            <li class="list-future"><a href="https://maps.app.goo.gl/wCk3rErrtyNScsBo7" target="_blank" rel="noopener">Condomínio Hortus</a></li>
           </ul>
         </div>
 
@@ -775,6 +1121,36 @@
   </div>
 </section>
 
+<!-- TRAÇÃO / PROOF STRIP -->
+<section class="traction-strip grain">
+  <div class="container">
+    <div class="traction-inner" data-reveal>
+      <div class="traction-item">
+        <div class="ti-num">3</div>
+        <div class="ti-lbl">eletropostos operando agora</div>
+      </div>
+      <div class="traction-sep"></div>
+      <div class="traction-item">
+        <div class="ti-num">+8</div>
+        <div class="ti-lbl">pontos em contratação</div>
+      </div>
+      <div class="traction-sep"></div>
+      <div class="traction-item">
+        <div class="ti-num">+12</div>
+        <div class="ti-lbl">usinas solares em operação</div>
+      </div>
+      <div class="traction-sep"></div>
+      <div class="traction-item">
+        <div class="ti-num">100%</div>
+        <div class="ti-lbl">operação Ceará, gestão Vertus</div>
+      </div>
+      <div class="traction-cta">
+        <a href="#contato" class="btn btn-primary">Quero investir agora →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- LEAD FORM -->
 <section class="lead-section grain" id="contato">
   <div class="container">
@@ -789,9 +1165,9 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> DRE detalhado mês a mês — 25 anos de projeção</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Sem compromisso · Resposta em até 24h</li>
         </ul>
-        <a href="https://wa.me/5585999999999?text=Oi%2C%20quero%20saber%20mais%20sobre%20investir%20em%20usina%20Vertus" target="_blank" rel="noopener" class="lead-whatsapp" data-reveal>
+        <a href="https://wa.me/5585920004466?text=Oi%2C%20quero%20saber%20mais%20sobre%20investir%20em%20usina%20Vertus" target="_blank" rel="noopener" class="lead-whatsapp" data-reveal>
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.241.383-1.001 3.652 3.74-.994zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01a1.094 1.094 0 0 0-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-          WhatsApp direto · (85) 99999-9999
+          WhatsApp direto · (85) 92000-4466
         </a>
       </div>
       <div class="lead-form">
@@ -810,21 +1186,11 @@
               <input id="lf-phone" name="phone" type="tel" required placeholder="(85) 9 9999-9999">
             </div>
             <div class="lead-field">
-              <label for="lf-email">E-mail</label>
-              <input id="lf-email" name="email" type="email" required placeholder="seuemail@dominio.com">
+              <label for="lf-city">Cidade</label>
+              <input id="lf-city" name="city" type="text" required placeholder="Sua cidade">
             </div>
           </div>
           <div class="lead-row">
-            <div class="lead-field">
-              <label for="lf-budget">Capital disponível</label>
-              <select id="lf-budget" name="budget" required>
-                <option value="">Selecione</option>
-                <option>Investimento inicial (entrada)</option>
-                <option>Investimento intermediário</option>
-                <option>Investimento de maior porte</option>
-                <option>Quero entender melhor primeiro</option>
-              </select>
-            </div>
             <div class="lead-field">
               <label for="lf-interest">Interesse</label>
               <select id="lf-interest" name="interest" required>
@@ -833,6 +1199,15 @@
                 <option>Usina + eletroposto</option>
                 <option>Somente eletroposto</option>
                 <option>Quero recomendação</option>
+              </select>
+            </div>
+            <div class="lead-field">
+              <label for="lf-budget">Pretensão de investimento</label>
+              <select id="lf-budget" name="budget" required>
+                <option value="">Selecione</option>
+                <option>R$50 mil – R$100 mil</option>
+                <option>R$100 mil – R$300 mil</option>
+                <option>Acima de R$300 mil</option>
               </select>
             </div>
           </div>
@@ -859,7 +1234,7 @@
     <p>Mercado de geração distribuída cresce 35% ao ano no Brasil. Eletropostos: produto inovador com demanda em escalada. Hora de posicionar seu capital.</p>
     <div class="cta-strip-actions">
       <a href="#contato" class="btn btn-primary">Quero minha simulação</a>
-      <a href="https://wa.me/5585999999999" target="_blank" rel="noopener" class="btn btn-secondary">
+      <a href="https://wa.me/5585920004466" target="_blank" rel="noopener" class="btn btn-secondary">
         <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.241.383-1.001 3.652 3.74-.994z"/></svg>
         Conversar agora
       </a>
@@ -886,7 +1261,7 @@
       </div>
       <div class="footer-col">
         <h5>Contato</h5>
-        <a href="https://wa.me/5585999999999" target="_blank" rel="noopener">WhatsApp · (85) 99999-9999</a>
+        <a href="https://wa.me/5585920004466" target="_blank" rel="noopener">WhatsApp · (85) 92000-4466</a>
         <a href="mailto:contato@vertussolar.com">contato@vertussolar.com</a>
         <p>Fortaleza · Ceará · Brasil</p>
       </div>
@@ -899,10 +1274,13 @@
 </footer>
 
 <!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/5585999999999?text=Oi%2C%20quero%20investir%20com%20a%20Vertus" target="_blank" rel="noopener" class="float-whatsapp" aria-label="Falar no WhatsApp">
+<a href="https://wa.me/5585920004466?text=Oi%2C%20quero%20investir%20com%20a%20Vertus" target="_blank" rel="noopener" class="float-whatsapp" aria-label="Falar no WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.241.383-1.001 3.652 3.74-.994zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01a1.094 1.094 0 0 0-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
 </a>
 
 <script src="app.js"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzn3uYW2NljaXXjcAV39Ad_yPwr9q1QXs&callback=initVertusMap&loading=async">
+</script>
 </body>
 </html>
