@@ -32,23 +32,188 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero hero-centered grain">
+<section class="hero hero-with-form grain">
   <div class="container">
-    <div class="hero-centered-inner">
-      <div class="hero-badge" data-reveal>Captando investidores · Ceará</div>
-      <h1 data-reveal>Usinas Solares <em>+</em> Eletropostos.<br>Energia que gera <em>renda.</em></h1>
-      <p class="hero-sub" data-reveal>Invista em uma operação completa de geração e distribuição de energia. Sua usina vende kWh para a rede e abastece seus próprios eletropostos — receita previsível, gestão Vertus, controle total da cadeia.</p>
-      <div class="hero-actions" data-reveal>
-        <a href="#contato" class="btn btn-primary">
-          Quero investir agora
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-        <a href="#como-funciona" class="btn btn-secondary">Como funciona</a>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge" data-reveal>Captação aberta · Ceará</div>
+        <h1 data-reveal>Não somos <em class="strike">franquia</em>.<br>Você instala a usina e o eletroposto.<br>A Vertus administra. <em>Você recebe.</em></h1>
+        <p class="hero-sub" data-reveal>Modelo único no Brasil: você adquire a usina e o eletroposto. A Vertus opera. O patrimônio fica com quem investiu — sem royalties, sem taxa sobre faturamento.</p>
+        <div class="hero-trust" data-reveal>
+          <div class="hero-trust-item">
+            <div class="num">3,5×</div>
+            <div class="lbl">Receita do eletroposto</div>
+          </div>
+          <div class="hero-trust-item">
+            <div class="num">3–4 anos</div>
+            <div class="lbl">Payback</div>
+          </div>
+          <div class="hero-trust-item">
+            <div class="num">25 anos</div>
+            <div class="lbl">Vida útil da usina</div>
+          </div>
+        </div>
       </div>
-      <a href="#numeros" class="hero-scroll" data-reveal aria-label="Ver números">
-        <span>Veja os números</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+
+      <div class="hero-form-col" data-reveal>
+        <div class="lead-form">
+          <form id="leadFormHero" class="lead-form-body">
+            <div class="lead-form-header">
+              <span class="lead-form-eyebrow">Apresentação executiva</span>
+              <h3>Solicite a apresentação</h3>
+              <p>Entenda o negócio mais promissor da atualidade.</p>
+            </div>
+            <div class="lead-field">
+              <label for="lfh-name">Nome completo</label>
+              <input id="lfh-name" name="name" type="text" required placeholder="Como devemos te chamar?">
+            </div>
+            <div class="lead-row">
+              <div class="lead-field">
+                <label for="lfh-phone">WhatsApp</label>
+                <input id="lfh-phone" name="phone" type="tel" required placeholder="(85) 9 9999-9999">
+              </div>
+              <div class="lead-field">
+                <label for="lfh-email">E-mail</label>
+                <input id="lfh-email" name="email" type="email" required placeholder="seuemail@dominio.com">
+              </div>
+            </div>
+            <div class="lead-row">
+              <div class="lead-field">
+                <label for="lfh-budget">Capital disponível</label>
+                <select id="lfh-budget" name="budget" required>
+                  <option value="">Selecione</option>
+                  <option>Investimento inicial (entrada)</option>
+                  <option>Investimento intermediário</option>
+                  <option>Investimento de maior porte</option>
+                  <option>Quero entender melhor primeiro</option>
+                </select>
+              </div>
+              <div class="lead-field">
+                <label for="lfh-interest">Interesse</label>
+                <select id="lfh-interest" name="interest" required>
+                  <option value="">Selecione</option>
+                  <option>Somente usina solar</option>
+                  <option>Usina + eletroposto</option>
+                  <option>Somente eletroposto</option>
+                  <option>Quero recomendação</option>
+                </select>
+              </div>
+            </div>
+            <button class="lead-submit" type="submit">
+              Receber apresentação
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+            <p class="lead-form-foot">Resposta em 24h · Sem compromisso · LGPD</p>
+          </form>
+          <div class="lead-success" id="leadSuccessHero">
+            <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <h3>Recebido!</h3>
+            <p>Em até 24h um consultor Vertus entra em contato pelo seu WhatsApp com a apresentação completa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS / GIGANTES JÁ APOSTARAM -->
+<section class="press-section grain" id="mercado">
+  <div class="press-bg-grid"></div>
+  <div class="container">
+    <div class="press-head">
+      <div class="section-badge" data-reveal>O mercado já decidiu</div>
+      <h2 class="section-title" data-reveal>Shell, Vibra, Raízen, Ipiranga e BYD <em>estão entrando em eletropostos</em>.</h2>
+      <p class="section-desc" data-reveal>As petroleiras enxergaram o futuro — mas só ficam com a recarga. No modelo Vertus, você é dono dos dois lados da equação: a usina que gera <strong>e</strong> o eletroposto que vende. Veja o que a imprensa está noticiando.</p>
+    </div>
+
+    <div class="press-grid">
+      <a class="press-card big" data-reveal href="https://www.mundoconectado.com.br/carros/byd-e-shell-impulsionam-eletromobilidade-no-brasil-com-600-novos-carregadores/" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/01_shell_byd.png" alt="BYD e Shell impulsionam eletromobilidade no Brasil com 600 novos carregadores"></div>
+        <div class="press-meta">
+          <span class="press-source">Mundo Conectado</span>
+          <span class="press-date">Fev 2024</span>
+        </div>
+        <h3 class="press-title">BYD e Shell impulsionam eletromobilidade no Brasil com <em>600 novos carregadores</em></h3>
+        <p class="press-sub">Parceria estratégica prevê hubs de recarga rápida em <strong>oito capitais</strong> até 2027.</p>
       </a>
+
+      <a class="press-card" data-reveal href="https://www.otempo.com.br/autotempo/shell-acelera-investimento-em-carregamento-de-carros-eletricos-1.3352788" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/08_shell_acelera.png" alt="Shell acelera investimento em carregamento de carros elétricos"></div>
+        <div class="press-meta">
+          <span class="press-source">O Tempo</span>
+          <span class="press-date">Mar 2024</span>
+        </div>
+        <h3 class="press-title">Shell <em>desfaz-se de 1.000 postos</em> de combustíveis até 2025 para investir em recarga elétrica</h3>
+      </a>
+
+      <a class="press-card" data-reveal href="https://www.autodata.com.br/noticias/2024/12/18/brasil-triplica-numero-de-eletropostos-em-2024-e-agora-investimentos-sao-em-recarga-rapida/81845/" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/04_brasil_triplica.png" alt="Brasil triplica número de eletropostos em 2024"></div>
+        <div class="press-meta">
+          <span class="press-source">AutoData</span>
+          <span class="press-date">Dez 2024</span>
+        </div>
+        <h3 class="press-title">Brasil <em>triplica número de eletropostos</em> em 2024 — investimento agora é em recarga rápida</h3>
+      </a>
+
+      <a class="press-card" data-reveal href="https://epbr.com.br/os-planos-da-vibra-raizen-e-ipiranga-para-aumentar-a-rede-de-eletropostos/" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/03_vibra_raizen_ipiranga.png" alt="Vibra, Raízen e Ipiranga aumentam rede de eletropostos"></div>
+        <div class="press-meta">
+          <span class="press-source">eixos</span>
+          <span class="press-date">2024</span>
+        </div>
+        <h3 class="press-title">Vibra, Raízen e Ipiranga: <em>líderes do combustível</em> se movimentam para expandir eletropostos</h3>
+      </a>
+
+      <a class="press-card" data-reveal href="https://www.autodata.com.br/noticias/2025/10/07/custo-de-instalacao-cai-e-rede-de-eletropostos-cresce-50-no-brasil/94969/" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/07_custo_cai_50.png" alt="Custo de instalação cai e rede cresce 50%"></div>
+        <div class="press-meta">
+          <span class="press-source">AutoData</span>
+          <span class="press-date">Out 2025</span>
+        </div>
+        <h3 class="press-title">Custo de instalação cai e rede de eletropostos <em>cresce 50% no Brasil</em></h3>
+      </a>
+
+      <a class="press-card" data-reveal href="https://www.canalenergia.com.br/noticias/53214993/raizen-inaugura-eletroposto-shell-recharge-no-brasil" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/02_raizen_shell.png" alt="Raízen inaugura eletroposto Shell Recharge"></div>
+        <div class="press-meta">
+          <span class="press-source">Canal Energia</span>
+          <span class="press-date">Jun 2022</span>
+        </div>
+        <h3 class="press-title">Raízen inaugura <em>Shell Recharge</em> com energia limpa própria</h3>
+      </a>
+
+      <a class="press-card" data-reveal href="https://www.automotivebusiness.com.br/noticias/vibra-inaugura-eletroposto-que-carrega-carros-eletricos-em-20-minutos" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/06_vibra_20min.png" alt="Vibra inaugura eletroposto que carrega em 20 minutos"></div>
+        <div class="press-meta">
+          <span class="press-source">Automotive Business</span>
+          <span class="press-date">Jun 2022</span>
+        </div>
+        <h3 class="press-title">Vibra inaugura eletroposto que carrega em <em>20 minutos</em> — corredor elétrico de 9 mil km</h3>
+      </a>
+
+      <a class="press-card" data-reveal href="https://autoranking.com.br/br-super-carga-vai-ampliar-eletropostos-para-80-pontos-em-2024/" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/05_br_super_carga.png" alt="BR Super Carga amplia para 80 pontos"></div>
+        <div class="press-meta">
+          <span class="press-source">AutoRanking</span>
+          <span class="press-date">Set 2024</span>
+        </div>
+        <h3 class="press-title">BR Super Carga vai ampliar eletropostos para <em>80 pontos</em> em 2024</h3>
+      </a>
+    </div>
+
+    <div class="press-conclusion" data-reveal>
+      <div class="press-conclusion-marker">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+          <polyline points="16 7 22 7 22 13"/>
+        </svg>
+      </div>
+      <div class="press-conclusion-text">
+        <div class="pc-tag">A leitura</div>
+        <h3>Se eles estão indo, é porque <em>estão prevendo algo</em>.</h3>
+        <p>Petroleiras não trocam mil postos de combustível por eletropostos por modismo. Elas leem o mercado de 20 anos à frente — e estão se reposicionando agora, antes da curva. <strong>O que eles enxergam, você também pode capturar</strong> — em escala de investidor individual, com geração própria e operação Vertus.</p>
+        <a href="#contato" class="btn btn-primary">Entrar agora, antes da onda →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -472,108 +637,6 @@
 
     <div class="mult-insight" data-reveal>
       <p>A usina solar já entrega <strong>retorno acima de qualquer renda fixa</strong> só com a venda na geração distribuída. Direcionando o excedente para o eletroposto, <strong>o mesmo kWh é vendido até 3,5× mais caro</strong> — porque a tarifa de recarga de VE é estruturalmente superior à tarifa cobrada de cliente final em apartamentos, comércios e residências. <strong>Você é dono dos dois canais</strong> — e captura a margem completa.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PRESS / GIGANTES JÁ APOSTARAM -->
-<section class="press-section grain" id="mercado">
-  <div class="press-bg-grid"></div>
-  <div class="container">
-    <div class="press-head">
-      <div class="section-badge" data-reveal>Sinal de mercado</div>
-      <h2 class="section-title" data-reveal>Os gigantes <em>já fizeram a aposta</em>.<br>Você está vendo o mesmo movimento?</h2>
-      <p class="section-desc" data-reveal>Shell, Raízen, Vibra, Ipiranga, BYD, BR. Quando os maiores players de combustível e mobilidade do Brasil redirecionam capital para eletropostos, eles não estão apostando — estão se posicionando para os próximos 20 anos.</p>
-    </div>
-
-    <div class="press-grid">
-      <a class="press-card big" data-reveal href="https://www.mundoconectado.com.br/carros/byd-e-shell-impulsionam-eletromobilidade-no-brasil-com-600-novos-carregadores/" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/01_shell_byd.png" alt="BYD e Shell impulsionam eletromobilidade no Brasil com 600 novos carregadores"></div>
-        <div class="press-meta">
-          <span class="press-source">Mundo Conectado</span>
-          <span class="press-date">Fev 2024</span>
-        </div>
-        <h3 class="press-title">BYD e Shell impulsionam eletromobilidade no Brasil com <em>600 novos carregadores</em></h3>
-        <p class="press-sub">Parceria estratégica prevê hubs de recarga rápida em <strong>oito capitais</strong> até 2027.</p>
-      </a>
-
-      <a class="press-card" data-reveal href="https://www.otempo.com.br/autotempo/shell-acelera-investimento-em-carregamento-de-carros-eletricos-1.3352788" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/08_shell_acelera.png" alt="Shell acelera investimento em carregamento de carros elétricos"></div>
-        <div class="press-meta">
-          <span class="press-source">O Tempo</span>
-          <span class="press-date">Mar 2024</span>
-        </div>
-        <h3 class="press-title">Shell <em>desfaz-se de 1.000 postos</em> de combustíveis até 2025 para investir em recarga elétrica</h3>
-      </a>
-
-      <a class="press-card" data-reveal href="https://www.autodata.com.br/noticias/2024/12/18/brasil-triplica-numero-de-eletropostos-em-2024-e-agora-investimentos-sao-em-recarga-rapida/81845/" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/04_brasil_triplica.png" alt="Brasil triplica número de eletropostos em 2024"></div>
-        <div class="press-meta">
-          <span class="press-source">AutoData</span>
-          <span class="press-date">Dez 2024</span>
-        </div>
-        <h3 class="press-title">Brasil <em>triplica número de eletropostos</em> em 2024 — investimento agora é em recarga rápida</h3>
-      </a>
-
-      <a class="press-card" data-reveal href="https://epbr.com.br/os-planos-da-vibra-raizen-e-ipiranga-para-aumentar-a-rede-de-eletropostos/" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/03_vibra_raizen_ipiranga.png" alt="Vibra, Raízen e Ipiranga aumentam rede de eletropostos"></div>
-        <div class="press-meta">
-          <span class="press-source">eixos</span>
-          <span class="press-date">2024</span>
-        </div>
-        <h3 class="press-title">Vibra, Raízen e Ipiranga: <em>líderes do combustível</em> se movimentam para expandir eletropostos</h3>
-      </a>
-
-      <a class="press-card" data-reveal href="https://www.autodata.com.br/noticias/2025/10/07/custo-de-instalacao-cai-e-rede-de-eletropostos-cresce-50-no-brasil/94969/" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/07_custo_cai_50.png" alt="Custo de instalação cai e rede cresce 50%"></div>
-        <div class="press-meta">
-          <span class="press-source">AutoData</span>
-          <span class="press-date">Out 2025</span>
-        </div>
-        <h3 class="press-title">Custo de instalação cai e rede de eletropostos <em>cresce 50% no Brasil</em></h3>
-      </a>
-
-      <a class="press-card" data-reveal href="https://www.canalenergia.com.br/noticias/53214993/raizen-inaugura-eletroposto-shell-recharge-no-brasil" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/02_raizen_shell.png" alt="Raízen inaugura eletroposto Shell Recharge"></div>
-        <div class="press-meta">
-          <span class="press-source">Canal Energia</span>
-          <span class="press-date">Jun 2022</span>
-        </div>
-        <h3 class="press-title">Raízen inaugura <em>Shell Recharge</em> com energia limpa própria</h3>
-      </a>
-
-      <a class="press-card" data-reveal href="https://www.automotivebusiness.com.br/noticias/vibra-inaugura-eletroposto-que-carrega-carros-eletricos-em-20-minutos" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/06_vibra_20min.png" alt="Vibra inaugura eletroposto que carrega em 20 minutos"></div>
-        <div class="press-meta">
-          <span class="press-source">Automotive Business</span>
-          <span class="press-date">Jun 2022</span>
-        </div>
-        <h3 class="press-title">Vibra inaugura eletroposto que carrega em <em>20 minutos</em> — corredor elétrico de 9 mil km</h3>
-      </a>
-
-      <a class="press-card" data-reveal href="https://autoranking.com.br/br-super-carga-vai-ampliar-eletropostos-para-80-pontos-em-2024/" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/05_br_super_carga.png" alt="BR Super Carga amplia para 80 pontos"></div>
-        <div class="press-meta">
-          <span class="press-source">AutoRanking</span>
-          <span class="press-date">Set 2024</span>
-        </div>
-        <h3 class="press-title">BR Super Carga vai ampliar eletropostos para <em>80 pontos</em> em 2024</h3>
-      </a>
-    </div>
-
-    <div class="press-conclusion" data-reveal>
-      <div class="press-conclusion-marker">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-          <polyline points="16 7 22 7 22 13"/>
-        </svg>
-      </div>
-      <div class="press-conclusion-text">
-        <div class="pc-tag">A leitura</div>
-        <h3>Se eles estão indo, é porque <em>estão prevendo algo</em>.</h3>
-        <p>Petroleiras não trocam mil postos de combustível por eletropostos por modismo. Elas leem o mercado de 20 anos à frente — e estão se reposicionando agora, antes da curva. <strong>O que eles enxergam, você também pode capturar</strong> — em escala de investidor individual, com geração própria e operação Vertus.</p>
-        <a href="#contato" class="btn btn-primary">Entrar agora, antes da onda →</a>
-      </div>
     </div>
   </div>
 </section>

@@ -76,14 +76,19 @@
     });
   });
 
-  // Lead form submit (mock)
-  const form = document.getElementById('leadForm');
-  const success = document.getElementById('leadSuccess');
-  if (form) {
+  // Lead form submit (mock) — supports multiple forms (hero + #contato)
+  const formPairs = [
+    { form: 'leadForm', success: 'leadSuccess' },
+    { form: 'leadFormHero', success: 'leadSuccessHero' },
+  ];
+  formPairs.forEach(({ form: formId, success: successId }) => {
+    const form = document.getElementById(formId);
+    const success = document.getElementById(successId);
+    if (!form || !success) return;
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       form.style.display = 'none';
       success.classList.add('show');
     });
-  }
+  });
 })();

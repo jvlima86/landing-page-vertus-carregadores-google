@@ -223,6 +223,122 @@ img { max-width: 100%; display: block; }
   50% { transform: translateY(4px); }
 }
 
+/* ═══ HERO WITH FORM (chamada + formulário) ═══ */
+.hero-with-form {
+  min-height: auto;
+  padding-top: 96px;
+  padding-bottom: 4rem;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 110%, rgba(170,70,0,0.55) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 20%, rgba(170,70,0,0.18) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(20,18,18,0.88) 0%, rgba(20,18,18,0.82) 50%, rgba(20,18,18,0.95) 100%),
+    url('assets/img-hero-usina.jpg') center/cover no-repeat;
+}
+.hero-with-form .hero-content {
+  grid-template-columns: 1.4fr 1fr;
+  gap: 4.5rem;
+  align-items: center;
+  padding: 3rem 0 2rem;
+}
+.hero-with-form .hero-text { max-width: 720px; }
+.hero-with-form h1 {
+  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.4rem;
+  text-wrap: balance;
+}
+.hero-with-form h1 em {
+  font-style: normal;
+  color: var(--vertus-orange);
+  text-shadow: 0 0 80px rgba(255,126,39,0.3);
+}
+.hero-with-form h1 em.strike {
+  position: relative;
+  display: inline-block;
+  text-decoration: line-through;
+  text-decoration-color: rgba(255,126,39,0.85);
+  text-decoration-thickness: 4px;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 0;
+}
+.hero-with-form .hero-sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.65;
+  margin-bottom: 2rem;
+  max-width: 560px;
+}
+.hero-with-form .hero-trust {
+  margin-top: 0.5rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid rgba(255,126,39,0.18);
+}
+
+/* Form column inside hero */
+.hero-form-col { width: 100%; }
+.hero-form-col .lead-form {
+  padding: 1.8rem 1.6rem;
+  border-color: rgba(255,126,39,0.35);
+  box-shadow: 0 28px 70px rgba(0,0,0,0.55);
+}
+.hero-form-col .lead-form-header {
+  margin-bottom: 1.2rem;
+  padding-bottom: 1rem;
+}
+.hero-form-col .lead-form-header h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.3rem;
+}
+.hero-form-col .lead-form-header p {
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+.hero-form-col .lead-field { margin-bottom: 0.85rem; }
+.hero-form-col .lead-field label { font-size: 0.66rem; margin-bottom: 0.4rem; }
+.hero-form-col .lead-field input,
+.hero-form-col .lead-field select {
+  font-size: 0.88rem;
+  padding: 11px 13px;
+}
+.hero-form-col .lead-submit {
+  margin-top: 0.6rem;
+  padding: 14px;
+  font-size: 0.88rem;
+}
+.hero-form-col .lead-form-foot {
+  margin-top: 0.8rem;
+  font-size: 0.7rem;
+}
+.lead-form-eyebrow {
+  display: inline-block;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--vertus-orange);
+  margin-bottom: 0.6rem;
+}
+
+@media (max-width: 960px) {
+  .hero-with-form { padding-top: 80px; padding-bottom: 2rem; }
+  .hero-with-form .hero-content {
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+    padding: 2rem 0 1rem;
+  }
+  .hero-with-form .hero-text { max-width: 100%; }
+  .hero-with-form h1 { font-size: clamp(1.9rem, 7.5vw, 2.6rem); }
+  .hero-with-form .hero-trust { gap: 1.6rem; }
+  .hero-form-col .lead-form { padding: 1.6rem 1.2rem; }
+}
+@media (max-width: 600px) {
+  .hero-with-form .hero-trust { gap: 1.2rem; }
+  .hero-with-form .hero-trust-item .num { font-size: 1.3rem; }
+  .hero-with-form .hero-trust-item .lbl { font-size: 0.62rem; }
+}
+
 /* ═══ NÚMEROS SECTION ═══ */
 .numbers-section {
   padding: 6rem 0 7rem;
