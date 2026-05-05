@@ -528,6 +528,15 @@ img { max-width: 100%; display: block; }
   display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 1.4rem; margin-bottom: 4.5rem;
 }
+.numbers-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 640px) {
+  .numbers-grid-3 { grid-template-columns: 1fr; }
+}
 .num-stat {
   background: linear-gradient(180deg, rgba(255,126,39,0.05), rgba(255,126,39,0.01));
   border: 1px solid rgba(255,126,39,0.16);
