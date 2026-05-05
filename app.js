@@ -131,9 +131,7 @@
 
       await sendToSheet(params);
       trackConversion();
-
-      heroForm.style.display = 'none';
-      heroSuccess.classList.add('show');
+      window.location.href = '/obrigado.html';
     });
   }
 
@@ -158,9 +156,7 @@
 
       await sendToSheet(params);
       trackConversion();
-
-      form.style.display = 'none';
-      success.classList.add('show');
+      window.location.href = '/obrigado.html';
     });
   }
 })();
