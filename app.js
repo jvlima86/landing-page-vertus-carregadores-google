@@ -12,39 +12,30 @@
   }, { threshold: 0.15 });
   reveals.forEach(el => revealObs.observe(el));
 
-  // Compare bars animate-in
-  const bars = document.getElementById('compareBars');
-  if (bars) {
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          bars.classList.add('visible');
-          obs.unobserve(bars);
-        }
-      });
-    }, { threshold: 0.25 });
-    obs.observe(bars);
-  }
-
-  // Multiplier arrow grid
-  const multGrid = document.querySelector('.mult-grid');
-  if (multGrid) {
-    const o = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          o.disconnect();
-        }
-      });
-    }, { threshold: 0.4 });
-    o.observe(multGrid);
-  }
-
   // Navbar scrolled effect
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 50);
   }, { passive: true });
+
+  // Hamburger menu mobile
+  const burger = document.getElementById('navBurger');
+  const navLinks = document.getElementById('navLinks');
+  if (burger && navLinks) {
+    burger.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('mobile-open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+    });
+    // Fechar ao clicar num link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('mobile-open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 
   // Smooth scroll — expo ease-in-out
   let _scrollRaf = null;
