@@ -8,8 +8,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="styles.css?v=4">
 <link rel="stylesheet" href="scene3d.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17006818606"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17006818606');
+</script>
 </head>
 <body>
 
@@ -35,28 +43,87 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero hero-centered grain">
+<section class="hero hero-split grain">
   <div class="hero-video-bg">
-    <video autoplay muted loop playsinline preload="auto" poster="assets/img-hero-usina.jpg">
+    <video autoplay muted loop playsinline preload="metadata" poster="assets/img-hero-usina.jpg">
       <source src="fundo-site-transicao.mp4" type="video/mp4">
     </video>
   </div>
   <div class="container">
-    <div class="hero-centered-inner stagger-hero">
-      <p class="hero-eyebrow" data-reveal>Eletropostos · Usinas Solares · Fortaleza, CE</p>
-      <h1 data-reveal>Seu eletroposto.<br>Com energia solar <em>própria.</em></h1>
-      <p class="hero-sub" data-reveal>A Vertus instala, opera e mantém o seu ponto de recarga abastecido pela sua própria usina solar — a mesma energia que custaria R$0,98/kWh na rede sai a <em>R$0,00</em> pra você.</p>
-      <div class="hero-actions" data-reveal>
-        <a href="#contato" class="btn btn-primary">
-          Quero minha simulação
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    <div class="hero-split-inner">
+
+      <!-- Coluna esquerda: copy -->
+      <div class="hero-copy stagger-hero">
+        <p class="hero-eyebrow" data-reveal>Eletropostos · Usinas Solares · Fortaleza, CE</p>
+        <h1 data-reveal>Seu eletroposto solar.<br>Você investe.<br>A Vertus opera.<br><em>O retorno chega todo mês.</em></h1>
+        <p class="hero-sub" data-reveal>Você adquire a usina solar e o eletroposto. A Vertus instala, administra e repassa sua receita mensalmente — sem envolvimento operacional da sua parte. Energia a custo próximo de zero. E não é franquia: sem royalties, sem manual de terceiros, sem dependência de rede.</p>
+        <a href="#numeros" class="hero-scroll" data-reveal aria-label="Ver números">
+          <span>Veja os números</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
         </a>
-        <a href="#como-funciona" class="btn btn-secondary">Como funciona</a>
       </div>
-      <a href="#numeros" class="hero-scroll" data-reveal aria-label="Ver números">
-        <span>Veja os números</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-      </a>
+
+      <!-- Coluna direita: formulário -->
+      <div class="hero-form-wrap" data-reveal>
+        <div class="hero-form-card">
+          <p class="hero-form-title">Receba sua simulação gratuita</p>
+          <p class="hero-form-subtitle">Resposta em até 24h por WhatsApp.</p>
+          <form id="heroLeadForm">
+            <div class="hf-field">
+              <label for="hlf-name">Nome completo</label>
+              <input id="hlf-name" name="nome" type="text" required placeholder="Como devemos te chamar?">
+            </div>
+            <div class="hf-field">
+              <label for="hlf-phone">WhatsApp</label>
+              <input id="hlf-phone" name="whatsapp" type="tel" required placeholder="(85) 9 0000-0000">
+            </div>
+            <div class="hf-field">
+              <label for="hlf-city">Cidade</label>
+              <input id="hlf-city" name="cidade" type="text" required placeholder="Fortaleza, CE">
+            </div>
+            <div class="hf-row">
+              <div class="hf-field">
+                <label for="hlf-interest">Interesse</label>
+                <select id="hlf-interest" name="interesse" required>
+                  <option value="">Selecione</option>
+                  <option>Somente usina solar</option>
+                  <option>Usina + eletroposto</option>
+                  <option>Somente eletroposto</option>
+                  <option>Quero recomendação</option>
+                </select>
+              </div>
+              <div class="hf-field">
+                <label for="hlf-budget">Pretensão de investimento</label>
+                <select id="hlf-budget" name="pretencao" required>
+                  <option value="">Selecione</option>
+                  <option>R$50 mil – R$100 mil</option>
+                  <option>R$100 mil – R$300 mil</option>
+                  <option>Acima de R$300 mil</option>
+                </select>
+              </div>
+            </div>
+            <button class="hero-submit" type="submit">
+              Quero minha simulação
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+            <p class="hf-privacy">Seus dados são tratados com sigilo.</p>
+          </form>
+          <div class="hero-form-success" id="heroLeadSuccess">
+            <div class="hfs-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h4>Recebido!</h4>
+            <p>Em até 24h um consultor entra em contato pelo WhatsApp.</p>
+          </div>
+        </div>
+        <a href="https://wa.me/5585920004466?text=Oi%2C%20quero%20investir%20com%20a%20Vertus"
+           target="_blank" rel="noopener" class="hero-wa-link"
+           onclick="gtag('event','conversion',{'send_to':'AW-17006818606'})">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.241.383-1.001 3.652 3.74-.994zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01a1.094 1.094 0 0 0-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          Prefere o WhatsApp? · (85) 92000-4466
+        </a>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1165,7 +1232,7 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> DRE detalhado mês a mês — 25 anos de projeção</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Sem compromisso · Resposta em até 24h</li>
         </ul>
-        <a href="https://wa.me/5585920004466?text=Oi%2C%20quero%20saber%20mais%20sobre%20investir%20em%20usina%20Vertus" target="_blank" rel="noopener" class="lead-whatsapp" data-reveal>
+        <a href="https://wa.me/5585920004466?text=Oi%2C%20quero%20saber%20mais%20sobre%20investir%20em%20usina%20Vertus" target="_blank" rel="noopener" class="lead-whatsapp" data-reveal onclick="gtag('event','conversion',{'send_to':'AW-17006818606'})"
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.241.383-1.001 3.652 3.74-.994zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01a1.094 1.094 0 0 0-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
           WhatsApp direto · (85) 92000-4466
         </a>
@@ -1234,7 +1301,7 @@
     <p>Mercado de geração distribuída cresce 35% ao ano no Brasil. Eletropostos: produto inovador com demanda em escalada. Hora de posicionar seu capital.</p>
     <div class="cta-strip-actions">
       <a href="#contato" class="btn btn-primary">Quero minha simulação</a>
-      <a href="https://wa.me/5585920004466" target="_blank" rel="noopener" class="btn btn-secondary">
+      <a href="https://wa.me/5585920004466" target="_blank" rel="noopener" class="btn btn-secondary" onclick="gtag('event','conversion',{'send_to':'AW-17006818606'})">
         <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.241.383-1.001 3.652 3.74-.994z"/></svg>
         Conversar agora
       </a>
@@ -1274,7 +1341,7 @@
 </footer>
 
 <!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/5585920004466?text=Oi%2C%20quero%20investir%20com%20a%20Vertus" target="_blank" rel="noopener" class="float-whatsapp" aria-label="Falar no WhatsApp">
+<a href="https://wa.me/5585920004466?text=Oi%2C%20quero%20investir%20com%20a%20Vertus" target="_blank" rel="noopener" class="float-whatsapp" aria-label="Falar no WhatsApp" onclick="gtag('event','conversion',{'send_to':'AW-17006818606'})">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.241.383-1.001 3.652 3.74-.994zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01a1.094 1.094 0 0 0-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
 </a>
 

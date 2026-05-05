@@ -99,8 +99,54 @@
     });
   });
 
-  // Lead form — envia para Google Sheets via Apps Script
+  // Google Ads conversion helper
+  function trackConversion() {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'conversion', { 'send_to': 'AW-17006818606' });
+    }
+  }
+
+  // Envia lead para Google Sheets via Apps Script
   const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwYLt1SL4Vry6mhzIhLUWZKWpDiwmRkI_wosoPBaGGjJn3DLe6AuBmbCeDkWeib42iW/exec';
+
+  async function sendToSheet(params) {
+    try {
+      await fetch(SHEET_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params,
+      });
+    } catch (_) {}
+  }
+
+  // Hero form
+  const heroForm = document.getElementById('heroLeadForm');
+  const heroSuccess = document.getElementById('heroLeadSuccess');
+  const heroBtn = heroForm && heroForm.querySelector('.hero-submit');
+
+  if (heroForm) {
+    heroForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (heroBtn) { heroBtn.disabled = true; heroBtn.textContent = 'Enviando…'; }
+
+      const params = new URLSearchParams({
+        nome:      heroForm.querySelector('#hlf-name').value,
+        whatsapp:  heroForm.querySelector('#hlf-phone').value,
+        cidade:    heroForm.querySelector('#hlf-city').value,
+        interesse: heroForm.querySelector('#hlf-interest').value,
+        pretencao: heroForm.querySelector('#hlf-budget').value,
+        origem:    'hero',
+      });
+
+      await sendToSheet(params);
+      trackConversion();
+
+      heroForm.style.display = 'none';
+      heroSuccess.classList.add('show');
+    });
+  }
+
+  // Lead form (seção de contato)
   const form = document.getElementById('leadForm');
   const success = document.getElementById('leadSuccess');
   const submitBtn = form && form.querySelector('.lead-submit');
@@ -116,15 +162,11 @@
         cidade:    form.querySelector('#lf-city').value,
         interesse: form.querySelector('#lf-interest').value,
         pretencao: form.querySelector('#lf-budget').value,
+        origem:    'contato',
       });
 
-      try {
-        await fetch(SHEET_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: params,
-        });
-      } catch (_) {}
+      await sendToSheet(params);
+      trackConversion();
 
       form.style.display = 'none';
       success.classList.add('show');
@@ -278,7 +320,7 @@
 /* ── Hero parallax — content drifts at 0.12× scroll speed ── */
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const inner = document.querySelector('.hero-centered-inner');
+  const inner = document.querySelector('.hero-copy');
   if (!inner) return;
   const vh = window.innerHeight;
   let _rafId = null;
