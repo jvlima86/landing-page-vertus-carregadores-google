@@ -458,7 +458,20 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 480px) {
   .hf-row { grid-template-columns: 1fr; }
-  .hero-form-card { padding: 24px 18px; }
+  .hero-form-card { padding: 22px 18px; }
+
+  /* Prevent iOS Safari from zooming on input focus */
+  .hf-field input,
+  .hf-field select { font-size: 16px; }
+
+  /* Hero copy */
+  .hero-split-inner { padding: 84px 0 36px; gap: 1.8rem; }
+  .hero-split h1 { font-size: clamp(1.55rem, 8vw, 2rem); }
+  .hero-split .hero-sub { font-size: 0.9rem; margin-bottom: 1.2rem; }
+  .hero-eyebrow { font-size: 0.68rem; }
+  .hero-form-title { font-size: 1rem; }
+  .hero-submit { min-height: 50px; padding: 14px 20px; font-size: 0.92rem; }
+  .hero-wa-link { font-size: 0.76rem; }
 }
 
 /* ═══ NÚMEROS SECTION ═══ */
@@ -1985,9 +1998,62 @@ footer {
   .diff-grid { grid-template-columns: 1fr; }
   .lead-row { grid-template-columns: 1fr; }
   .footer-main { grid-template-columns: 1fr; }
-  section { padding: clamp(60px, 9vh, 100px) 0; }
+  section { padding: clamp(56px, 9vh, 96px) 0; }
   .cta-strip-actions { flex-direction: column; width: 100%; }
   .cta-strip-actions .btn { width: 100%; justify-content: center; }
   .lead-submit { width: 100%; justify-content: center; }
   .numbers-grid-3 { grid-template-columns: 1fr; max-width: 320px; margin-left: auto; margin-right: auto; }
+
+  /* Prevent iOS zoom on lead form inputs */
+  .lead-field input,
+  .lead-field select,
+  .lead-field textarea { font-size: 16px; }
+
+  /* Flow toggle: full width on mobile */
+  .flow-toggle { width: 100%; }
+  .flow-toggle-btn { flex: 1; justify-content: center; padding: 9px 12px; }
+
+  /* Map: reduce canvas height on phone */
+  .map-canvas { min-height: 300px; }
+
+  /* Chart: allow horizontal scroll if SVG is too wide */
+  .chart-wrap { padding: 1.2rem 1rem 1rem; overflow-x: auto; }
+
+  /* CTA strip: tighter spacing */
+  .cta-strip { padding: clamp(56px, 10vh, 80px) 0; }
+  .cta-strip h2 { font-size: clamp(1.45rem, 6.5vw, 2rem); }
+  .cta-strip p { font-size: 0.92rem; margin-bottom: 1.6rem; }
+
+  /* Lead text */
+  .lead-text h2 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+  .lead-form { padding: 1.8rem 1.4rem; }
+
+  /* Footer bottom: stack and center on small screens */
+  .footer-bottom { flex-direction: column; align-items: center; text-align: center; gap: 0.4rem; }
+
+  /* Numbers stat: reduce vertical padding */
+  .num-stat { padding: 1.8rem 1.4rem; }
+  .num-stat-v { font-size: clamp(2.2rem, 9vw, 3rem); }
+
+  /* Section title/desc tightening */
+  .section-title { font-size: clamp(1.45rem, 6.5vw, 2rem); }
+  .section-desc { font-size: 0.92rem; margin-bottom: 2rem; }
+
+  /* Traction strip */
+  .traction-strip { padding: 1.8rem 0; }
+  .traction-item .ti-num { font-size: 2rem; }
+
+  /* Timeline banner */
+  .timeline-banner { flex-direction: column; gap: 0.6rem; padding: 1.2rem 1.4rem; }
+  .timeline-banner .left { flex-wrap: wrap; }
+
+  /* Floating WA: account for iOS safe area */
+  .float-whatsapp { bottom: 20px; right: 18px; width: 52px; height: 52px; }
+  .float-whatsapp svg { width: 26px; height: 26px; }
+
+  /* Pillar cards */
+  .pillar-card { padding: 1.6rem 1.4rem; }
+
+  /* Diff cards */
+  .diff-card { padding: 1.6rem 1.4rem; }
 }

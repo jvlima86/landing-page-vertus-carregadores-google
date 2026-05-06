@@ -368,7 +368,7 @@
 }
 
 @media (max-width: 880px) {
-  .neon-stage { aspect-ratio: 1000/520; }
+  .neon-stage { aspect-ratio: 1000/520; margin: 40px auto 36px; }
   .neon-multiplier-badge { width: 96px; height: 96px; right: 4%; bottom: 6%; }
   .nmb-big { font-size: 28px; }
   .scene3d-loop {
@@ -378,6 +378,29 @@
   .loop-arrow { transform: rotate(90deg); }
   .qcompare-grid { grid-template-columns: 1fr; }
   .qcompare-cta { flex-direction: column; align-items: stretch; text-align: center; }
+}
+
+@media (max-width: 600px) {
+  /* Neon stage: more compact aspect ratio on small screens */
+  .neon-stage { aspect-ratio: 1000/600; }
+  .neon-multiplier-badge { width: 80px; height: 80px; right: 3%; bottom: 5%; }
+  .nmb-big { font-size: 22px; }
+  .nmb-lbl { font-size: 9px; }
+
+  /* Scene3D section spacing */
+  .scene3d-section .section-desc { font-size: 0.9rem; }
+
+  /* Loop: tighter gap */
+  .scene3d-loop { gap: 8px; }
+  .loop-step { padding: 1.1rem 1.2rem; }
+  .loop-step-num { font-size: 0.65rem; }
+  .loop-step-t { font-size: 0.9rem; }
+  .loop-step-d { font-size: 0.78rem; line-height: 1.4; }
+
+  /* Press section spacing */
+  .press-section { padding: 64px 0; }
+  .press-head { margin-bottom: 40px; }
+  .press-ticker { margin-bottom: 40px; }
 }
 
 /* ====================================================
@@ -895,6 +918,38 @@
   .press-conclusion-text h3 { font-size: 22px; }
 }
 @media (max-width: 480px) {
+  /* Press grid */
   .press-grid { grid-template-columns: 1fr; }
   .press-card.big { grid-column: auto; }
+
+  /* Neon stage: reduce top/bottom margin */
+  .neon-stage { margin: 28px auto 28px; }
+
+  /* Tarifa strip: tighten on small phones */
+  .tarifa-strip { padding: 18px 14px; gap: 14px; }
+  .tarifa-label { font-size: 14px; }
+  .tarifa-sub { font-size: 11px; margin-bottom: 10px; }
+  .tarifa-price { font-size: 1.55rem; }
+  .tarifa-mark { font-size: 10px; letter-spacing: 1.5px; }
+  .tarifa-vs-big { font-size: 30px; }
+
+  /* Scene3D loop steps: smaller padding */
+  .loop-step { padding: 1rem 1rem; }
+  .loop-step-t { font-size: 0.88rem; }
+  .loop-step-d { font-size: 0.76rem; }
+
+  /* Mult insight: tighter */
+  .mult-insight { padding: 1.2rem 1.4rem; }
+  .mult-insight p { font-size: 0.88rem; }
+
+  /* Quick compare */
+  .qcompare-grid { gap: 12px; }
+  .qcompare-card { padding: 1.4rem 1.2rem; }
+  .qcompare-card ul li { font-size: 0.85rem; }
+  .qcompare-cta .btn { width: 100%; justify-content: center; }
+
+  /* Press card meta text */
+  .press-title { font-size: 14px; padding: 4px 14px 14px; }
+  .press-meta { padding: 10px 14px 6px; }
+  .press-card.big .press-title { font-size: 17px; padding: 4px 16px 12px; }
 }
