@@ -3,12 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1E1C1C">
 <title>Vertus MOB — Eletropostos sem franquia · Energia solar integrada | Gestão Vertus</title>
 <meta name="description" content="Tenha seu próprio eletroposto sem franquia, sem royalties. A Vertus instala, integra usina solar e faz a gestão opcional. Fortaleza, Ceará.">
+<link rel="canonical" href="https://vertus-mob.com/">
+<link rel="icon" type="image/png" href="/assets/logo-vertus-mark.png">
+<link rel="apple-touch-icon" href="/assets/logo-vertus-mark.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vertus-mob.com/">
+<meta property="og:title" content="Vertus MOB — Eletropostos sem franquia. Você é dono do ativo.">
+<meta property="og:description" content="Eletroposto próprio + usina solar integrada. Sem royalties, sem franquia. Operação completa pela Vertus em Fortaleza, Ceará.">
+<meta property="og:image" content="https://vertus-mob.com/assets/img-hero-usina.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Vertus MOB">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vertus MOB — Eletropostos sem franquia">
+<meta name="twitter:description" content="Eletroposto próprio + usina solar integrada. Você é dono do ativo, sem royalties.">
+<meta name="twitter:image" content="https://vertus-mob.com/assets/img-hero-usina.jpg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&display=swap"></noscript>
+<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="scene3d.css?v=5">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17006818606"></script>
 <script>
@@ -27,12 +51,13 @@
   </div>
   <ul class="nav-links" id="navLinks">
     <li><a href="#mercado">Mercado</a></li>
-    <li><a href="#sobre">Sobre a Vertus</a></li>
+    <li><a href="#mapa">Operação</a></li>
+    <li><a href="#sobre">Sobre</a></li>
     <li><a href="#diferencial">Diferenciais</a></li>
     <li><a href="#contato">Contato</a></li>
     <li>
       <a href="#contato" class="nav-cta">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Falar com consultor
       </a>
     </li>
@@ -44,8 +69,8 @@
 
 <!-- HERO -->
 <section class="hero hero-split grain">
-  <div class="hero-video-bg">
-    <video autoplay muted loop playsinline preload="metadata" poster="assets/img-hero-usina.jpg">
+  <div class="hero-video-bg" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="metadata" poster="assets/img-hero-usina.jpg" width="1920" height="1080">
       <source src="novo_fundo_hero.mp4" type="video/mp4">
     </video>
   </div>
@@ -55,11 +80,11 @@
       <!-- Coluna esquerda: copy -->
       <div class="hero-copy stagger-hero">
         <p class="hero-eyebrow" data-reveal>Eletropostos · Usinas Solares · Gestão Vertus</p>
-        <h1 data-reveal>Seu eletroposto próprio.<br>Sem franquia.<br>Sem royalties.<br><em>Com operação completa da Vertus.</em></h1>
-        <p class="hero-sub" data-reveal>Você compra o eletroposto. A Vertus instala e, se você quiser, fazemos toda a gestão da operação. Diferente de uma franquia, você não fica preso a royalties, manuais de terceiros ou dependência de rede. E ainda pode integrar uma usina solar ao projeto para reduzir drasticamente o custo da energia — podendo chegar a custo praticamente zero quando a geração está no mesmo local do eletroposto.</p>
-        <a href="#sobre" class="hero-scroll" data-reveal aria-label="Entender o modelo">
-          <span>Entender o modelo</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+        <h1 data-reveal>Seu eletroposto próprio.<br><em>Sem franquia.</em></h1>
+        <p class="hero-sub" data-reveal>Eletroposto + usina solar integrados. Você é dono do ativo — a Vertus instala e opera, se você quiser. Sem royalties, sem dependência de rede.</p>
+        <a href="#mercado" class="hero-scroll" data-reveal aria-label="Ver o movimento do mercado">
+          <span>Ver o mercado</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
         </a>
       </div>
 
@@ -71,42 +96,27 @@
           <form id="heroLeadForm">
             <div class="hf-field">
               <label for="hlf-name">Nome completo</label>
-              <input id="hlf-name" name="nome" type="text" required placeholder="Como devemos te chamar?">
+              <input id="hlf-name" name="nome" type="text" required autocomplete="name" placeholder="Como devemos te chamar?">
             </div>
             <div class="hf-field">
               <label for="hlf-phone">WhatsApp</label>
-              <input id="hlf-phone" name="whatsapp" type="tel" required placeholder="(85) 9 0000-0000">
+              <input id="hlf-phone" name="whatsapp" type="tel" required autocomplete="tel" inputmode="tel" placeholder="(85) 9 0000-0000">
             </div>
             <div class="hf-field">
-              <label for="hlf-city">Cidade</label>
-              <input id="hlf-city" name="cidade" type="text" required placeholder="Fortaleza, CE">
-            </div>
-            <div class="hf-row">
-              <div class="hf-field">
-                <label for="hlf-interest">Interesse</label>
-                <select id="hlf-interest" name="interesse" required>
-                  <option value="">Selecione</option>
-                  <option>Somente usina solar</option>
-                  <option>Usina + eletroposto</option>
-                  <option>Somente eletroposto</option>
-                  <option>Quero recomendação</option>
-                </select>
-              </div>
-              <div class="hf-field">
-                <label for="hlf-budget">Pretensão de investimento</label>
-                <select id="hlf-budget" name="pretencao" required>
-                  <option value="">Selecione</option>
-                  <option>R$60 mil – R$100 mil</option>
-                  <option>R$100 mil – R$300 mil</option>
-                  <option>Acima de R$300 mil</option>
-                </select>
-              </div>
+              <label for="hlf-interest">Interesse</label>
+              <select id="hlf-interest" name="interesse" required>
+                <option value="">Selecione</option>
+                <option>Somente usina solar</option>
+                <option>Usina + eletroposto</option>
+                <option>Somente eletroposto</option>
+                <option>Quero recomendação</option>
+              </select>
             </div>
             <button class="hero-submit" type="submit">
               Quero receber uma simulação
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </button>
-            <p class="hf-privacy">Seus dados são tratados com sigilo.</p>
+            <p class="hf-privacy">Seus dados são tratados com sigilo. Resposta em até 24h.</p>
           </form>
           <div class="hero-form-success" id="heroLeadSuccess">
             <div class="hfs-check">
@@ -181,17 +191,16 @@
     </div>
 
     <div class="press-grid press-grid-animated">
-      <a class="press-card big" href="https://www.mundoconectado.com.br/carros/byd-e-shell-impulsionam-eletromobilidade-no-brasil-com-600-novos-carregadores/" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/01_shell_byd.png" alt="BYD e Shell impulsionam eletromobilidade no Brasil com 600 novos carregadores" loading="lazy"></div>
+      <a class="press-card" href="https://www.mundoconectado.com.br/carros/byd-e-shell-impulsionam-eletromobilidade-no-brasil-com-600-novos-carregadores/" target="_blank" rel="noopener">
+        <div class="press-clip"><img src="press/01_shell_byd.webp" alt="BYD e Shell impulsionam eletromobilidade no Brasil com 600 novos carregadores" loading="lazy" width="640" height="360"></div>
         <div class="press-meta">
           <span class="press-source">Mundo Conectado</span>
           <span class="press-date">Fev 2024</span>
         </div>
         <h3 class="press-title">BYD e Shell impulsionam eletromobilidade no Brasil com <em>600 novos carregadores</em></h3>
-        <p class="press-sub">Parceria estratégica prevê hubs de recarga rápida em <strong>oito capitais</strong> até 2027.</p>
       </a>
       <a class="press-card" href="https://www.otempo.com.br/autotempo/shell-acelera-investimento-em-carregamento-de-carros-eletricos-1.3352788" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/08_shell_acelera.png" alt="Shell acelera investimento em carregamento de carros elétricos" loading="lazy"></div>
+        <div class="press-clip"><img src="press/08_shell_acelera.webp" alt="Shell acelera investimento em carregamento de carros elétricos" loading="lazy" width="640" height="360"></div>
         <div class="press-meta">
           <span class="press-source">O Tempo</span>
           <span class="press-date">Mar 2024</span>
@@ -199,7 +208,7 @@
         <h3 class="press-title">Shell <em>desfaz-se de 1.000 postos</em> de combustíveis até 2025 para investir em recarga elétrica</h3>
       </a>
       <a class="press-card" href="https://www.autodata.com.br/noticias/2024/12/18/brasil-triplica-numero-de-eletropostos-em-2024-e-agora-investimentos-sao-em-recarga-rapida/81845/" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/04_brasil_triplica.png" alt="Brasil triplica número de eletropostos em 2024" loading="lazy"></div>
+        <div class="press-clip"><img src="press/04_brasil_triplica.webp" alt="Brasil triplica número de eletropostos em 2024" loading="lazy" width="640" height="360"></div>
         <div class="press-meta">
           <span class="press-source">AutoData</span>
           <span class="press-date">Dez 2024</span>
@@ -207,7 +216,7 @@
         <h3 class="press-title">Brasil <em>triplica número de eletropostos</em> em 2024 — investimento agora é em recarga rápida</h3>
       </a>
       <a class="press-card" href="https://epbr.com.br/os-planos-da-vibra-raizen-e-ipiranga-para-aumentar-a-rede-de-eletropostos/" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/03_vibra_raizen_ipiranga.png" alt="Vibra, Raízen e Ipiranga aumentam rede de eletropostos" loading="lazy"></div>
+        <div class="press-clip"><img src="press/03_vibra_raizen_ipiranga.webp" alt="Vibra, Raízen e Ipiranga aumentam rede de eletropostos" loading="lazy" width="640" height="360"></div>
         <div class="press-meta">
           <span class="press-source">eixos</span>
           <span class="press-date">2024</span>
@@ -215,7 +224,7 @@
         <h3 class="press-title">Vibra, Raízen e Ipiranga: <em>líderes do combustível</em> se movimentam para expandir eletropostos</h3>
       </a>
       <a class="press-card" href="https://www.autodata.com.br/noticias/2025/10/07/custo-de-instalacao-cai-e-rede-de-eletropostos-cresce-50-no-brasil/94969/" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/07_custo_cai_50.png" alt="Custo de instalação cai e rede cresce 50%" loading="lazy"></div>
+        <div class="press-clip"><img src="press/07_custo_cai_50.webp" alt="Custo de instalação cai e rede cresce 50%" loading="lazy" width="640" height="360"></div>
         <div class="press-meta">
           <span class="press-source">AutoData</span>
           <span class="press-date">Out 2025</span>
@@ -223,7 +232,7 @@
         <h3 class="press-title">Custo de instalação cai e rede de eletropostos <em>cresce 50% no Brasil</em></h3>
       </a>
       <a class="press-card" href="https://www.canalenergia.com.br/noticias/53214993/raizen-inaugura-eletroposto-shell-recharge-no-brasil" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/02_raizen_shell.png" alt="Raízen inaugura eletroposto Shell Recharge" loading="lazy"></div>
+        <div class="press-clip"><img src="press/02_raizen_shell.webp" alt="Raízen inaugura eletroposto Shell Recharge" loading="lazy" width="640" height="360"></div>
         <div class="press-meta">
           <span class="press-source">Canal Energia</span>
           <span class="press-date">Jun 2022</span>
@@ -231,7 +240,7 @@
         <h3 class="press-title">Raízen inaugura <em>Shell Recharge</em> com energia limpa própria</h3>
       </a>
       <a class="press-card" href="https://www.automotivebusiness.com.br/noticias/vibra-inaugura-eletroposto-que-carrega-carros-eletricos-em-20-minutos" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/06_vibra_20min.png" alt="Vibra inaugura eletroposto que carrega em 20 minutos" loading="lazy"></div>
+        <div class="press-clip"><img src="press/06_vibra_20min.webp" alt="Vibra inaugura eletroposto que carrega em 20 minutos" loading="lazy" width="640" height="360"></div>
         <div class="press-meta">
           <span class="press-source">Automotive Business</span>
           <span class="press-date">Jun 2022</span>
@@ -239,7 +248,7 @@
         <h3 class="press-title">Vibra inaugura eletroposto que carrega em <em>20 minutos</em> — corredor elétrico de 9 mil km</h3>
       </a>
       <a class="press-card" href="https://autoranking.com.br/br-super-carga-vai-ampliar-eletropostos-para-80-pontos-em-2024/" target="_blank" rel="noopener">
-        <div class="press-clip"><img src="press/05_br_super_carga.png" alt="BR Super Carga amplia para 80 pontos" loading="lazy"></div>
+        <div class="press-clip"><img src="press/05_br_super_carga.webp" alt="BR Super Carga amplia para 80 pontos" loading="lazy" width="640" height="360"></div>
         <div class="press-meta">
           <span class="press-source">AutoRanking</span>
           <span class="press-date">Set 2024</span>
@@ -300,7 +309,7 @@
   <div class="container">
     <div class="about-wrap">
       <div class="about-img" data-reveal>
-        <img src="assets/img-usina-campo.jpg" alt="Usina solar Vertus em operação no Ceará" loading="lazy">
+        <img src="assets/img-eletroposto-carro.jpg" alt="Carregador DC conectado a veículo elétrico" loading="lazy" width="1200" height="800">
       </div>
       <div class="about-text" data-reveal>
         <div class="section-badge">Sobre a Vertus</div>
@@ -385,16 +394,16 @@
           </div>
           <div class="lead-field">
             <label for="lf-name">Nome completo</label>
-            <input id="lf-name" name="name" type="text" required placeholder="Como devemos te chamar?">
+            <input id="lf-name" name="name" type="text" required autocomplete="name" placeholder="Como devemos te chamar?">
           </div>
           <div class="lead-row">
             <div class="lead-field">
               <label for="lf-phone">WhatsApp</label>
-              <input id="lf-phone" name="phone" type="tel" required placeholder="(85) 9 9999-9999">
+              <input id="lf-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="(85) 9 9999-9999">
             </div>
             <div class="lead-field">
               <label for="lf-city">Cidade</label>
-              <input id="lf-city" name="city" type="text" required placeholder="Sua cidade">
+              <input id="lf-city" name="city" type="text" required autocomplete="address-level2" placeholder="Sua cidade">
             </div>
           </div>
           <div class="lead-row">
@@ -412,7 +421,7 @@
               <label for="lf-budget">Pretensão de investimento</label>
               <select id="lf-budget" name="budget" required>
                 <option value="">Selecione</option>
-                <option>R$60 mil – R$100 mil</option>
+                <option>Até R$100 mil</option>
                 <option>R$100 mil – R$300 mil</option>
                 <option>Acima de R$300 mil</option>
               </select>
@@ -445,14 +454,14 @@
       <div class="footer-col">
         <h5>Navegação</h5>
         <a href="#mercado">Mercado</a>
-        <a href="#mapa">Mapa</a>
-        <a href="#sobre">Sobre a Vertus</a>
+        <a href="#mapa">Operação</a>
+        <a href="#sobre">Sobre</a>
         <a href="#diferencial">Diferenciais</a>
         <a href="#contato">Contato</a>
       </div>
       <div class="footer-col">
         <h5>Contato</h5>
-        <a href="https://wa.me/5585994314967" target="_blank" rel="noopener">WhatsApp · (85) 99431-4967</a>
+        <a href="https://wa.me/5585994314967" target="_blank" rel="noopener" onclick="gtag('event','conversion',{'send_to':'AW-17006818606'})">WhatsApp · (85) 99431-4967</a>
         <a href="mailto:contato@vertussolar.com">contato@vertussolar.com</a>
         <p>Fortaleza · Ceará · Brasil</p>
       </div>

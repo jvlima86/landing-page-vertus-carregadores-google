@@ -15,6 +15,21 @@ body {
 
 img { max-width: 100%; display: block; }
 
+/* Acessibilidade: foco visível em CTAs, links e inputs (preserva o foco para teclado) */
+:focus-visible {
+  outline: 2px solid var(--vertus-orange);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+button:focus-visible,
+.nav-cta:focus-visible,
+.hero-submit:focus-visible,
+.lead-submit:focus-visible,
+.lead-whatsapp:focus-visible,
+.float-whatsapp:focus-visible {
+  outline-offset: 4px;
+}
+
 /* ═══ UTILITIES ═══ */
 .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
 
@@ -72,6 +87,13 @@ img { max-width: 100%; display: block; }
     opacity: 1;
   }
   .stagger > *, .stagger-hero > * { transition-delay: 0s; }
+  .press-grid-animated .press-card,
+  .press-grid-animated .press-card.press-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
 }
 
 /* ═══ NAVBAR ═══ */

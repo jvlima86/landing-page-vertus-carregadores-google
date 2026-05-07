@@ -1,2 +1,6 @@
 .vercel
 .DS_Store
+_check_*
+*.swp
+*.bak
+node_modules/

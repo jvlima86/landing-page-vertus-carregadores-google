@@ -69,27 +69,6 @@
     });
   });
 
-  // Flow tabs
-  const flowBtns = document.querySelectorAll('.flow-toggle-btn');
-  const flowUsina = document.getElementById('flow-usina');
-  const flowEp = document.getElementById('flow-ep');
-  let currentFlow = flowUsina;
-
-  flowBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const mode = btn.dataset.flow;
-      const next = (mode === 'usina') ? flowUsina : flowEp;
-      if (next === currentFlow) return;
-      flowBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentFlow.classList.remove('flow-active');
-      // Force reflow before adding active so transition replays
-      void next.offsetWidth;
-      next.classList.add('flow-active');
-      currentFlow = next;
-    });
-  });
-
   // Google Ads conversion helper
   function trackConversion() {
     if (typeof gtag !== 'undefined') {
@@ -123,9 +102,7 @@
       const params = new URLSearchParams({
         nome:      heroForm.querySelector('#hlf-name').value,
         whatsapp:  heroForm.querySelector('#hlf-phone').value,
-        cidade:    heroForm.querySelector('#hlf-city').value,
         interesse: heroForm.querySelector('#hlf-interest').value,
-        pretencao: heroForm.querySelector('#hlf-budget').value,
         origem:    'hero',
       });
 
@@ -161,114 +138,6 @@
   }
 })();
 
-/* ── Capital evolution chart ── */
-(function () {
-  const chart = document.getElementById('capitalChart');
-  if (!chart) return;
-
-  let started = false;
-
-  const obs = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && !started) {
-      started = true;
-      obs.disconnect();
-      runChartAnimation();
-    }
-  }, { threshold: 0.35 });
-  obs.observe(chart);
-
-  function runChartAnimation() {
-    const rfPath = document.getElementById('rfPath');
-    const epPath = document.getElementById('epPath');
-    if (!rfPath || !epPath) return;
-
-    const rfLen = rfPath.getTotalLength();
-    const epLen = epPath.getTotalLength();
-
-    [rfPath, epPath].forEach(p => { p.style.transition = 'none'; });
-    rfPath.style.strokeDasharray = rfLen;
-    rfPath.style.strokeDashoffset = rfLen;
-    epPath.style.strokeDasharray = epLen;
-    epPath.style.strokeDashoffset = epLen;
-
-    // Force reflow
-    rfPath.getBoundingClientRect();
-
-    // Animate both lines together
-    requestAnimationFrame(() => {
-      rfPath.style.transition = 'stroke-dashoffset 2.8s cubic-bezier(0.4,0,0.2,1)';
-      rfPath.style.strokeDashoffset = 0;
-
-      epPath.style.transition = 'stroke-dashoffset 3.2s cubic-bezier(0.16,1,0.3,1)';
-      epPath.style.strokeDashoffset = 0;
-    });
-
-    // Fade in area fills
-    setTimeout(() => {
-      const rfArea = document.getElementById('rfArea');
-      const epArea = document.getElementById('epArea');
-      if (rfArea) { rfArea.style.transition = 'opacity 1.4s ease'; rfArea.style.opacity = 1; }
-      if (epArea) { epArea.style.transition = 'opacity 1.4s ease'; epArea.style.opacity = 1; }
-    }, 1200);
-
-    // Show annotations in sequence
-    const seq = [
-      { id: 'crossoverGroup', delay: 2800 },
-      { id: 'rfFinalGroup',   delay: 3100 },
-      { id: 'rfLabelGroup',   delay: 3200 },
-      { id: 'epFinalGroup',   delay: 3300 },
-      { id: 'epLabelGroup',   delay: 3450 },
-      { id: 'gapGroup',       delay: 3650 },
-    ];
-    seq.forEach(({ id, delay }) => {
-      setTimeout(() => {
-        const el = document.getElementById(id);
-        if (el) el.style.opacity = 1;
-      }, delay);
-    });
-  }
-})();
-
-/* ── KPI counter animation ── */
-(function () {
-  function runCounter(el) {
-    const target = parseFloat(el.dataset.count);
-    const prefix = el.dataset.prefix || '';
-    const decimals = parseInt(el.dataset.decimal || '0');
-    const duration = 1800;
-    const startTime = performance.now();
-
-    function tick(now) {
-      const elapsed = now - startTime;
-      const t = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - t, 3);
-      const val = target * eased;
-      const display = decimals > 0
-        ? val.toFixed(decimals).replace('.', ',')
-        : Math.round(val).toString();
-      el.textContent = prefix + display;
-      if (t < 1) {
-        requestAnimationFrame(tick);
-      } else {
-        el.textContent = prefix + (decimals > 0
-          ? target.toFixed(decimals).replace('.', ',')
-          : target.toString());
-      }
-    }
-    requestAnimationFrame(tick);
-  }
-
-  const stats = document.querySelectorAll('.num-stat[data-reveal]');
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      e.target.querySelectorAll('.count-num[data-count]').forEach(runCounter);
-      obs.unobserve(e.target);
-    });
-  }, { threshold: 0.3 });
-  stats.forEach(el => obs.observe(el));
-})();
-
 /* ── Press cards bounce-in on scroll ── */
 (function () {
   const grid = document.querySelector('.press-grid-animated');
@@ -278,8 +147,7 @@
   /* assign per-column stagger delay so cards in the same row pop left→right */
   const cols = 4;
   cards.forEach((card, i) => {
-    const col = card.classList.contains('big') ? 0 : i % cols;
-    card.style.setProperty('--pc-delay', `${col * 70}ms`);
+    card.style.setProperty('--pc-delay', `${(i % cols) * 70}ms`);
   });
 
   const obs = new IntersectionObserver((entries) => {
@@ -293,18 +161,27 @@
   cards.forEach(card => obs.observe(card));
 })();
 
-/* ── 3D perspective tilt on card hover ── */
+/* ── 3D perspective tilt on card hover (desktop only, throttled via rAF) ── */
 (function () {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   const cards = document.querySelectorAll('.pillar-card, .diff-card');
   cards.forEach(card => {
+    let rafId = null;
     card.addEventListener('mousemove', (e) => {
-      const r = card.getBoundingClientRect();
-      const cx = ((e.clientX - r.left) / r.width - 0.5) * 2;
-      const cy = ((e.clientY - r.top) / r.height - 0.5) * 2;
-      card.style.transition = 'box-shadow 0.2s, border-color 0.2s';
-      card.style.transform = `perspective(900px) rotateY(${cx * 8}deg) rotateX(${-cy * 8}deg) translateY(-10px) scale(1.01)`;
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        const r = card.getBoundingClientRect();
+        const cx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        const cy = ((e.clientY - r.top) / r.height - 0.5) * 2;
+        card.style.transition = 'box-shadow 0.2s, border-color 0.2s';
+        card.style.transform = `perspective(900px) rotateY(${cx * 8}deg) rotateX(${-cy * 8}deg) translateY(-10px) scale(1.01)`;
+        rafId = null;
+      });
     });
     card.addEventListener('mouseleave', () => {
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
       card.style.transition = 'transform 0.65s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s, border-color 0.3s';
       card.style.transform = '';
     });
