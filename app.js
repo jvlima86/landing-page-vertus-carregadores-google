@@ -102,7 +102,9 @@
       const params = new URLSearchParams({
         nome:      heroForm.querySelector('#hlf-name').value,
         whatsapp:  heroForm.querySelector('#hlf-phone').value,
+        cidade:    heroForm.querySelector('#hlf-city').value,
         interesse: heroForm.querySelector('#hlf-interest').value,
+        pretencao: heroForm.querySelector('#hlf-budget').value,
         origem:    'hero',
       });
 

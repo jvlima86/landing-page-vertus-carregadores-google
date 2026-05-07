@@ -103,14 +103,29 @@
               <input id="hlf-phone" name="whatsapp" type="tel" required autocomplete="tel" inputmode="tel" placeholder="(85) 9 0000-0000">
             </div>
             <div class="hf-field">
-              <label for="hlf-interest">Interesse</label>
-              <select id="hlf-interest" name="interesse" required>
-                <option value="">Selecione</option>
-                <option>Somente usina solar</option>
-                <option>Usina + eletroposto</option>
-                <option>Somente eletroposto</option>
-                <option>Quero recomendação</option>
-              </select>
+              <label for="hlf-city">Cidade</label>
+              <input id="hlf-city" name="cidade" type="text" required autocomplete="address-level2" placeholder="Fortaleza, CE">
+            </div>
+            <div class="hf-row">
+              <div class="hf-field">
+                <label for="hlf-interest">Interesse</label>
+                <select id="hlf-interest" name="interesse" required>
+                  <option value="">Selecione</option>
+                  <option>Somente usina solar</option>
+                  <option>Usina + eletroposto</option>
+                  <option>Somente eletroposto</option>
+                  <option>Quero recomendação</option>
+                </select>
+              </div>
+              <div class="hf-field">
+                <label for="hlf-budget">Pretensão de investimento</label>
+                <select id="hlf-budget" name="pretencao" required>
+                  <option value="">Selecione</option>
+                  <option>Até R$100 mil</option>
+                  <option>R$100 mil – R$300 mil</option>
+                  <option>Acima de R$300 mil</option>
+                </select>
+              </div>
             </div>
             <button class="hero-submit" type="submit">
               Quero receber uma simulação
@@ -264,16 +279,16 @@
 <section class="map-section grain" id="mapa">
   <div class="container">
     <div class="section-badge" data-reveal>Operação no Ceará</div>
-    <h2 class="section-title" data-reveal>Expansão acelerada em <em>Fortaleza</em>.</h2>
-    <p class="section-desc" data-reveal>3 eletropostos em operação e 8 em contratação — condomínios, hotéis, lojistas e grupos empresariais. Portfólio crescendo a cada mês. Clique em cada ponto para ver no Google Maps.</p>
+    <h2 class="section-title" data-reveal>Expansão forte e acelerada no <em>Ceará</em>.</h2>
+    <p class="section-desc" data-reveal>+10 eletropostos implantados e novos pontos em contratação — condomínios, hotéis, lojistas e grupos empresariais. Portfólio crescendo a cada mês. Clique em cada ponto para ver no Google Maps.</p>
 
     <div class="map-wrap">
       <div id="gmap" class="map-canvas"></div>
 
       <div class="map-side">
-        <div class="map-stat"><div class="v">3</div><div class="l">Eletropostos operando agora em Fortaleza</div></div>
+        <div class="map-stat"><div class="v">+10</div><div class="l">Eletropostos implantados no Ceará</div></div>
+        <div class="map-stat"><div class="v">+40</div><div class="l">Usinas solares em operação no Ceará</div></div>
         <div class="map-stat"><div class="v">+8</div><div class="l">Novos pontos em contratação — expansão em curso</div></div>
-        <div class="map-stat"><div class="v">9</div><div class="l">Parceiros (condomínios, hotéis e empresas)</div></div>
         <div class="map-stat"><div class="v">5,5 kWh/m²</div><div class="l">Irradiação solar média no Ceará — melhor índice do país</div></div>
 
         <div class="map-list">
@@ -317,9 +332,9 @@
         <p>A Vertus MOB faz parte da operação Vertus/Solure, especializada em projetos de energia solar, eletropostos e soluções de geração de receita com energia.</p>
         <p>Nosso modelo é simples: você é dono do ativo. A Vertus instala, a Vertus pode operar, você acompanha os resultados. <strong style="color:var(--vertus-orange)">Sem franquia. Sem royalties obrigatórios. Sem intermediários desnecessários.</strong></p>
         <div class="about-stats">
-          <div><div class="v">+12</div><div class="l">Usinas em operação</div></div>
-          <div><div class="v">100%</div><div class="l">Operação Ceará</div></div>
-          <div><div class="v">3</div><div class="l">Eletropostos operando agora</div></div>
+          <div><div class="v">+40</div><div class="l">Usinas em operação no Ceará</div></div>
+          <div><div class="v">+10</div><div class="l">Eletropostos implantados</div></div>
+          <div><div class="v">100%</div><div class="l">Operação no Ceará</div></div>
         </div>
       </div>
     </div>
@@ -356,7 +371,7 @@
       <div class="diff-card" data-reveal>
         <div class="diff-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
         <h4>Especialistas em energia solar</h4>
-        <p>+12 usinas em operação no Ceará. Integramos geração própria ao eletroposto — do projeto à operação, em uma entrega só.</p>
+        <p>+40 usinas em operação no Ceará. Integramos geração própria ao eletroposto — do projeto à operação, em uma entrega só.</p>
       </div>
       <div class="diff-card" data-reveal>
         <div class="diff-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
