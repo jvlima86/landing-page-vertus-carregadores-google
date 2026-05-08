@@ -1469,7 +1469,6 @@ section { padding: var(--section-pad) 0; position: relative; overflow: hidden; }
   margin-bottom: 1rem;
 }
 .charger-card-photo {
-  position: relative;
   background: linear-gradient(180deg, #f5f5f5 0%, #d8d8d8 100%);
   border-radius: 8px;
   padding: 1.2rem;
@@ -1483,62 +1482,6 @@ section { padding: var(--section-pad) 0; position: relative; overflow: hidden; }
   object-fit: contain;
   display: block;
   mix-blend-mode: multiply;
-  transition: opacity 0.25s ease;
-}
-
-/* ── Hover deconstruction: 6 horizontal slices that drift apart and reassemble ── */
-.charger-slices {
-  position: absolute;
-  inset: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-.charger-slices span {
-  flex: 1;
-  background-image: var(--charger-img);
-  background-size: 100% 600%;
-  background-repeat: no-repeat;
-  mix-blend-mode: multiply;
-  transform: translate3d(0, 0, 0);
-  will-change: transform, filter;
-}
-.charger-slices span:nth-child(1) { background-position: 50%   0%; --shift: -42px; --skew: -2deg; }
-.charger-slices span:nth-child(2) { background-position: 50%  20%; --shift:  28px; --skew:  1deg; }
-.charger-slices span:nth-child(3) { background-position: 50%  40%; --shift: -36px; --skew: -1deg; }
-.charger-slices span:nth-child(4) { background-position: 50%  60%; --shift:  32px; --skew:  2deg; }
-.charger-slices span:nth-child(5) { background-position: 50%  80%; --shift: -30px; --skew: -1deg; }
-.charger-slices span:nth-child(6) { background-position: 50% 100%; --shift:  44px; --skew:  1deg; }
-
-@media (hover: hover) {
-  .charger-card:hover .charger-card-photo img { opacity: 0; }
-  .charger-card:hover .charger-slices { opacity: 1; }
-  .charger-card:hover .charger-slices span {
-    animation: charger-deconstruct 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-  }
-  .charger-card:hover .charger-slices span:nth-child(1) { animation-delay: 0s;    }
-  .charger-card:hover .charger-slices span:nth-child(2) { animation-delay: 0.06s; }
-  .charger-card:hover .charger-slices span:nth-child(3) { animation-delay: 0.12s; }
-  .charger-card:hover .charger-slices span:nth-child(4) { animation-delay: 0.18s; }
-  .charger-card:hover .charger-slices span:nth-child(5) { animation-delay: 0.24s; }
-  .charger-card:hover .charger-slices span:nth-child(6) { animation-delay: 0.30s; }
-}
-
-@keyframes charger-deconstruct {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) skewX(0);
-    filter: blur(0);
-  }
-  45%, 55% {
-    transform: translate3d(var(--shift), 0, 0) skewX(var(--skew));
-    filter: blur(0.6px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .charger-card:hover .charger-slices span { animation: none; }
 }
 .charger-card-power {
   font-size: clamp(2.6rem, 4vw, 3.4rem);
