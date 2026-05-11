@@ -105,6 +105,7 @@
       'Nome: ' + (data.nome || '—'),
       'WhatsApp: ' + (data.whatsapp || '—'),
       'Cidade: ' + (data.cidade || '—'),
+      'Profissão: ' + (data.profissao || '—'),
       'Interesse: ' + (data.interesse || '—'),
       'Pretensão de investimento: ' + (data.pretencao || '—'),
     ];
@@ -179,6 +180,7 @@
         nome:      heroForm.querySelector('#hlf-name').value,
         whatsapp:  heroForm.querySelector('#hlf-phone').value,
         cidade:    heroForm.querySelector('#hlf-city').value,
+        profissao: heroForm.querySelector('#hlf-profession').value,
         interesse: heroForm.querySelector('#hlf-interest').value,
         pretencao: heroForm.querySelector('#hlf-budget').value,
         origem:    'hero',
@@ -215,6 +217,7 @@
         nome:      form.querySelector('#lf-name').value,
         whatsapp:  form.querySelector('#lf-phone').value,
         cidade:    form.querySelector('#lf-city').value,
+        profissao: form.querySelector('#lf-profession').value,
         interesse: form.querySelector('#lf-interest').value,
         pretencao: form.querySelector('#lf-budget').value,
         origem:    'contato',

@@ -1396,7 +1396,9 @@ section { padding: var(--section-pad) 0; position: relative; overflow: hidden; }
 }
 .about-video-wrap::after {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(20,18,18,0.45), transparent 35%);
+  background:
+    linear-gradient(to right, rgba(20,18,18,0.55) 0%, transparent 18%, transparent 82%, rgba(20,18,18,0.55) 100%),
+    linear-gradient(to top, rgba(20,18,18,0.45), transparent 35%);
   pointer-events: none;
 }
 .about-content h3 {
