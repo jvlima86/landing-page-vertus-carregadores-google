@@ -78,6 +78,7 @@
 
   // Envia lead para Google Sheets via Apps Script
   const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwYLt1SL4Vry6mhzIhLUWZKWpDiwmRkI_wosoPBaGGjJn3DLe6AuBmbCeDkWeib42iW/exec';
+  const WA_NUMBER = '5588992877126';
 
   async function sendToSheet(params) {
     try {
@@ -97,6 +98,44 @@
     btn.innerHTML = 'Enviando…';
   }
 
+  function buildWaUrl(data) {
+    const lines = [
+      'Olá! Acabei de preencher o formulário no site Vertus Solar e gostaria de saber mais sobre o investimento.',
+      '',
+      'Nome: ' + (data.nome || '—'),
+      'WhatsApp: ' + (data.whatsapp || '—'),
+      'Cidade: ' + (data.cidade || '—'),
+      'Interesse: ' + (data.interesse || '—'),
+      'Pretensão de investimento: ' + (data.pretencao || '—'),
+    ];
+    return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(lines.join('\n'));
+  }
+
+  // Gate dos botões de WhatsApp — exige preenchimento do formulário antes de enviar
+  function focusFirstEmpty(form) {
+    const fields = form.querySelectorAll('input, select, textarea');
+    for (const f of fields) {
+      if (!f.value || (f.tagName === 'SELECT' && f.value === '')) {
+        f.focus();
+        return;
+      }
+    }
+    const first = fields[0];
+    if (first) first.focus();
+  }
+
+  document.querySelectorAll('.js-wa-gate').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const formId = link.dataset.waForm || 'leadForm';
+      const targetForm = document.getElementById(formId);
+      if (!targetForm) return;
+      const top = targetForm.getBoundingClientRect().top + window.scrollY - 80;
+      smoothScrollTo(top, 900);
+      setTimeout(() => focusFirstEmpty(targetForm), 950);
+    });
+  });
+
   // Hero form
   const heroForm = document.getElementById('heroLeadForm');
   const heroBtn = heroForm && heroForm.querySelector('.hero-submit');
@@ -106,18 +145,30 @@
       e.preventDefault();
       setSending(heroBtn);
 
-      const params = new URLSearchParams({
+      const data = {
         nome:      heroForm.querySelector('#hlf-name').value,
         whatsapp:  heroForm.querySelector('#hlf-phone').value,
         cidade:    heroForm.querySelector('#hlf-city').value,
         interesse: heroForm.querySelector('#hlf-interest').value,
         pretencao: heroForm.querySelector('#hlf-budget').value,
         origem:    'hero',
-      });
+      };
 
-      await sendToSheet(params);
+      // Abre janela placeholder dentro do gesto de usuário (evita popup blocker)
+      const waWindow = window.open('about:blank', '_blank');
+
+      try { sessionStorage.setItem('vertusLead', JSON.stringify(data)); } catch (_) {}
+
+      await sendToSheet(new URLSearchParams(data));
       trackConversion();
-      window.location.href = '/obrigado.html';
+
+      const waUrl = buildWaUrl(data);
+      if (waWindow) {
+        waWindow.location.href = waUrl;
+        window.location.href = '/obrigado.html';
+      } else {
+        window.location.href = waUrl;
+      }
     });
   }
 
@@ -130,18 +181,29 @@
       e.preventDefault();
       setSending(submitBtn);
 
-      const params = new URLSearchParams({
+      const data = {
         nome:      form.querySelector('#lf-name').value,
         whatsapp:  form.querySelector('#lf-phone').value,
         cidade:    form.querySelector('#lf-city').value,
         interesse: form.querySelector('#lf-interest').value,
         pretencao: form.querySelector('#lf-budget').value,
         origem:    'contato',
-      });
+      };
 
-      await sendToSheet(params);
+      const waWindow = window.open('about:blank', '_blank');
+
+      try { sessionStorage.setItem('vertusLead', JSON.stringify(data)); } catch (_) {}
+
+      await sendToSheet(new URLSearchParams(data));
       trackConversion();
-      window.location.href = '/obrigado.html';
+
+      const waUrl = buildWaUrl(data);
+      if (waWindow) {
+        waWindow.location.href = waUrl;
+        window.location.href = '/obrigado.html';
+      } else {
+        window.location.href = waUrl;
+      }
     });
   }
 })();
