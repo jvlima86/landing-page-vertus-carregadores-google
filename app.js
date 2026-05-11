@@ -262,19 +262,32 @@
   video.addEventListener('playing', () => wrap.classList.add('video-playing'), { once: true });
 })();
 
-/* ── About video: pause when out of viewport to save battery/CPU ── */
+/* ── About video: lazy-load on desktop, poster-only on mobile/save-data ── */
 (function () {
   const video = document.getElementById('aboutVideo');
   if (!video) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    video.removeAttribute('autoplay');
-    return;
-  }
+  const src = video.dataset.src;
+  if (!src) return;
+
+  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+  const reduced  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = navigator.connection && navigator.connection.saveData;
+  if (isMobile || reduced || saveData) return; // keep poster
+
+  let loaded = false;
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        if (!loaded) {
+          const sourceEl = document.createElement('source');
+          sourceEl.src = src;
+          sourceEl.type = 'video/mp4';
+          video.appendChild(sourceEl);
+          video.load();
+          loaded = true;
+        }
         video.play().catch(() => {});
-      } else {
+      } else if (loaded) {
         video.pause();
       }
     });
