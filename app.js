@@ -89,15 +89,22 @@
     } catch (_) {}
   }
 
+  // Set button to "sending" state without destroying inner SVG
+  function setSending(btn) {
+    if (!btn) return;
+    btn.disabled = true;
+    btn.dataset.originalHtml = btn.innerHTML;
+    btn.innerHTML = 'Enviando…';
+  }
+
   // Hero form
   const heroForm = document.getElementById('heroLeadForm');
-  const heroSuccess = document.getElementById('heroLeadSuccess');
   const heroBtn = heroForm && heroForm.querySelector('.hero-submit');
 
   if (heroForm) {
     heroForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      if (heroBtn) { heroBtn.disabled = true; heroBtn.textContent = 'Enviando…'; }
+      setSending(heroBtn);
 
       const params = new URLSearchParams({
         nome:      heroForm.querySelector('#hlf-name').value,
@@ -116,13 +123,12 @@
 
   // Lead form (seção de contato)
   const form = document.getElementById('leadForm');
-  const success = document.getElementById('leadSuccess');
   const submitBtn = form && form.querySelector('.lead-submit');
 
   if (form) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Enviando…'; }
+      setSending(submitBtn);
 
       const params = new URLSearchParams({
         nome:      form.querySelector('#lf-name').value,
@@ -138,6 +144,30 @@
       window.location.href = '/obrigado.html';
     });
   }
+})();
+
+/* ── Hero video: load and play only on desktop / wide viewports.
+   On mobile we keep the poster image to save the 18MB MP4 download. ── */
+(function () {
+  const video = document.getElementById('heroVideo');
+  if (!video) return;
+  const wrap = video.parentElement;
+  const src = video.dataset.src;
+
+  // Skip on mobile (saves a huge download), reduced-motion, or save-data hint
+  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+  const reduced  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = navigator.connection && navigator.connection.saveData;
+  if (isMobile || reduced || saveData || !src) return;
+
+  // Load + play on desktop
+  const sourceEl = document.createElement('source');
+  sourceEl.src = src;
+  sourceEl.type = 'video/mp4';
+  video.appendChild(sourceEl);
+  video.load();
+  video.play().catch(() => { /* autoplay blocked: poster stays visible */ });
+  video.addEventListener('playing', () => wrap.classList.add('video-playing'), { once: true });
 })();
 
 /* ── Press cards bounce-in on scroll ── */
@@ -190,9 +220,10 @@
   });
 })();
 
-/* ── Hero parallax — content drifts at 0.12× scroll speed ── */
+/* ── Hero parallax — content drifts at 0.12× scroll speed (desktop only) ── */
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(max-width: 900px)').matches) return;
   const inner = document.querySelector('.hero-copy');
   if (!inner) return;
   const vh = window.innerHeight;
@@ -207,7 +238,36 @@
   }, { passive: true });
 })();
 
-/* ── Google Maps ── */
+/* ── Google Maps lazy-load: only inject API script when the map enters viewport.
+   Saves ~50KB JS + tile downloads for visitors who never scroll that far. ── */
+(function () {
+  const el = document.getElementById('gmap');
+  if (!el || !('IntersectionObserver' in window)) {
+    if (el) loadVertusMap();
+    return;
+  }
+  let loaded = false;
+  const obs = new IntersectionObserver((entries) => {
+    if (loaded) return;
+    if (entries.some(e => e.isIntersecting)) {
+      loaded = true;
+      obs.disconnect();
+      loadVertusMap();
+    }
+  }, { rootMargin: '400px 0px' });
+  obs.observe(el);
+})();
+
+function loadVertusMap() {
+  if (window.__vertusMapsLoading) return;
+  window.__vertusMapsLoading = true;
+  const s = document.createElement('script');
+  s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDzn3uYW2NljaXXjcAV39Ad_yPwr9q1QXs&callback=initVertusMap&loading=async';
+  s.async = true;
+  s.defer = true;
+  document.head.appendChild(s);
+}
+
 function initVertusMap() {
   const el = document.getElementById('gmap');
   if (!el) return;
