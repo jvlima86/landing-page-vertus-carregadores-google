@@ -262,6 +262,26 @@
   video.addEventListener('playing', () => wrap.classList.add('video-playing'), { once: true });
 })();
 
+/* ── About video: pause when out of viewport to save battery/CPU ── */
+(function () {
+  const video = document.getElementById('aboutVideo');
+  if (!video) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    video.removeAttribute('autoplay');
+    return;
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.25 });
+  obs.observe(video);
+})();
+
 /* ── Press cards bounce-in on scroll ── */
 (function () {
   const grid = document.querySelector('.press-grid-animated');

@@ -3,4 +3,5 @@
 _check_*
 *.swp
 *.bak
+*.MOV
 node_modules/
