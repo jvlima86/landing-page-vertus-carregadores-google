@@ -124,6 +124,35 @@
     if (first) first.focus();
   }
 
+  // Toast de aviso da obrigatoriedade do formulário
+  let waToastEl = null;
+  let waToastTimer = null;
+  function showWaToast() {
+    if (!waToastEl) {
+      waToastEl = document.createElement('div');
+      waToastEl.className = 'wa-toast';
+      waToastEl.setAttribute('role', 'status');
+      waToastEl.setAttribute('aria-live', 'polite');
+      waToastEl.innerHTML =
+        '<div class="wa-toast-icon" aria-hidden="true">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
+            '<line x1="12" y1="8" x2="12" y2="13"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/>' +
+          '</svg>' +
+        '</div>' +
+        '<div class="wa-toast-text">' +
+          '<strong>Preencha o formulário</strong>' +
+          '<span>Para falar com a Vertus pelo WhatsApp, complete os campos abaixo. A mensagem é enviada com seus dados.</span>' +
+        '</div>';
+      document.body.appendChild(waToastEl);
+    }
+    // Reativa animação se já estiver visível
+    waToastEl.classList.remove('show');
+    void waToastEl.offsetWidth;
+    waToastEl.classList.add('show');
+    clearTimeout(waToastTimer);
+    waToastTimer = setTimeout(() => waToastEl.classList.remove('show'), 4800);
+  }
+
   document.querySelectorAll('.js-wa-gate').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
@@ -132,6 +161,7 @@
       if (!targetForm) return;
       const top = targetForm.getBoundingClientRect().top + window.scrollY - 80;
       smoothScrollTo(top, 900);
+      showWaToast();
       setTimeout(() => focusFirstEmpty(targetForm), 950);
     });
   });
