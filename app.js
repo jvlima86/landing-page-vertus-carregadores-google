@@ -90,6 +90,42 @@
     } catch (_) {}
   }
 
+  // Cria/atualiza o lead no Vertus CRM em paralelo ao WhatsApp, levando as
+  // respostas do formulário (aparecem na seção "Respostas do formulário" do
+  // painel do lead). keepalive: true garante o envio mesmo com o redirect.
+  const CRM_BASE = 'https://crm-vertus.vercel.app';
+  async function sendToCRM(data) {
+    try {
+      const qs = new URLSearchParams(window.location.search);
+      const fields = {};
+      if (data.cidade)    fields['Cidade'] = data.cidade;
+      if (data.profissao) fields['Profissão'] = data.profissao;
+      if (data.interesse) fields['Interesse'] = data.interesse;
+      if (data.pretencao) fields['Orçamento'] = data.pretencao;
+      const payload = {
+        phone: data.whatsapp,
+        name: data.nome || undefined,
+        sourceName: 'Landing Page Eletropostos',
+        fields: Object.keys(fields).length ? fields : undefined,
+        utm_source: qs.get('utm_source') || undefined,
+        utm_medium: qs.get('utm_medium') || undefined,
+        utm_campaign: qs.get('utm_campaign') || undefined,
+        utm_term: qs.get('utm_term') || undefined,
+        utm_content: qs.get('utm_content') || undefined,
+        fbclid: qs.get('fbclid') || undefined,
+        gclid: qs.get('gclid') || undefined,
+        referrer: document.referrer || undefined,
+        landing_page: window.location.href || undefined,
+      };
+      await fetch(CRM_BASE + '/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        keepalive: true,
+      });
+    } catch (_) {}
+  }
+
   // Set button to "sending" state without destroying inner SVG
   function setSending(btn) {
     if (!btn) return;
@@ -191,7 +227,10 @@
 
       try { sessionStorage.setItem('vertusLead', JSON.stringify(data)); } catch (_) {}
 
-      await sendToSheet(new URLSearchParams(data));
+      await Promise.allSettled([
+        sendToSheet(new URLSearchParams(data)),
+        sendToCRM(data),
+      ]);
       trackConversion();
 
       const waUrl = buildWaUrl(data);
@@ -227,7 +266,10 @@
 
       try { sessionStorage.setItem('vertusLead', JSON.stringify(data)); } catch (_) {}
 
-      await sendToSheet(new URLSearchParams(data));
+      await Promise.allSettled([
+        sendToSheet(new URLSearchParams(data)),
+        sendToCRM(data),
+      ]);
       trackConversion();
 
       const waUrl = buildWaUrl(data);
