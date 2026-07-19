@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rede de Recarga EV — Análise Operacional | Vertus Solar</title>
+<title>Rede de Recarga EV — Estratégia Comercial | Vertus Solar</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,8 +12,7 @@
   :root{
     --orange:#FF7E27; --orange-soft:#FF9F54; --orange-dark:#CC6520;
     --black:#1E1C1C; --charcoal:#2A2828; --gray:#E0E0E0; --white:#F1F1F1;
-    --muted:#9A9A9A; --pure:#FFFFFF;
-    --green:#10B981; --red:#EF4444;
+    --muted:#9A9A9A; --pure:#FFFFFF; --green:#10B981; --red:#EF4444;
     --font:"Archivo",ui-sans-serif,system-ui,-apple-system,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -23,13 +22,12 @@
   .grain::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
     background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E")}
   .grain>*{position:relative;z-index:2}
-
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 
   .hero{position:relative;overflow:hidden;
     background:radial-gradient(ellipse 85% 55% at 50% 120%,rgba(170,70,0,0.55) 0%,rgba(30,28,28,0) 62%),var(--black);
     padding:56px 0 40px;border-bottom:1px solid rgba(255,126,39,0.15)}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.15rem;letter-spacing:.01em;margin-bottom:28px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.15rem;margin-bottom:28px}
   .brand .mark{width:26px;height:26px;display:grid;grid-template-columns:1fr 1fr;gap:2px}
   .brand .mark i{background:var(--orange);border-radius:2px;display:block}
   .brand small{font-weight:500;color:var(--muted);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;margin-left:2px}
@@ -40,7 +38,7 @@
   .hero-meta{margin-top:18px;display:flex;gap:20px;flex-wrap:wrap;font-size:.78rem;color:var(--muted)}
   .hero-meta b{color:var(--white);font-weight:700}
 
-  section{padding:52px 0}
+  section{padding:50px 0}
   .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:26px}
   .sec-divider{width:40px;height:3px;background:var(--orange);border-radius:2px;flex-shrink:0}
   .sec-head h2{font-size:1.5rem;font-weight:800;letter-spacing:-.02em}
@@ -52,6 +50,7 @@
   .kpi .lbl{font-size:.74rem;color:var(--muted);margin-top:8px;line-height:1.35}
   .kpi.alt .num{color:var(--pure)}
   .kpi.warn .num{color:#FbBF24}
+  .kpi.good .num{color:#34D399}
 
   .card{background:var(--charcoal);border:1px solid rgba(255,126,39,0.18);border-radius:12px;overflow:hidden}
   .tbl-scroll{overflow-x:auto}
@@ -73,7 +72,7 @@
   .muted{color:var(--muted)}
 
   .chart-card{background:var(--charcoal);border:1px solid rgba(255,126,39,.18);border-radius:12px;padding:24px}
-  .bars{display:flex;align-items:flex-end;gap:3px;height:180px;margin-top:8px}
+  .bars{display:flex;align-items:flex-end;gap:3px;height:170px;margin-top:8px}
   .bars .bar{flex:1;background:linear-gradient(180deg,var(--orange),var(--orange-dark));border-radius:3px 3px 0 0;position:relative;min-height:2px}
   .bars .bar.dim{background:linear-gradient(180deg,#4a4646,#3a3636)}
   .bars .bar span{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:.6rem;color:var(--muted);opacity:0;white-space:nowrap}
@@ -83,38 +82,44 @@
   .chart-note{margin-top:16px;font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.6}
   .chart-note b{color:var(--orange)}
 
-  /* 3 alavancas */
-  .levers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .lever{background:var(--charcoal);border:1px solid rgba(255,126,39,.2);border-radius:12px;padding:22px}
-  .lever .l-top{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px}
-  .lever .l-num{font-size:1.9rem;font-weight:900;color:var(--orange);letter-spacing:-.02em;line-height:1}
-  .lever .l-cap{font-size:.82rem;color:rgba(255,255,255,.7);margin-top:10px;line-height:1.5}
-  .lever.hl{border-color:var(--green);background:rgba(16,185,129,.05)}
-  .lever.hl .l-num{color:#34D399}
+  /* Cometa experiment */
+  .exp{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:18px}
+  .exp-card{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:22px;text-align:center}
+  .exp-card.after{border-color:var(--orange);background:rgba(255,126,39,.06)}
+  .exp-card .ph{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  .exp-card .price{font-size:2.4rem;font-weight:900;letter-spacing:-.02em;margin:6px 0 16px}
+  .exp-card.after .price{color:var(--orange)}
+  .exp-metric{display:flex;justify-content:space-between;font-size:.84rem;padding:7px 0;border-top:1px solid rgba(255,255,255,.07)}
+  .exp-metric b{font-weight:700}
+  .exp-arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+  .exp-arrow svg{color:var(--orange);margin-bottom:6px}
 
-  .ab{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:18px}
-  .ab-card{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:22px;text-align:center;display:flex;flex-direction:column;justify-content:center}
-  .ab-card.win{border-color:var(--green);background:rgba(16,185,129,.06)}
-  .ab-card.lose{border-color:rgba(239,68,68,.4);background:rgba(239,68,68,.05)}
-  .ab-card .st{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
-  .ab-card .en{font-size:.78rem;color:rgba(255,255,255,.6);margin:8px 0 14px;line-height:1.4}
-  .ab-card .big{font-size:2.1rem;font-weight:900;line-height:1;letter-spacing:-.02em}
-  .ab-card.win .big{color:#34D399}
-  .ab-card.lose .big{color:#F87171}
-  .ab-card .cap{font-size:.72rem;color:var(--muted);margin-top:6px}
-  .ab-vs{display:flex;align-items:center;font-size:.9rem;font-weight:800;color:var(--muted)}
+  /* location cards */
+  .locs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .loc{background:var(--charcoal);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:22px;border-top:3px solid}
+  .loc.up{border-top-color:var(--green)}
+  .loc.mid{border-top-color:var(--orange)}
+  .loc.down{border-top-color:var(--red)}
+  .loc h4{font-size:1rem;font-weight:800;margin-bottom:4px}
+  .loc .loc-sig{font-size:.74rem;color:var(--muted);margin-bottom:14px}
+  .loc .loc-row{font-size:.82rem;color:rgba(255,255,255,.75);line-height:1.5;margin-bottom:8px;display:flex;gap:8px}
+  .loc .loc-row::before{content:"";flex-shrink:0;width:5px;height:5px;border-radius:50%;background:var(--muted);margin-top:7px}
+  .loc .loc-action{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:.86rem;font-weight:700;line-height:1.4}
+  .loc.up .loc-action{background:rgba(16,185,129,.1);color:#34D399}
+  .loc.mid .loc-action{background:rgba(255,126,39,.1);color:var(--orange)}
+  .loc.down .loc-action{background:rgba(239,68,68,.1);color:#F87171}
 
-  .mbars{display:flex;flex-direction:column;gap:14px;margin-top:6px}
+  /* playbook bars */
+  .mbars{display:flex;flex-direction:column;gap:12px;margin-top:6px}
   .mbar-row{display:flex;align-items:center;gap:16px}
-  .mbar-lbl{width:150px;flex-shrink:0;font-size:.85rem;font-weight:600}
+  .mbar-lbl{width:210px;flex-shrink:0;font-size:.85rem;font-weight:600;line-height:1.3}
   .mbar-lbl small{display:block;color:var(--muted);font-weight:400;font-size:.72rem}
-  .mbar-track{flex:1;background:rgba(0,0,0,.25);border-radius:6px;height:40px;position:relative;overflow:hidden}
-  .mbar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:14px;font-weight:800;font-size:.9rem}
-  .fill-grid{background:linear-gradient(90deg,#6b6664,#8a8380);color:var(--white)}
-  .fill-solar{background:linear-gradient(90deg,var(--orange-dark),var(--orange));color:var(--black)}
-  .gain{margin-top:18px;text-align:center;background:rgba(255,126,39,.1);border:1px solid rgba(255,126,39,.4);border-radius:10px;padding:16px}
-  .gain .g-big{font-size:1.7rem;font-weight:900;color:var(--orange);letter-spacing:-.02em}
-  .gain .g-cap{font-size:.84rem;color:rgba(255,255,255,.7);margin-top:4px}
+  .mbar-track{flex:1;background:rgba(0,0,0,.25);border-radius:6px;height:38px;position:relative;overflow:hidden}
+  .mbar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:14px;font-weight:800;font-size:.88rem;color:var(--black);background:linear-gradient(90deg,var(--orange-dark),var(--orange))}
+  .gain{margin-top:18px;text-align:center;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.4);border-radius:10px;padding:18px}
+  .gain .g-big{font-size:1.9rem;font-weight:900;color:#34D399;letter-spacing:-.02em}
+  .gain .g-cap{font-size:.86rem;color:rgba(255,255,255,.75);margin-top:4px}
+  .gain .g-cap b{color:var(--pure)}
 
   .concl{background:linear-gradient(160deg,rgba(255,126,39,.1),rgba(42,40,40,.4));border:1px solid rgba(255,126,39,.3);border-radius:14px;padding:32px}
   .concl h3{font-size:1.3rem;font-weight:800;margin-bottom:16px}
@@ -127,10 +132,10 @@
 
   @media(max-width:820px){
     .kpis{grid-template-columns:repeat(2,1fr)}
-    .levers{grid-template-columns:1fr}
-    .ab{grid-template-columns:1fr;gap:12px}
-    .ab-vs{justify-content:center}
-    .mbar-lbl{width:120px}
+    .locs{grid-template-columns:1fr}
+    .exp{grid-template-columns:1fr;gap:12px}
+    .exp-arrow{flex-direction:row;gap:8px}
+    .mbar-lbl{width:130px}
   }
 </style>
 </head>
@@ -138,16 +143,13 @@
 
 <header class="hero grain">
   <div class="wrap">
-    <div class="brand">
-      <span class="mark"><i></i><i></i><i></i><i></i></span>
-      VERTUS <small>Solar · Mobilidade</small>
-    </div>
-    <div class="badge">● Análise operacional · Dado real</div>
-    <h1>Rede de recarga EV:<br>a demanda existe. <em>A margem está espremida.</em></h1>
-    <p class="hero-sub">Leitura das 4 estações comerciais + 1 condomínio em Fortaleza, com base em 1.263 recargas reais. Depois de comissão da Tupi (10%), energia e aluguel, a rede lucra R$ 2,5 mil/mês — e uma estação já opera no vermelho. O caminho de saída já está provado dentro do próprio portfólio.</p>
+    <div class="brand"><span class="mark"><i></i><i></i><i></i><i></i></span>VERTUS <small>Solar · Mobilidade</small></div>
+    <div class="badge">● Estratégia comercial · Capex zero</div>
+    <h1>Dobrar o lucro da rede <em>sem investir um real.</em></h1>
+    <p class="hero-sub">Análise de 1.263 recargas reais em Fortaleza. O experimento de preço do Cometa prova que a elasticidade é por localização — e abre um caminho de decisões puramente comerciais (preço, cupom, faturamento e aluguel) que praticamente dobra o lucro, sem capex.</p>
     <div class="hero-meta">
       <span>Período: <b>18/05 → 18/07/2026</b> (62 dias)</span>
-      <span>Fonte: <b>Histórico de cargas — painel Tupi Mob</b></span>
+      <span>Fonte: <b>Painel Tupi Mob · Relatório LV Locações</b></span>
       <span>Comissão Tupi: <b>10% do bruto</b></span>
     </div>
   </div>
@@ -155,15 +157,15 @@
 
 <section class="grain">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-divider"></span><h2>A rede em números</h2></div>
+    <div class="sec-head"><span class="sec-divider"></span><h2>Onde a rede está hoje</h2></div>
     <div class="kpis">
-      <div class="kpi"><div class="num">27.472</div><div class="lbl">kWh entregues em 62 dias<br>(~443 kWh/dia)</div></div>
-      <div class="kpi"><div class="num">1.263</div><div class="lbl">recargas realizadas<br>(20,4 por dia)</div></div>
-      <div class="kpi warn"><div class="num">R$ 2,5k</div><div class="lbl">lucro real / mês<br>(após Tupi + energia + aluguel)</div></div>
+      <div class="kpi"><div class="num">443</div><div class="lbl">kWh/dia entregues<br>(27.472 kWh em 62 dias)</div></div>
+      <div class="kpi"><div class="num">20,4</div><div class="lbl">recargas por dia<br>(1.263 no período)</div></div>
+      <div class="kpi warn"><div class="num">R$ 2,5k</div><div class="lbl">lucro real / mês hoje<br>(após Tupi + energia + aluguel)</div></div>
+      <div class="kpi good"><div class="num">R$ 5,0k</div><div class="lbl">lucro projetado / mês<br>(só com ações comerciais)</div></div>
+      <div class="kpi"><div class="num">76%</div><div class="lbl">das recargas são de<br>frota recorrente (app)</div></div>
       <div class="kpi alt"><div class="num">R$ 1.882</div><div class="lbl">comissão Tupi / mês<br>(10% do bruto)</div></div>
-      <div class="kpi"><div class="num">76%</div><div class="lbl">das recargas são de<br>frota recorrente (4+ visitas)</div></div>
-      <div class="kpi alt"><div class="num">R$ 1,20</div><div class="lbl">preço realizado/kWh<br>(tabela: R$ 1,42)</div></div>
-      <div class="kpi alt"><div class="num">R$ 3,0k</div><div class="lbl">cupons/mês em desconto<br>(16% da tarifa)</div></div>
+      <div class="kpi alt"><div class="num">R$ 3,0k</div><div class="lbl">cupons/mês em desconto<br>(só motorista de app)</div></div>
       <div class="kpi"><div class="num">5%</div><div class="lbl">dos motoristas =<br>36% do volume</div></div>
     </div>
   </div>
@@ -174,96 +176,126 @@
     <div class="sec-head"><span class="sec-divider"></span><h2>Margem real por estação</h2><span>mensal · após Tupi 10% + energia + aluguel</span></div>
     <div class="card"><div class="tbl-scroll">
       <table>
-        <thead><tr>
-          <th>Estação</th><th>Recebido</th><th>Tupi 10%</th><th>Energia</th><th>Aluguel</th><th>Lucro/mês</th><th>R$/kWh líq.</th>
-        </tr></thead>
+        <thead><tr><th>Estação</th><th>Recebido</th><th>Tupi 10%</th><th>Energia</th><th>Aluguel</th><th>Lucro/mês</th><th>R$/kWh líq.</th></tr></thead>
         <tbody>
           <tr><td class="st-name">Cometa Barão do Rio Branco <span class="st-tag tag-star">Maior lucro</span></td><td>6.915</td><td class="sub">−777</td><td class="sub">−3.663</td><td class="sub">−1.500</td><td class="pos">R$ 975</td><td>0,21</td></tr>
           <tr><td class="st-name">Vila Peri <span class="muted">(Grupo Cyclo)</span></td><td>4.408</td><td class="sub">−547</td><td class="sub">−3.139</td><td class="sub">0</td><td class="pos">R$ 722</td><td>0,18</td></tr>
-          <tr><td class="st-name">José de Alencar <span class="st-tag tag-eff">+ eficiente</span></td><td>888</td><td class="pos">0</td><td class="sub">−266</td><td class="sub">0</td><td class="pos">R$ 622</td><td class="pos">0,70</td></tr>
+          <tr><td class="st-name">José de Alencar <span class="st-tag tag-eff">fora do app</span></td><td>888</td><td class="pos">0</td><td class="sub">−266</td><td class="sub">0</td><td class="pos">R$ 622</td><td class="pos">0,70</td></tr>
           <tr><td class="st-name">Montese <span class="st-tag tag-warn">No vermelho</span></td><td>4.315</td><td class="sub">−525</td><td class="sub">−2.955</td><td class="sub">−750</td><td class="neg">R$ 85</td><td class="neg">0,02</td></tr>
           <tr><td class="st-name">Pamil / Parque Araxá <span class="muted">(ocioso)</span></td><td>305</td><td class="sub">−32</td><td class="sub">−168</td><td class="sub">0</td><td>R$ 106</td><td>0,50</td></tr>
           <tr class="row-total"><td>REDE</td><td>16.830</td><td>−1.882</td><td>—</td><td>−2.250</td><td>R$ 2.508</td><td>—</td></tr>
         </tbody>
       </table>
     </div></div>
-    <p class="chart-note" style="margin-top:14px">Lucro = recebido − comissão Tupi − energia − aluguel. Ainda <b>antes</b> de taxas de Pix/cartão, manutenção, conectividade e demanda contratada — ou seja, <b>Montese (R$ 85/mês) já está no vermelho</b> na prática. José de Alencar é cobrado por fora do app: <b>não paga os 10% da Tupi</b>.</p>
+    <p class="chart-note" style="margin-top:14px">Lucro antes de taxas de Pix/cartão e manutenção — na prática <b>Montese já opera no vermelho</b>. José de Alencar é faturado por fora do app: não paga os 10% da Tupi (o mais eficiente por kWh).</p>
   </div>
 </section>
 
 <section class="grain">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-divider"></span><h2>Quando os carros carregam</h2><span>recargas por hora do dia</span></div>
+    <div class="sec-head"><span class="sec-divider"></span><h2>O experimento de preço do Cometa</h2><span>a estação onde mais se testou preço</span></div>
     <div class="chart-card">
-      <div class="bars" id="hourBars"></div>
-      <div class="axis" id="hourAxis"></div>
-      <p class="chart-note">Uso <b>plano das 8h às 20h</b>, com pico às 19h e 14h, e quase nada de madrugada. Esse é o padrão de <b>motorista de app carregando entre corridas</b> — não de morador que carrega em casa à noite. Confirma: você opera um <b>hub de frota</b>, e por isso subir preço espanta o cliente.</p>
-    </div>
-  </div>
-</section>
-
-<section class="grain">
-  <div class="wrap">
-    <div class="sec-head"><span class="sec-divider"></span><h2>3 alavancas de margem</h2><span>o preço de venda não é uma delas</span></div>
-    <div class="levers">
-      <div class="lever hl">
-        <div class="l-top">1 · Energia (usina)</div>
-        <div class="l-num">+R$ 37–52k<span style="font-size:.9rem;color:var(--muted)">/ano</span></div>
-        <div class="l-cap">Baixar o kWh de R$0,80 (rede) para R$0,50–0,55 (usina solar) nas 4 estações comerciais.</div>
-      </div>
-      <div class="lever hl">
-        <div class="l-top">2 · Fora do app</div>
-        <div class="l-num">+R$ 22,6k<span style="font-size:.9rem;color:var(--muted)">/ano</span></div>
-        <div class="l-cap">Frota fiel faturada direto (Pix/assinatura), sem os 10% da Tupi — exatamente como o José de Alencar já faz.</div>
-      </div>
-      <div class="lever">
-        <div class="l-top">3 · Cupons</div>
-        <div class="l-num">até +R$ 36k<span style="font-size:.9rem;color:var(--muted)">/ano</span></div>
-        <div class="l-cap">R$ 3.030/mês de desconto, concentrado em Vila Peri e Montese (19–21% da tarifa). Revisar a política.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="grain">
-  <div class="wrap">
-    <div class="sec-head"><span class="sec-divider"></span><h2>O modelo campeão já é seu</h2></div>
-    <div class="chart-card">
-      <div class="ab">
-        <div class="ab-card win">
-          <div class="st">José de Alencar</div>
-          <div class="en">energia R$ 0,30/kWh<br>+ cobrado FORA do app (sem 10% Tupi)</div>
-          <div class="big">R$ 0,70</div>
-          <div class="cap">lucro líquido por kWh</div>
+      <div class="exp">
+        <div class="exp-card">
+          <div class="ph">Antes · sem. 21–23</div>
+          <div class="price">R$ 1,59</div>
+          <div class="exp-metric"><span>Recargas/dia</span><b>7,4</b></div>
+          <div class="exp-metric"><span>kWh/dia</span><b>~147</b></div>
+          <div class="exp-metric"><span>Preço realizado</span><b>R$ 1,44</b></div>
         </div>
-        <div class="ab-vs">vs</div>
-        <div class="ab-card lose">
-          <div class="st">Montese</div>
-          <div class="en">energia R$ 0,80/kWh<br>+ 10% Tupi + aluguel R$ 750</div>
-          <div class="big">R$ 0,02</div>
-          <div class="cap">lucro líquido por kWh</div>
+        <div class="exp-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="26" height="26"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          preço<br>+13%
+        </div>
+        <div class="exp-card after">
+          <div class="ph">Depois · sem. 24–29</div>
+          <div class="price">R$ 1,79</div>
+          <div class="exp-metric"><span>Recargas/dia</span><b class="pos">7,0 ▬</b></div>
+          <div class="exp-metric"><span>kWh/dia</span><b class="pos">~147 ▬</b></div>
+          <div class="exp-metric"><span>Preço realizado</span><b class="pos">R$ 1,55 ▲</b></div>
         </div>
       </div>
-      <p class="chart-note" style="margin-top:22px">O José acumula as <b>duas primeiras alavancas ao mesmo tempo</b> — energia barata e sem comissão — e por isso rende <b>35× mais por kWh</b> que Montese. Ele não é uma exceção do condomínio: é a <b>prova de conceito</b> do que fazer nas outras.</p>
+      <p class="chart-note" style="margin-top:20px">Subir o preço 13% <b>não derrubou o volume</b> — nem entre os usuários de cupom (motoristas de app). O preço realizado subiu e o aumento virou <b>margem quase pura (~R$ 780/mês)</b>. Ou seja: no Cometa a demanda é <b>inelástica</b> e você estava subprecificado. O teto ainda não apareceu.</p>
     </div>
   </div>
 </section>
 
 <section class="grain">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-divider"></span><h2>Alavanca da usina — sensibilidade</h2><span>custo real a definir com o projeto</span></div>
+    <div class="sec-head"><span class="sec-divider"></span><h2>Quanto o preço mexe no movimento?</h2><span>medido no histórico</span></div>
+    <div class="split" style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+      <div class="chart-card" style="text-align:center;display:flex;flex-direction:column;justify-content:center">
+        <div style="font-size:3.2rem;font-weight:900;color:#34D399;letter-spacing:-.03em;line-height:1">−0,36</div>
+        <div style="font-size:.8rem;color:var(--muted);margin-top:8px;font-weight:700;text-transform:uppercase;letter-spacing:.05em">Elasticidade-preço (Cometa)</div>
+        <div style="font-size:.84rem;color:rgba(255,255,255,.65);margin-top:12px;line-height:1.5">+10% de preço → só −3,6% de movimento. <b style="color:#34D399">Receita sobe.</b></div>
+      </div>
+      <div class="chart-card" style="text-align:center;display:flex;flex-direction:column;justify-content:center">
+        <div style="font-size:3.2rem;font-weight:900;color:var(--orange);letter-spacing:-.03em;line-height:1">r ≈ 0</div>
+        <div style="font-size:.8rem;color:var(--muted);margin-top:8px;font-weight:700;text-transform:uppercase;letter-spacing:.05em">Correlação diária preço × recargas</div>
+        <div style="font-size:.84rem;color:rgba(255,255,255,.65);margin-top:12px;line-height:1.5">O preço <b style="color:var(--orange)">não explica</b> o movimento do dia. Quem explica é a localização.</div>
+      </div>
+    </div>
+    <div class="chart-card" style="margin-top:18px">
+      <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:16px">Mais caro ≠ menos movimento — cada estação (62 dias)</div>
+      <div class="mbars">
+        <div class="mbar-row"><div class="mbar-lbl" style="width:120px">Cometa<small>R$ 1,79 · o mais caro</small></div><div class="mbar-track" style="height:32px"><div class="mbar-fill" style="width:100%;font-size:.82rem">7,9 recargas/dia</div></div></div>
+        <div class="mbar-row"><div class="mbar-lbl" style="width:120px">Montese<small>R$ 1,49 · rival a 0,99</small></div><div class="mbar-track" style="height:32px"><div class="mbar-fill" style="width:89%;font-size:.82rem">7,0 recargas/dia</div></div></div>
+        <div class="mbar-row"><div class="mbar-lbl" style="width:120px">Vila Peri<small>R$ 1,49 · baixo fluxo</small></div><div class="mbar-track" style="height:32px"><div class="mbar-fill" style="width:80%;font-size:.82rem">6,3 recargas/dia</div></div></div>
+        <div class="mbar-row"><div class="mbar-lbl" style="width:120px">Pamil<small>R$ 1,49 · ocioso</small></div><div class="mbar-track" style="height:32px"><div class="mbar-fill" style="width:20%;font-size:.82rem">1,6 recargas/dia</div></div></div>
+      </div>
+      <p class="chart-note">A estação <b>mais cara é a de maior movimento</b>. Se o preço mandasse, o barato lotaria e o caro esvaziaria — acontece o oposto. Movimento é <b>localização e fluxo</b>, não tarifa. A exceção é o Montese: o rival a R$ 0,99 colado o obriga a preço baixo — é o único ponto onde o preço realmente pesa.</p>
+    </div>
+  </div>
+</section>
+
+<section class="grain">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-divider"></span><h2>Elasticidade é por localização</h2><span>a mesma tática não serve pras 3</span></div>
+    <div class="locs">
+      <div class="loc up">
+        <h4>Cometa Barão</h4>
+        <div class="loc-sig">Alto fluxo · Fátima</div>
+        <div class="loc-row">Sem concorrente barato colado</div>
+        <div class="loc-row">Demanda inelástica (comprovado)</div>
+        <div class="loc-row">Estava a R$ 1,59, hoje R$ 1,79 sem perder volume</div>
+        <div class="loc-action">↑ Subir para R$ 1,89–1,99</div>
+      </div>
+      <div class="loc mid">
+        <h4>Vila Peri (Cyclo)</h4>
+        <div class="loc-sig">Baixo fluxo · poucos carregadores na região</div>
+        <div class="loc-row">Escassez local = poder de preço</div>
+        <div class="loc-row">21% em cupom (R$1,39 → R$1,12 real)</div>
+        <div class="loc-row">App driver com poucas alternativas ali</div>
+        <div class="loc-action">✂ Cortar cupom / subir tabela</div>
+      </div>
+      <div class="loc down">
+        <h4>Montese (Alb. Magno)</h4>
+        <div class="loc-sig">Poucos carregadores · mas concorrência agressiva</div>
+        <div class="loc-row">Concorrentes a R$ 1,29–1,70</div>
+        <div class="loc-row"><b style="color:#F87171">1 a R$ 0,99 com muito movimento</b></div>
+        <div class="loc-row">Subir preço = perder o app driver</div>
+        <div class="loc-action">⚙ Custo/aluguel, não preço</div>
+      </div>
+    </div>
+    <p class="chart-note">O medo de "subir preço mata o volume" <b>não é uma lei da rede — é um efeito do Montese</b>, onde existe um concorrente a R$ 0,99. Onde não há alternativa barata (Cometa, Cyclo), você tem poder de preço e está deixando margem na mesa.</p>
+  </div>
+</section>
+
+<section class="grain">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-divider"></span><h2>Playbook comercial — sem investir</h2><span>ganho anual estimado por alavanca</span></div>
     <div class="chart-card">
       <div class="mbars">
-        <div class="mbar-row"><div class="mbar-lbl">Rede hoje<small>R$ 0,80/kWh</small></div><div class="mbar-track"><div class="mbar-fill fill-grid" style="width:37%">R$ 30.099/ano</div></div></div>
-        <div class="mbar-row"><div class="mbar-lbl">Usina R$ 0,55<small>conservador</small></div><div class="mbar-track"><div class="mbar-fill fill-solar" style="width:82%">R$ 67.312/ano</div></div></div>
-        <div class="mbar-row"><div class="mbar-lbl">Usina R$ 0,50<small>provável</small></div><div class="mbar-track"><div class="mbar-fill fill-solar" style="width:91%">R$ 74.755/ano</div></div></div>
-        <div class="mbar-row"><div class="mbar-lbl">Usina R$ 0,45<small>otimista</small></div><div class="mbar-track"><div class="mbar-fill fill-solar" style="width:100%">R$ 82.198/ano</div></div></div>
+        <div class="mbar-row"><div class="mbar-lbl">1 · Reprecificar Cometa<small>+R$0,19/kWh · volume inelástico</small></div><div class="mbar-track"><div class="mbar-fill" style="width:100%">+R$ 9.400/ano</div></div></div>
+        <div class="mbar-row"><div class="mbar-lbl">2 · Faturar frota fora do app<small>~40% do volume, sem 10% Tupi</small></div><div class="mbar-track"><div class="mbar-fill" style="width:94%">+R$ 8.900/ano</div></div></div>
+        <div class="mbar-row"><div class="mbar-lbl">3 · Reduzir cupom no Cyclo<small>−50% do desconto (escassez local)</small></div><div class="mbar-track"><div class="mbar-fill" style="width:76%">+R$ 7.100/ano</div></div></div>
+        <div class="mbar-row"><div class="mbar-lbl">4 · Renegociar aluguel Montese<small>R$ 750 → R$ 400/mês</small></div><div class="mbar-track"><div class="mbar-fill" style="width:45%">+R$ 4.200/ano</div></div></div>
       </div>
       <div class="gain">
-        <div class="g-big">+ R$ 37 mil a R$ 52 mil / ano</div>
-        <div class="g-cap">de lucro adicional, só trocando a origem do kWh nas 4 estações comerciais — sem mexer no preço nem espantar o motorista de app. O lucro da rede <b>mais que dobra</b>.</div>
+        <div class="g-big">+ R$ 29,6 mil / ano</div>
+        <div class="g-cap">com <b>capex zero</b> — o lucro da rede vai de R$ 30 mil para <b>~R$ 60 mil/ano</b> (2×), só com decisões comerciais.</div>
       </div>
-      <p class="chart-note" style="margin-top:18px">Os R$ 0,30 do José de Alencar não são replicáveis (condição do condomínio). Aqui usamos faixas realistas de <b>usina solar própria em Fortaleza</b>. Quando o custo real do projeto estiver fechado, este número trava.</p>
+      <p class="chart-note" style="margin-top:16px">Estimativas conservadoras a partir do dado real. O experimento do Cometa dá segurança à alavanca 1; o José de Alencar prova a alavanca 2. Cada ação pode ser testada de forma isolada e reversível.</p>
     </div>
   </div>
 </section>
@@ -271,13 +303,13 @@
 <section class="grain">
   <div class="wrap">
     <div class="concl">
-      <h3>Leitura estratégica</h3>
+      <h3>Plano de ação</h3>
       <ul>
-        <li><span><b>Demanda existe, margem não.</b> 443 kWh/dia e 76% de frota recorrente, mas só R$ 2,5 mil/mês de lucro real após Tupi, energia e aluguel.</span></li>
-        <li><span><b>Montese está no vermelho.</b> R$ 85/mês não cobrem o resto do custo. Decisão imediata: renegociar aluguel, reprecificar ou realocar a máquina.</span></li>
-        <li><span><b>O preço não é a saída</b> — o cliente é motorista de app na margem. As alavancas reais são <b>custo de energia</b>, <b>faturar fora do app</b> e <b>cortar cupom</b>.</span></li>
-        <li><span><b>O José de Alencar é o mapa.</b> Energia barata + sem comissão = R$ 0,70/kWh. Replicar essa lógica é o plano.</span></li>
-        <li><span><b>A usina destrava R$ 37–52 mil/ano</b> e mais que dobra o lucro — transformando esta operação no case real que sustenta o pitch de investimento da Vertus.</span></li>
+        <li><span><b>Subir o preço do Cometa</b> para R$ 1,89–1,99 e monitorar 2 semanas. O histórico diz que o volume aguenta.</span></li>
+        <li><span><b>Reduzir cupom em Vila Peri</b> gradualmente — escassez local dá poder de preço; o app driver ali tem poucas opções.</span></li>
+        <li><span><b>Migrar a frota fiel para fora do app</b> (Pix direto/assinatura), como no José de Alencar, eliminando os 10% da Tupi nesse volume.</span></li>
+        <li><span><b>Montese é decisão de custo:</b> renegociar o aluguel de R$ 750 ou realocar a máquina. Contra o concorrente de R$ 0,99, preço não resolve.</span></li>
+        <li><span><b>Não mexer no preço do Montese</b> — é o único ponto com elasticidade real. Ali a briga é por custo, não por tarifa.</span></li>
       </ul>
     </div>
   </div>
@@ -285,26 +317,10 @@
 
 <div class="foot grain">
   <div class="wrap">
-    Vertus Solar · Análise operacional da rede de recarga — uso interno<br>
-    Base: 1.263 transações reais (18/05–18/07/2026), painel Tupi Mob. Comissão Tupi 10% sobre o valor bruto (antes de cupom). Custos de energia e aluguel informados pela operação. Lucro apurado antes de taxas de pagamento, manutenção, conectividade e demanda contratada. Cenário de usina é sensibilidade ilustrativa até o custo real do projeto ser definido.
+    Vertus Solar · Estratégia comercial da rede de recarga — uso interno<br>
+    Base: 1.263 transações reais (18/05–18/07/2026), painel Tupi Mob e relatório LV Locações. Comissão Tupi 10% sobre o bruto. Ganhos das alavancas são estimativas conservadoras derivadas do dado real, a validar em teste controlado. Opção de usina solar excluída desta análise (foco em ações sem investimento).
   </div>
 </div>
-
-<script>
-  var H=[16,13,7,7,9,7,24,45,77,79,83,78,64,82,88,79,75,74,81,89,71,61,39,15];
-  var max=Math.max.apply(null,H);
-  var barsEl=document.getElementById('hourBars'), axEl=document.getElementById('hourAxis');
-  H.forEach(function(v,h){
-    var b=document.createElement('div');
-    b.className='bar'+(v<max*0.35?' dim':'');
-    b.style.height=Math.max(2,v/max*100)+'%';
-    b.innerHTML='<span>'+String(h).padStart(2,'0')+'h · '+v+'</span>';
-    barsEl.appendChild(b);
-    var t=document.createElement('div'); t.className='t';
-    t.textContent=(h%3===0)?String(h).padStart(2,'0'):'';
-    axEl.appendChild(t);
-  });
-</script>
 
 </body>
 </html>
