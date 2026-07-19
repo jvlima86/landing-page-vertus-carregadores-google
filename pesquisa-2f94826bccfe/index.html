@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pesquisa de Mercado — Vertus Solar</title>
+<meta name="description" content="Pesquisa rápida sobre energia solar, eletropostos e investimento em ativos reais no Ceará.">
+<!-- Página fora do fluxo principal do site — não indexar -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
+<style>
+  /* =========================================================
+     Vertus Solar — Pesquisa de Mercado (standalone)
+     Tokens replicados de colors_and_type.css para deixar a
+     página autossuficiente (não depende de styles.css).
+     LAYOUT ONLY — coleta ainda sem backend (ver TODO no JS).
+     ========================================================= */
+  :root {
+    --vertus-orange: #FF7E27;
+    --vertus-orange-soft: #FF9F54;
+    --vertus-orange-dark: #CC6520;
+    --vertus-black: #1E1C1C;
+    --vertus-charcoal: #2A2828;
+    --vertus-muted: #9A9A9A;
+    --fg: #FFFFFF;
+    --fg2: rgba(255,255,255,0.72);
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-pill: 100px;
+    --font-sans: "Archivo", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-family: var(--font-sans); scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,126,39,0.10) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 60% at 90% 100%, rgba(170,70,0,0.06) 0%, transparent 50%),
+      var(--vertus-black);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  /* ---------- Header ---------- */
+  .p-head { text-align: center; margin-bottom: 2.5rem; }
+  .p-logo { display: inline-block; margin-bottom: 2rem; }
+  .p-logo img { height: 32px; }
+  .p-logo-fallback {
+    font-weight: 900; font-size: 1.1rem; letter-spacing: 0.02em;
+    color: var(--fg);
+  }
+  .p-logo-fallback em { font-style: normal; color: var(--vertus-orange); }
+  .p-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,126,39,0.1);
+    border: 1px solid rgba(255,126,39,0.4);
+    padding: 6px 16px; border-radius: var(--radius-pill);
+    color: var(--vertus-orange);
+    font-size: 0.72rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 1.4rem;
+  }
+  .p-h1 {
+    font-size: clamp(1.9rem, 4.5vw, 3rem);
+    font-weight: 900; line-height: 1.08; letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+  }
+  .p-h1 em { font-style: normal; color: var(--vertus-orange); }
+  .p-sub {
+    font-size: 1.02rem; color: var(--fg2); line-height: 1.7;
+    max-width: 520px; margin: 0 auto;
+  }
+  .p-meta {
+    margin-top: 1.4rem; font-size: 0.78rem; color: var(--vertus-muted);
+    display: flex; align-items: center; justify-content: center; gap: 1.4rem;
+    flex-wrap: wrap;
+  }
+  .p-meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .p-meta svg { color: var(--vertus-orange); }
+
+  /* ---------- Progress ---------- */
+  .p-progress {
+    position: sticky; top: 0; z-index: 5;
+    background: linear-gradient(180deg, var(--vertus-black) 60%, transparent);
+    padding: 0.9rem 0 1.1rem; margin-bottom: 1.4rem;
+  }
+  .p-progress-bar {
+    height: 5px; border-radius: 100px;
+    background: rgba(255,255,255,0.08); overflow: hidden;
+  }
+  .p-progress-fill {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--vertus-orange), var(--vertus-orange-soft));
+    border-radius: 100px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .p-progress-label {
+    margin-top: 0.5rem; font-size: 0.72rem; font-weight: 700;
+    color: var(--vertus-muted); text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .p-progress-label b { color: var(--vertus-orange); }
+
+  /* ---------- Questions ---------- */
+  .q {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,126,39,0.14);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem 1.6rem 1.4rem;
+    margin-bottom: 1.1rem;
+  }
+  .q-num {
+    display: inline-block;
+    font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--vertus-orange);
+    margin-bottom: 0.5rem;
+  }
+  .q-title {
+    font-size: 1.08rem; font-weight: 800; line-height: 1.35;
+    margin-bottom: 0.25rem;
+  }
+  .q-hint {
+    font-size: 0.8rem; color: var(--vertus-muted); margin-bottom: 1.1rem;
+  }
+  .q-options { display: flex; flex-direction: column; gap: 0.6rem; }
+  .q-options.grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem;
+  }
+
+  .opt {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-md);
+    cursor: pointer; transition: all 0.2s cubic-bezier(0.4,0,0.2,1);
+    user-select: none;
+  }
+  .opt:hover {
+    border-color: rgba(255,126,39,0.5);
+    background: rgba(255,126,39,0.05);
+  }
+  .opt input { position: absolute; opacity: 0; pointer-events: none; }
+  .opt-mark {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    border: 2px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .opt input[type="checkbox"] ~ .opt-mark { border-radius: 5px; }
+  .opt-mark::after {
+    content: ""; width: 9px; height: 9px; border-radius: 50%;
+    background: var(--vertus-black); transform: scale(0); transition: transform 0.15s;
+  }
+  .opt input[type="checkbox"] ~ .opt-mark::after {
+    border-radius: 2px; width: 7px; height: 7px;
+  }
+  .opt-text { font-size: 0.92rem; font-weight: 500; line-height: 1.4; }
+  .opt input:checked ~ .opt-mark {
+    border-color: var(--vertus-orange); background: var(--vertus-orange);
+  }
+  .opt input:checked ~ .opt-mark::after { transform: scale(1); }
+  .opt:has(input:checked) {
+    border-color: var(--vertus-orange);
+    background: rgba(255,126,39,0.08);
+  }
+
+  /* Text inputs */
+  .q-input, .q-textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-md);
+    padding: 0.85rem 1rem;
+    color: var(--fg); font-family: var(--font-sans);
+    font-size: 0.95rem; transition: border-color 0.2s;
+  }
+  .q-textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+  .q-input:focus, .q-textarea:focus {
+    outline: none; border-color: var(--vertus-orange);
+  }
+  .q-input::placeholder, .q-textarea::placeholder { color: var(--vertus-muted); }
+
+  /* Scale (1-5) */
+  .q-scale { display: flex; gap: 0.5rem; }
+  .q-scale label {
+    flex: 1; text-align: center; cursor: pointer;
+    padding: 0.75rem 0; border-radius: var(--radius-md);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    font-weight: 800; font-size: 1rem; transition: all 0.2s;
+  }
+  .q-scale label:hover { border-color: rgba(255,126,39,0.5); }
+  .q-scale input { position: absolute; opacity: 0; pointer-events: none; }
+  .q-scale label:has(input:checked) {
+    background: var(--vertus-orange); color: var(--vertus-black);
+    border-color: var(--vertus-orange);
+  }
+  .q-scale-legend {
+    display: flex; justify-content: space-between;
+    font-size: 0.72rem; color: var(--vertus-muted); margin-top: 0.5rem;
+  }
+
+  /* ---------- Submit ---------- */
+  .p-submit {
+    margin-top: 1.8rem;
+  }
+  .btn {
+    width: 100%;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    background: linear-gradient(90deg, var(--vertus-orange), var(--vertus-orange-soft));
+    color: var(--vertus-black);
+    font-size: 1.02rem; font-weight: 800;
+    padding: 1rem 2rem; border: none; border-radius: var(--radius-md);
+    cursor: pointer; font-family: var(--font-sans);
+    box-shadow: 0 4px 16px rgba(255,126,39,0.4);
+    transition: transform 0.15s, filter 0.2s;
+  }
+  .btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+  .p-privacy {
+    margin-top: 1rem; text-align: center;
+    font-size: 0.74rem; color: var(--vertus-muted); line-height: 1.6;
+  }
+
+  /* ---------- Thank you state ---------- */
+  .p-done {
+    display: none; text-align: center; padding: 3rem 1rem;
+  }
+  .p-done.show { display: block; }
+  .p-done-check {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: rgba(255,126,39,0.12); border: 2px solid var(--vertus-orange);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.8rem; box-shadow: 0 0 40px rgba(255,126,39,0.2);
+    color: var(--vertus-orange);
+  }
+  .p-done h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 900;
+    letter-spacing: -0.02em; margin-bottom: 0.9rem;
+  }
+  .p-done h2 em { font-style: normal; color: var(--vertus-orange); }
+  .p-done p { color: var(--fg2); max-width: 420px; margin: 0 auto 2rem; line-height: 1.7; }
+  .p-done a {
+    display: inline-block; color: var(--vertus-muted);
+    text-decoration: none; font-size: 0.85rem; font-weight: 600;
+  }
+  .p-done a:hover { color: var(--vertus-orange); }
+
+  .p-foot {
+    margin-top: 3rem; text-align: center;
+    font-size: 0.72rem; color: rgba(255,255,255,0.28); line-height: 1.7;
+  }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 2rem 1.1rem 4rem; }
+    .q-options.grid { grid-template-columns: 1fr; }
+    .q { padding: 1.3rem 1.2rem 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ============ FORM ============ -->
+  <div id="surveyView">
+
+    <header class="p-head">
+      <div class="p-logo">
+        <span class="p-logo-fallback">VERTUS<em>.</em></span>
+      </div>
+      <div class="p-badge">Pesquisa de mercado</div>
+      <h1 class="p-h1">O que você pensa sobre <em>investir em energia?</em></h1>
+      <p class="p-sub">Uma pesquisa rápida e anônima sobre energia solar, eletropostos e investimento em ativos reais no Ceará. Suas respostas ajudam a Vertus a entender melhor o mercado.</p>
+      <div class="p-meta">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+          Leva ~2 minutos
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          100% anônima
+        </span>
+      </div>
+    </header>
+
+    <div class="p-progress">
+      <div class="p-progress-bar"><div class="p-progress-fill" id="progressFill"></div></div>
+      <div class="p-progress-label"><b id="progressCount">0</b> de <span id="progressTotal">8</span> respondidas</div>
+    </div>
+
+    <form id="surveyForm" novalidate>
+
+      <!-- Q1 -->
+      <div class="q" data-q>
+        <span class="q-num">01</span>
+        <h3 class="q-title">Você já investe seu dinheiro hoje?</h3>
+        <p class="q-hint">Escolha a opção que melhor descreve seu momento.</p>
+        <div class="q-options" role="radiogroup">
+          <label class="opt"><input type="radio" name="q1" value="Investe ativamente"><span class="opt-mark"></span><span class="opt-text">Sim, invisto com frequência</span></label>
+          <label class="opt"><input type="radio" name="q1" value="Investe pouco"><span class="opt-mark"></span><span class="opt-text">Invisto pouco / de vez em quando</span></label>
+          <label class="opt"><input type="radio" name="q1" value="Quer começar"><span class="opt-mark"></span><span class="opt-text">Ainda não, mas quero começar</span></label>
+          <label class="opt"><input type="radio" name="q1" value="Não investe"><span class="opt-mark"></span><span class="opt-text">Não invisto e não pretendo agora</span></label>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="q" data-q>
+        <span class="q-num">02</span>
+        <h3 class="q-title">Onde você costuma investir?</h3>
+        <p class="q-hint">Pode marcar mais de uma opção.</p>
+        <div class="q-options grid">
+          <label class="opt"><input type="checkbox" name="q2" value="Renda fixa"><span class="opt-mark"></span><span class="opt-text">Renda fixa / Tesouro</span></label>
+          <label class="opt"><input type="checkbox" name="q2" value="Ações / FIIs"><span class="opt-mark"></span><span class="opt-text">Ações e FIIs</span></label>
+          <label class="opt"><input type="checkbox" name="q2" value="Imóveis"><span class="opt-mark"></span><span class="opt-text">Imóveis</span></label>
+          <label class="opt"><input type="checkbox" name="q2" value="Cripto"><span class="opt-mark"></span><span class="opt-text">Criptomoedas</span></label>
+          <label class="opt"><input type="checkbox" name="q2" value="Negócio próprio"><span class="opt-mark"></span><span class="opt-text">Negócio próprio</span></label>
+          <label class="opt"><input type="checkbox" name="q2" value="Poupança"><span class="opt-mark"></span><span class="opt-text">Poupança</span></label>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="q" data-q>
+        <span class="q-num">03</span>
+        <h3 class="q-title">Você já ouviu falar em investir em usinas de energia solar?</h3>
+        <div class="q-options" role="radiogroup">
+          <label class="opt"><input type="radio" name="q3" value="Conhece bem"><span class="opt-mark"></span><span class="opt-text">Sim, conheço bem</span></label>
+          <label class="opt"><input type="radio" name="q3" value="Já ouvi falar"><span class="opt-mark"></span><span class="opt-text">Já ouvi falar, mas sei pouco</span></label>
+          <label class="opt"><input type="radio" name="q3" value="Nunca ouvi"><span class="opt-mark"></span><span class="opt-text">Nunca tinha ouvido falar</span></label>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="q" data-q>
+        <span class="q-num">04</span>
+        <h3 class="q-title">O quanto te interessa investir em um ativo físico que gera renda (uma usina solar)?</h3>
+        <div class="q-scale" role="radiogroup">
+          <label><input type="radio" name="q4" value="1">1</label>
+          <label><input type="radio" name="q4" value="2">2</label>
+          <label><input type="radio" name="q4" value="3">3</label>
+          <label><input type="radio" name="q4" value="4">4</label>
+          <label><input type="radio" name="q4" value="5">5</label>
+        </div>
+        <div class="q-scale-legend"><span>Nenhum interesse</span><span>Muito interesse</span></div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="q" data-q>
+        <span class="q-num">05</span>
+        <h3 class="q-title">O que mais pesa na sua decisão de investir?</h3>
+        <p class="q-hint">Escolha até 2 opções.</p>
+        <div class="q-options grid">
+          <label class="opt"><input type="checkbox" name="q5" value="Segurança"><span class="opt-mark"></span><span class="opt-text">Segurança / baixo risco</span></label>
+          <label class="opt"><input type="checkbox" name="q5" value="Retorno"><span class="opt-mark"></span><span class="opt-text">Retorno elevado</span></label>
+          <label class="opt"><input type="checkbox" name="q5" value="Renda recorrente"><span class="opt-mark"></span><span class="opt-text">Renda mensal recorrente</span></label>
+          <label class="opt"><input type="checkbox" name="q5" value="Ativo real"><span class="opt-mark"></span><span class="opt-text">Ter um ativo físico</span></label>
+          <label class="opt"><input type="checkbox" name="q5" value="Impacto ambiental"><span class="opt-mark"></span><span class="opt-text">Impacto ambiental positivo</span></label>
+          <label class="opt"><input type="checkbox" name="q5" value="Liquidez"><span class="opt-mark"></span><span class="opt-text">Poder resgatar rápido</span></label>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="q" data-q>
+        <span class="q-num">06</span>
+        <h3 class="q-title">Como você enxerga os carros elétricos e eletropostos no Ceará nos próximos anos?</h3>
+        <div class="q-options" role="radiogroup">
+          <label class="opt"><input type="radio" name="q6" value="Grande crescimento"><span class="opt-mark"></span><span class="opt-text">Vão crescer muito — é o futuro</span></label>
+          <label class="opt"><input type="radio" name="q6" value="Crescimento moderado"><span class="opt-mark"></span><span class="opt-text">Vão crescer aos poucos</span></label>
+          <label class="opt"><input type="radio" name="q6" value="Incerto"><span class="opt-mark"></span><span class="opt-text">Ainda tenho dúvidas</span></label>
+          <label class="opt"><input type="radio" name="q6" value="Não vejo futuro"><span class="opt-mark"></span><span class="opt-text">Não acredito muito</span></label>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="q" data-q>
+        <span class="q-num">07</span>
+        <h3 class="q-title">Qual o principal receio que te impediria de investir em um ativo como esse?</h3>
+        <p class="q-hint">Opcional — escreva com suas palavras.</p>
+        <textarea class="q-textarea" name="q7" placeholder="Ex: medo de não ter retorno, falta de conhecimento, tempo de retorno..."></textarea>
+      </div>
+
+      <!-- Q8 -->
+      <div class="q" data-q>
+        <span class="q-num">08</span>
+        <h3 class="q-title">Em qual cidade você mora?</h3>
+        <p class="q-hint">Opcional — usamos só para entender a região.</p>
+        <input class="q-input" type="text" name="q8" placeholder="Ex: Fortaleza, CE" autocomplete="off">
+      </div>
+
+      <div class="p-submit">
+        <button type="submit" class="btn">
+          Enviar respostas
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <p class="p-privacy">Suas respostas são anônimas e usadas apenas para pesquisa de mercado da Vertus Solar. Não coletamos e-mail ou telefone nesta página.</p>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- ============ THANK YOU ============ -->
+  <div class="p-done" id="doneView">
+    <div class="p-done-check">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="34" height="34"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2>Obrigado por <em>participar!</em></h2>
+    <p>Suas respostas foram registradas. Elas ajudam a Vertus Solar a entender melhor o mercado de energia e investimento no Ceará.</p>
+    <a href="/">← Conhecer a Vertus Solar</a>
+  </div>
+
+  <p class="p-foot">
+    Vertus Solar — Pesquisa de mercado · Ceará<br>
+    Esta pesquisa é apenas para fins de estudo e não constitui oferta de investimento.
+  </p>
+
+</div>
+
+<script>
+  /* =========================================================
+     Pesquisa — comportamento client-side
+     LAYOUT ONLY: ao enviar, as respostas são apenas coletadas
+     em memória e a tela de agradecimento é exibida.
+     TODO(backend): enviar `payload` via fetch POST para o
+     Google Apps Script (reusar SHEET_URL do app.js) quando a
+     coleta for conectada.
+     ========================================================= */
+  (function () {
+    var form = document.getElementById('surveyForm');
+    var fill = document.getElementById('progressFill');
+    var count = document.getElementById('progressCount');
+    var total = document.getElementById('progressTotal');
+    var questions = Array.prototype.slice.call(document.querySelectorAll('[data-q]'));
+    total.textContent = questions.length;
+
+    function isAnswered(q) {
+      var inputs = q.querySelectorAll('input, textarea');
+      for (var i = 0; i < inputs.length; i++) {
+        var el = inputs[i];
+        if (el.type === 'radio' || el.type === 'checkbox') {
+          if (el.checked) return true;
+        } else if (el.value && el.value.trim() !== '') {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function updateProgress() {
+      var done = questions.filter(isAnswered).length;
+      count.textContent = done;
+      fill.style.width = (done / questions.length * 100) + '%';
+    }
+
+    form.addEventListener('input', updateProgress);
+    form.addEventListener('change', updateProgress);
+
+    // Limita Q5 a 2 seleções
+    var q5 = form.querySelectorAll('input[name="q5"]');
+    form.addEventListener('change', function (e) {
+      if (e.target.name !== 'q5') return;
+      var checked = form.querySelectorAll('input[name="q5"]:checked');
+      if (checked.length > 2) e.target.checked = false;
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Monta o payload (pronto para ser enviado quando houver backend)
+      var payload = {};
+      var data = new FormData(form);
+      data.forEach(function (value, key) {
+        if (payload[key]) {
+          payload[key] = [].concat(payload[key], value);
+        } else {
+          payload[key] = value;
+        }
+      });
+      // eslint-disable-next-line no-console
+      console.log('[Pesquisa Vertus] respostas coletadas (sem backend):', payload);
+
+      // Exibe agradecimento
+      document.getElementById('surveyView').style.display = 'none';
+      var done = document.getElementById('doneView');
+      done.classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    updateProgress();
+  })();
+</script>
+
+</body>
+</html>
