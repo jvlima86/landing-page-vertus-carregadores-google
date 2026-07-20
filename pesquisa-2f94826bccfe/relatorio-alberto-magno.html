@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relatório — Estação Alberto Magno (Montese) | Vertus Solar</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
+<style>
+  :root{
+    --orange:#FF7E27; --orange-soft:#FF9F54; --orange-dark:#CC6520;
+    --black:#1E1C1C; --charcoal:#2A2828; --white:#F1F1F1; --muted:#9A9A9A; --pure:#FFFFFF;
+    --green:#10B981; --red:#EF4444;
+    --font:"Archivo",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{font-family:var(--font);scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--black);color:var(--pure);-webkit-font-smoothing:antialiased;line-height:1.5}
+  .grain{position:relative}
+  .grain::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E")}
+  .grain>*{position:relative;z-index:2}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+
+  .hero{position:relative;overflow:hidden;
+    background:radial-gradient(ellipse 85% 55% at 50% 120%,rgba(170,70,0,0.5) 0%,rgba(30,28,28,0) 62%),var(--black);
+    padding:52px 0 38px;border-bottom:1px solid rgba(255,126,39,0.15)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.1rem;margin-bottom:26px}
+  .brand .mark{width:24px;height:24px;display:grid;grid-template-columns:1fr 1fr;gap:2px}
+  .brand .mark i{background:var(--orange);border-radius:2px;display:block}
+  .brand small{font-weight:500;color:var(--muted);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;margin-left:2px}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,126,39,0.12);border:1px solid var(--orange);color:var(--orange);padding:6px 16px;border-radius:100px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px}
+  h1{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:900;line-height:1.08;letter-spacing:-.03em;margin-bottom:12px}
+  h1 em{font-style:normal;color:var(--orange)}
+  .hero-meta{margin-top:16px;display:flex;gap:20px;flex-wrap:wrap;font-size:.78rem;color:var(--muted)}
+  .hero-meta b{color:var(--white);font-weight:700}
+
+  section{padding:44px 0}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+  .sec-divider{width:38px;height:3px;background:var(--orange);border-radius:2px;flex-shrink:0}
+  .sec-head h2{font-size:1.35rem;font-weight:800;letter-spacing:-.02em}
+  .sec-head span{font-size:.78rem;color:var(--muted);margin-left:auto;text-align:right}
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .kpi{background:var(--charcoal);border:1px solid rgba(255,126,39,0.18);border-radius:10px;padding:18px 16px}
+  .kpi .num{font-size:clamp(1.5rem,2.6vw,2rem);font-weight:800;color:var(--orange);line-height:1;letter-spacing:-.02em}
+  .kpi .lbl{font-size:.72rem;color:var(--muted);margin-top:7px;line-height:1.35}
+  .kpi.alt .num{color:var(--pure)}
+
+  .chart-card{background:var(--charcoal);border:1px solid rgba(255,126,39,.18);border-radius:12px;padding:22px}
+  .bars{display:flex;align-items:flex-end;gap:8px;height:150px;margin-top:8px}
+  .bars .bar{flex:1;background:linear-gradient(180deg,var(--orange),var(--orange-dark));border-radius:4px 4px 0 0;position:relative;min-height:2px}
+  .bars .bar b{position:absolute;top:-18px;left:0;right:0;text-align:center;font-size:.62rem;color:var(--muted);font-weight:600}
+  .axis{display:flex;gap:8px;margin-top:6px}
+  .axis .t{flex:1;text-align:center;font-size:.6rem;color:var(--muted)}
+  .chart-note{margin-top:16px;font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.6}
+  .chart-note b{color:var(--orange)}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .mini{background:var(--charcoal);border:1px solid rgba(255,126,39,.18);border-radius:12px;padding:20px}
+  .mini h4{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:14px}
+  .mrow{display:flex;justify-content:space-between;align-items:center;font-size:.86rem;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .mrow:last-child{border-bottom:none}
+  .mrow b{font-weight:700}
+  .hbar{height:8px;border-radius:4px;background:linear-gradient(90deg,var(--orange-dark),var(--orange))}
+
+  /* DRE card */
+  .dre{border:4px solid var(--orange);border-radius:8px;background:#fff;color:var(--black);overflow:hidden}
+  .dre-t{padding:14px 22px;font-size:.95rem;font-weight:800;border-bottom:1px solid #E0E0E0}
+  table{width:100%;border-collapse:collapse}
+  .dre td{padding:11px 22px;font-size:.9rem;border-bottom:1px solid #EEE}
+  .dre td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .dre .ded td{color:#555}
+  .dre .tot td{font-weight:800;font-size:1.05rem;border-top:2px solid #CCC;background:#FFF6EF}
+  .dre .pos{color:#0a8f5b}
+
+  /* sensitivity */
+  .sens{display:flex;flex-direction:column;gap:11px}
+  .srow{display:flex;align-items:center;gap:14px}
+  .slbl{width:130px;flex-shrink:0;font-size:.84rem;font-weight:600}
+  .slbl small{color:var(--muted);font-weight:400;display:block;font-size:.72rem}
+  .strack{flex:1;background:rgba(0,0,0,.25);border-radius:6px;height:34px;position:relative;overflow:hidden}
+  .sfill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:12px;font-weight:800;font-size:.82rem;color:var(--black);background:linear-gradient(90deg,var(--orange-dark),var(--orange))}
+  .sfill.be{background:linear-gradient(90deg,#555,#777);color:#fff}
+
+  .concl{background:linear-gradient(160deg,rgba(255,126,39,.1),rgba(42,40,40,.4));border:1px solid rgba(255,126,39,.3);border-radius:14px;padding:30px}
+  .concl h3{font-size:1.2rem;font-weight:800;margin-bottom:14px}
+  .concl ul{list-style:none;display:flex;flex-direction:column;gap:13px}
+  .concl li{display:flex;gap:12px;font-size:.93rem;line-height:1.55;color:rgba(255,255,255,.85)}
+  .concl li b{color:var(--pure)}
+  .concl li::before{content:"";flex-shrink:0;width:8px;height:8px;border-radius:50%;background:var(--orange);margin-top:8px}
+
+  .foot{border-top:1px solid rgba(255,255,255,.08);padding:26px 0 38px;text-align:center;font-size:.72rem;color:rgba(255,255,255,.3);line-height:1.7}
+  @media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.split{grid-template-columns:1fr}.slbl{width:104px}}
+</style>
+</head>
+<body>
+
+<header class="hero grain">
+  <div class="wrap">
+    <div class="brand"><span class="mark"><i></i><i></i><i></i><i></i></span>VERTUS <small>Solar · Mobilidade</small></div>
+    <div class="badge">● Relatório de estação</div>
+    <h1>Alberto Magno <em>(Montese)</em></h1>
+    <div class="hero-meta">
+      <span>ID: <b>TS01202501055</b></span>
+      <span>R. Alberto Magno, 59 — Montese</span>
+      <span>Dados: <b>31/05 → 18/07/2026</b> (49 dias)</span>
+      <span>Cenário: <b>preço R$ 1,49/kWh</b></span>
+    </div>
+  </div>
+</header>
+
+<!-- OPERAÇÃO -->
+<section class="grain">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-divider"></span><h2>Operação desde o início</h2></div>
+    <div class="kpis">
+      <div class="kpi"><div class="num">343</div><div class="lbl">recargas no período<br>(7,0 por dia)</div></div>
+      <div class="kpi"><div class="num">7.633</div><div class="lbl">kWh entregues<br>(156 kWh/dia)</div></div>
+      <div class="kpi alt"><div class="num">22,3</div><div class="lbl">kWh por recarga<br>(carga cheia, DC)</div></div>
+      <div class="kpi alt"><div class="num">53%</div><div class="lbl">SoC médio ganho<br>por sessão</div></div>
+      <div class="kpi"><div class="num">105</div><div class="lbl">motoristas únicos<br>(25 recorrentes)</div></div>
+      <div class="kpi"><div class="num">63%</div><div class="lbl">das sessões usam cupom<br>(motorista de app)</div></div>
+      <div class="kpi alt"><div class="num">R$ 1,17</div><div class="lbl">preço realizado hoje<br>(tabela R$ 1,42)</div></div>
+      <div class="kpi alt"><div class="num">R$ 2.010</div><div class="lbl">dado em cupom<br>no período</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EVOLUÇÃO -->
+<section class="grain">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-divider"></span><h2>Evolução semanal</h2><span>kWh por semana</span></div>
+    <div class="chart-card">
+      <div class="bars" id="wkBars"></div>
+      <div class="axis" id="wkAxis"></div>
+      <p class="chart-note">Estação estabilizou rápido em <b>~1.000–1.200 kWh/semana</b> logo na 2ª semana e se manteve. Movimento consistente (7 recargas/dia), com <b>52–75% das sessões em cupom</b> — ou seja, é uma estação majoritariamente de <b>motorista de app</b>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PERFIL -->
+<section class="grain">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-divider"></span><h2>Perfil de uso</h2></div>
+    <div class="split">
+      <div class="mini">
+        <h4>Quando carregam</h4>
+        <div class="mrow"><span>Madrugada (0–6h)</span><b>30</b></div>
+        <div style="margin:4px 0 12px"><div class="hbar" style="width:25%"></div></div>
+        <div class="mrow"><span>Manhã (6–12h)</span><b>103</b></div>
+        <div style="margin:4px 0 12px"><div class="hbar" style="width:85%"></div></div>
+        <div class="mrow"><span>Tarde (12–18h)</span><b>121</b></div>
+        <div style="margin:4px 0 12px"><div class="hbar" style="width:100%"></div></div>
+        <div class="mrow"><span>Noite (18–24h)</span><b>89</b></div>
+        <div style="margin:4px 0 0"><div class="hbar" style="width:74%"></div></div>
+        <p class="chart-note" style="margin-top:14px">Uso concentrado no <b>horário comercial</b> (manhã+tarde = 65%) — padrão de frota trabalhando.</p>
+      </div>
+      <div class="mini">
+        <h4>Top motoristas (recorrência)</h4>
+        <div class="mrow"><span>Motorista 1</span><b>29 recargas · 738 kWh</b></div>
+        <div class="mrow"><span>Motorista 2</span><b>16 recargas · 400 kWh</b></div>
+        <div class="mrow"><span>Motorista 3</span><b>13 recargas · 206 kWh</b></div>
+        <div class="mrow"><span>Motorista 4</span><b>12 recargas · 243 kWh</b></div>
+        <div class="mrow"><span>Motorista 5</span><b>12 recargas · 193 kWh</b></div>
+        <p class="chart-note" style="margin-top:14px">O motorista nº 1 sozinho fez <b>1 recarga a cada 1,7 dia</b>. Base fiel de app — alvo ideal de um programa de fidelidade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCEIRO A 1,49 -->
+<section class="grain">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-divider"></span><h2>Resultado a R$ 1,49/kWh</h2><span>preço único, sem cupom · mensal</span></div>
+    <div class="split" style="align-items:start">
+      <div class="dre">
+        <div class="dre-t">📄 DRE mensal — Alberto Magno a R$ 1,49</div>
+        <table>
+          <tr><td>Receita (4.680 kWh × R$ 1,49)</td><td>R$ 6.963</td></tr>
+          <tr class="ded"><td>(−) Comissão Tupi (10% do bruto)</td><td>−R$ 696</td></tr>
+          <tr class="ded"><td>(−) Energia (4.680 kWh × R$ 0,80)</td><td>−R$ 3.739</td></tr>
+          <tr class="ded"><td>(−) Aluguel do ponto</td><td>−R$ 750</td></tr>
+          <tr class="tot"><td>Lucro líquido mensal</td><td class="pos">R$ 1.778</td></tr>
+        </table>
+      </div>
+      <div class="mini">
+        <h4>Hoje vs. R$ 1,49 (sem cupom)</h4>
+        <div class="mrow"><span>NET hoje (realizado R$ 1,17, c/ cupom)</span><b>R$ 306/mês</b></div>
+        <div class="mrow"><span>NET a R$ 1,49 flat</span><b style="color:#34D399">R$ 1.778/mês</b></div>
+        <div class="mrow"><span>Diferença</span><b style="color:#34D399">+R$ 1.472/mês</b></div>
+        <div class="mrow"><span>NET por kWh</span><b>R$ 0,38</b></div>
+        <div class="mrow"><span>Preço de equilíbrio (c/ aluguel)</span><b>R$ 1,07/kWh</b></div>
+        <p class="chart-note" style="margin-top:12px">A R$ 1,49, o lucro da estação <b>quase 6×</b> vs. hoje — o problema nunca foi o preço-teto, e sim o <b>desconto de cupom</b> puxando o realizado pra R$ 1,17.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SENSIBILIDADE -->
+<section class="grain">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-divider"></span><h2>E o rival a R$ 0,99?</h2><span>quanto de volume pode perder a R$ 1,49</span></div>
+    <div class="chart-card">
+      <div class="sens">
+        <div class="srow"><div class="slbl">100% do volume<small>4.680 kWh/mês</small></div><div class="strack"><div class="sfill" style="width:100%">R$ 1.782/mês</div></div></div>
+        <div class="srow"><div class="slbl">70%<small>3.276 kWh/mês</small></div><div class="strack"><div class="sfill" style="width:70%">R$ 1.022/mês</div></div></div>
+        <div class="srow"><div class="slbl">50%<small>2.340 kWh/mês</small></div><div class="strack"><div class="sfill" style="width:50%">R$ 516/mês</div></div></div>
+        <div class="srow"><div class="slbl">30% — equilíbrio<small>1.386 kWh/mês</small></div><div class="strack"><div class="sfill be" style="width:30%">R$ 0</div></div></div>
+      </div>
+      <p class="chart-note">Aqui está o ponto-chave: a R$ 1,49, a estação <b>empata com apenas 30% do volume atual</b>. Ou seja, mesmo que o rival a R$ 0,99 leve <b>até 70% dos motoristas</b>, você ainda não tem prejuízo — e lucra com quem ficar. Manter só <b>metade</b> do volume a R$ 1,49 (R$ 516/mês) já é <b>melhor que hoje</b> com volume cheio (R$ 306/mês). O risco de subir o preço aqui é <b>muito menor do que parece</b>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONCLUSÃO -->
+<section class="grain">
+  <div class="wrap">
+    <div class="concl">
+      <h3>Conclusão & recomendação</h3>
+      <ul>
+        <li><span><b>O Montese não é ruim — está subprecificado.</b> A R$ 1,49 (preço de tabela/mercado) rende R$ 1.778/mês; o que derruba o resultado hoje é o cupom levando o realizado a R$ 1,17.</span></li>
+        <li><span><b>Subir para R$ 1,49 é de baixo risco:</b> o ponto de equilíbrio é só 30% do volume. Dá pra perder 70% do movimento pro rival de R$ 0,99 e ainda não ter prejuízo.</span></li>
+        <li><span><b>Trocar cupom por fidelidade</b> ("compre 10, ganhe 1") retém o app driver sem o desconto — e o prêmio custa só energia, sem os 10% da Tupi.</span></li>
+        <li><span><b>O aluguel de R$ 750 é o maior peso fixo</b> (R$ 0,16/kWh). Renegociar libera margem direta e derruba o equilíbrio para ~R$ 0,89/kWh.</span></li>
+        <li><span><b>Plano:</b> subir para R$ 1,49 + fidelidade, medir 4 semanas. Se o volume cair além de 50%, testar R$ 1,29–1,39 ou renegociar o aluguel.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="foot grain">
+  <div class="wrap">
+    Vertus Solar · Relatório operacional — Estação Alberto Magno (Montese) · uso interno<br>
+    Base: 343 transações reais (31/05–18/07/2026), painel Tupi Mob. Cenário financeiro modelado a R$ 1,49/kWh, energia R$ 0,80/kWh, comissão Tupi 10% do bruto, aluguel R$ 750/mês. Retenção de volume é sensibilidade ilustrativa.
+  </div>
+</div>
+
+<script>
+  var WK=[97,970,1370,1141,788,983,1208,1077]; var L=['S1','S2','S3','S4','S5','S6','S7','S8'];
+  var mx=Math.max.apply(null,WK);
+  var b=document.getElementById('wkBars'), a=document.getElementById('wkAxis');
+  WK.forEach(function(v,i){
+    var d=document.createElement('div'); d.className='bar'; d.style.height=Math.max(2,v/mx*100)+'%';
+    d.innerHTML='<b>'+v.toLocaleString('pt-BR')+'</b>'; b.appendChild(d);
+    var t=document.createElement('div'); t.className='t'; t.textContent=L[i]; a.appendChild(t);
+  });
+</script>
+
+</body>
+</html>
