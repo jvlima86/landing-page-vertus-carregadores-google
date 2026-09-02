@@ -1,0 +1,15 @@
+# Material bruto e de outras marcas — não sobe para o deploy
+DC 30 kw fotos /
+DC 60 kw fotos /
+DC 120 kw fotos  /
+proposta/
+assets/unidades/
+assets/logo-cyclo.png
+assets/logo-solure.png
+fundo_hero.mp4
+Foto_Formulario-mobile.jpg
+*.md
+.claude/
+
+# Hero antigo (foto de usina), mantido no repo para eventual reversão
+assets/img-hero-usina.jpg

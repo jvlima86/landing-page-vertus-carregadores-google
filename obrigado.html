@@ -2,209 +2,137 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simulação Recebida — Vertus Solar</title>
-<meta name="robots" content="noindex, nofollow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
-<link rel="stylesheet" href="styles.css?v=4">
-<!-- Google tag — conversão registrada ao carregar esta página -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E1C1C">
+<meta name="color-scheme" content="dark">
+<title>Pedido recebido — Vertus Mob</title>
+<meta name="robots" content="noindex, follow">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/archivo-latin.woff2" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<!-- Google Ads — a conversão de lead é registrada UMA vez por sessão, aqui, no carregamento -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17006818606"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'AW-17006818606');
-  gtag('event', 'conversion', {'send_to': 'AW-17006818606'});
+  // Uma conversão por sessão: recarregar ou voltar para esta página não conta de novo
+  (function () {
+    var fire = true;
+    try {
+      var hasLead = !!sessionStorage.getItem('vertusLead') || /[?&]wa=1/.test(location.search);
+      if (!hasLead || sessionStorage.getItem('vertusConv')) fire = false; else sessionStorage.setItem('vertusConv', '1');
+    } catch (e) {}
+    if (fire) gtag('event', 'conversion', {'send_to': 'AW-17006818606'});
+  })();
 </script>
 <style>
-  .ty-page {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1.5rem;
-    background:
-      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255,126,39,0.08) 0%, transparent 60%),
-      var(--vertus-black);
-    text-align: center;
-  }
-  .ty-logo {
-    margin-bottom: 3rem;
-  }
-  .ty-logo img {
-    height: 36px;
-  }
-  .ty-check {
-    width: 72px; height: 72px;
-    border-radius: 50%;
-    background: rgba(255,126,39,0.12);
-    border: 2px solid var(--vertus-orange);
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 2rem;
-    box-shadow: 0 0 40px rgba(255,126,39,0.2);
-  }
-  .ty-check svg { color: var(--vertus-orange); }
-  .ty-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(255,126,39,0.1);
-    border: 1px solid rgba(255,126,39,0.35);
-    padding: 5px 14px; border-radius: 100px;
-    font-size: 0.68rem; font-weight: 700;
-    color: var(--vertus-orange);
-    text-transform: uppercase; letter-spacing: 0.1em;
-    margin-bottom: 1.4rem;
-  }
-  .ty-h1 {
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 900; line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: #fff;
-    margin-bottom: 1rem;
-    max-width: 560px;
-  }
-  .ty-h1 em { font-style: normal; color: var(--vertus-orange); }
-  .ty-sub {
-    font-size: 1.05rem; color: rgba(255,255,255,0.72);
-    line-height: 1.7; max-width: 480px; margin: 0 auto 2.8rem;
-  }
-  .ty-steps {
-    display: flex; flex-direction: column; gap: 1rem;
-    max-width: 420px; margin: 0 auto 3rem;
-    text-align: left;
-  }
-  .ty-step {
-    display: flex; gap: 1rem; align-items: flex-start;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,126,39,0.15);
-    border-radius: 10px;
-    padding: 1.1rem 1.4rem;
-  }
-  .ty-step-num {
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    background: rgba(255,126,39,0.15);
-    border: 1px solid var(--vertus-orange);
-    color: var(--vertus-orange);
-    font-size: 0.75rem; font-weight: 900;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .ty-step-text strong {
-    display: block; font-size: 0.9rem; font-weight: 800;
-    color: #fff; margin-bottom: 0.2rem;
-  }
-  .ty-step-text span {
-    font-size: 0.82rem; color: var(--vertus-muted); line-height: 1.5;
-  }
-  .ty-cta-wa {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: #25D366;
-    color: #fff;
-    font-size: 1rem; font-weight: 800;
-    padding: 14px 28px; border-radius: 8px;
-    text-decoration: none;
-    margin-bottom: 1.2rem;
-    transition: filter 0.2s;
-    box-shadow: 0 4px 24px rgba(37,211,102,0.25);
-  }
-  .ty-cta-wa:hover { filter: brightness(1.1); }
-  .ty-back {
-    display: block;
-    font-size: 0.82rem; color: var(--vertus-muted);
-    text-decoration: none; margin-top: 0.6rem;
-  }
-  .ty-back:hover { color: var(--vertus-orange); }
-  .ty-disclaimer {
-    margin-top: 3rem;
-    font-size: 0.72rem; color: rgba(255,255,255,0.25);
-    line-height: 1.6; max-width: 440px;
-  }
-  @media (max-width: 600px) {
-    .ty-cta-wa { width: 100%; justify-content: center; }
-  }
+  @font-face { font-family: "Archivo"; font-style: normal; font-weight: 400 800; font-display: swap; src: url("assets/fonts/archivo-latin.woff2") format("woff2"); }
+  :root { color-scheme: dark; --orange: #FF7E27; --black: #1E1C1C; --charcoal: #2A2828; --white: #F1F1F1; --muted: #9A9A9A; --line: rgba(241,241,241,0.09); --line-strong: rgba(241,241,241,0.16); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Archivo", ui-sans-serif, system-ui, sans-serif; background: var(--black); color: var(--white); -webkit-font-smoothing: antialiased; line-height: 1.5; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 4px; }
+  .ty-page { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem 1.5rem 2.5rem; text-align: center; position: relative; overflow: hidden; }
+  .ty-page::before { content: ""; position: absolute; inset: auto 0 0 0; height: 36%; pointer-events: none; background: url("assets/linha-de-carga-bg.svg") center bottom / 560px auto repeat-x; opacity: 0.6; }
+  .ty-page > * { position: relative; }
+  .ty-logo img { height: 40px; width: auto; margin: 0 auto 2.6rem; display: block; }
+  .ty-check { width: 68px; height: 68px; border-radius: 50%; border: 2px solid var(--orange); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.6rem; color: var(--orange); }
+  .ty-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+  .ty-badge::before { content: ""; width: 40px; height: 6px; background: url("assets/linha-de-carga-mini.svg") left center / auto 100% no-repeat; }
+  .ty-h1 { font-size: clamp(1.8rem, 4.4vw, 2.7rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; max-width: 620px; margin: 0 auto 1rem; }
+  .tarja { background: var(--orange); color: var(--black); padding: 0.02em 0.16em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .ty-sub { font-size: 1.05rem; color: rgba(241,241,241,0.78); line-height: 1.7; max-width: 520px; margin: 0 auto 2rem; }
+  .ty-alert { display: none; max-width: 520px; margin: 0 auto 1.6rem; padding: 12px 16px; border: 1px solid rgba(255,126,39,0.45); border-radius: 10px; background: var(--charcoal); font-size: 0.92rem; color: var(--white); }
+  .ty-alert.show { display: block; }
+  .ty-cta-wa { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 12px 26px; border-radius: 8px; background: #25D366; color: var(--black); font-size: 1rem; font-weight: 700; text-decoration: none; transition: filter 0.2s; }
+  .ty-cta-wa:hover { filter: brightness(1.06); }
+  .ty-cta-wa svg { width: 20px; height: 20px; fill: currentColor; }
+  .ty-steps { display: grid; gap: 10px; max-width: 460px; margin: 2.4rem auto 0; text-align: left; }
+  .ty-step { display: flex; gap: 14px; align-items: flex-start; background: var(--charcoal); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.2rem; }
+  .ty-step-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; color: var(--orange); padding-top: 3px; flex-shrink: 0; }
+  .ty-step-text strong { display: block; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.15rem; }
+  .ty-step-text span { font-size: 0.86rem; color: var(--muted); line-height: 1.5; }
+  .ty-back { display: inline-flex; align-items: center; min-height: 44px; margin-top: 1.6rem; font-size: 0.88rem; color: var(--muted); text-decoration: none; }
+  .ty-back:hover { color: var(--orange); }
+  .ty-foot { margin-top: 2.4rem; font-size: 0.78rem; line-height: 1.6; color: var(--muted); max-width: 480px; }
+  .ty-foot .endorse { display: block; margin-top: 0.6rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.7rem; }
+  @media (max-width: 600px) { .ty-cta-wa { width: 100%; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
-<body>
+<body data-wa-number="5588992877126">
 
 <main class="ty-page">
 
-  <div class="ty-logo">
-    <a href="/">
-      <img src="assets/logo-vertus-orange.png" alt="Vertus Solar">
-    </a>
+  <a class="ty-logo" href="/" aria-label="Vertus Mob — voltar ao site">
+    <img src="assets/logo-vertus-mob.svg" alt="Vertus Mob" width="147" height="40">
+  </a>
+
+  <div class="ty-check" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="30" height="30"><polyline points="20 6 9 17 4 12"/></svg>
   </div>
 
-  <div class="ty-check">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><polyline points="20 6 9 17 4 12"/></svg>
-  </div>
+  <p class="ty-badge">Pedido recebido</p>
+  <h1 class="ty-h1">Seu pedido de simulação está <span class="tarja">com a gente</span>.</h1>
+  <p class="ty-sub">Um consultor da Vertus Mob fala com você pelo WhatsApp em até 24&nbsp;h para entender o seu ponto e preparar a simulação. Se o WhatsApp não abriu automaticamente, toque no botão abaixo — sua mensagem já vai pronta.</p>
 
-  <div class="ty-badge">Simulação recebida</div>
+  <p class="ty-alert" id="tyAlert" role="status">O navegador bloqueou a abertura automática do WhatsApp. Toque no botão para abrir a conversa.</p>
 
-  <h1 class="ty-h1">Seu pedido está<br><em>com a gente.</em></h1>
-
-  <p class="ty-sub">Um consultor Vertus vai entrar em contato pelo WhatsApp em até 24 horas com sua simulação personalizada.</p>
+  <a id="tyWa" href="https://wa.me/5588992877126?text=Ol%C3%A1!%20Acabei%20de%20pedir%20minha%20simula%C3%A7%C3%A3o%20no%20site%20da%20Vertus%20Mob%20(vertus-mob.com)%20e%20quero%20saber%20mais%20sobre%20ter%20um%20eletroposto%20pr%C3%B3prio." target="_blank" rel="noopener" class="ty-cta-wa">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.241.383-1.001 3.652 3.74-.994zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01a1.094 1.094 0 0 0-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    Falar pelo WhatsApp
+  </a>
 
   <div class="ty-steps">
     <div class="ty-step">
-      <div class="ty-step-num">1</div>
-      <div class="ty-step-text">
-        <strong>Análise do seu perfil</strong>
-        <span>Revisamos seus dados e montamos a simulação com os números reais do seu investimento.</span>
-      </div>
+      <span class="ty-step-num">01</span>
+      <div class="ty-step-text"><strong>Análise do seu ponto</strong><span>Revisamos seus dados e preparamos a simulação com as premissas do seu local, público e potência.</span></div>
     </div>
     <div class="ty-step">
-      <div class="ty-step-num">2</div>
-      <div class="ty-step-text">
-        <strong>Contato pelo WhatsApp</strong>
-        <span>Em até 24h um consultor entra em contato com a simulação e tira todas as suas dúvidas.</span>
-      </div>
+      <span class="ty-step-num">02</span>
+      <div class="ty-step-text"><strong>Contato pelo WhatsApp</strong><span>Em até 24&nbsp;h um consultor entra em contato, apresenta a simulação e tira as suas dúvidas.</span></div>
     </div>
     <div class="ty-step">
-      <div class="ty-step-num">3</div>
-      <div class="ty-step-text">
-        <strong>Reunião de apresentação</strong>
-        <span>Se fizer sentido para você, agendamos uma apresentação completa com números detalhados.</span>
-      </div>
+      <span class="ty-step-num">03</span>
+      <div class="ty-step-text"><strong>Reunião de apresentação</strong><span>Se fizer sentido para você, agendamos uma apresentação completa com os números detalhados.</span></div>
     </div>
   </div>
 
-  <a id="tyWa" href="https://wa.me/5588992877126?text=Oi%2C%20acabei%20de%20preencher%20o%20formul%C3%A1rio%20e%20quero%20saber%20mais%20sobre%20o%20investimento%20Vertus"
-     target="_blank" rel="noopener" class="ty-cta-wa"
-     onclick="gtag('event','conversion',{'send_to':'AW-17006818606'})">
-    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.241.383-1.001 3.652 3.74-.994zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01a1.094 1.094 0 0 0-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-    Falar agora pelo WhatsApp
-  </a>
-
   <a href="/" class="ty-back">← Voltar para o site</a>
 
-  <p class="ty-disclaimer">Resultados passados não garantem retornos futuros. Investimento em ativo físico sujeito às condições de mercado.</p>
+  <p class="ty-foot">Estimativas dependem de localização, demanda e tarifa. Os números do seu caso são apresentados em reunião.<span class="endorse">Vertus Mob · Uma unidade Vertus Solar</span></p>
 
 </main>
 
 <script>
   (function () {
-    var WA_NUMBER = '5588992877126';
-    var raw = sessionStorage.getItem('vertusLead');
-    if (!raw) return;
+    var WA_NUMBER = document.body.dataset.waNumber || '5588992877126';
+    var link = document.getElementById('tyWa');
     try {
-      var d = JSON.parse(raw);
-      var lines = [
-        'Olá! Acabei de preencher o formulário no site Vertus Solar e gostaria de saber mais sobre o investimento.',
-        '',
-        'Nome: ' + (d.nome || '—'),
-        'WhatsApp: ' + (d.whatsapp || '—'),
-        'Cidade: ' + (d.cidade || '—'),
-        'Profissão: ' + (d.profissao || '—'),
-        'Interesse: ' + (d.interesse || '—'),
-        'Pretensão de investimento: ' + (d.pretencao || '—'),
-      ];
-      var msg = encodeURIComponent(lines.join('\n'));
-      var link = document.getElementById('tyWa');
-      if (link) link.href = 'https://wa.me/' + WA_NUMBER + '?text=' + msg;
+      var raw = sessionStorage.getItem('vertusLead');
+      if (raw) {
+        var d = JSON.parse(raw);
+        var lines = [
+          'Olá! Acabei de pedir minha simulação no site da Vertus Mob (vertus-mob.com) e quero saber mais sobre ter um eletroposto próprio.',
+          '',
+          'Nome: ' + (d.nome || '—'),
+          'WhatsApp: ' + (d.whatsapp || '—'),
+          'Cidade: ' + (d.cidade || '—'),
+          'Profissão: ' + (d.profissao || '—'),
+          'Interesse: ' + (d.interesse || '—'),
+          'Pretensão de investimento: ' + (d.pretencao || '—'),
+        ];
+        if (link) link.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(lines.join('\n'));
+        sessionStorage.removeItem('vertusLead');
+      }
     } catch (_) {}
+    if (/[?&]wa=1/.test(window.location.search)) {
+      var al = document.getElementById('tyAlert');
+      if (al) al.classList.add('show');
+    }
   })();
 </script>
 
