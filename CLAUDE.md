@@ -90,10 +90,10 @@ Fluxo do envio: validação (telefone com máscara `(DD) 9XXXX-XXXX`, 10–11 d�
 
 ## Landings de anúncio (`lp/`)
 
-Três páginas para tráfego de Meta Ads, mobile-first, sem menu, com formulário de qualificação em etapas logo abaixo da headline: `lp/eletroposto.html` (marca Vertus Mob), `lp/hibrido.html` (sistema solar híbrido com baterias, marca Vertus Solar) e `lp/usina.html` (usina de investimento, marca Vertus Solar). Compartilham `lp/lp.css`, `lp/lp.js` e `lp/obrigado.html`. Todas com `noindex`.
+Duas páginas para tráfego de Meta Ads, mobile-first, sem menu, com formulário de qualificação em etapas logo abaixo da headline: `lp/eletroposto.html` (marca Vertus Mob) e `lp/usina.html` (usina de investimento, marca Vertus Solar). A landing de sistema híbrido foi criada e removida no mesmo dia (02/09/2026) a pedido do dono; não recriar sem pedido. Compartilham `lp/lp.css`, `lp/lp.js` e `lp/obrigado.html`. Todas com `noindex`.
 
 - Formulário: 4 perguntas de múltipla escolha (avanço automático) + nome, WhatsApp e cidade. As perguntas são definidas no HTML (`.qf-step[data-label]`); o `data-label` vira o nome da coluna/campo.
-- Destino do lead: CRM (`/api/lead`, `sourceName` "Meta Ads · <produto>", respostas em `fields`) + planilha atual (chaves `nome, whatsapp, cidade, interesse=produto, profissao=<Perfil|Local|Tipo de local>, pretencao=<Pretensão|Conta de luz>, origem=meta-<lp>`) + planilha dedicada opcional (`lp/apps-script/Code.gs`, URL em `CONFIG.lpSheetUrl`).
+- Destino do lead: CRM (`/api/lead`, `sourceName` "Meta Ads · <produto>", respostas em `fields`) + planilha atual (chaves `nome, whatsapp, cidade, interesse=produto, profissao=<Perfil|Local|Tipo de local>, pretencao=Pretensão de investimento, origem=meta-<lp>`) + planilha dedicada opcional (`lp/apps-script/Code.gs`, URL em `CONFIG.lpSheetUrl`).
 - Configuração única em `lp/lp.js` → `CONFIG` (Meta Pixel ID, URLs, WhatsApp). Pixel desativado até o ID ser colado; o evento `Lead` dispara em `lp/obrigado.html`, uma vez por sessão.
 - Anti-spam: honeypot `name="site"` + envio em menos de 2 s do load não é enviado (mas redireciona).
 - Logos da Vertus Solar em `assets/logo-vertus-solar{,-branca}.png` (PNG; não existe SVG oficial). Fotos de fundo em `lp/img/`.

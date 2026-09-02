@@ -7,7 +7,7 @@
  * 3. Implantar → Nova implantação → Tipo: "App da Web".
  *    Executar como: "Eu". Quem pode acessar: "Qualquer pessoa".
  * 4. Copie a URL do app da Web (termina em /exec) e cole em lp/lp.js → CONFIG.lpSheetUrl.
- * 5. Envie um teste pela landing. Cada landing cria a própria aba (eletroposto, hibrido, usina)
+ * 5. Envie um teste pela landing. Cada landing cria a própria aba (eletroposto, usina)
  *    com cabeçalho automático a partir dos campos recebidos.
  *
  * Colunas fixas no início: data, lp, produto, nome, whatsapp, cidade, email, origem, pagina, utm_*, fbclid.

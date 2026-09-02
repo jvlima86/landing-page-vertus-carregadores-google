@@ -41,7 +41,7 @@
     try { lead = JSON.parse(sessionStorage.getItem('vertusLpLead') || 'null'); } catch (_) {}
     const nameEl = document.querySelector('[data-lead-name]');
     if (nameEl && lead && lead.nome) nameEl.textContent = lead.nome.trim().split(' ')[0] + ', sua';
-    const NOMES = { eletroposto: 'eletroposto próprio', hibrido: 'sistema solar híbrido', usina: 'usina solar de investimento' };
+    const NOMES = { eletroposto: 'eletroposto próprio', usina: 'usina solar de investimento' };
     const lpParam = params.get('lp') || '';
     const wa = document.getElementById('tyWa');
     if (wa) {
@@ -238,7 +238,7 @@
     const flat = Object.assign({
       nome: d.nome, whatsapp: d.whatsapp, cidade: d.cidade, email: d.email,
       interesse: produto, profissao: d.answers['Perfil'] || d.answers['Local'] || d.answers['Tipo de local'] || '',
-      pretencao: d.answers['Pretensão de investimento'] || d.answers['Conta de luz'] || '',
+      pretencao: d.answers['Pretensão de investimento'] || '',
       origem: 'meta-' + lpKey, lp: lpKey, produto, pagina: window.location.href, data: new Date().toISOString(),
     }, d.answers, utm);
 
