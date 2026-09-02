@@ -13,3 +13,6 @@ Foto_Formulario-mobile.jpg
 
 # Hero antigo (foto de usina), mantido no repo para eventual reversão
 assets/img-hero-usina.jpg
+
+# Script do Apps Script das landings (não é servido)
+lp/apps-script/
