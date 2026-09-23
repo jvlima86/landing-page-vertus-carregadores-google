@@ -14,8 +14,8 @@
     // Planilha dedicada às landings (opcional): publique lp/apps-script/Code.gs como app da web e cole a URL aqui.
     lpSheetUrl: '',
     // WhatsApp da Vertus (usado na página de obrigado).
-    waNumber: '5588992877126',
-    waDisplay: '(88) 99287-7126',
+    waNumber: '5585984313152',
+    waDisplay: '(85) 98431-3152',
     timeoutMs: 6000,
   };
   /* ══════════════════════════════════════════ */

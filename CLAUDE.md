@@ -18,7 +18,7 @@ git commit -m "mensagem"
 git push origin main   # a Vercel detecta e publica
 ```
 
-Não usar `vercel --prod` pela CLI — a conta da CLI está em outro tenant (`energycyclo-2615`). Sempre via Git. Ao mudar CSS/JS, subir o `?v=` em `index.html` (hoje `?v=7`).
+Não usar `vercel --prod` pela CLI — a conta da CLI está em outro tenant (`energycyclo-2615`). Sempre via Git. Ao mudar CSS/JS, subir o `?v=` em `index.html` (hoje `?v=8`).
 
 ## Arquitetura
 
@@ -63,7 +63,7 @@ Fluxo do envio: validação (telefone com máscara `(DD) 9XXXX-XXXX`, 10–11 d�
 
 **Google Ads** `AW-17006818606`: `gtag('config')` inline no head; `gtag.js` injetado após o `load`. A conversão dispara **apenas** no carregamento de `obrigado.html` (uma por lead).
 
-**WhatsApp**: número único em `<body data-wa-number="5588992877126" data-wa-display="(88) 99287-7126">` — o JS preenche `.js-wa-display`. Trocado de (85) 99431-4967 para (88) 99287-7126 no commit `a3d4287`; o manual da submarca ainda cita o (85) — confirmar com o dono qual é o canônico antes de "corrigir" qualquer um dos dois.
+**WhatsApp**: número único em `<body data-wa-number="5585984313152" data-wa-display="(85) 98431-3152">` — o JS preenche `.js-wa-display` (nas landings `lp/`, em `CONFIG` do `lp/lp.js`). Histórico: (85) 99431-4967 → (88) 99287-7126 (commit `a3d4287`) → (85) 98431-3152 (23/09/2026, pedido do dono). O manual da submarca ainda cita o número antigo.
 
 **Gate de WhatsApp** (decisão de produto, commit `a3d4287`): links e botão flutuante `.js-wa-gate` não abrem o WhatsApp — rolam até o formulário mais próximo e mostram o toast. Os rótulos dizem isso no `aria-label`.
 

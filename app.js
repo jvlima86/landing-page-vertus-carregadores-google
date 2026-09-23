@@ -7,8 +7,8 @@
   const body = document.body;
 
   /* ── Número de WhatsApp: fonte única em <body data-wa-number data-wa-display> ── */
-  const WA_NUMBER = body.dataset.waNumber || '5588992877126';
-  const WA_DISPLAY = body.dataset.waDisplay || '(88) 99287-7126';
+  const WA_NUMBER = body.dataset.waNumber || '5585984313152';
+  const WA_DISPLAY = body.dataset.waDisplay || '(85) 98431-3152';
   document.querySelectorAll('.js-wa-display').forEach((el) => { el.textContent = WA_DISPLAY; });
 
   /* ── Google Ads (gtag.js) depois do load — o dataLayer já está no <head> ── */
