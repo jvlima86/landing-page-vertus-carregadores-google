@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E1C1C">
+<meta name="color-scheme" content="dark">
+<title>Simulador de eletroposto: investimento e retorno estimados | Vertus Mob</title>
+<meta name="description" content="Responda 4 perguntas e veja o investimento, o faturamento e o prazo de retorno estimados do seu eletroposto próprio, com ou sem usina solar. Sem franquia.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://vertus-mob.com/simulador">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+<meta property="og:title" content="Simule seu eletroposto em 4 perguntas | Vertus Mob">
+<meta property="og:description" content="Investimento, faturamento e prazo de retorno estimados do seu eletroposto próprio, com ou sem usina solar.">
+<meta property="og:image" content="https://vertus-mob.com/assets/og-vertus-mob.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vertus-mob.com/simulador">
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/archivo-latin.woff2" crossorigin>
+<link rel="stylesheet" href="/lp/lp.css?v=2">
+<link rel="stylesheet" href="/simulador/sim.css?v=1">
+<!-- Google Ads: a conversão de lead dispara no sim.js, uma vez por sessão, quando a simulação é liberada -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17006818606"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17006818606');
+</script>
+</head>
+<body data-page="simulador">
+
+<header class="lp-top">
+  <div class="container">
+    <a class="lp-logo" href="https://vertus-mob.com/" aria-label="Vertus Mob — página inicial"><img src="/assets/logo-vertus-mob.svg" alt="Vertus Mob" width="118" height="32"></a>
+    <span class="lp-top-tag">Simulador de investimento</span>
+  </div>
+</header>
+
+<main>
+<section class="lp-hero sim-hero" id="inicio">
+  <div class="container">
+    <div class="lp-hero-inner">
+
+      <div class="lp-copy">
+        <p class="kicker"><span class="lc-mini" aria-hidden="true"></span>Eletropostos próprios · Energia solar integrada</p>
+        <img class="lc" src="/assets/linha-de-carga.svg" alt="" width="184" height="10" aria-hidden="true">
+        <h1 class="lp-h1">Simule seu eletroposto <span class="tarja">em 4 perguntas.</span></h1>
+        <img class="lp-hero-totem" src="/assets/totem-vertus-mob-sm.webp" alt="" width="352" height="700" aria-hidden="true">
+        <p class="lp-lead">Veja na hora o investimento, o faturamento e o prazo de retorno estimados do seu eletroposto, com ou sem usina solar. Sem franquia: o carregador e a receita da recarga são seus.</p>
+      </div>
+
+      <div class="qf-card" id="simulacao">
+        <div class="qf-head">
+          <h2 class="qf-title">Monte sua simulação</h2>
+          <p class="qf-sub">4 perguntas rápidas. O resultado aparece logo depois.</p>
+        </div>
+        <form id="simForm" novalidate>
+          <div class="qf-progress" aria-hidden="true"></div>
+          <p class="qf-progress-label" aria-live="polite"></p>
+
+          <div class="qf-step" data-label="Pretensão de investimento" role="group" aria-labelledby="q1">
+            <p class="qf-q" id="q1">Quanto pretende investir?<small>A simulação monta o eletroposto que cabe nesse valor.</small></p>
+            <div class="qf-opts">
+              <div class="qf-opt"><input type="radio" id="q1a" name="investimento" value="Até R$ 100 mil" data-teto="100000"><label for="q1a">Até R$ 100 mil</label></div>
+              <div class="qf-opt"><input type="radio" id="q1b" name="investimento" value="R$ 100 mil a R$ 200 mil" data-teto="200000"><label for="q1b">R$ 100 mil a R$ 200 mil</label></div>
+              <div class="qf-opt"><input type="radio" id="q1c" name="investimento" value="R$ 200 mil a R$ 350 mil" data-teto="350000"><label for="q1c">R$ 200 mil a R$ 350 mil</label></div>
+              <div class="qf-opt"><input type="radio" id="q1d" name="investimento" value="Acima de R$ 350 mil" data-teto="500000"><label for="q1d">Acima de R$ 350 mil</label></div>
+              <div class="qf-opt"><input type="radio" id="q1e" name="investimento" value="Ainda não defini" data-teto="200000"><label for="q1e">Ainda não defini</label></div>
+            </div>
+          </div>
+
+          <div class="qf-step" data-label="Local" role="group" aria-labelledby="q2">
+            <p class="qf-q" id="q2">Você já tem o local para o eletroposto?</p>
+            <div class="qf-opts">
+              <div class="qf-opt"><input type="radio" id="q2a" name="local" value="Sim, o local é meu" data-aluguel="0"><label for="q2a">Sim, o local é meu</label></div>
+              <div class="qf-opt"><input type="radio" id="q2b" name="local" value="Sim, alugado ou de terceiros" data-aluguel="1"><label for="q2b">Sim, alugado ou de terceiros</label></div>
+              <div class="qf-opt"><input type="radio" id="q2c" name="local" value="Ainda não tenho local" data-aluguel="1"><label for="q2c">Ainda não tenho local</label></div>
+            </div>
+            <div class="qf-nav"><button type="button" class="qf-back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Voltar</button></div>
+          </div>
+
+          <div class="qf-step" data-label="Tipo de local" role="group" aria-labelledby="q3">
+            <p class="qf-q" id="q3">Que tipo de local?</p>
+            <div class="qf-opts two">
+              <div class="qf-opt"><input type="radio" id="q3a" name="tipo" value="Posto ou rodovia"><label for="q3a">Posto ou rodovia</label></div>
+              <div class="qf-opt"><input type="radio" id="q3b" name="tipo" value="Comércio, supermercado ou shopping"><label for="q3b">Comércio, supermercado ou shopping</label></div>
+              <div class="qf-opt"><input type="radio" id="q3c" name="tipo" value="Hotel ou pousada"><label for="q3c">Hotel ou pousada</label></div>
+              <div class="qf-opt"><input type="radio" id="q3d" name="tipo" value="Condomínio ou edifício"><label for="q3d">Condomínio ou edifício</label></div>
+              <div class="qf-opt"><input type="radio" id="q3e" name="tipo" value="Empresa com frota"><label for="q3e">Empresa com frota</label></div>
+              <div class="qf-opt"><input type="radio" id="q3f" name="tipo" value="Terreno ou ainda não sei"><label for="q3f">Terreno ou ainda não sei</label></div>
+            </div>
+            <div class="qf-nav"><button type="button" class="qf-back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Voltar</button></div>
+          </div>
+
+          <div class="qf-step" data-label="Usina solar" role="group" aria-labelledby="q4">
+            <p class="qf-q" id="q4">Quer incluir uma usina solar?<small>A usina gera créditos que compensam a energia que o carregador consome.</small></p>
+            <div class="qf-opts">
+              <div class="qf-opt"><input type="radio" id="q4a" name="usina" value="Sim, com usina solar" data-usina="sim"><label for="q4a">Sim, com usina solar</label></div>
+              <div class="qf-opt"><input type="radio" id="q4b" name="usina" value="Não, só o eletroposto" data-usina="nao"><label for="q4b">Não, só o eletroposto</label></div>
+              <div class="qf-opt"><input type="radio" id="q4c" name="usina" value="Quero comparar os dois" data-usina="comparar"><label for="q4c">Quero comparar os dois</label></div>
+            </div>
+            <div class="qf-nav"><button type="button" class="qf-back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Voltar</button></div>
+          </div>
+
+          <div class="qf-step" data-label="Contato">
+            <p class="qf-q">Sua simulação está pronta. Para quem é?<small>Um consultor avalia o seu ponto e fala com você pelo WhatsApp.</small></p>
+            <div class="qf-field"><label for="f-nome">Nome</label><input id="f-nome" name="nome" type="text" required autocomplete="name" enterkeyhint="next" placeholder="Seu nome"></div>
+            <div class="qf-field"><label for="f-whatsapp">WhatsApp</label><input id="f-whatsapp" name="whatsapp" type="tel" required autocomplete="tel-national" inputmode="tel" enterkeyhint="next" minlength="14" maxlength="16" placeholder="(85) 99999-9999" data-phone></div>
+            <div class="qf-field"><label for="f-cidade">Cidade</label><input id="f-cidade" name="cidade" type="text" required autocomplete="address-level2" enterkeyhint="send" placeholder="Fortaleza, CE"></div>
+            <div class="hp" aria-hidden="true"><label for="f-site">Site</label><input id="f-site" name="site" type="text" tabindex="-1" autocomplete="off"></div>
+            <div class="qf-nav">
+              <button type="button" class="qf-back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Voltar</button>
+              <button type="submit" class="qf-submit">Ver minha simulação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+            </div>
+            <p class="qf-privacy">Seus dados ficam só com a Vertus. <a href="/privacidade.html">Política de privacidade</a>.</p>
+          </div>
+          <noscript><p class="qf-noscript">O simulador precisa de JavaScript. Para pedir a simulação, chame no WhatsApp: <a href="https://wa.me/5585984313152">(85) 98431-3152</a>.</p></noscript>
+        </form>
+      </div>
+
+      <ul class="lp-proofs">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Carregadores rápidos de 30 a 120 kW, conector CCS2</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>+10 eletropostos no Ceará · 7 anos de Vertus Solar</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Sem royalties, sem marca de terceiros, sem vínculo obrigatório</li>
+      </ul>
+
+    </div>
+  </div>
+</section>
+
+<!-- Resultado: preenchido pelo sim.js depois do envio -->
+<section class="sim-res" id="resultado" hidden aria-labelledby="res-title">
+  <div class="container">
+    <p class="kicker"><span class="lc-mini" aria-hidden="true"></span>Sua simulação</p>
+    <h2 class="lp-title" id="res-title" tabindex="-1"><span data-res-nome></span>este é o eletroposto <span class="tarja">indicado para você.</span></h2>
+    <p class="sim-note" data-res-nota hidden></p>
+
+    <div class="sim-grid">
+      <div class="sim-main">
+        <div class="sim-config">
+          <img data-res-foto src="/assets/charger-60kw.webp" alt="" width="700" height="700">
+          <div>
+            <p class="sim-config-tier" data-res-tier></p>
+            <p class="sim-config-title" data-res-config></p>
+            <p class="sim-config-sub" data-res-config-sub></p>
+          </div>
+        </div>
+
+        <dl class="sim-kpis">
+          <div class="sim-kpi is-main"><dt>Investimento</dt><dd data-res-invest></dd><p data-res-parcela></p></div>
+          <div class="sim-kpi"><dt>Faturamento bruto estimado</dt><dd><span data-res-fat></span><small>/mês</small></dd></div>
+          <div class="sim-kpi"><dt>Resultado líquido estimado</dt><dd><span data-res-lucro></span><small>/mês</small></dd><p>depois de energia, plataforma, gestão Vertus (opcional), aluguel (se houver) e impostos</p></div>
+          <div class="sim-kpi"><dt>Retorno estimado do investimento</dt><dd data-res-payback></dd><p data-res-payback-sub></p></div>
+        </dl>
+
+        <div class="sim-timeline" aria-hidden="true">
+          <div class="sim-cells" data-res-cells></div>
+          <div class="sim-scale"><span>hoje</span><span>1 ano</span><span>2 anos</span><span>3 anos</span><span>4 anos</span><span>5 anos</span></div>
+          <p class="sim-legend"><span><i class="c-rec"></i> recuperando o investimento</span><span><i class="c-luc"></i> investimento recuperado (estimativa)</span></p>
+        </div>
+
+        <p class="sim-disclaimer">Simulação com premissas médias da operação Vertus. <strong>Não é promessa de ganho:</strong> o resultado real depende do fluxo de carros no ponto, do preço praticado, das tarifas de energia e do modelo de operação. Os números do seu ponto são confirmados na visita técnica.</p>
+
+        <div class="sim-cta">
+          <a class="btn-wa" data-res-wa href="https://wa.me/5585984313152" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.44 9.44-9.44 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.68c0 5.2-4.24 9.43-9.44 9.43m8.03-17.47A11.3 11.3 0 0 0 12.05.7C5.8.7.7 5.79.7 12.04c0 2 .52 3.95 1.52 5.66L.6 23.6l6.04-1.58a11.3 11.3 0 0 0 5.4 1.38h.01c6.25 0 11.34-5.09 11.35-11.34 0-3.03-1.18-5.88-3.32-8.03"/></svg>Falar pelo WhatsApp</a>
+          <button type="button" class="sim-redo" data-res-refazer>Refazer as perguntas</button>
+        </div>
+
+        <div class="sim-compare" data-res-compare></div>
+      </div>
+
+      <div class="sim-side">
+        <div class="sim-adjust" role="group" aria-labelledby="adj-title">
+          <h3 id="adj-title">Ajuste a simulação</h3>
+          <div class="sim-ctl"><p class="sim-ctl-label" id="lbl-pot">Potência do carregador <span class="nu">(kW)</span></p><div class="sim-chips" data-ctl="ep" role="radiogroup" aria-labelledby="lbl-pot"></div></div>
+          <div class="sim-ctl"><p class="sim-ctl-label" id="lbl-qtd">Carregadores</p><div class="sim-chips" data-ctl="qtd" role="radiogroup" aria-labelledby="lbl-qtd"></div></div>
+          <div class="sim-ctl"><p class="sim-ctl-label" id="lbl-usina">Usina solar</p><div class="sim-chips" data-ctl="usina" role="radiogroup" aria-labelledby="lbl-usina"></div></div>
+          <div class="sim-ctl"><p class="sim-ctl-label" id="lbl-local">Local</p><div class="sim-chips" data-ctl="aluguel" role="radiogroup" aria-labelledby="lbl-local"></div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <details class="sim-dre">
+      <summary>Como chegamos nesses números</summary>
+      <table>
+        <caption class="sr-only">Resultado mensal estimado</caption>
+        <tbody data-res-dre></tbody>
+      </table>
+      <ul class="sim-premissas" data-res-premissas></ul>
+    </details>
+
+  </div>
+</section>
+
+<section class="lp-section alt">
+  <div class="container">
+    <p class="kicker"><span class="lc-mini" aria-hidden="true"></span>O que entra na conta</p>
+    <h2 class="lp-title">Uma simulação <span class="tarja">sem letra miúda</span>.</h2>
+    <p class="lp-desc">O simulador usa o mesmo cálculo que o consultor apresenta na reunião. Cada custo de operação aparece aberto no resultado.</p>
+    <div class="lp-cards">
+      <div class="lp-card"><div class="lp-card-num">01</div><h3>Investimento completo</h3><p>Carregador NeoCharge, instalação e homologação na concessionária. Com usina solar, inclui painéis, inversor e obra civil.</p></div>
+      <div class="lp-card"><div class="lp-card-num">02</div><h3>Custos de operação</h3><p>Energia, plataforma de recarga, gestão Vertus (opcional), aluguel da vaga quando o local não é seu e impostos.</p></div>
+      <div class="lp-card"><div class="lp-card-num">03</div><h3>Premissas médias</h3><p>Preço médio de recarga e horas de uso por dia de um eletroposto bem localizado. O seu ponto é avaliado na visita técnica.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="lp-section">
+  <div class="container">
+    <p class="kicker"><span class="lc-mini" aria-hidden="true"></span>Perguntas frequentes</p>
+    <h2 class="lp-title">Antes de <span class="tarja">investir</span>.</h2>
+    <div class="lp-faq">
+      <details><summary>A simulação garante o retorno?</summary><p>Não. É uma estimativa com premissas médias da operação Vertus. O resultado real depende do fluxo de carros no ponto, do preço da recarga, das tarifas de energia e de como o eletroposto é operado. Na visita técnica, a Vertus avalia o seu ponto e refaz a conta com os dados reais.</p></details>
+      <details><summary>É franquia?</summary><p>Não. Você compra o equipamento, contrata a instalação e fica com a operação e a receita. Sem taxa de adesão, sem royalties, sem marca obrigatória no totem.</p></details>
+      <details><summary>Preciso ter usina solar?</summary><p>Não. O eletroposto funciona com energia da concessionária. A usina gera créditos que compensam o consumo do carregador. O simulador mostra os dois cenários lado a lado.</p></details>
+      <details><summary>E se eu ainda não tiver o local?</summary><p>A simulação considera o aluguel da vaga. A Vertus ajuda a avaliar pontos com fluxo de carros elétricos e acesso à rede elétrica adequada.</p></details>
+      <details><summary>Quanto tempo leva para funcionar?</summary><p>Cerca de 60 dias do contrato à energização, na maioria dos projetos. O que mais varia é a obra elétrica e o prazo da concessionária para homologação.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="lp-section alt lp-cta" data-cta-final>
+  <div class="container">
+    <h2 class="lp-title">Veja o seu eletroposto <span class="tarja">em números.</span></h2>
+    <p>Quatro perguntas, resultado na hora.</p>
+    <a class="btn-primary" href="#simulacao" data-scroll-form>Quero minha simulação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  </div>
+</section>
+</main>
+
+<footer class="lp-footer">
+  <div class="container">
+    <a class="lp-logo" href="https://vertus-mob.com/" aria-label="Vertus Mob"><img src="/assets/logo-vertus-mob-branca.svg" alt="Vertus Mob" width="110" height="30"></a>
+    <p>Eletropostos próprios · Energia solar integrada · Gestão Vertus. Projeto, instalação e homologação em Fortaleza e em todo o Ceará. WhatsApp <span class="js-wa-display">(85) 98431-3152</span>.</p>
+    <img class="lc" src="/assets/linha-de-carga-100.svg" alt="" width="200" height="10" aria-hidden="true">
+    <p class="endorse">Uma unidade Vertus Solar</p>
+    <div class="links"><a href="https://vertus-mob.com/">vertus-mob.com</a><a href="/privacidade.html">Política de privacidade</a></div>
+    <p style="margin-top:12px">Valores estimados, sujeitos a visita técnica e a variações de demanda, tarifas e modelo operacional. Não constituem promessa de rentabilidade.</p>
+  </div>
+</footer>
+
+<div class="lp-sticky"><a class="btn-primary" href="#simulacao" data-scroll-form>Quero minha simulação</a></div>
+
+<script src="/simulador/catalog.js?v=1" defer></script>
+<script src="/simulador/dre.js?v=1" defer></script>
+<script src="/simulador/sim.js?v=1" defer></script>
+</body>
+</html>

@@ -61,7 +61,7 @@ Dois formulários com a mesma lógica (`attachSubmit` em `app.js`): `#heroLeadFo
 
 Fluxo do envio: validação (telefone com máscara `(DD) 9XXXX-XXXX`, 10–11 dígitos) → abre aba do WhatsApp dentro do gesto (placeholder com marca) → salva `sessionStorage.vertusLead` → POST em paralelo para a planilha (`SHEET_URL`) e para o CRM (`https://crm-vertus.vercel.app/api/lead`, com UTMs/gclid/fbclid e campo `Origem`) com timeout de 6 s → aba recebe `wa.me` com mensagem pré-preenchida → redireciona para `/obrigado.html` (`?wa=1` se o pop-up foi bloqueado). Honeypot `name="site"` + envio em menos de 3 s = não envia (mas redireciona).
 
-**Google Ads** `AW-17006818606`: `gtag('config')` inline no head; `gtag.js` injetado após o `load`. A conversão dispara **apenas** no carregamento de `obrigado.html` (uma por lead).
+**Google Ads** `AW-17006818606`: `gtag('config')` inline no head; `gtag.js` injetado após o `load`. A conversão dispara no carregamento de `obrigado.html` (uma por lead) e, no simulador, quando o resultado é liberado (uma por sessão, `vertusSimConv`).
 
 **WhatsApp**: número único em `<body data-wa-number="5585984313152" data-wa-display="(85) 98431-3152">` — o JS preenche `.js-wa-display` (nas landings `lp/`, em `CONFIG` do `lp/lp.js`). Histórico: (85) 99431-4967 → (88) 99287-7126 (commit `a3d4287`) → (85) 98431-3152 (23/09/2026, pedido do dono). O manual da submarca ainda cita o número antigo.
 
@@ -79,7 +79,7 @@ Fluxo do envio: validação (telefone com máscara `(DD) 9XXXX-XXXX`, 10–11 d�
 
 ## Regras de conteúdo
 
-- **Não detalhar taxas, percentuais de retorno, payback ou remuneração** — isso é reunião. As faixas de faturamento bruto por carregador foram decisão do dono; não criar novos números.
+- **Não detalhar taxas, percentuais de retorno, payback ou remuneração** — isso é reunião. **Exceção decidida pelo dono (02/10/2026): o `/simulador`** mostra investimento, faturamento, resultado líquido e prazo de retorno, sempre como *estimativa*, com aviso de que não é promessa de ganho. As faixas de faturamento bruto por carregador foram decisão do dono; não criar novos números.
 - **"Franquia" só negada** ("sem franquia", "não somos franquia").
 - CTAs: "Quero minha simulação" / "Receba sua simulação gratuita"; secundário "Falar pelo WhatsApp". Nunca "Conversar agora", "Falar com consultor" ou genéricos.
 - Gestão Vertus é **opcional** — nunca escrever como padrão. Sem "grátis" como isca, sem urgência falsa, sem promessa de ganho.
@@ -98,7 +98,18 @@ Duas páginas para tráfego de Meta Ads, mobile-first, sem menu, com formulário
 - Anti-spam: honeypot `name="site"` + envio em menos de 2 s do load não é enviado (mas redireciona).
 - Logos da Vertus Solar em `assets/logo-vertus-solar{,-branca}.png` (PNG; não existe SVG oficial). Fotos de fundo em `lp/img/`.
 
+## Simulador (`simulador/`, URL `vertus-mob.com/simulador`)
+
+Landing à parte (02/10/2026) em que o investidor simula o eletroposto: 4 perguntas (pretensão de investimento, local, tipo de local, usina solar) + nome/WhatsApp/cidade → resultado na hora, com ajuste ao vivo (potência 30–120 kW, 1–2 carregadores, usina 30/60/90 kWp, local próprio/alugado) e comparação com/sem usina. `noindex`. Rota em `vercel.json` (`/simulador` → `/simulador/index.html`); por isso todos os caminhos da página são absolutos. Usa `/lp/lp.css` + `simulador/sim.css`.
+
+- **Cálculo:** `simulador/catalog.js` e `simulador/dre.js` são **espelhos** do repo `apresentacao-comercial-eletroposto-usina-1` (a fonte única de premissas e preços; cabeçalho de cada arquivo diz o commit). Não editar aqui: atualizar lá e recopiar com `git show HEAD:<arquivo>`. Assim o site e a reunião dão o mesmo número.
+- **Recomendação:** maior resultado mensal dentro do teto da faixa (até 100 mil / 200 mil / 350 mil / 500 mil; "ainda não defini" = 200 mil); com usina, obra civil incluída; se a usina não couber, mostra o eletroposto sozinho com aviso.
+- **Lead:** CRM (`sourceName` "Site · Simulador de eletroposto", resposta + resumo da simulação em `fields`) e planilha (`origem=simulador`, `simulacao`, `orcamento`). Anti-spam igual às `lp/` (honeypot + < 2 s). Conversões: Google Ads e, se o pixel existir na página, OpenAI Ads (`oaiq ... lead_created`).
+- Fotos: 30/40 kW → `charger-30kw.webp`; 60/80 kW → `charger-60kw.webp` (mesmo gabinete); 120 kW → `charger-120kw.webp`.
+
 ## Débitos e pendências conhecidas
+
+- Simulador usa recarga a **R$ 1,39/kWh** (premissa do deck), enquanto os cards de `#equipamentos` usam "tarifa de referência R$ 1,99/kWh" — divergência a decidir pelo dono.
 
 - E-mail `contato@vertussolar.com` foi removido do rodapé: o domínio não tem registro MX (verificado em 02/09/2026). Recolocar só quando existir caixa funcional.
 - CNPJ, endereço e Instagram não estão no rodapé — faltam dados confirmados pelo dono.

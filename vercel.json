@@ -89,6 +89,10 @@
     {
       "source": "/parceiros",
       "destination": "/parceiros.html"
+    },
+    {
+      "source": "/simulador",
+      "destination": "/simulador/index.html"
     }
   ]
 }
