@@ -7,17 +7,17 @@
   // WhatsApp do bot do CRM que valida o print e libera o cupom (a palavra "cupom" na mensagem dispara o fluxo).
   const WA_NUMBER = '5585996163937';
   const WA_DISPLAY = '(85) 99616-3937';
-  const WA_COUPON_MSG = 'Olá! Sou motorista de aplicativo e quero o cupom de desconto da Vertus Mob. Vou enviar o print do meu perfil.';
+  const WA_COUPON_MSG = 'Olá! Sou motorista de aplicativo e quero o cupom de motorista da Vertus Mob. Vou enviar o print do meu perfil.';
   const MAPS_KEY = 'AIzaSyDzn3uYW2NljaXXjcAV39Ad_yPwr9q1QXs';
 
   // Eletropostos abertos ao público (condomínios ficam de fora: são de uso dos moradores).
   // lat/lng null = sem coordenada confirmada: aparece na lista e a rota usa o endereço.
   const ESTACOES = [
     { id: 'cometa', nome: 'Cometa Barão do Rio Branco', endereco: 'R. Barão do Rio Branco, 2841 · Fátima', cidade: 'Fortaleza', lat: -3.7428723, lng: -38.5333842, potencia: '60 kW · 2 conectores', conector: 'CCS2', app: 'Tupi' },
-    { id: 'lauro-maia', nome: 'Posto Lauro Maia', endereco: 'R. Lauro Maia, 700 · Fátima', cidade: 'Fortaleza', lat: -3.7466703, lng: -38.5232352, potencia: '60 kW · 2 conectores', conector: 'CCS2', app: 'V Recargas', preco: 'R$ 1,49/kWh' },
+    { id: 'lauro-maia', nome: 'Posto Lauro Maia', endereco: 'R. Lauro Maia, 700 · Fátima', cidade: 'Fortaleza', lat: -3.7466703, lng: -38.5232352, potencia: '60 kW · 2 conectores', conector: 'CCS2', app: 'V Recargas', preco: 'R$ 1,79/kWh', precoApp: 'R$ 1,29/kWh' },
     { id: 'pamil', nome: 'Pamil Parque Araxá', endereco: 'R. Padre Cícero, 750 · Rodolfo Teófilo', cidade: 'Fortaleza', lat: -3.7408827, lng: -38.548699, potencia: '22 kW', conector: 'Tipo 2 (AC)', app: 'Tupi' },
     { id: 'vila-peri', nome: 'Eletroposto Vila Peri', endereco: 'R. Eça de Queirós, 803 · Vila Peri', cidade: 'Fortaleza', lat: -3.7894335, lng: -38.5854335, potencia: '30 kW', conector: 'CCS2', app: 'Tupi' },
-    { id: 'arena-celio-santos', nome: 'Arena Célio Santos', endereco: 'São Benedito', cidade: 'Ceará', lat: null, lng: null, rota: 'Arena Célio Santos, São Benedito - CE' },
+    { id: 'arena-celio-santos', nome: 'Arena Célio Santos', endereco: 'São Benedito', cidade: 'Ceará', lat: null, lng: null, rota: 'Arena Célio Santos, São Benedito - CE', preco: 'R$ 2,09/kWh', precoApp: 'R$ 1,89/kWh' },
   ];
   /* ══════════════════════════════════════════ */
 
@@ -62,7 +62,8 @@
       const specs = [e.potencia, e.conector].filter(Boolean).map(esc).join(' · ');
       const meta = [
         e.app ? '<li><span>App</span>' + esc(e.app) + '</li>' : '',
-        e.app ? '<li><span>Preço</span>' + esc(e.preco || 'no app') + '</li>' : '',
+        (e.app || e.preco) ? '<li><span>Preço</span>' + esc(e.preco || 'no app') + '</li>' : '',
+        e.precoApp ? '<li class="mt-price-app"><span>Motorista de app</span>' + esc(e.precoApp) + '</li>' : '',
       ].join('');
       return '<li class="mt-item" id="est-' + e.id + '" data-id="' + e.id + '">' +
         '<div class="mt-item-top"><span class="mt-item-n">' + String(i + 1).padStart(2, '0') + '</span>' +
@@ -145,6 +146,7 @@
     info.setContent(
       '<div class="mt-info"><strong>' + esc(e.nome) + '</strong><span>' + esc(e.endereco) + '</span>' +
       (e.potencia ? '<span>' + esc(e.potencia + (e.conector ? ' · ' + e.conector : '')) + '</span>' : '') +
+      (e.preco ? '<span>' + esc(e.preco) + (e.precoApp ? ' · motorista de app ' + esc(e.precoApp) : '') + '</span>' : '') +
       '<a href="' + rotaUrl(e) + '" target="_blank" rel="noopener">Como chegar ↗</a></div>');
     info.open({ anchor: markers[id], map, shouldFocus: false });
     document.querySelectorAll('.mt-item').forEach((li) => li.classList.toggle('is-active', li.dataset.id === id));
@@ -196,6 +198,14 @@
     // e só aparece depois que o topo sai da tela (não compete com os botões do topo)
     const hero = document.querySelector('.mt-hero');
     if (hero) new IntersectionObserver((en) => document.body.classList.toggle('hero-in-view', en.some((x) => x.isIntersecting)), { threshold: 0 }).observe(hero);
+  }
+
+  /* ── Preços de motorista no bloco do cupom (mesma fonte da lista) ── */
+  const pricesEl = document.querySelector('[data-app-prices]');
+  const comPreco = ESTACOES.filter((e) => e.precoApp);
+  if (pricesEl) {
+    if (comPreco.length) pricesEl.innerHTML = comPreco.map((e) => '<li><span>' + esc(e.nome) + '</span><strong>' + esc(e.precoApp) + '</strong><small>em vez de ' + esc(e.preco) + '</small></li>').join('');
+    else pricesEl.remove();
   }
 
   renderList();

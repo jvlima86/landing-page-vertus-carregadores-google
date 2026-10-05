@@ -39,6 +39,7 @@ html { scroll-padding-bottom: 88px; }
 .mt-specs.is-muted { font-weight: 400; color: var(--muted); }
 .mt-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 6px; font-size: 0.84rem; color: var(--white); }
 .mt-meta span { color: var(--muted); margin-right: 5px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+.mt-meta .mt-price-app { color: var(--orange); font-weight: 700; }
 .mt-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .mt-go { display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex: 1 1 150px; min-height: 46px; padding: 10px 16px; border-radius: var(--radius-ctl); background: var(--orange); color: var(--black); font-weight: 700; font-size: 0.95rem; text-decoration: none; }
 .mt-go:hover { background: var(--orange-soft); }
@@ -62,6 +63,11 @@ html { scroll-padding-bottom: 88px; }
 .mt-coupon { padding: 8px 0 56px; scroll-margin-top: 60px; }
 .mt-coupon-card { background: var(--charcoal); border: 1px solid var(--line-orange); border-radius: var(--radius); padding: 24px 18px; }
 .mt-coupon-card .lp-desc { margin-bottom: 1rem; }
+.mt-app-prices { display: grid; gap: 8px; margin-bottom: 16px; }
+.mt-app-prices li { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 2px 12px; background: var(--black); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; }
+.mt-app-prices span { font-weight: 700; font-size: 0.95rem; }
+.mt-app-prices strong { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em; color: var(--orange); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.mt-app-prices small { grid-column: 1 / -1; font-size: 0.8rem; color: var(--muted); }
 .mt-apps { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
 .mt-apps li { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line-strong); font-size: 0.84rem; font-weight: 700; }
 .mt-steps { display: grid; gap: 10px; margin-bottom: 20px; }
