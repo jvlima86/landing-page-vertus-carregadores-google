@@ -17,7 +17,7 @@
     { id: 'lauro-maia', nome: 'Posto Lauro Maia', endereco: 'R. Lauro Maia, 700 · Fátima', cidade: 'Fortaleza', lat: -3.7466703, lng: -38.5232352, potencia: '60 kW · 2 conectores', conector: 'CCS2', app: 'V Recargas', preco: 'R$ 1,79/kWh', precoApp: 'R$ 1,29/kWh' },
     { id: 'pamil', nome: 'Pamil Parque Araxá', endereco: 'R. Padre Cícero, 750 · Rodolfo Teófilo', cidade: 'Fortaleza', lat: -3.7408827, lng: -38.548699, potencia: '22 kW', conector: 'Tipo 2 (AC)', app: 'Tupi' },
     { id: 'vila-peri', nome: 'Eletroposto Vila Peri', endereco: 'R. Eça de Queirós, 803 · Vila Peri', cidade: 'Fortaleza', lat: -3.7894335, lng: -38.5854335, potencia: '30 kW', conector: 'CCS2', app: 'Tupi' },
-    { id: 'arena-celio-santos', nome: 'Arena Célio Santos', endereco: 'São Benedito', cidade: 'Ceará', lat: null, lng: null, rota: 'Arena Célio Santos, São Benedito - CE', preco: 'R$ 2,09/kWh', precoApp: 'R$ 1,89/kWh' },
+    { id: 'arena-celio-santos', nome: 'Arena Célio Santos', endereco: 'São Benedito', cidade: 'Ceará', lat: -3.9977185, lng: -40.8764746, preco: 'R$ 2,09/kWh', precoApp: 'R$ 1,89/kWh' },
   ];
   /* ══════════════════════════════════════════ */
 
@@ -174,7 +174,8 @@
       const m = new google.maps.Marker({ map, position: { lat: e.lat, lng: e.lng }, icon, title: e.nome });
       m.addListener('click', () => openInfo(e.id));
       markers[e.id] = m;
-      bounds.extend(m.getPosition());
+      // Enquadramento inicial só na Região Metropolitana de Fortaleza; o interior aparece pelo zoom ou "Ver no mapa"
+      if (Math.abs(e.lng + 38.54) < 0.3) bounds.extend(m.getPosition());
     });
     map.fitBounds(bounds, small ? 48 : 72);
     google.maps.event.addListenerOnce(map, 'idle', () => { if (map.getZoom() > 14) map.setZoom(14); });

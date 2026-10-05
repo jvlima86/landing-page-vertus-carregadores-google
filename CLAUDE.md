@@ -118,7 +118,7 @@ Página para quem **recarrega** (05/10/2026): mapa Google (mesmo estilo escuro e
 
 ## Débitos e pendências conhecidas
 
-- Área do motorista: falta a coordenada (e potência/app) da **Arena Célio Santos**, em São Benedito; preços (público e motorista) de Cometa, Pamil e Vila Peri.
+- Área do motorista: falta potência/conector/app da **Arena Célio Santos** (São Benedito; coordenada recebida em 05/10/2026); preços (público e motorista) de Cometa, Pamil e Vila Peri.
 
 - Simulador usa recarga a **R$ 1,39/kWh** (premissa do deck), enquanto os cards de `#equipamentos` usam "tarifa de referência R$ 1,99/kWh" — divergência a decidir pelo dono.
 
