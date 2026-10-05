@@ -1,0 +1,95 @@
+/* Vertus Mob — área do motorista (vertus-mob.com/motoristas). Base: /lp/lp.css. */
+
+/* Hero */
+.mt-hero { padding: 22px 0 18px; }
+html { scroll-padding-bottom: 88px; }
+.mt-skip:focus { position: static; width: auto; height: auto; clip: auto; clip-path: none; white-space: normal; display: inline-block; margin-bottom: 8px; color: var(--orange); font-weight: 700; }
+.mt-hero .lp-h1 { max-width: 640px; }
+.mt-hero .lp-lead { max-width: 620px; }
+.mt-hero-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.mt-hero-ctas .btn-primary { flex: 1 1 180px; }
+.btn-ghost { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 12px 20px; border: 1px solid var(--line-strong); border-radius: var(--radius-ctl); color: var(--white); font-weight: 700; font-size: 0.98rem; text-decoration: none; flex: 1 1 180px; }
+.btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+
+/* Mapa + lista */
+.mt-map-section { padding: 24px 0 48px; scroll-margin-top: 60px; }
+.mt-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+.mt-head .lp-title { margin: 0; }
+.mt-near { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; border-radius: var(--radius-ctl); background: rgba(255,126,39,0.1); border: 1px solid var(--line-orange); color: var(--white); font-size: 0.9rem; font-weight: 700; cursor: pointer; }
+.mt-near svg { width: 18px; height: 18px; color: var(--orange); }
+.mt-near:hover { background: rgba(255,126,39,0.18); }
+.mt-near[aria-busy="true"] { opacity: 0.7; cursor: progress; }
+.mt-near-status { min-height: 1.4em; margin: 4px 0 12px; font-size: 0.86rem; color: var(--fg2); }
+
+.mt-layout { display: grid; gap: 14px; }
+.mt-map { order: 2; position: relative; height: 280px; border-radius: var(--radius); border: 1px solid var(--line); background: #1a1a1a; overflow: hidden; }
+.mt-map-msg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 20px; text-align: center; font-size: 0.9rem; color: var(--muted); }
+.mt-map.is-failed { height: auto; min-height: 120px; }
+.mt-map.is-failed .mt-map-msg { position: static; min-height: 120px; }
+
+.mt-list { order: 1; display: grid; gap: 10px; align-content: start; outline: none; }
+.mt-item { background: var(--charcoal); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; scroll-margin-top: 80px; transition: border-color 0.2s; }
+.mt-item.is-active { border-color: var(--orange); }
+.mt-item-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+.mt-item-n { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; color: var(--orange); }
+.mt-km { font-size: 0.78rem; font-weight: 700; color: var(--black); background: var(--orange); border-radius: 999px; padding: 2px 9px; font-variant-numeric: tabular-nums; }
+.mt-item h3 { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; }
+.mt-addr { font-size: 0.9rem; color: var(--fg2); margin-top: 2px; }
+.mt-specs { font-size: 0.86rem; font-weight: 600; color: var(--white); margin-top: 8px; }
+.mt-specs.is-muted { font-weight: 400; color: var(--muted); }
+.mt-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 6px; font-size: 0.84rem; color: var(--white); }
+.mt-meta span { color: var(--muted); margin-right: 5px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+.mt-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.mt-go { display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex: 1 1 150px; min-height: 46px; padding: 10px 16px; border-radius: var(--radius-ctl); background: var(--orange); color: var(--black); font-weight: 700; font-size: 0.95rem; text-decoration: none; }
+.mt-go:hover { background: var(--orange-soft); }
+.mt-go svg { width: 16px; height: 16px; }
+.mt-show { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 46px; padding: 10px 14px; border-radius: var(--radius-ctl); background: none; border: 1px solid var(--line-strong); color: var(--white); font-weight: 600; font-size: 0.9rem; cursor: pointer; }
+.mt-show:hover { border-color: var(--orange); }
+.mt-show svg { width: 16px; height: 16px; color: var(--orange); }
+
+/* Janela do marcador no mapa */
+.gm-style .gm-style-iw-c { background: var(--black) !important; border: 1px solid var(--line-strong); border-radius: 10px !important; padding: 0 !important; box-shadow: var(--shadow) !important; }
+.gm-style .gm-style-iw-d { overflow: auto !important; }
+.gm-style .gm-style-iw-tc::after { background: var(--black) !important; }
+.gm-style .gm-style-iw-chr { position: absolute; right: 0; top: 0; }
+.gm-style .gm-ui-hover-effect > span { background-color: var(--muted) !important; }
+.mt-info { font-family: "Archivo", system-ui, sans-serif; color: var(--white); display: grid; gap: 3px; padding: 12px 40px 12px 14px; min-width: 190px; }
+.mt-info strong { font-size: 0.95rem; font-weight: 700; }
+.mt-info span { font-size: 0.8rem; color: var(--fg2); }
+.mt-info a { margin-top: 6px; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 14px; border-radius: 8px; background: var(--orange); color: var(--black); font-weight: 700; font-size: 0.88rem; text-decoration: none; }
+
+/* Cupom */
+.mt-coupon { padding: 8px 0 56px; scroll-margin-top: 60px; }
+.mt-coupon-card { background: var(--charcoal); border: 1px solid var(--line-orange); border-radius: var(--radius); padding: 24px 18px; }
+.mt-coupon-card .lp-desc { margin-bottom: 1rem; }
+.mt-apps { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+.mt-apps li { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line-strong); font-size: 0.84rem; font-weight: 700; }
+.mt-steps { display: grid; gap: 10px; margin-bottom: 20px; }
+.mt-steps li { display: grid; grid-template-columns: auto 1fr; gap: 12px; background: var(--black); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; }
+.mt-steps strong { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; color: var(--orange); padding-top: 3px; }
+.mt-steps h3 { font-size: 1rem; font-weight: 700; margin-bottom: 3px; }
+.mt-steps p { font-size: 0.9rem; line-height: 1.5; color: var(--fg2); }
+.mt-coupon-btn { width: 100%; max-width: 420px; }
+.mt-coupon-foot { margin-top: 12px; font-size: 0.8rem; line-height: 1.5; color: var(--muted); }
+
+/* CTA fixo: some quando o bloco do cupom está na tela */
+.mt-sticky .btn-wa { width: 100%; }
+body.coupon-in-view .mt-sticky, body.hero-in-view .mt-sticky { transform: translateY(110%); opacity: 0; pointer-events: none; }
+
+@media (min-width: 720px) {
+  .mt-map { order: 0; }
+  .mt-list { order: 0; }
+  .mt-hero-ctas .btn-primary, .btn-ghost { flex: 0 1 280px; }
+  .mt-map { height: 420px; }
+  .mt-steps { grid-template-columns: repeat(3, 1fr); }
+  .mt-steps li { display: block; }
+  .mt-steps strong { display: block; margin-bottom: 8px; }
+  .mt-coupon-card { padding: 32px; }
+}
+@media (min-width: 961px) {
+  .mt-hero { padding: 56px 0 36px; }
+  .mt-layout { grid-template-columns: minmax(0, 1fr) 380px; align-items: start; }
+  .mt-map { height: 620px; position: sticky; top: 76px; }
+  html { scroll-padding-bottom: 0; }
+  .mt-list { max-height: none; }
+}

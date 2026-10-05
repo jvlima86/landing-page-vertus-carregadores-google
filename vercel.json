@@ -93,6 +93,10 @@
     {
       "source": "/simulador",
       "destination": "/simulador/index.html"
+    },
+    {
+      "source": "/motoristas",
+      "destination": "/motoristas/index.html"
     }
   ]
 }
