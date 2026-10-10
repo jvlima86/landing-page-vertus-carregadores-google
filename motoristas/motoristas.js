@@ -199,6 +199,8 @@
     if (mapMsg && mapMsg.isConnected) mapMsg.textContent = 'O mapa não carregou. Use a lista: o botão "Como chegar" abre a rota no Google Maps.';
   }
   function loadMap() {
+    if (window.__mtMapLoading) return;
+    window.__mtMapLoading = true;
     window.gm_authFailure = mapFailed;
     const s = document.createElement('script');
     s.src = 'https://maps.googleapis.com/maps/api/js?key=' + MAPS_KEY + '&callback=initMotoristasMap&loading=async';
@@ -269,7 +271,7 @@
     }).join('');
     // Os dígitos "rolam" de 0,00 até o preço, como no painel do posto
     const run = () => pumpEl.querySelectorAll('b[data-to]').forEach((b, i) => {
-      const to = Number(b.dataset.to), t0 = performance.now() + 500 + i * 180, dur = 1100;
+      const to = Number(b.dataset.to), t0 = performance.now() + 250 + i * 180, dur = 1100;
       const tick = (now) => {
         const p = Math.min(1, Math.max(0, (now - t0) / dur)), v = to * (1 - Math.pow(1 - p, 3));
         b.textContent = v.toFixed(2).replace('.', ',');
@@ -277,11 +279,16 @@
       };
       requestAnimationFrame(tick);
     });
-    if (!reduceMotion) run();
+    if (!reduceMotion) {
+      if ('IntersectionObserver' in window) {
+        const po = new IntersectionObserver((en) => { if (en.some((x) => x.isIntersecting)) { po.disconnect(); run(); } }, { threshold: 0.35 });
+        po.observe(pumpEl);
+      } else run();
+    }
   }
 
   /* ── Entrada das seções ao rolar ([data-reveal]) ── */
-  const reveals = document.querySelectorAll('[data-reveal]');
+  const reveals = document.querySelectorAll('[data-reveal], [data-reveal-self], .mt-band');
   if (reduceMotion || !('IntersectionObserver' in window)) reveals.forEach((el) => el.classList.add('is-in'));
   else {
     const ro = new IntersectionObserver((en) => en.forEach((x) => { if (x.isIntersecting) { x.target.classList.add('is-in'); ro.unobserve(x.target); } }), { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
@@ -289,6 +296,32 @@
   }
   document.querySelectorAll('.lp-faq details').forEach((d, i) => d.style.setProperty('--i', i));
 
+  /* ── Vídeos de fundo (Higgsfield): só carregam com movimento liberado e conexão boa; pausam fora da tela ── */
+  const conn = navigator.connection || {};
+  const lightMode = reduceMotion || conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '');
+  function watchVideo(v, opts) {
+    if (lightMode || !v || !('IntersectionObserver' in window)) return;
+    let loaded = false;
+    const io = new IntersectionObserver((en) => en.forEach((x) => {
+      if (x.isIntersecting) {
+        if (!loaded) { loaded = true; v.src = opts.src(); v.load(); }
+        const p = v.play(); if (p && p.catch) p.catch(() => {});
+        if (opts.once) io.disconnect();
+      } else if (!opts.once) v.pause();
+    }), { threshold: opts.threshold || 0.15 });
+    v.addEventListener('playing', () => v.closest('[aria-hidden]').classList.add('is-playing'), { once: true });
+    io.observe(v.parentNode);
+  }
+  const desk = window.matchMedia('(min-width: 961px)');
+  document.querySelectorAll('[data-bg-video]').forEach((v) => watchVideo(v, { src: () => (desk.matches ? v.dataset.srcDesktop : v.dataset.srcMobile) }));
+  document.querySelectorAll('[data-band-video]').forEach((v) => watchVideo(v, { src: () => v.dataset.src, once: true, threshold: 0.55 }));
+
   renderList();
-  loadMap();
+  // Mapa do Google (o arquivo mais pesado) só carrega quando o motorista se aproxima dele
+  if ('IntersectionObserver' in window) {
+    const mo = new IntersectionObserver((en) => { if (en.some((x) => x.isIntersecting)) { mo.disconnect(); loadMap(); } }, { rootMargin: '600px 0px' });
+    mo.observe(mapEl);
+    // "Mais perto de mim" e "Ver no mapa" precisam do mapa: carregam na hora se ainda não carregou
+    [nearBtn, listEl].forEach((el) => el.addEventListener('click', () => { if (!window.__mtMapLoading) { mo.disconnect(); loadMap(); } }, { capture: true }));
+  } else loadMap();
 })();

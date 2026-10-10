@@ -159,3 +159,69 @@
   .store-badge span { font-size: 1rem; }
   .pump-st strong { font-size: 0.94rem; }
 }
+
+/* ═════════ Topo com vídeo (Higgsfield) — mobile first ═════════ */
+.mt-hero--video { min-height: calc(100svh - 60px); display: flex; flex-direction: column; justify-content: flex-end; padding: 0 0 28px; }
+.mt-media { position: absolute; inset: 0; z-index: -2; background: var(--black); }
+.mt-media img, .mt-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
+.mt-media video { opacity: 0; transition: opacity 1.2s var(--ease-out); }
+/* celular: o terço de cima do vídeo é céu escuro; sobe a cena para o totem e o logo ficarem acima do texto */
+@media (max-width: 960px) { .mt-media img, .mt-media video { top: -24%; height: 124%; } }
+.mt-media.is-playing video { opacity: 1; }
+/* escurece de baixo para cima, para o texto ler sobre a imagem (só preto, sem cor) */
+.mt-hero--video::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(30,28,28,0.55) 0%, rgba(30,28,28,0) 22%, rgba(30,28,28,0.2) 45%, rgba(30,28,28,0.92) 72%, var(--black) 100%); }
+.mt-hero--video .mt-hero-grid { padding-top: 32svh; }
+.mt-hero--video .lp-h1 { font-size: clamp(2.05rem, 9.4vw, 2.6rem); }
+.mt-hero--video .lp-lead { color: rgba(241,241,241,0.88); }
+.mt-scroll { position: absolute; left: 50%; bottom: 8px; width: 44px; height: 44px; margin-left: -22px; display: none; align-items: center; justify-content: center; }
+@media (min-width: 961px) { .mt-scroll { display: flex; } }
+.mt-scroll span { width: 2px; height: 22px; border-radius: 2px; background: rgba(241,241,241,0.25); overflow: hidden; position: relative; }
+.mt-scroll span::after { content: ""; position: absolute; left: 0; right: 0; top: -40%; height: 40%; background: var(--orange); }
+
+/* Preços: seção própria logo abaixo do topo */
+.mt-prices { padding: 8px 0 40px; }
+.mt-prices .pump { max-width: 720px; margin: 0 auto; }
+
+/* Faixa de transição: conector encaixando (toca uma vez ao aparecer) */
+.mt-band { position: relative; isolation: isolate; overflow: hidden; height: 62svh; min-height: 380px; max-height: 640px; display: flex; align-items: flex-end; }
+.mt-band-media { position: absolute; inset: 0; z-index: -2; background: var(--black); }
+.mt-band-media img, .mt-band-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+.mt-band-media video { opacity: 0; transition: opacity 0.6s; }
+.mt-band-media.is-playing video { opacity: 1; }
+.mt-band::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, var(--black) 0%, rgba(30,28,28,0) 26%, rgba(30,28,28,0) 58%, var(--black) 100%); }
+.mt-band-copy { padding-bottom: 28px; }
+.mt-band-copy .lp-title { font-size: clamp(1.9rem, 8.5vw, 3rem); margin: 0; }
+
+/* Seções longe da primeira tela: o navegador só monta quando o motorista chega lá */
+#apps, .lp-section.alt, .lp-footer { content-visibility: auto; contain-intrinsic-size: auto 700px; }
+
+/* Toque mais limpo no celular */
+a, button, summary { -webkit-tap-highlight-color: transparent; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js .mt-scroll span::after { animation: scrollCue 1.8s var(--ease-out) 1.6s infinite; }
+  html.js .mt-media img { animation: slowZoom 18s ease-out both; }
+  html.js [data-reveal-self] { opacity: 0; transform: translateY(24px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+  html.js [data-reveal-self].is-in { opacity: 1; transform: none; }
+  html.js .mt-band-copy { opacity: 0; transform: translateY(20px); transition: opacity 0.9s var(--ease-out) 0.4s, transform 0.9s var(--ease-out) 0.4s; }
+  html.js .mt-band.is-in .mt-band-copy { opacity: 1; transform: none; }
+}
+@keyframes scrollCue { 0% { top: -40%; } 100% { top: 110%; } }
+@keyframes slowZoom { from { transform: scale(1.06); } to { transform: none; } }
+
+@media (min-width: 961px) {
+  .mt-hero--video { min-height: min(760px, calc(100vh - 60px)); justify-content: center; padding: 0; }
+  .mt-hero--video::before { background: linear-gradient(90deg, rgba(30,28,28,0.94) 0%, rgba(30,28,28,0.72) 38%, rgba(30,28,28,0) 62%), linear-gradient(180deg, rgba(30,28,28,0) 70%, var(--black) 100%); }
+  .mt-hero--video .mt-hero-grid { padding-top: 0; grid-template-columns: minmax(0, 560px); }
+  .mt-hero--video .lp-h1 { font-size: clamp(2.6rem, 4.4vw, 3.6rem); }
+  .mt-media img, .mt-media video { object-position: 50% 50%; }
+  .mt-prices { padding: 40px 0 64px; }
+  .mt-prices .pump { max-width: 860px; }
+  .mt-band { height: 620px; max-height: none; align-items: center; }
+  .mt-band::before { display: none; }
+  /* desktop: o vídeo vertical vira um quadro ao lado do título */
+  .mt-band-media { left: auto; right: max(20px, calc((100vw - 1080px) / 2 + 20px)); top: 40px; bottom: 40px; width: 304px; border-radius: 18px; overflow: hidden; border: 1px solid var(--line-strong); }
+  .mt-band-media img, .mt-band-media video { object-position: 50% 55%; }
+  .mt-band-copy .lp-title { font-size: clamp(2.6rem, 4.6vw, 3.8rem); max-width: 720px; }
+}

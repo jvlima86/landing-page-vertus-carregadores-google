@@ -18,7 +18,7 @@
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/archivo-latin.woff2" crossorigin>
 <link rel="stylesheet" href="/lp/lp.css?v=2">
 <link rel="stylesheet" href="/motoristas/motoristas.css?v=7">
-<link rel="stylesheet" href="/motoristas/visual.css?v=1">
+<link rel="stylesheet" href="/motoristas/visual.css?v=2">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body data-page="motorista-app">
@@ -31,20 +31,32 @@
 </header>
 
 <main>
-<section class="mt-hero mt-hero--app">
+<section class="mt-hero mt-hero--app mt-hero--video">
+  <div class="mt-media" aria-hidden="true">
+    <picture>
+      <source media="(min-width: 961px)" srcset="/assets/video/motorista-hero-16x9.webp">
+      <img src="/assets/video/motorista-hero-9x16.webp" alt="" width="540" height="960" fetchpriority="high" decoding="async">
+    </picture>
+    <video data-bg-video data-src-mobile="/assets/video/motorista-hero-9x16.mp4" data-src-desktop="/assets/video/motorista-hero-16x9.mp4" muted playsinline loop preload="none"></video>
+  </div>
   <div class="container mt-hero-grid">
     <div class="mt-hero-copy">
       <p class="kicker mt-in" style="--d:0"><span class="lc-mini" aria-hidden="true"></span>Uber · 99 · inDrive</p>
       <div class="lc-charge mt-in" style="--d:1" data-charge aria-hidden="true"></div>
       <h1 class="lp-h1 mt-h1"><span class="mt-line"><span style="--d:2">Recarregue pagando</span></span> <span class="mt-line"><span style="--d:3"><span class="tarja tarja-draw">preço de motorista.</span></span></span></h1>
-      <p class="lp-lead mt-in" style="--d:4">Peça seu cupom pelo WhatsApp e pague o preço de motorista nos eletropostos Vertus Mob. Abra a rota no Google Maps e baixe o app certo de cada eletroposto.</p>
+      <p class="lp-lead mt-in" style="--d:4">Peça o cupom pelo WhatsApp e pague o preço de motorista nos eletropostos Vertus Mob.</p>
       <div class="mt-hero-ctas mt-in" style="--d:5">
         <a class="btn-wa" data-wa-coupon href="https://wa.me/5585996163937" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.44 9.44-9.44 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.68c0 5.2-4.24 9.43-9.44 9.43m8.03-17.47A11.3 11.3 0 0 0 12.05.7C5.8.7.7 5.79.7 12.04c0 2 .52 3.95 1.52 5.66L.6 23.6l6.04-1.58a11.3 11.3 0 0 0 5.4 1.38h.01c6.25 0 11.34-5.09 11.35-11.34 0-3.03-1.18-5.88-3.32-8.03"/></svg>Pedir meu cupom</a>
-        <a class="btn-ghost" href="#estacoes">Onde recarregar</a>
+        <a class="btn-ghost" href="#precos">Ver preços</a>
       </div>
     </div>
+  </div>
+  <a class="mt-scroll" href="#precos" aria-label="Ver os preços"><span></span></a>
+</section>
 
-    <div class="pump mt-in" style="--d:3" role="region" aria-labelledby="pump-title">
+<section class="mt-prices" id="precos" aria-labelledby="pump-title">
+  <div class="container">
+    <div class="pump" data-reveal-self role="region" aria-labelledby="pump-title">
       <div class="pump-head">
         <p class="pump-title" id="pump-title">Preço por <span class="nu">kWh</span></p>
         <p class="pump-sub">motorista de app <span aria-hidden="true">·</span> com cupom</p>
@@ -53,6 +65,17 @@
       <ul class="pump-mini" data-pump-mini></ul>
       <p class="pump-note">O valor cobrado é o que aparece no app de recarga do eletroposto.</p>
     </div>
+  </div>
+</section>
+
+<section class="mt-band" aria-labelledby="band-title">
+  <div class="mt-band-media" aria-hidden="true">
+    <img src="/assets/video/motorista-plug.webp" alt="" width="540" height="960" loading="lazy" decoding="async">
+    <video data-band-video data-src="/assets/video/motorista-plug.mp4" muted playsinline preload="none"></video>
+  </div>
+  <div class="container mt-band-copy">
+    <p class="kicker"><span class="lc-mini" aria-hidden="true"></span>Cupom de motorista</p>
+    <h2 class="lp-title" id="band-title">Plugou. <span class="tarja">Pagou menos.</span></h2>
   </div>
 </section>
 
@@ -127,6 +150,6 @@
 <div class="lp-sticky mt-sticky"><a class="btn-wa" data-wa-coupon href="https://wa.me/5585996163937" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.44 9.44-9.44 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.68c0 5.2-4.24 9.43-9.44 9.43m8.03-17.47A11.3 11.3 0 0 0 12.05.7C5.8.7.7 5.79.7 12.04c0 2 .52 3.95 1.52 5.66L.6 23.6l6.04-1.58a11.3 11.3 0 0 0 5.4 1.38h.01c6.25 0 11.34-5.09 11.35-11.34 0-3.03-1.18-5.88-3.32-8.03"/></svg>Pedir meu cupom</a></div>
 
 <script src="/motoristas/estacoes.js?v=3" defer></script>
-<script src="/motoristas/motoristas.js?v=7" defer></script>
+<script src="/motoristas/motoristas.js?v=8" defer></script>
 </body>
 </html>
