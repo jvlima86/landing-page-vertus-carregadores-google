@@ -5,7 +5,7 @@
   'use strict';
 
   /* Configuração e estações: /motoristas/estacoes.js (carregado antes deste arquivo) */
-  const { WA_NUMBER, WA_DISPLAY, WA_COUPON_MSG, MAPS_KEY, ESTACOES } = window.VertusMotoristas;
+  const { WA_NUMBER, WA_DISPLAY, WA_COUPON_MSG, MAPS_KEY, ESTACOES, APPS } = window.VertusMotoristas;
 
   const listEl = document.querySelector('[data-list]');
   const mapEl = document.getElementById('mtmap');
@@ -38,30 +38,38 @@
   }
   const fmtKm = (km) => (km < 1 ? Math.round(km * 1000) + ' m' : km.toLocaleString('pt-BR', { maximumFractionDigits: km < 10 ? 1 : 0 }) + ' km');
   const pin = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+  const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const appInfo = (e) => (e.app && APPS[e.app]) || null;
+  function appChip(e) {
+    const a = appInfo(e);
+    return a ? '<span class="mt-app-chip">App ' + esc(a.nome) + '</span>' : '<span class="mt-app-chip is-muted">App: confirme pelo WhatsApp</span>';
+  }
   const route = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>';
 
   /* ── Lista ── */
   function renderList() {
     const items = ESTACOES.map((e) => Object.assign({}, e, { km: userPos && e.lat != null ? distKm(userPos, e) : null }));
-    if (userPos) items.sort((a, b) => (a.km == null) - (b.km == null) || (a.km || 0) - (b.km || 0));
+    // Em operação antes do "em breve"; com localização, pela distância
+    items.sort((a, b) => !!a.emBreve - !!b.emBreve || (userPos ? (a.km == null) - (b.km == null) || (a.km || 0) - (b.km || 0) : 0));
     listEl.innerHTML = items.map((e, i) => {
       const specs = [e.potencia, e.conector].filter(Boolean).map(esc).join(' · ');
       const meta = [
-        e.app ? '<li><span>App</span>' + esc(e.app) + '</li>' : '',
-        (e.app || e.preco) ? '<li><span>Preço</span>' + esc(e.preco || 'no app') + '</li>' : '',
+        !e.emBreve && (e.app || e.preco) ? '<li><span>Preço</span>' + esc(e.preco || 'no app') + '</li>' : '',
         e.precoApp ? '<li class="mt-price-app"><span>Motorista de app</span>' + esc(e.precoApp) + '</li>' : '',
       ].join('');
-      return '<li class="mt-item" id="est-' + e.id + '" data-id="' + e.id + '">' +
+      const a = appInfo(e);
+      const store = a ? '<a class="mt-store" href="' + (isIOS ? a.ios : a.android) + '" target="_blank" rel="noopener">Baixar o ' + esc(a.nome) + (isIOS ? ' na App Store' : ' no Google Play') + '</a>' : '';
+      return '<li class="mt-item' + (e.emBreve ? ' is-soon' : '') + '" id="est-' + e.id + '" data-id="' + e.id + '">' +
         '<div class="mt-item-top"><span class="mt-item-n">' + String(i + 1).padStart(2, '0') + '</span>' +
-        (e.km != null ? '<span class="mt-km">' + fmtKm(e.km) + '</span>' : '') + '</div>' +
-        '<h3>' + esc(e.nome) + '</h3>' +
+        (e.emBreve ? '<span class="mt-soon">Em breve</span>' : e.km != null ? '<span class="mt-km">' + fmtKm(e.km) + '</span>' : '') + '</div>' +
+        '<h3>' + esc(e.nome) + '</h3>' + appChip(e) +
         '<p class="mt-addr">' + esc(e.endereco) + (e.cidade && e.endereco !== e.cidade ? ' · ' + esc(e.cidade) : '') + '</p>' +
-        (specs ? '<p class="mt-specs">' + specs + '</p>' : '<p class="mt-specs is-muted">Potência e conector: confirme pelo WhatsApp</p>') +
+        (e.emBreve ? '<p class="mt-specs is-muted">Inauguração em breve. Já dá para baixar o app.</p>' : specs ? '<p class="mt-specs">' + specs + '</p>' : '<p class="mt-specs is-muted">Potência e conector: confirme pelo WhatsApp</p>') +
         (meta ? '<ul class="mt-meta">' + meta + '</ul>' : '') +
         '<div class="mt-actions">' +
-        '<a class="mt-go" href="' + rotaUrl(e) + '" target="_blank" rel="noopener" data-go="' + e.id + '">' + route + 'Como chegar</a>' +
+        '<a class="mt-go" href="' + rotaUrl(e) + '" target="_blank" rel="noopener" data-go="' + e.id + '">' + route + (e.emBreve ? 'Ver o local' : 'Como chegar') + '</a>' +
         (e.lat != null ? '<button type="button" class="mt-show" data-show="' + e.id + '">' + pin + '<span>Ver no mapa</span></button>' : '') +
-        '</div></li>';
+        '</div>' + store + '</li>';
     }).join('');
   }
 
@@ -88,7 +96,7 @@
       nearBtn.removeAttribute('aria-busy');
       userPos = { lat: p.coords.latitude, lng: p.coords.longitude };
       renderList();
-      const first = ESTACOES.filter((e) => e.lat != null).map((e) => ({ e, km: distKm(userPos, e) })).sort((a, b) => a.km - b.km)[0];
+      const first = ESTACOES.filter((e) => e.lat != null && !e.emBreve).map((e) => ({ e, km: distKm(userPos, e) })).sort((a, b) => a.km - b.km)[0];
       nearStatus.textContent = first ? 'Mais perto: ' + first.e.nome + ', a ' + fmtKm(first.km) + ' em linha reta. Lista ordenada pela distância.' : '';
       if (map) {
         const pos = new google.maps.LatLng(userPos.lat, userPos.lng);
@@ -130,10 +138,11 @@
   function openInfo(id) {
     const e = ESTACOES.find((x) => x.id === id);
     info.setContent(
-      '<div class="mt-info"><strong>' + esc(e.nome) + '</strong><span>' + esc(e.endereco) + '</span>' +
+      '<div class="mt-info"><strong>' + esc(e.nome) + (e.emBreve ? ' · em breve' : '') + '</strong><span>' + esc(e.endereco) + '</span>' +
+      (appInfo(e) ? '<span>App ' + esc(appInfo(e).nome) + '</span>' : '') +
       (e.potencia ? '<span>' + esc(e.potencia + (e.conector ? ' · ' + e.conector : '')) + '</span>' : '') +
       (e.preco ? '<span>' + esc(e.preco) + (e.precoApp ? ' · motorista de app ' + esc(e.precoApp) : '') + '</span>' : '') +
-      '<a href="' + rotaUrl(e) + '" target="_blank" rel="noopener">Como chegar ↗</a></div>');
+      '<a href="' + rotaUrl(e) + '" target="_blank" rel="noopener">' + (e.emBreve ? 'Ver o local' : 'Como chegar') + ' ↗</a></div>');
     info.open({ anchor: markers[id], map, shouldFocus: false });
     document.querySelectorAll('.mt-item').forEach((li) => li.classList.toggle('is-active', li.dataset.id === id));
   }
@@ -155,9 +164,16 @@
         '<circle cx="18" cy="18" r="7" fill="#F1F1F1"/><circle cx="18" cy="18" r="3.5" fill="#FF7E27"/></svg>'),
       scaledSize: new google.maps.Size(36, 44), anchor: new google.maps.Point(18, 44),
     };
+    const soonIcon = {
+      url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="40" viewBox="0 0 32 40">' +
+        '<path d="M16 1.5C8 1.5 1.5 8 1.5 16c0 11.7 14.5 22.5 14.5 22.5S30.5 27.7 30.5 16C30.5 8 24 1.5 16 1.5z" fill="#1E1C1C" stroke="#FF7E27" stroke-width="2" stroke-dasharray="4 3"/>' +
+        '<circle cx="16" cy="16" r="5" fill="none" stroke="#FF7E27" stroke-width="2"/></svg>'),
+      scaledSize: new google.maps.Size(32, 40), anchor: new google.maps.Point(16, 40),
+    };
     const bounds = new google.maps.LatLngBounds();
     ESTACOES.filter((e) => e.lat != null).forEach((e) => {
-      const m = new google.maps.Marker({ map, position: { lat: e.lat, lng: e.lng }, icon, title: e.nome });
+      const m = new google.maps.Marker({ map, position: { lat: e.lat, lng: e.lng }, icon: e.emBreve ? soonIcon : icon, title: e.nome + (e.emBreve ? ' (em breve)' : '') });
       m.addListener('click', () => openInfo(e.id));
       markers[e.id] = m;
       // Enquadramento inicial só na Região Metropolitana de Fortaleza; o interior aparece pelo zoom ou "Ver no mapa"
@@ -199,10 +215,24 @@
   const tableEl = document.querySelector('[data-price-table]');
   if (tableEl) {
     // Quem tem preço de motorista confirmado vem primeiro
-    tableEl.innerHTML = ESTACOES.slice().sort((a, b) => !!b.precoApp - !!a.precoApp).map((e) => '<tr' + (e.precoApp ? ' class="has-app"' : '') + '>' +
-      '<th scope="row"><span>' + esc(e.nome) + '</span><small>' + esc(e.cidade === 'Fortaleza' ? e.endereco.split(' · ').pop() + ' · Fortaleza' : e.endereco + ' · ' + e.cidade) + '</small></th>' +
-      '<td class="pt-normal">' + (e.preco ? esc(e.preco.replace('/kWh', '')) : '<span class="pt-na" aria-label="no app">—</span>') + '</td>' +
-      '<td class="pt-app">' + (e.precoApp ? esc(e.precoApp.replace('/kWh', '')) : '<span class="pt-na" aria-label="no app">—</span>') + '</td></tr>').join('');
+    tableEl.innerHTML = ESTACOES.slice().sort((a, b) => !!a.emBreve - !!b.emBreve || !!b.precoApp - !!a.precoApp).map((e) => '<tr' + (e.precoApp ? ' class="has-app"' : '') + '>' +
+      '<th scope="row"><span>' + esc(e.nome) + '</span>' + (appInfo(e) ? '<em class="pt-app-tag">App ' + esc(appInfo(e).nome) + '</em>' : '') + '<small>' + esc(e.cidade === 'Fortaleza' ? e.endereco.split(' · ').pop() + ' · Fortaleza' : e.endereco + ' · ' + e.cidade) + '</small></th>' +
+      (e.emBreve
+        ? '<td class="pt-soon" colspan="2">em breve</td></tr>'
+        : '<td class="pt-normal">' + (e.preco ? esc(e.preco.replace('/kWh', '')) : '<span class="pt-na" aria-label="no app">—</span>') + '</td>' +
+          '<td class="pt-app">' + (e.precoApp ? esc(e.precoApp.replace('/kWh', '')) : '<span class="pt-na" aria-label="no app">—</span>') + '</td></tr>')).join('');
+  }
+
+  /* ── Apps de recarga: qual app usar em cada eletroposto ([data-apps]) ── */
+  const appsEl = document.querySelector('[data-apps]');
+  if (appsEl) {
+    appsEl.innerHTML = Object.keys(APPS).map((k) => {
+      const a = APPS[k];
+      const ests = ESTACOES.filter((e) => e.app === k);
+      return '<div class="mt-appcard"><h3>' + esc(a.nome) + '</h3>' +
+        '<ul>' + ests.map((e) => '<li>' + esc(e.nome) + (e.emBreve ? ' <span class="mt-soon">Em breve</span>' : '') + '</li>').join('') + '</ul>' +
+        '<div class="mt-stores"><a href="' + a.android + '" target="_blank" rel="noopener">Google Play</a><a href="' + a.ios + '" target="_blank" rel="noopener">App Store</a></div></div>';
+    }).join('');
   }
 
   renderList();

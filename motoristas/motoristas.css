@@ -100,11 +100,29 @@ html { scroll-padding-bottom: 88px; }
 @media (max-width: 420px) { .pt tbody th { font-size: 0.88rem; } .pt .pt-app { font-size: 1.04rem; } }
 .pt-note { font-size: 0.8rem; line-height: 1.5; color: var(--muted); margin-top: 6px; }
 
+.mt-app-chip { display: inline-flex; align-items: center; margin-top: 6px; padding: 3px 10px; border-radius: 999px; background: rgba(255,126,39,0.12); border: 1px solid var(--line-orange); color: var(--white); font-size: 0.8rem; font-weight: 700; }
+.mt-app-chip.is-muted { background: none; border-color: var(--line-strong); color: var(--muted); font-weight: 500; }
+.mt-soon { display: inline-flex; align-items: center; padding: 2px 9px; border-radius: 999px; border: 1px dashed var(--orange); color: var(--orange); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.mt-item.is-soon { border-style: dashed; border-color: var(--line-strong); }
+.mt-store { display: inline-flex; align-items: center; min-height: 44px; margin-top: 4px; color: var(--orange); font-size: 0.86rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.pt-app-tag { display: block; font-style: normal; font-size: 0.76rem; font-weight: 700; color: var(--orange-soft); margin-top: 2px; }
+.pt .pt-soon { text-align: right; color: var(--orange); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.mt-apps-grid { display: grid; gap: 10px; }
+.mt-appcard { background: var(--black); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+.mt-appcard h3 { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 8px; }
+.mt-appcard ul { display: grid; gap: 6px; margin-bottom: 14px; }
+.mt-appcard li { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 0.92rem; color: var(--fg2); }
+.mt-appcard li::before { content: ""; width: 8px; height: 4px; background: var(--orange); transform: skewX(-27.6deg); flex-shrink: 0; }
+.mt-stores { display: flex; flex-wrap: wrap; gap: 8px; }
+.mt-stores a { display: inline-flex; align-items: center; justify-content: center; flex: 1 1 130px; min-height: 46px; padding: 10px 14px; border-radius: var(--radius-ctl); border: 1px solid var(--line-strong); color: var(--white); font-weight: 700; font-size: 0.92rem; text-decoration: none; }
+.mt-stores a:hover { border-color: var(--orange); color: var(--orange); }
+
 /* CTA fixo: some quando o bloco do cupom está na tela */
 .mt-sticky .btn-wa { width: 100%; }
 body.coupon-in-view .mt-sticky, body.hero-in-view .mt-sticky { transform: translateY(110%); opacity: 0; pointer-events: none; }
 
 @media (min-width: 720px) {
+  .mt-apps-grid { grid-template-columns: 1fr 1fr; }
   .mt-map { order: 0; }
   .mt-list { order: 0; }
   .mt-hero-ctas .btn-primary, .mt-hero-ctas .btn-wa, .mt-hero-ctas .btn-ghost { flex: 0 1 280px; }
