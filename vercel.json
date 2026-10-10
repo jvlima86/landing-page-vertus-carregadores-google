@@ -97,6 +97,10 @@
     {
       "source": "/motoristas",
       "destination": "/motoristas/index.html"
+    },
+    {
+      "source": "/motorista-app",
+      "destination": "/motorista-app/index.html"
     }
   ]
 }

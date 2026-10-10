@@ -1,25 +1,11 @@
-/* Vertus Mob — área do motorista (vertus-mob.com/motoristas)
-   Mapa dos eletropostos abertos ao público, rota no Google Maps e pedido do cupom de motorista de app. */
+/* Vertus Mob — páginas de motorista (vertus-mob.com/motoristas e /motorista-app)
+   Mapa dos eletropostos abertos ao público, rota no Google Maps, preços e pedido do cupom de motorista de app.
+   Tudo é guiado pelo HTML: só age sobre os elementos que a página tiver ([data-list], #mtmap, [data-near], [data-wa-coupon], [data-app-prices]). */
 (function () {
   'use strict';
 
-  /* ══════════════ CONFIGURAÇÃO ══════════════ */
-  // WhatsApp do bot do CRM que valida o print e libera o cupom (a palavra "cupom" na mensagem dispara o fluxo).
-  const WA_NUMBER = '5585996163937';
-  const WA_DISPLAY = '(85) 99616-3937';
-  const WA_COUPON_MSG = 'Olá! Sou motorista de aplicativo e quero o cupom de motorista da Vertus Mob. Vou enviar o print do meu perfil.';
-  const MAPS_KEY = 'AIzaSyDzn3uYW2NljaXXjcAV39Ad_yPwr9q1QXs';
-
-  // Eletropostos abertos ao público (condomínios ficam de fora: são de uso dos moradores).
-  // lat/lng null = sem coordenada confirmada: aparece na lista e a rota usa o endereço.
-  const ESTACOES = [
-    { id: 'cometa', nome: 'Cometa Barão do Rio Branco', endereco: 'R. Barão do Rio Branco, 2841 · Fátima', cidade: 'Fortaleza', lat: -3.7428723, lng: -38.5333842, potencia: '60 kW · 2 conectores', conector: 'CCS2', app: 'Tupi' },
-    { id: 'lauro-maia', nome: 'Posto Lauro Maia', endereco: 'R. Lauro Maia, 700 · Fátima', cidade: 'Fortaleza', lat: -3.7466703, lng: -38.5232352, potencia: '60 kW · 2 conectores', conector: 'CCS2', app: 'V Recargas', preco: 'R$ 1,79/kWh', precoApp: 'R$ 1,29/kWh' },
-    { id: 'pamil', nome: 'Pamil Parque Araxá', endereco: 'R. Padre Cícero, 750 · Rodolfo Teófilo', cidade: 'Fortaleza', lat: -3.7408827, lng: -38.548699, potencia: '22 kW', conector: 'Tipo 2 (AC)', app: 'Tupi' },
-    { id: 'vila-peri', nome: 'Eletroposto Vila Peri', endereco: 'R. Eça de Queirós, 803 · Vila Peri', cidade: 'Fortaleza', lat: -3.7894335, lng: -38.5854335, potencia: '30 kW', conector: 'CCS2', app: 'Tupi' },
-    { id: 'arena-celio-santos', nome: 'Arena Célio Santos', endereco: 'São Benedito', cidade: 'Ceará', lat: -3.9977185, lng: -40.8764746, preco: 'R$ 2,09/kWh', precoApp: 'R$ 1,89/kWh' },
-  ];
-  /* ══════════════════════════════════════════ */
+  /* Configuração e estações: /motoristas/estacoes.js (carregado antes deste arquivo) */
+  const { WA_NUMBER, WA_DISPLAY, WA_COUPON_MSG, MAPS_KEY, ESTACOES } = window.VertusMotoristas;
 
   const listEl = document.querySelector('[data-list]');
   const mapEl = document.getElementById('mtmap');
@@ -197,7 +183,7 @@
   if (coupon && 'IntersectionObserver' in window) {
     new IntersectionObserver((en) => document.body.classList.toggle('coupon-in-view', en.some((x) => x.isIntersecting)), { threshold: 0.2 }).observe(coupon);
     // e só aparece depois que o topo sai da tela (não compete com os botões do topo)
-    const hero = document.querySelector('.mt-hero');
+    const hero = document.querySelector('.mt-hero-ctas') || document.querySelector('.mt-hero');
     if (hero) new IntersectionObserver((en) => document.body.classList.toggle('hero-in-view', en.some((x) => x.isIntersecting)), { threshold: 0 }).observe(hero);
   }
 
@@ -207,6 +193,16 @@
   if (pricesEl) {
     if (comPreco.length) pricesEl.innerHTML = comPreco.map((e) => '<li><span>' + esc(e.nome) + '</span><strong>' + esc(e.precoApp) + '</strong><small>em vez de ' + esc(e.preco) + '</small></li>').join('');
     else pricesEl.remove();
+  }
+
+  /* ── Quadro de preços de todas as estações (só na página que tiver [data-price-table]) ── */
+  const tableEl = document.querySelector('[data-price-table]');
+  if (tableEl) {
+    // Quem tem preço de motorista confirmado vem primeiro
+    tableEl.innerHTML = ESTACOES.slice().sort((a, b) => !!b.precoApp - !!a.precoApp).map((e) => '<tr' + (e.precoApp ? ' class="has-app"' : '') + '>' +
+      '<th scope="row"><span>' + esc(e.nome) + '</span><small>' + esc(e.cidade === 'Fortaleza' ? e.endereco.split(' · ').pop() + ' · Fortaleza' : e.endereco + ' · ' + e.cidade) + '</small></th>' +
+      '<td class="pt-normal">' + (e.preco ? esc(e.preco.replace('/kWh', '')) : '<span class="pt-na" aria-label="no app">—</span>') + '</td>' +
+      '<td class="pt-app">' + (e.precoApp ? esc(e.precoApp.replace('/kWh', '')) : '<span class="pt-na" aria-label="no app">—</span>') + '</td></tr>').join('');
   }
 
   renderList();

@@ -7,7 +7,7 @@ html { scroll-padding-bottom: 88px; }
 .mt-hero .lp-h1 { max-width: 640px; }
 .mt-hero .lp-lead { max-width: 620px; }
 .mt-hero-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-.mt-hero-ctas .btn-primary { flex: 1 1 180px; }
+.mt-hero-ctas .btn-primary, .mt-hero-ctas .btn-wa { flex: 1 1 180px; }
 .btn-ghost { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 12px 20px; border: 1px solid var(--line-strong); border-radius: var(--radius-ctl); color: var(--white); font-weight: 700; font-size: 0.98rem; text-decoration: none; flex: 1 1 180px; }
 .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
 
@@ -77,6 +77,28 @@ html { scroll-padding-bottom: 88px; }
 .mt-steps p { font-size: 0.9rem; line-height: 1.5; color: var(--fg2); }
 .mt-coupon-btn { width: 100%; max-width: 420px; }
 .mt-coupon-foot { margin-top: 12px; font-size: 0.8rem; line-height: 1.5; color: var(--muted); }
+.mt-coupon-foot a { color: var(--orange); }
+
+/* Quadro de preços (página /motorista-app) */
+.pt-wrap { max-width: 720px; background: var(--charcoal); border: 1px solid var(--line-orange); border-radius: var(--radius); padding: 6px 16px 12px; margin-top: 18px; }
+.pt { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.pt caption { text-align: left; padding: 10px 0 4px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.pt thead th { padding: 8px 0; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-align: right; border-bottom: 1px solid var(--line-strong); }
+.pt thead th:first-child { text-align: left; }
+.pt thead th + th { padding-left: 14px; }
+.nu { text-transform: none; letter-spacing: 0.02em; }
+.pt thead th.pt-app-h { color: var(--orange); }
+.pt tbody th, .pt tbody td { padding: 11px 0; border-bottom: 1px solid var(--line); vertical-align: baseline; }
+.pt tbody tr:last-child th, .pt tbody tr:last-child td { border-bottom: 0; }
+.pt tbody th { text-align: left; font-weight: 700; font-size: 0.94rem; line-height: 1.3; padding-right: 10px; }
+.pt tbody th small { display: block; font-weight: 400; font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+.pt td { text-align: right; white-space: nowrap; padding-left: 10px; }
+.pt .pt-normal { font-size: 0.9rem; color: var(--muted); }
+.pt .has-app .pt-normal { text-decoration: line-through; text-decoration-color: var(--muted); }
+.pt .pt-app { font-size: 1.12rem; font-weight: 800; letter-spacing: -0.01em; color: var(--orange); }
+.pt .pt-na { font-size: 0.9rem; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+@media (max-width: 420px) { .pt tbody th { font-size: 0.88rem; } .pt .pt-app { font-size: 1.04rem; } }
+.pt-note { font-size: 0.8rem; line-height: 1.5; color: var(--muted); margin-top: 6px; }
 
 /* CTA fixo: some quando o bloco do cupom está na tela */
 .mt-sticky .btn-wa { width: 100%; }
@@ -85,7 +107,7 @@ body.coupon-in-view .mt-sticky, body.hero-in-view .mt-sticky { transform: transl
 @media (min-width: 720px) {
   .mt-map { order: 0; }
   .mt-list { order: 0; }
-  .mt-hero-ctas .btn-primary, .btn-ghost { flex: 0 1 280px; }
+  .mt-hero-ctas .btn-primary, .mt-hero-ctas .btn-wa, .mt-hero-ctas .btn-ghost { flex: 0 1 280px; }
   .mt-map { height: 420px; }
   .mt-steps { grid-template-columns: repeat(3, 1fr); }
   .mt-steps li { display: block; }

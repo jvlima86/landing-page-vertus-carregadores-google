@@ -111,9 +111,10 @@ Landing à parte (02/10/2026) em que o investidor simula o eletroposto: 4 pergun
 
 Página para quem **recarrega** (05/10/2026): mapa Google (mesmo estilo escuro e chave do `#mapa`), lista dos eletropostos abertos ao público com "Como chegar" (`google.com/maps/dir/?api=1&destination=lat,lng` — abre a rota no app do Google Maps no celular), "Mais perto de mim" (geolocalização, ordena por distância) e bloco do **cupom de motorista de app** (Uber, 99, inDrive). Indexável. Rota em `vercel.json`; caminhos absolutos. Base `/lp/lp.css` + `motoristas/motoristas.css`.
 
-- **Estações:** array `ESTACOES` no topo de `motoristas/motoristas.js` (nome, endereço, lat/lng, potência, conector, app Tupi ou V Recargas, preço). Condomínios ficam de fora (uso dos moradores). `lat: null` = sem coordenada confirmada: entra na lista, sem pino, e a rota usa o texto em `rota`.
+- **Estações:** array `ESTACOES` em `motoristas/estacoes.js` (arquivo único de dados, lido pela `/motoristas` e pela `/motorista-app`) (nome, endereço, lat/lng, potência, conector, app Tupi ou V Recargas, preço). Condomínios ficam de fora (uso dos moradores). `lat: null` = sem coordenada confirmada: entra na lista, sem pino, e a rota usa o texto em `rota`.
 - **Preços:** `preco` (público) e `precoApp` (motorista de app, já com o cupom) em `ESTACOES`. Decisão do dono (05/10/2026): **mostrar o preço que fica para o motorista, nunca o percentual de desconto.** Hoje: Lauro Maia R$ 1,79 / R$ 1,29; Arena Célio Santos R$ 2,09 / R$ 1,89; demais 'no app'.
 - **Cupom:** o botão abre o WhatsApp **(85) 99616-3937** (bot do CRM) com mensagem que contém "cupom" — é o gatilho do fluxo que pede o print do perfil de motorista e libera o código. O código do cupom **não** aparece na página.
+- **`/motorista-app`** (`motorista-app/index.html`, 09/10/2026): página exclusiva para motorista de Uber/99/inDrive. Mesmo JS/CSS da `/motoristas`, outro layout: quadro de preços no topo (`[data-price-table]`: normal riscado × motorista de app, quem tem preço de motorista primeiro, "—" quando o preço só aparece no app), depois os 3 passos do cupom e por fim onde recarregar.
 - No celular a lista vem antes do mapa (`order`), para o primeiro "Como chegar" aparecer na primeira tela.
 
 ## Débitos e pendências conhecidas
