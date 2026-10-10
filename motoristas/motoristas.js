@@ -38,12 +38,22 @@
   }
   const fmtKm = (km) => (km < 1 ? Math.round(km * 1000) + ' m' : km.toLocaleString('pt-BR', { maximumFractionDigits: km < 10 ? 1 : 0 }) + ' km');
   const pin = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   const appInfo = (e) => (e.app && APPS[e.app]) || null;
   function appChip(e) {
     const a = appInfo(e);
-    return a ? '<span class="mt-app-chip">App ' + esc(a.nome) + '</span>' : '<span class="mt-app-chip is-muted">App: confirme pelo WhatsApp</span>';
+    return a ? '<span class="mt-app-chip"><img src="' + a.icone + '" alt="" width="20" height="20" loading="lazy">App ' + esc(a.nome) + '</span>' : '<span class="mt-app-chip is-muted">App: confirme pelo WhatsApp</span>';
   }
+  // Selos das lojas (logos oficiais da Apple e do Google Play)
+  const APPLE_SVG = '<svg class="sb-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.86-.76-1.47.02-2.83.86-3.59 2.18-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.24 2.73 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.41 1.2-2.47-.03-.01-2.3-.88-2.3-3.52zM14.2 6.12c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.64-1.05 1.67-.92 2.66.97.08 1.96-.49 2.56-1.21z"/></svg>';
+  const PLAY_SVG = '<svg class="sb-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="#00D7FE" d="M3.6 1.8 13.5 12 3.6 22.2c-.4-.2-.6-.6-.6-1.1V2.9c0-.5.2-.9.6-1.1z"/><path fill="#FFCE00" d="m16.8 8.7 3.6 2.1c.8.5.8 1.9 0 2.4l-3.6 2.1L13.5 12z"/><path fill="#00F076" d="M3.6 1.8c.3-.2.8-.2 1.2 0l12 6.9-3.3 3.3z"/><path fill="#F63448" d="M13.5 12l3.3 3.3-12 6.9c-.4.2-.9.2-1.2 0z"/></svg>';
+  function badge(kind, a, small) {
+    const ios = kind === 'ios';
+    return '<a class="store-badge' + (small ? ' is-small' : '') + '" href="' + (ios ? a.ios : a.android) + '" target="_blank" rel="noopener" aria-label="' + esc(a.nome) + (ios ? ' na App Store' : ' no Google Play') + '">' +
+      (ios ? APPLE_SVG : PLAY_SVG) + '<span><small>' + (ios ? 'Baixar na' : 'Disponível no') + '</small>' + (ios ? 'App Store' : 'Google Play') + '</span></a>';
+  }
+  const isMobileUA = /Android|iPhone|iPad|iPod/.test(navigator.userAgent) || isIOS;
   const route = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>';
 
   /* ── Lista ── */
@@ -58,8 +68,9 @@
         e.precoApp ? '<li class="mt-price-app"><span>Motorista de app</span>' + esc(e.precoApp) + '</li>' : '',
       ].join('');
       const a = appInfo(e);
-      const store = a ? '<a class="mt-store" href="' + (isIOS ? a.ios : a.android) + '" target="_blank" rel="noopener">Baixar o ' + esc(a.nome) + (isIOS ? ' na App Store' : ' no Google Play') + '</a>' : '';
-      return '<li class="mt-item' + (e.emBreve ? ' is-soon' : '') + '" id="est-' + e.id + '" data-id="' + e.id + '">' +
+      // No celular, só o selo da loja do aparelho; no computador, os dois
+      const store = a ? '<div class="mt-badges">' + (isMobileUA ? badge(isIOS ? 'ios' : 'android', a, true) : badge('android', a, true) + badge('ios', a, true)) + '</div>' : '';
+      return '<li class="mt-item' + (e.emBreve ? ' is-soon' : '') + '" style="--i:' + i + '" id="est-' + e.id + '" data-id="' + e.id + '">' +
         '<div class="mt-item-top"><span class="mt-item-n">' + String(i + 1).padStart(2, '0') + '</span>' +
         (e.emBreve ? '<span class="mt-soon">Em breve</span>' : e.km != null ? '<span class="mt-km">' + fmtKm(e.km) + '</span>' : '') + '</div>' +
         '<h3>' + esc(e.nome) + '</h3>' + appChip(e) +
@@ -175,6 +186,7 @@
     ESTACOES.filter((e) => e.lat != null).forEach((e) => {
       const m = new google.maps.Marker({ map, position: { lat: e.lat, lng: e.lng }, icon: e.emBreve ? soonIcon : icon, title: e.nome + (e.emBreve ? ' (em breve)' : '') });
       m.addListener('click', () => openInfo(e.id));
+      if (!reduceMotion) { m.setVisible(false); setTimeout(() => { m.setVisible(true); m.setAnimation(google.maps.Animation.DROP); }, 350 + Object.keys(markers).length * 140); }
       markers[e.id] = m;
       // Enquadramento inicial só na Região Metropolitana de Fortaleza; o interior aparece pelo zoom ou "Ver no mapa"
       if (Math.abs(e.lng + 38.54) < 0.3) bounds.extend(m.getPosition());
@@ -229,11 +241,53 @@
     appsEl.innerHTML = Object.keys(APPS).map((k) => {
       const a = APPS[k];
       const ests = ESTACOES.filter((e) => e.app === k);
-      return '<div class="mt-appcard"><h3>' + esc(a.nome) + '</h3>' +
+      return '<div class="mt-appcard" style="--i:' + Object.keys(APPS).indexOf(k) + '"><div class="mt-appcard-head"><img src="' + a.icone + '" alt="" width="56" height="56" loading="lazy"><div><h3>' + esc(a.nome) + '</h3><p>' + ests.length + (ests.length > 1 ? ' eletropostos' : ' eletroposto') + '</p></div></div>' +
         '<ul>' + ests.map((e) => '<li>' + esc(e.nome) + (e.emBreve ? ' <span class="mt-soon">Em breve</span>' : '') + '</li>').join('') + '</ul>' +
-        '<div class="mt-stores"><a href="' + a.android + '" target="_blank" rel="noopener">Google Play</a><a href="' + a.ios + '" target="_blank" rel="noopener">App Store</a></div></div>';
+        '<div class="mt-badges">' + badge('android', a) + badge('ios', a) + '</div></div>';
     }).join('');
   }
+
+  /* ── Linha de Carga animada ([data-charge]): 10 células que enchem na abertura ── */
+  document.querySelectorAll('[data-charge]').forEach((el) => { el.innerHTML = '<i></i>'.repeat(10); });
+
+  /* ── Painel de preços estilo posto ([data-pump]) ── */
+  const pumpEl = document.querySelector('[data-pump]');
+  if (pumpEl) {
+    const num = (s) => Number(String(s).replace(/[^\d,]/g, '').replace(',', '.'));
+    const comApp = ESTACOES.filter((e) => e.precoApp && !e.emBreve);
+    pumpEl.innerHTML = comApp.map((e, i) => {
+      const a = appInfo(e);
+      return '<li style="--i:' + i + '"><div class="pump-st"><strong>' + esc(e.nome) + '</strong>' +
+        '<span>' + [a ? '<img src="' + a.icone + '" alt="" width="16" height="16">' + esc(a.nome) : '', e.cidade !== 'Fortaleza' ? esc(e.endereco) : ''].filter(Boolean).join(' · ') + '</span></div>' +
+        '<div class="pump-val"><s aria-label="preço normal">' + esc(e.preco.replace('/kWh', '')) + '</s>' +
+        '<span class="pump-digits" aria-label="' + esc(e.precoApp) + ' para motorista de app"><small>R$</small><b data-to="' + num(e.precoApp) + '">' + esc(e.precoApp.replace(/R\$\s?|\/kWh/g, '')) + '</b></span></div></li>';
+    }).join('');
+    const mini = document.querySelector('[data-pump-mini]');
+    if (mini) mini.innerHTML = ESTACOES.filter((e) => !e.precoApp || e.emBreve).map((e) => {
+      const a = appInfo(e);
+      return '<li><span>' + esc(e.nome) + '</span><em>' + (e.emBreve ? 'em breve' : 'preço no app' + (a ? ' ' + esc(a.nome) : '')) + '</em></li>';
+    }).join('');
+    // Os dígitos "rolam" de 0,00 até o preço, como no painel do posto
+    const run = () => pumpEl.querySelectorAll('b[data-to]').forEach((b, i) => {
+      const to = Number(b.dataset.to), t0 = performance.now() + 500 + i * 180, dur = 1100;
+      const tick = (now) => {
+        const p = Math.min(1, Math.max(0, (now - t0) / dur)), v = to * (1 - Math.pow(1 - p, 3));
+        b.textContent = v.toFixed(2).replace('.', ',');
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+    if (!reduceMotion) run();
+  }
+
+  /* ── Entrada das seções ao rolar ([data-reveal]) ── */
+  const reveals = document.querySelectorAll('[data-reveal]');
+  if (reduceMotion || !('IntersectionObserver' in window)) reveals.forEach((el) => el.classList.add('is-in'));
+  else {
+    const ro = new IntersectionObserver((en) => en.forEach((x) => { if (x.isIntersecting) { x.target.classList.add('is-in'); ro.unobserve(x.target); } }), { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach((el) => ro.observe(el));
+  }
+  document.querySelectorAll('.lp-faq details').forEach((d, i) => d.style.setProperty('--i', i));
 
   renderList();
   loadMap();

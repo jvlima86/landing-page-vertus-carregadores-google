@@ -10,8 +10,8 @@ window.VertusMotoristas = {
 
   // Apps de recarga (a chave é o valor de `app` em cada estação). Links conferidos nas lojas em 09/10/2026.
   APPS: {
-    'Tupi': { nome: 'Tupi Recarga', android: 'https://play.google.com/store/apps/details?id=com.tupinamba', ios: 'https://apps.apple.com/br/app/id1499575119' },
-    'V Recargas': { nome: 'V Recargas', android: 'https://play.google.com/store/apps/details?id=app.vrecargas', ios: 'https://apps.apple.com/br/app/id6783077410' },
+    'Tupi': { nome: 'Tupi Recarga', icone: '/assets/apps/tupi-recarga.webp', android: 'https://play.google.com/store/apps/details?id=com.tupinamba', ios: 'https://apps.apple.com/br/app/id1499575119' },
+    'V Recargas': { nome: 'V Recargas', icone: '/assets/apps/v-recargas.webp', android: 'https://play.google.com/store/apps/details?id=app.vrecargas', ios: 'https://apps.apple.com/br/app/id6783077410' },
   },
 
   // Eletropostos abertos ao público (condomínios ficam de fora: são de uso dos moradores).

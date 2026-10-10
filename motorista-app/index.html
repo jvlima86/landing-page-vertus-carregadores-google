@@ -17,7 +17,9 @@
 <meta property="og:url" content="https://vertus-mob.com/motorista-app">
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/archivo-latin.woff2" crossorigin>
 <link rel="stylesheet" href="/lp/lp.css?v=2">
-<link rel="stylesheet" href="/motoristas/motoristas.css?v=6">
+<link rel="stylesheet" href="/motoristas/motoristas.css?v=7">
+<link rel="stylesheet" href="/motoristas/visual.css?v=1">
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body data-page="motorista-app">
 
@@ -29,37 +31,40 @@
 </header>
 
 <main>
-<section class="mt-hero">
-  <div class="container">
-    <p class="kicker"><span class="lc-mini" aria-hidden="true"></span>Uber · 99 · inDrive</p>
-    <h1 class="lp-h1">Recarregue pagando <span class="tarja">preço de motorista.</span></h1>
-    <p class="lp-lead">Peça seu cupom pelo WhatsApp e pague o preço de motorista nos eletropostos Vertus Mob. Veja os preços abaixo e abra a rota no Google Maps.</p>
-
-    <div class="pt-wrap">
-      <table class="pt">
-        <caption>Preço por <span class="nu">kWh</span></caption>
-        <thead><tr><th scope="col">Eletroposto</th><th scope="col">Normal</th><th scope="col" class="pt-app-h">Motorista</th></tr></thead>
-        <tbody data-price-table></tbody>
-      </table>
-      <p class="pt-note">"—": o preço aparece no app de recarga daquele eletroposto. O preço de motorista só vale com o cupom aplicado.</p>
+<section class="mt-hero mt-hero--app">
+  <div class="container mt-hero-grid">
+    <div class="mt-hero-copy">
+      <p class="kicker mt-in" style="--d:0"><span class="lc-mini" aria-hidden="true"></span>Uber · 99 · inDrive</p>
+      <div class="lc-charge mt-in" style="--d:1" data-charge aria-hidden="true"></div>
+      <h1 class="lp-h1 mt-h1"><span class="mt-line"><span style="--d:2">Recarregue pagando</span></span> <span class="mt-line"><span style="--d:3"><span class="tarja tarja-draw">preço de motorista.</span></span></span></h1>
+      <p class="lp-lead mt-in" style="--d:4">Peça seu cupom pelo WhatsApp e pague o preço de motorista nos eletropostos Vertus Mob. Abra a rota no Google Maps e baixe o app certo de cada eletroposto.</p>
+      <div class="mt-hero-ctas mt-in" style="--d:5">
+        <a class="btn-wa" data-wa-coupon href="https://wa.me/5585996163937" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.44 9.44-9.44 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.68c0 5.2-4.24 9.43-9.44 9.43m8.03-17.47A11.3 11.3 0 0 0 12.05.7C5.8.7.7 5.79.7 12.04c0 2 .52 3.95 1.52 5.66L.6 23.6l6.04-1.58a11.3 11.3 0 0 0 5.4 1.38h.01c6.25 0 11.34-5.09 11.35-11.34 0-3.03-1.18-5.88-3.32-8.03"/></svg>Pedir meu cupom</a>
+        <a class="btn-ghost" href="#estacoes">Onde recarregar</a>
+      </div>
     </div>
 
-    <div class="mt-hero-ctas">
-      <a class="btn-wa" data-wa-coupon href="https://wa.me/5585996163937" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.44 9.44-9.44 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.68c0 5.2-4.24 9.43-9.44 9.43m8.03-17.47A11.3 11.3 0 0 0 12.05.7C5.8.7.7 5.79.7 12.04c0 2 .52 3.95 1.52 5.66L.6 23.6l6.04-1.58a11.3 11.3 0 0 0 5.4 1.38h.01c6.25 0 11.34-5.09 11.35-11.34 0-3.03-1.18-5.88-3.32-8.03"/></svg>Pedir meu cupom</a>
-      <a class="btn-ghost" href="#estacoes">Onde recarregar</a>
+    <div class="pump mt-in" style="--d:3" role="region" aria-labelledby="pump-title">
+      <div class="pump-head">
+        <p class="pump-title" id="pump-title">Preço por <span class="nu">kWh</span></p>
+        <p class="pump-sub">motorista de app <span aria-hidden="true">·</span> com cupom</p>
+      </div>
+      <ul class="pump-rows" data-pump></ul>
+      <ul class="pump-mini" data-pump-mini></ul>
+      <p class="pump-note">O valor cobrado é o que aparece no app de recarga do eletroposto.</p>
     </div>
   </div>
 </section>
 
-<section class="mt-coupon" id="cupom" aria-labelledby="cupom-title">
+<section class="mt-coupon" data-reveal id="cupom" aria-labelledby="cupom-title">
   <div class="container">
     <div class="mt-coupon-card">
       <p class="kicker"><span class="lc-mini" aria-hidden="true"></span>Como conseguir o desconto</p>
       <h2 class="lp-title" id="cupom-title">Três passos, <span class="tarja">pelo WhatsApp.</span></h2>
       <ol class="mt-steps">
-        <li><strong>01</strong><div><h3>Chame no WhatsApp</h3><p>Toque em "Pedir meu cupom". A conversa já abre com o pedido.</p></div></li>
-        <li><strong>02</strong><div><h3>Mande um print</h3><p>Envie uma captura da tela do seu perfil de motorista no Uber, 99, inDrive ou outro aplicativo de transporte.</p></div></li>
-        <li><strong>03</strong><div><h3>Aplique o cupom</h3><p>Validado o print, você recebe o cupom e o passo a passo. Aplique no app de recarga e pague o preço de motorista.</p></div></li>
+        <li style="--i:0"><strong class="step-n" data-n="1"><span class="step-cells" aria-hidden="true"><i></i><i></i><i></i></span>01</strong><div><h3>Chame no WhatsApp</h3><p>Toque em "Pedir meu cupom". A conversa já abre com o pedido.</p></div></li>
+        <li style="--i:1"><strong class="step-n" data-n="2"><span class="step-cells" aria-hidden="true"><i></i><i></i><i></i></span>02</strong><div><h3>Mande um print</h3><p>Envie uma captura da tela do seu perfil de motorista no Uber, 99, inDrive ou outro aplicativo de transporte.</p></div></li>
+        <li style="--i:2"><strong class="step-n" data-n="3"><span class="step-cells" aria-hidden="true"><i></i><i></i><i></i></span>03</strong><div><h3>Aplique o cupom</h3><p>Validado o print, você recebe o cupom e o passo a passo. Aplique no app de recarga e pague o preço de motorista.</p></div></li>
       </ol>
       <a class="btn-wa mt-coupon-btn" data-wa-coupon href="https://wa.me/5585996163937" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.44 9.44-9.44 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.68c0 5.2-4.24 9.43-9.44 9.43m8.03-17.47A11.3 11.3 0 0 0 12.05.7C5.8.7.7 5.79.7 12.04c0 2 .52 3.95 1.52 5.66L.6 23.6l6.04-1.58a11.3 11.3 0 0 0 5.4 1.38h.01c6.25 0 11.34-5.09 11.35-11.34 0-3.03-1.18-5.88-3.32-8.03"/></svg>Pedir meu cupom no WhatsApp</a>
       <p class="mt-coupon-foot">Cupom pessoal, para motoristas com cadastro ativo em aplicativo de transporte. WhatsApp <span data-wa-display>(85) 99616-3937</span>.</p>
@@ -85,7 +90,7 @@
   </div>
 </section>
 
-<section class="lp-section" id="apps" aria-labelledby="apps-title">
+<section class="lp-section" data-reveal id="apps" aria-labelledby="apps-title">
   <div class="container">
     <p class="kicker"><span class="lc-mini" aria-hidden="true"></span>Apps de recarga</p>
     <h2 class="lp-title" id="apps-title">Qual app usar em <span class="tarja">cada eletroposto.</span></h2>
@@ -94,7 +99,7 @@
   </div>
 </section>
 
-<section class="lp-section alt">
+<section class="lp-section alt" data-reveal>
   <div class="container">
     <p class="kicker"><span class="lc-mini" aria-hidden="true"></span>Perguntas frequentes</p>
     <h2 class="lp-title">Dúvidas de <span class="tarja">motorista.</span></h2>
@@ -121,7 +126,7 @@
 
 <div class="lp-sticky mt-sticky"><a class="btn-wa" data-wa-coupon href="https://wa.me/5585996163937" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.44 9.44-9.44 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.68c0 5.2-4.24 9.43-9.44 9.43m8.03-17.47A11.3 11.3 0 0 0 12.05.7C5.8.7.7 5.79.7 12.04c0 2 .52 3.95 1.52 5.66L.6 23.6l6.04-1.58a11.3 11.3 0 0 0 5.4 1.38h.01c6.25 0 11.34-5.09 11.35-11.34 0-3.03-1.18-5.88-3.32-8.03"/></svg>Pedir meu cupom</a></div>
 
-<script src="/motoristas/estacoes.js?v=2" defer></script>
-<script src="/motoristas/motoristas.js?v=6" defer></script>
+<script src="/motoristas/estacoes.js?v=3" defer></script>
+<script src="/motoristas/motoristas.js?v=7" defer></script>
 </body>
 </html>

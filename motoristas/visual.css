@@ -1,0 +1,161 @@
+/* Vertus Mob — camada visual e de movimento das páginas de motorista (/motoristas e /motorista-app).
+   Conceito: "painel de posto". Preço em dígitos grandes num visor escuro; Linha de Carga como indicador de carga.
+   Regras do manual: só Archivo, só a paleta Vertus, sem glow/sombra colorida/degradê colorido.
+   Tudo que se move respeita prefers-reduced-motion e só esconde conteúdo quando há JS (html.js). */
+
+:root {
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --display: #121010;
+  --cell-off: rgba(255, 126, 39, 0.2);
+}
+
+/* ═════════ Atmosfera do topo ═════════ */
+.mt-hero { position: relative; overflow: hidden; isolation: isolate; }
+.mt-hero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0.06; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.mt-hero-grid { display: grid; gap: 22px; }
+
+/* Linha de Carga "carregando": 7 de 10 células cheias, a 8ª pulsa */
+.lc-charge { display: flex; gap: 5px; width: 210px; height: 10px; margin: 0 0 1.1rem 4px; }
+.lc-charge i { flex: 1; background: var(--cell-off); transform: skewX(-27.6deg); border-radius: 1px; }
+.lc-charge i:nth-child(-n+7) { background: var(--orange); }
+
+/* Título em linhas que sobem + tarja que se desenha */
+.mt-h1 .mt-line { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.06em; margin-bottom: -0.06em; }
+.mt-h1 .mt-line > span { display: inline-block; }
+
+/* ═════════ Painel de preços (estilo posto) ═════════ */
+.pump {
+  position: relative; background: var(--display); border: 1px solid var(--line-strong); border-radius: 16px;
+  padding: 18px 16px 14px; box-shadow: var(--shadow);
+}
+.pump::before { /* faixa superior como a testeira do totem */
+  content: ""; position: absolute; left: 16px; right: 16px; top: 0; height: 3px; border-radius: 0 0 3px 3px; background: var(--orange);
+}
+.pump-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.pump-title { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); }
+.pump-sub { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); }
+.pump-rows { display: grid; }
+.pump-rows li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.pump-st strong { display: block; font-size: 1rem; font-weight: 700; line-height: 1.25; }
+.pump-st span { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 0.78rem; color: var(--muted); }
+.pump-st img { width: 16px; height: 16px; border-radius: 4px; }
+.pump-val { display: grid; justify-items: end; gap: 3px; }
+.pump-val s { font-size: 0.8rem; color: var(--muted); text-decoration-color: var(--muted); font-variant-numeric: tabular-nums; }
+.pump-digits {
+  display: inline-flex; align-items: baseline; gap: 4px; padding: 6px 10px 5px; border-radius: 8px;
+  background: #0b0a0a repeating-linear-gradient(0deg, rgba(241,241,241,0.035) 0 1px, transparent 1px 3px);
+  border: 1px solid rgba(255,126,39,0.3);
+}
+.pump-digits small { font-size: 0.78rem; font-weight: 700; color: var(--orange); }
+.pump-digits b { min-width: 3.1ch; text-align: right; font-size: clamp(1.9rem, 8.5vw, 2.5rem); font-weight: 800; line-height: 1; letter-spacing: -0.02em; color: var(--orange); font-variant-numeric: tabular-nums; }
+.pump-mini { display: grid; gap: 2px; padding-top: 10px; }
+.pump-mini li { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 5px 0; font-size: 0.84rem; }
+.pump-mini span { color: var(--fg2); font-weight: 600; }
+.pump-mini em { font-style: normal; font-size: 0.76rem; color: var(--muted); white-space: nowrap; }
+.pump-note { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 0.74rem; line-height: 1.5; color: var(--muted); }
+
+/* ═════════ Apps: chips, cards e selos das lojas ═════════ */
+.mt-app-chip { gap: 7px; padding: 3px 11px 3px 4px; }
+.mt-app-chip img { width: 20px; height: 20px; border-radius: 5px; }
+.mt-app-chip.is-muted { padding: 3px 11px; }
+
+.mt-appcard { position: relative; overflow: hidden; padding: 20px; transition: border-color 0.25s, transform 0.35s var(--ease-out); }
+.mt-appcard:hover { border-color: var(--line-orange); transform: translateY(-3px); }
+.mt-appcard-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.mt-appcard-head img { width: 56px; height: 56px; border-radius: 13px; border: 1px solid var(--line-strong); }
+.mt-appcard-head h3 { margin: 0; font-size: 1.15rem; }
+.mt-appcard-head p { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+
+.mt-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.store-badge {
+  display: inline-flex; align-items: center; gap: 9px; min-height: 50px; padding: 7px 16px 7px 12px;
+  background: #000; color: #fff; border: 1px solid rgba(241,241,241,0.32); border-radius: 10px; text-decoration: none;
+  transition: border-color 0.2s, transform 0.25s var(--ease-out);
+}
+.store-badge:hover { border-color: var(--orange); transform: translateY(-2px); }
+.store-badge:active { transform: scale(0.97); }
+.store-badge .sb-logo { width: 26px; height: 26px; flex-shrink: 0; }
+.store-badge span { display: grid; line-height: 1.05; font-size: 1.12rem; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; }
+.store-badge small { font-size: 0.64rem; font-weight: 500; letter-spacing: 0.02em; }
+.store-badge.is-small { min-height: 44px; padding: 5px 13px 5px 10px; border-radius: 9px; }
+.store-badge.is-small .sb-logo { width: 20px; height: 20px; }
+.store-badge.is-small span { font-size: 0.95rem; }
+.store-badge.is-small small { font-size: 0.58rem; }
+.mt-item .mt-badges { margin-top: 10px; }
+.mt-appcard .store-badge { flex: 1 1 140px; justify-content: center; padding-left: 10px; padding-right: 12px; }
+.mt-appcard .store-badge span { font-size: 1rem; }
+
+/* ═════════ Passos: número + mini Linha de Carga (1, 2, 3 células) ═════════ */
+.mt-steps .step-n { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.step-cells { display: inline-flex; gap: 3px; }
+.step-cells i { width: 12px; height: 5px; background: var(--cell-off); transform: skewX(-27.6deg); }
+.step-n[data-n="1"] i:nth-child(-n+1), .step-n[data-n="2"] i:nth-child(-n+2), .step-n[data-n="3"] i:nth-child(-n+3) { background: var(--orange); }
+
+/* ═════════ Interações ═════════ */
+.mt-item { transition: border-color 0.25s, transform 0.35s var(--ease-out); }
+.mt-item:hover { border-color: var(--line-orange); transform: translateY(-2px); }
+.mt-go, .mt-show, .btn-primary, .btn-wa, .btn-ghost, .mt-near { transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s var(--ease-out); }
+.mt-go:active, .mt-show:active, .btn-primary:active, .btn-wa:active, .btn-ghost:active, .mt-near:active { transform: scale(0.97); }
+.mt-near[aria-busy="true"] svg { animation: radar 1s linear infinite; }
+@keyframes radar { to { transform: rotate(360deg); } }
+.mt-km { animation: pop 0.45s var(--ease-out) both; }
+@keyframes pop { from { transform: scale(0.6); opacity: 0; } }
+
+/* ═════════ Movimento (só com JS e sem "reduzir movimento") ═════════ */
+@media (prefers-reduced-motion: no-preference) {
+  html.js .mt-in { animation: fadeUp 0.8s var(--ease-out) both; animation-delay: calc(var(--d, 0) * 110ms + 80ms); }
+  html.js .mt-h1 .mt-line > span { animation: lineUp 0.9s var(--ease-out) both; animation-delay: calc(var(--d, 0) * 110ms + 80ms); }
+  html.js .tarja-draw {
+    background: linear-gradient(var(--orange), var(--orange)) left center / 0% 100% no-repeat;
+    color: var(--white); animation: tarjaDraw 0.7s var(--ease-out) forwards; animation-delay: 0.75s;
+  }
+  html.js .lc-charge i { animation: cellOn 0.35s var(--ease-out) both; }
+  html.js .lc-charge i:nth-child(-n+7) { background: var(--cell-off); animation-name: cellFill; }
+  html.js .lc-charge i:nth-child(1) { animation-delay: 0.25s; } html.js .lc-charge i:nth-child(2) { animation-delay: 0.32s; }
+  html.js .lc-charge i:nth-child(3) { animation-delay: 0.39s; } html.js .lc-charge i:nth-child(4) { animation-delay: 0.46s; }
+  html.js .lc-charge i:nth-child(5) { animation-delay: 0.53s; } html.js .lc-charge i:nth-child(6) { animation-delay: 0.6s; }
+  html.js .lc-charge i:nth-child(7) { animation-delay: 0.67s; }
+  html.js .lc-charge i:nth-child(8) { animation: cellPulse 1.6s ease-in-out 1.1s infinite; }
+
+  html.js .pump-rows li { animation: fadeUp 0.7s var(--ease-out) both; animation-delay: calc(var(--i, 0) * 120ms + 450ms); }
+  html.js .mt-item { animation: fadeUp 0.6s var(--ease-out) both; animation-delay: calc(var(--i, 0) * 70ms); }
+
+  html.js [data-reveal] .container { opacity: 0; transform: translateY(26px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+  html.js [data-reveal].is-in .container { opacity: 1; transform: none; }
+  html.js [data-reveal] .mt-steps li, html.js [data-reveal] .mt-appcard, html.js [data-reveal] .lp-faq details {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out), border-color 0.25s;
+    transition-delay: calc(var(--i, 0) * 110ms + 200ms);
+  }
+  html.js [data-reveal].is-in .mt-steps li, html.js [data-reveal].is-in .mt-appcard, html.js [data-reveal].is-in .lp-faq details { opacity: 1; transform: none; }
+  html.js [data-reveal].is-in .mt-appcard:hover { transform: translateY(-3px); transition-delay: 0s; }
+  html.js [data-reveal] .step-cells i { transition: background-color 0.3s; }
+  html.js [data-reveal]:not(.is-in) .step-cells i { background: var(--cell-off) !important; }
+  html.js [data-reveal].is-in .step-cells i:nth-child(1) { transition-delay: 0.6s; }
+  html.js [data-reveal].is-in .step-cells i:nth-child(2) { transition-delay: 0.75s; }
+  html.js [data-reveal].is-in .step-cells i:nth-child(3) { transition-delay: 0.9s; }
+}
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes lineUp { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes tarjaDraw { to { background-size: 100% 100%; color: var(--black); } }
+@keyframes cellFill { from { background: var(--cell-off); } to { background: var(--orange); } }
+@keyframes cellOn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes cellPulse { 0%, 100% { background: var(--cell-off); } 50% { background: rgba(255, 126, 39, 0.7); } }
+
+/* ═════════ Layout ═════════ */
+@media (min-width: 720px) {
+  .pump { padding: 22px 22px 16px; }
+  .pump::before { left: 22px; right: 22px; }
+}
+@media (min-width: 961px) {
+  .mt-hero--app { padding: 64px 0 56px; }
+  .mt-hero-grid { grid-template-columns: minmax(0, 1fr) 440px; gap: 56px; align-items: center; }
+  .mt-hero--app .lp-h1 { font-size: clamp(2.4rem, 4vw, 3.4rem); }
+}
+@media (max-width: 380px) {
+  .store-badge span { font-size: 1rem; }
+  .pump-st strong { font-size: 0.94rem; }
+}
