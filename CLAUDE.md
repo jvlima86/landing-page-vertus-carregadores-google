@@ -48,7 +48,7 @@ Assets de marca em `assets/`: `logo-vertus-mob.svg` (laranja, nav), `logo-vertus
 7. `#usina-eletroposto` — por que gerar a energia que o carregador consome (compensação por GD, sem números de margem).
 8. `#para-quem` — 6 segmentos + CTA.
 9. `#equipamentos` — 30 / 60 / 120 kW (NeoCharge, fotos reais do fornecedor), faturamento bruto estimado com tarifa de referência R$ 1,99/kWh, CTA. Carrossel ≤720 px.
-10. `#mapa` — Google Maps (só RMF no enquadramento inicial, maxZoom 13), fallback estático `assets/mapa-fallback.webp`, stats operacionais, lista de pontos.
+10. `#mapa` — Google Maps (só RMF no enquadramento inicial, maxZoom 13), fallback estático `assets/mapa-fallback.webp`, stats operacionais, lista de pontos em 3 grupos: abertos ao público, condomínios (uso dos moradores, `condo: true` em `POINTS`) e em contratação. Moove Montese saiu em 15/10/2026.
 11. `#sobre` — vídeo `carro_chegando.mp4` (só desktop; imagem no mobile), copy "Uma unidade Vertus Solar".
 12. `#faq` — 11 perguntas (`<details name="faq">`), espelhadas no JSON-LD FAQPage.
 13. `#contato` — formulário `#leadForm` + foto da consultora (desktop) / linha compacta (mobile).
@@ -113,8 +113,8 @@ Página para quem **recarrega** (05/10/2026): mapa Google (mesmo estilo escuro e
 
 - **Estações:** array `ESTACOES` em `motoristas/estacoes.js` (arquivo único de dados, lido pela `/motoristas` e pela `/motorista-app`) (nome, endereço, lat/lng, potência, conector, app Tupi ou V Recargas, preço). Condomínios ficam de fora (uso dos moradores). `lat: null` = sem coordenada confirmada: entra na lista, sem pino, e a rota usa o texto em `rota`.
 - **Preços:** `preco` (público) e `precoApp` (motorista de app, já com o cupom) em `ESTACOES`. Decisão do dono (05/10/2026): **mostrar o preço que fica para o motorista, nunca o percentual de desconto.** Hoje: Lauro Maia R$ 1,79 / R$ 1,29; Arena Célio Santos R$ 2,09 / R$ 1,89; demais 'no app'.
-- **Apps de recarga:** `APPS` em `estacoes.js` (Tupi Recarga: Play `com.tupinamba` / App Store `id1499575119`; V Recargas: Play `app.vrecargas` / App Store `id6783077410`). Cada estação tem `app`; a página mostra o app na lista, no quadro de preços e no balão do mapa, link da loja certa pelo aparelho (iPhone → App Store; demais → Google Play) e a seção `#apps` ("Qual app usar"). Tupi: Cometa, Vila Peri (e Pamil); V Recargas: Lauro Maia e Super Guará Theberge.
-- **Em breve:** `emBreve: true` (hoje o Super Guará Theberge, Av. Dr. Theberge, 2111) → pino tracejado, card tracejado, "em breve" no quadro, fora do "mais perto de mim". Ao inaugurar, apagar o `emBreve` e preencher potência/preços.
+- **Apps de recarga:** `APPS` em `estacoes.js` (Tupi Recarga: Play `com.tupinamba` / App Store `id1499575119`; V Recargas: Play `app.vrecargas` / App Store `id6783077410`). Cada estação tem `app`; a página mostra o app na lista, no quadro de preços e no balão do mapa, link da loja certa pelo aparelho (iPhone → App Store; demais → Google Play) e a seção `#apps` ("Qual app usar"). Tupi: Cometa, Vila Peri, Arena Célio Santos (e Pamil); V Recargas: Lauro Maia e Hub Super Guará Theberge.
+- **Em breve:** `emBreve: true` (hoje nenhuma; o Hub Super Guará Theberge inaugurou em 15/10/2026 com 1 × 60 kW + 2 × 30 kW) → pino tracejado, card tracejado, "em breve" no quadro, fora do "mais perto de mim". Ao inaugurar, apagar o `emBreve` e preencher potência/preços.
 - **Cupom:** o botão abre o WhatsApp **(85) 99616-3937** (bot do CRM) com mensagem que contém "cupom" — é o gatilho do fluxo que pede o print do perfil de motorista e libera o código. O código do cupom **não** aparece na página.
 - **`/motorista-app`** (`motorista-app/index.html`, 09/10/2026): página exclusiva para motorista de Uber/99/inDrive. Mesmo JS/CSS da `/motoristas`, outro layout: quadro de preços no topo (`[data-price-table]`: normal riscado × motorista de app, quem tem preço de motorista primeiro, "—" quando o preço só aparece no app), depois os 3 passos do cupom e por fim onde recarregar.
 - **Visual e movimento** (09/10/2026): `motoristas/visual.css` por cima do `motoristas.css` (conceito "painel de posto"). Na `/motorista-app` o topo tem o painel de preços `[data-pump]` (dígitos que rolam de 0,00 até o preço). Linha de Carga animada `[data-charge]`, títulos que sobem por linha, tarja que se desenha, seções com `data-reveal` (entram ao rolar), pinos caindo no mapa, passos com mini Linha de Carga. Tudo some com `prefers-reduced-motion` e só esconde conteúdo com `html.js`. Selos App Store/Google Play desenhados com os logos oficiais (função `badge()`); ícones dos apps em `assets/apps/` (baixados da App Store).
@@ -124,7 +124,7 @@ Página para quem **recarrega** (05/10/2026): mapa Google (mesmo estilo escuro e
 
 ## Débitos e pendências conhecidas
 
-- Área do motorista: falta potência/conector/app da **Arena Célio Santos** (São Benedito; coordenada recebida em 05/10/2026); preços (público e motorista) de Cometa, Pamil e Vila Peri.
+- Área do motorista: preços (público e motorista) de Cometa, Pamil e Vila Peri.
 
 - Simulador usa recarga a **R$ 1,39/kWh** (premissa do deck), enquanto os cards de `#equipamentos` usam "tarifa de referência R$ 1,99/kWh" — divergência a decidir pelo dono.
 

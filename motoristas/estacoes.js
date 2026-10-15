@@ -23,7 +23,7 @@ window.VertusMotoristas = {
     { id: 'lauro-maia', nome: 'Posto Lauro Maia', endereco: 'R. Lauro Maia, 700 · Fátima', cidade: 'Fortaleza', lat: -3.7466703, lng: -38.5232352, potencia: '60 kW · 2 conectores', conector: 'CCS2', app: 'V Recargas', preco: 'R$ 1,79/kWh', precoApp: 'R$ 1,29/kWh' },
     { id: 'pamil', nome: 'Pamil Parque Araxá', endereco: 'R. Padre Cícero, 750 · Rodolfo Teófilo', cidade: 'Fortaleza', lat: -3.7408827, lng: -38.548699, potencia: '22 kW', conector: 'Tipo 2 (AC)', app: 'Tupi' },
     { id: 'vila-peri', nome: 'Eletroposto Vila Peri', endereco: 'R. Eça de Queirós, 803 · Vila Peri', cidade: 'Fortaleza', lat: -3.7894335, lng: -38.5854335, potencia: '30 kW', conector: 'CCS2', app: 'Tupi' },
-    { id: 'guara-theberge', nome: 'Super Guará Theberge', endereco: 'Av. Dr. Theberge, 2111 · Presidente Kennedy', cidade: 'Fortaleza', lat: -3.7227558, lng: -38.5670778, app: 'V Recargas', emBreve: true },
-    { id: 'arena-celio-santos', nome: 'Arena Célio Santos', endereco: 'São Benedito', cidade: 'Ceará', lat: -3.9977185, lng: -40.8764746, preco: 'R$ 2,09/kWh', precoApp: 'R$ 1,89/kWh' },
+    { id: 'guara-theberge', nome: 'Hub Super Guará Theberge', endereco: 'Av. Dr. Theberge, 2111 · Presidente Kennedy', cidade: 'Fortaleza', lat: -3.7227558, lng: -38.5670778, potencia: '1 × 60 kW + 2 × 30 kW', conector: 'CCS2', app: 'V Recargas' },
+    { id: 'arena-celio-santos', nome: 'Arena Célio Santos', endereco: 'São Benedito', cidade: 'Ceará', lat: -3.9977185, lng: -40.8764746, potencia: '60 kW', conector: 'CCS2', app: 'Tupi', preco: 'R$ 2,09/kWh', precoApp: 'R$ 1,89/kWh' },
   ],
 };

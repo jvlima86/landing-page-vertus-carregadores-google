@@ -479,12 +479,14 @@ function initVertusMap() {
     { name: 'CJA', lat: -3.752672, lng: -38.5516281, active: true, url: 'https://maps.app.goo.gl/RucaCwpC9zvBc5E46' },
     { name: 'Pamil', lat: -3.7408827, lng: -38.548699, active: true, url: 'https://maps.app.goo.gl/u45zsBXsUwPaBTW99' },
     { name: 'Cometa Barão do Rio Branco', lat: -3.7428723, lng: -38.5333842, active: true, url: 'https://maps.app.goo.gl/eudUGrN9tiMtGzEc8' },
+    { name: 'Posto Lauro Maia', lat: -3.7466703, lng: -38.5232352, active: true, url: 'https://www.google.com/maps/search/?api=1&query=-3.7466703,-38.5232352' },
+    { name: 'Grupo Cyclo', lat: -3.7894335, lng: -38.5854335, active: true, url: 'https://maps.app.goo.gl/Zpxp9ocJgXZB6t4B8' },
+    { name: 'Hub Super Guará · Av. Dr. Theberge', lat: -3.7227558, lng: -38.5670778, active: true, url: 'https://www.google.com/maps/search/?api=1&query=-3.7227558,-38.5670778' },
+    { name: 'Arena Célio Santos · São Benedito', lat: -3.9977185, lng: -40.8764746, active: true, url: 'https://www.google.com/maps/search/?api=1&query=-3.9977185,-40.8764746' },
+    { name: 'Condomínio Alto do Parque', lat: -3.7478898, lng: -38.4752003, active: true, condo: true, url: 'https://maps.app.goo.gl/tATcZqTie4jqoVwd7' },
+    { name: 'Condomínio Hortus', lat: -3.7997332, lng: -38.5698613, active: true, condo: true, url: 'https://maps.app.goo.gl/wCk3rErrtyNScsBo7' },
     { name: 'Hotel Laranjeiras · Viçosa do Ceará', lat: -3.5603188, lng: -41.1067186, active: false, url: 'https://maps.app.goo.gl/qjYuREXHVSQjakh66' },
-    { name: 'Moove Montese · 3 pontos', lat: -3.7553811, lng: -38.5414821, active: false, url: 'https://maps.app.goo.gl/nm7ceDKJs2TPhrdJ9' },
-    { name: 'Grupo Cyclo', lat: -3.7894335, lng: -38.5854335, active: false, url: 'https://maps.app.goo.gl/Zpxp9ocJgXZB6t4B8' },
     { name: 'Mineiro Casa de Amigos · Pacoti', lat: -4.2252657, lng: -38.9239553, active: false, url: 'https://maps.app.goo.gl/pKFutvWuo41MMRSHA' },
-    { name: 'Condomínio Alto do Parque', lat: -3.7478898, lng: -38.4752003, active: false, url: 'https://maps.app.goo.gl/tATcZqTie4jqoVwd7' },
-    { name: 'Condomínio Hortus', lat: -3.7997332, lng: -38.5698613, active: false, url: 'https://maps.app.goo.gl/wCk3rErrtyNScsBo7' },
   ];
 
   const map = new google.maps.Map(el, {
@@ -521,7 +523,9 @@ function initVertusMap() {
   POINTS.forEach((p) => {
     const pos = { lat: p.lat, lng: p.lng };
     const marker = new google.maps.Marker({ position: pos, map, icon: p.active ? activeIcon : futureIcon, title: p.name });
-    const status = p.active
+    const status = p.condo
+      ? '<span style="color:#FF7E27;font-weight:700;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em">● Em operação · uso dos moradores</span>'
+      : p.active
       ? '<span style="color:#FF7E27;font-weight:700;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em">● Aberto ao público</span>'
       : '<span style="color:#FF9F54;font-weight:700;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em">◌ Em contratação</span>';
     marker.addListener('click', () => {
@@ -533,7 +537,8 @@ function initVertusMap() {
       infoWindow.open(map, marker);
     });
     // Enquadra só a Região Metropolitana de Fortaleza; os demais aparecem ao afastar o zoom
-    if (isMobile ? p.active : (Math.abs(p.lng + 38.54) < 0.25 && p.lat > -4.0)) metroBounds.extend(pos);
+    const inMetro = Math.abs(p.lng + 38.54) < 0.25 && p.lat > -4.0;
+    if (inMetro && (!isMobile || (p.active && !p.condo))) metroBounds.extend(pos);
   });
 
   const maxZoom = isMobile ? 14 : 13;
