@@ -6,11 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#1E1C1C">
 <meta name="color-scheme" content="dark">
-<meta name="description" content="Carregadores rápidos DC Livoltek, Growatt e Sennan, de 40 kW a 90 kW, com preço à vista e em 12x no cartão. Compre com quem entende e tem operação de eletropostos rodando no Ceará. Fale pelo WhatsApp.">
+<meta name="description" content="Carregadores rápidos DC Livoltek, Growatt e Sennan, de 40 kW a 90 kW, com preço à vista e em 21x no cartão. Compre com quem entende e tem operação de eletropostos rodando no Ceará. Fale pelo WhatsApp.">
 <link rel="canonical" href="https://vertus-mob.com/carregadores">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Carregadores DC com preço claro · Vertus Mob">
-<meta property="og:description" content="De 40 kW a 90 kW, à vista ou em 12x no cartão. Compre com quem entende e tem operação rodando.">
+<meta property="og:description" content="De 40 kW a 90 kW, à vista ou em 21x no cartão. Compre com quem entende e tem operação rodando.">
 <meta property="og:image" content="https://vertus-mob.com/assets/og-vertus-mob.jpg">
 <meta property="og:url" content="https://vertus-mob.com/carregadores">
 <meta name="twitter:card" content="summary_large_image">
@@ -184,7 +184,7 @@ p{margin:0}
   <div class="wrap">
     <span class="kicker">Carregadores DC · Preço claro</span>
     <h1>Compre com quem entende e tem <span class="tarja">operação rodando.</span></h1>
-    <p class="hero-sub">Carregadores rápidos Livoltek, Growatt e Sennan, de 40&nbsp;kW a 90&nbsp;kW, à vista ou em 12x no cartão. Quem vende é quem projeta, instala e opera eletropostos no Ceará.</p>
+    <p class="hero-sub">Carregadores rápidos Livoltek, Growatt e Sennan, de 40&nbsp;kW a 90&nbsp;kW, à vista ou em 21x no cartão. Quem vende é quem projeta, instala e opera eletropostos no Ceará.</p>
     <div class="hero-ctas">
       <a class="btn btn-primary js-wa" href="#" data-msg="Olá! Vim pela página de carregadores da Vertus Mob e quero falar com um consultor." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Falar pelo WhatsApp</a>
       <a class="btn btn-ghost" href="#modelos">Ver modelos e preços</a>
@@ -255,7 +255,7 @@ p{margin:0}
     <div class="faq">
       <details name="faq"><summary>Qual a diferença entre 1 bico e 2 bicos?</summary><div class="faq-a">O bico é o conector que vai no carro. Com 1 bico, o carregador atende um carro por vez. Com 2 bicos, dois carros podem ficar conectados ao mesmo tempo.</div></details>
       <details name="faq"><summary>O preço inclui a instalação?</summary><div class="faq-a">Os preços da página são dos carregadores. A instalação depende da infraestrutura elétrica de cada local, por isso é avaliada caso a caso. Fale pelo WhatsApp para receber a proposta completa.</div></details>
-      <details name="faq"><summary>Quais as formas de pagamento?</summary><div class="faq-a">À vista ou em 12x no cartão. Consulte as condições com o consultor pelo WhatsApp.</div></details>
+      <details name="faq"><summary>Quais as formas de pagamento?</summary><div class="faq-a">À vista ou em 21x no cartão. Consulte as condições com o consultor pelo WhatsApp.</div></details>
       <details name="faq"><summary>Qual potência escolher?</summary><div class="faq-a">Depende do uso e da energia disponível no local. Carregadores de 40 kW atendem bem estacionamentos e comércios; 80 kW e 90 kW são indicados para postos e pontos de passagem com recarga rápida. O consultor ajuda a definir.</div></details>
       <details name="faq"><summary>Vocês atendem fora de Fortaleza?</summary><div class="faq-a">Sim. A Vertus Mob tem eletropostos em Fortaleza e no interior do Ceará. Fale pelo WhatsApp e informe a cidade.</div></details>
     </div>
@@ -293,8 +293,9 @@ p{margin:0}
 
 <script>
 (function () {
-  // Preços da planilha de 22/10/2026; parcela = à vista ÷ 12
-  var PARCELAS = 12;
+  // Preços da planilha de 22/10/2026; parcela = à vista + 22% de juros, em 21x
+  var PARCELAS = 21;
+  var JUROS = 1.22;
   var MODELOS = [
     { marca: 'Livoltek NDC 40',      kw: 40, bicos: 1, vista: 44400,   foto: 'livoltek-ndc40-w1b' },
     { marca: 'Livoltek NDC 40 2B',   kw: 40, bicos: 2, vista: 55200,   foto: 'livoltek-ndc40-w2b' },
@@ -313,7 +314,7 @@ p{margin:0}
   grid.innerHTML = MODELOS.map(function (m) {
     var rot = m.bicos === 1 ? '1 BICO' : m.bicos + ' BICOS';
     var icones = new Array(m.bicos + 1).join('<i></i>') + new Array(3 - m.bicos).join('<i class="off"></i>');
-    var parcela = Math.round(m.vista / PARCELAS * 100) / 100;
+    var parcela = Math.round(m.vista * JUROS * 100 / PARCELAS) / 100;
     var msg = 'Olá! Vim pela página da Vertus Mob e tenho interesse no carregador ' + m.marca +
       ' (' + m.kw + ' kW · ' + rot.toLowerCase() + '), R$ ' + brl(m.vista) + ' à vista ou ' + PARCELAS + 'x de R$ ' + brl(parcela) + '.';
     return '<article class="prod">' +
