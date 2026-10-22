@@ -187,6 +187,18 @@ p{margin:0}
 @media (min-width:721px){
   .dica{display:none}
 }
+
+/* OPERAÇÃO — fotos reais */
+.operacao{padding:56px 0 48px;border-top:1px solid var(--line);background:var(--deep)}
+.operacao h2{margin-top:10px;font-weight:800;font-size:clamp(26px,3.6vw,40px);line-height:1.08;letter-spacing:-.03em}
+.operacao .desc{margin-top:10px;color:var(--gray);max-width:620px}
+.galeria{margin-top:24px;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);padding:4px var(--gutter) 10px;margin-inline:calc(var(--gutter) * -1);overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.galeria::-webkit-scrollbar{display:none}
+.foto-op{position:relative;flex:0 0 min(72vw,300px);aspect-ratio:3/4;margin:0;border-radius:var(--radius-card);overflow:hidden;scroll-snap-align:start;background:var(--charcoal);border:1px solid var(--line)}
+.foto-op.larga{flex-basis:min(86vw,420px)}
+.foto-op img{width:100%;height:100%;object-fit:cover}
+.foto-op figcaption{position:absolute;left:0;right:0;bottom:0;padding:64px 16px 14px;background:linear-gradient(0deg,rgba(21,19,19,.97) 0%,rgba(21,19,19,.88) 45%,rgba(21,19,19,0) 100%);font-weight:700;font-size:15px;line-height:1.3}
+.foto-op figcaption small{display:block;font-weight:600;font-size:11px;letter-spacing:.14em;color:var(--orange);text-transform:uppercase;margin-bottom:4px}
 </style>
 </head>
 <body data-wa-number="5585992230336" data-wa-display="(85) 99223-0336">
@@ -236,6 +248,20 @@ p{margin:0}
       <span class="contador" id="contador"></span>
     </div>
     <p class="nota">1 bico: um carro por vez · 2 bicos: dois carros conectados. Imagens dos fabricantes. Consulte condições de instalação e pagamento.</p>
+  </div>
+</section>
+
+<section class="operacao" aria-label="Fotos da operação">
+  <div class="wrap">
+    <span class="kicker">Operação rodando</span>
+    <h2>Carregadores que a gente instala e opera.</h2>
+    <p class="desc">Fotos reais de eletropostos da Vertus Mob funcionando no Ceará.</p>
+    <div class="galeria">
+      <figure class="foto-op"><img src="assets/operacao/operacao-1.webp" alt="Carregador DC em eletroposto Vertus Mob, com abrigo laranja" width="562" height="1000" loading="lazy"><figcaption><small>Eletroposto Vertus Mob</small>Carregador DC com abrigo e sinalização</figcaption></figure>
+      <figure class="foto-op"><img src="assets/operacao/operacao-2.webp" alt="Carregador DC de 60 kW com dois bicos instalado em base de concreto" width="562" height="1000" loading="lazy"><figcaption><small>60 kW · 2 bicos</small>Instalação em base própria</figcaption></figure>
+      <figure class="foto-op larga"><img src="assets/operacao/operacao-3.webp" alt="Carregador entre duas vagas de recarga pintadas de verde" width="1000" height="750" loading="lazy"><figcaption><small>Vagas de recarga</small>Duas vagas sinalizadas para carregar ao mesmo tempo</figcaption></figure>
+      <figure class="foto-op"><img src="assets/operacao/operacao-4.webp" alt="Carregador Vertus Mob aberto ao público, com QR Code para iniciar a recarga" width="562" height="1000" loading="lazy"><figcaption><small>Aberto ao público</small>Recarga pelo app, com QR Code no carregador</figcaption></figure>
+    </div>
   </div>
 </section>
 
