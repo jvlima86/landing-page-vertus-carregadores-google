@@ -200,6 +200,17 @@ p{margin:0}
 .foto-op figcaption{position:absolute;left:0;right:0;bottom:0;padding:64px 16px 14px;background:linear-gradient(0deg,rgba(21,19,19,.97) 0%,rgba(21,19,19,.88) 45%,rgba(21,19,19,0) 100%);font-weight:700;font-size:15px;line-height:1.3}
 .foto-op figcaption small{display:block;font-weight:600;font-size:11px;letter-spacing:.14em;color:var(--orange);text-transform:uppercase;margin-bottom:4px}
 </style>
+<!-- Meta Pixel (cyclovicosa) -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1216146000327968');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1216146000327968&ev=PageView&noscript=1"></noscript>
 </head>
 <body data-wa-number="5585992230336" data-wa-display="(85) 99223-0336">
 
@@ -347,7 +358,8 @@ p{margin:0}
       '), de R$ ' + brl(m.vista) + ' à vista ou ' + PARCELAS + 'x de R$ ' + brl(parcela(m)) + '. Pode me passar mais informações?';
   };
   var track = function (modelo) {
-    if (window.fbq) window.fbq('track', 'Contact', { content_name: modelo });
+    var m = MODELOS.filter(function (x) { return x.nome === modelo; })[0];
+    if (window.fbq) window.fbq('track', 'Contact', m ? { content_name: modelo, content_category: 'carregador-dc', value: m.vista, currency: 'BRL' } : { content_name: modelo });
     if (window.gtag) window.gtag('event', 'whatsapp_click', { modelo: modelo, pagina: 'carregadores' });
   };
 
@@ -378,9 +390,15 @@ p{margin:0}
 
   var visiveis = function () { return cards.filter(function (c) { return !c.hidden; }); };
 
+  var vistos = {};
+  var interagiu = false;
   function selecionar(i) {
     atual = i;
     var m = MODELOS[i];
+    if (interagiu && !vistos[i] && window.fbq) {
+      vistos[i] = true;
+      window.fbq('track', 'ViewContent', { content_name: m.nome, content_category: 'carregador-dc', value: m.vista, currency: 'BRL' });
+    }
     cards.forEach(function (c) { c.classList.toggle('ativo', +c.dataset.i === i); });
     barNome.textContent = m.nome + ' · ' + m.kw + ' kW';
     barPreco.textContent = PARCELAS + 'x de R$ ' + brl(parcela(m)) + ' no cartão';
@@ -470,6 +488,13 @@ p{margin:0}
     if (a) track(MODELOS[+a.dataset.i].nome);
   });
   barBtn.addEventListener('click', function () { track(MODELOS[+barBtn.dataset.i].nome); });
+
+  ['pointerdown', 'wheel', 'keydown'].forEach(function (ev) {
+    rail.addEventListener(ev, function () { interagiu = true; }, { passive: true });
+  });
+  [prev, next].concat(Array.prototype.slice.call(document.querySelectorAll('.chip'))).forEach(function (b) {
+    b.addEventListener('click', function () { interagiu = true; }, true);
+  });
 
   montarDots();
   selecionar(0);
