@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#1E1C1C">
 <meta name="color-scheme" content="dark">
+<meta name="format-detection" content="telephone=no">
 <meta name="description" content="Carregadores rápidos DC Livoltek, Growatt e Sennan, de 40 kW a 90 kW, com preço à vista e em 21x no cartão. Compre com quem entende e tem operação de eletropostos rodando no Ceará. Fale pelo WhatsApp.">
 <link rel="canonical" href="https://vertus-mob.com/carregadores">
 <meta property="og:type" content="website">
@@ -16,6 +17,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/favicon-180.png">
+<link rel="preload" as="image" href="assets/carregadores/livoltek-ndc40-w1b.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,149 +26,166 @@
   --orange:#FF7E27;--orange-soft:#FF9F54;--black:#1E1C1C;--charcoal:#2A2828;--deep:#151313;
   --gray:#E0E0E0;--white:#F1F1F1;--muted:#9A9A9A;
   --line:rgba(241,241,241,.12);--line-orange:rgba(255,126,39,.28);
-  --wa:#25D366;
-  --radius-card:12px;--radius-ctl:8px;
+  --radius-card:16px;
   --font:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --wrap:1180px;--gutter:clamp(16px,4vw,40px);
+  --safe-b:env(safe-area-inset-bottom,0px);
   color-scheme:dark;
 }
-*{box-sizing:border-box}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 body{margin:0;background:var(--black);color:var(--white);font-family:var(--font);font-size:17px;line-height:1.6;overflow-x:hidden}
 img,svg{max-width:100%;height:auto;display:block}
 a{color:inherit}
+button{font:inherit;color:inherit}
 h1,h2,h3{margin:0;text-wrap:balance}
 p{margin:0}
 .wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding-inline:var(--gutter)}
-:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:4px}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:6px}
 .tarja{background:var(--orange);color:var(--black);padding:.02em .16em;box-decoration-break:clone;-webkit-box-decoration-break:clone;font-weight:800}
 .kicker{display:inline-flex;align-items:center;gap:10px;color:var(--orange);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
 .kicker::before{content:"";width:22px;height:2px;background:var(--orange);display:inline-block}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:inherit;font-weight:700;font-size:16px;line-height:1;padding:16px 24px;border-radius:999px;border:1px solid transparent;cursor:pointer;text-decoration:none;transition:background .18s,border-color .18s,transform .18s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:16px;line-height:1;min-height:52px;padding:0 24px;border-radius:999px;border:1px solid transparent;cursor:pointer;text-decoration:none;transition:background .18s,border-color .18s,transform .12s;touch-action:manipulation}
 .btn svg{width:20px;height:20px;fill:currentColor;flex:none}
 .btn-primary{background:var(--orange);color:var(--black)}
-.btn-primary:hover{background:var(--orange-soft)}
-.btn-ghost{background:transparent;color:var(--white);border-color:var(--line)}
-.btn-ghost:hover{border-color:var(--white)}
-.btn:active{transform:translateY(1px)}
-.section{padding:88px 0}
-.section-head{max-width:720px;margin-bottom:40px}
-.section-title{margin-top:14px;font-weight:800;font-size:clamp(30px,4vw,44px);line-height:1.08;letter-spacing:-.03em}
-.section-desc{margin-top:14px;color:var(--gray);font-size:18px}
+@media (hover:hover){.btn-primary:hover{background:var(--orange-soft)}}
+.btn:active{transform:scale(.97)}
+.grade{background-image:linear-gradient(rgba(255,126,39,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,126,39,.05) 1px,transparent 1px);background-size:36px 36px}
 
 /* NAV */
-.nav{position:sticky;top:0;z-index:20;background:rgba(30,28,28,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px}
-.nav-logo img{height:34px;width:auto}
-.nav .btn{padding:12px 18px;font-size:14px}
+.nav{position:sticky;top:0;z-index:20;background:rgba(30,28,28,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
+.nav-logo img{height:30px;width:auto}
+.nav .btn{min-height:42px;padding:0 16px;font-size:14px}
 
 /* HERO */
-.hero{position:relative;overflow:hidden;padding:72px 0 64px;
-  background-image:linear-gradient(rgba(255,126,39,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,126,39,.05) 1px,transparent 1px);background-size:36px 36px}
-.hero h1{margin-top:20px;font-weight:800;font-size:clamp(40px,6.4vw,76px);line-height:1.04;letter-spacing:-.035em;max-width:900px}
-.hero-sub{margin-top:24px;font-size:clamp(17px,2vw,20px);color:var(--gray);max-width:640px}
-.hero-ctas{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-.hero-ctas .btn{padding:18px 28px;font-size:17px}
-.hero-phone{margin-top:16px;font-size:15px;color:var(--muted)}
-.hero-phone b{color:var(--white);font-weight:700}
-.hero .lc{margin-top:48px;width:min(560px,100%)}
+.hero{padding:44px 0 30px}
+.hero h1{margin-top:16px;font-weight:800;font-size:clamp(36px,6vw,72px);line-height:1.04;letter-spacing:-.035em;max-width:880px}
+.hero-sub{margin-top:18px;font-size:clamp(16px,2vw,19px);color:var(--gray);max-width:620px}
+.hero-ctas{margin-top:26px;display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+.hero-ctas .btn{min-height:56px;padding:0 28px;font-size:17px}
+.hero-phone{font-size:15px;color:var(--muted)}
+.hero-phone b{color:var(--white)}
 
-/* CREDENCIAIS */
-.cred{border-block:1px solid var(--line);background:var(--deep)}
-.cred .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
-.cred-item{padding:26px 20px;border-left:1px solid var(--line)}
-.cred-item:first-child{border-left:0;padding-left:0}
-.cred-n{font-weight:800;font-size:clamp(26px,3vw,34px);letter-spacing:-.02em;color:var(--orange);font-variant-numeric:tabular-nums;line-height:1.1}
-.cred-l{margin-top:6px;font-size:14px;color:var(--gray);line-height:1.4}
+/* CATÁLOGO */
+.catalogo{padding:34px 0 40px;border-top:1px solid var(--line)}
+.cat-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.cat-head h2{margin-top:10px;font-weight:800;font-size:clamp(26px,3.6vw,40px);line-height:1.08;letter-spacing:-.03em}
+.cat-arrows{display:flex;gap:10px}
+.arrow{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--charcoal);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .18s,opacity .18s}
+.arrow svg{width:20px;height:20px;stroke:var(--white);fill:none;stroke-width:2.2}
+.arrow:disabled{opacity:.35;cursor:default}
+@media (hover:hover){.arrow:not(:disabled):hover{border-color:var(--orange)}}
 
-/* PRODUTOS */
-.grid-prod{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.prod{display:flex;flex-direction:column;background:var(--charcoal);border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;transition:border-color .18s}
-.prod:hover{border-color:var(--line-orange)}
-.prod-foto{background:#fff;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center}
-.prod-foto img{width:100%;height:100%;object-fit:contain}
-.prod-body{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
+.chips{margin-top:20px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;min-height:40px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line);background:transparent;font-weight:700;font-size:14px;cursor:pointer;transition:background .18s,border-color .18s,color .18s;touch-action:manipulation}
+.chip[aria-pressed="true"]{background:var(--white);color:var(--black);border-color:var(--white)}
+
+.rail{margin-top:22px;display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);padding:6px var(--gutter) 18px;margin-inline:calc(var(--gutter) * -1);overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.rail::-webkit-scrollbar{display:none}
+.prod{flex:0 0 min(82vw,340px);scroll-snap-align:start;scroll-snap-stop:always;display:flex;flex-direction:column;background:var(--charcoal);border:1.5px solid var(--line);border-radius:var(--radius-card);overflow:hidden;transition:border-color .2s,transform .2s;cursor:pointer}
+.prod.ativo{border-color:var(--orange)}
+.prod[hidden]{display:none}
+.prod-foto{position:relative;background:#fff;aspect-ratio:16/11}
+.prod-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:4%}
+.prod-tag{position:absolute;left:12px;top:12px;background:var(--black);color:var(--white);font-weight:700;font-size:12px;letter-spacing:.1em;padding:6px 10px;border-radius:999px}
+.prod-body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
 .prod-marca{font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
-.prod-kw{margin-top:6px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.prod-kw strong{font-weight:800;font-size:44px;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.prod-kw{margin-top:6px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.prod-kw strong{font-weight:800;font-size:42px;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
 .prod-kw strong small{font-size:.55em;margin-left:.12em}
 .bicos{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:12px;letter-spacing:.12em;border:1.5px solid var(--line);border-radius:999px;padding:6px 12px 6px 9px}
 .bicos i{width:9px;height:14px;border-radius:3px;background:var(--orange)}
 .bicos i.off{background:transparent;border:1.5px solid rgba(241,241,241,.4)}
 .bicos.um{border-color:var(--orange)}
-.prod-precos{margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+.prod-precos{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
 .cap{font-weight:600;font-size:11px;letter-spacing:.14em;color:var(--muted)}
-.vista{margin-top:2px;font-weight:800;font-size:30px;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
-.parc{margin-top:4px;font-weight:700;font-size:17px;color:var(--orange);font-variant-numeric:tabular-nums}
+.vista{margin-top:2px;font-weight:800;font-size:28px;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.parc{margin-top:2px;font-weight:700;font-size:16px;color:var(--orange);font-variant-numeric:tabular-nums}
 .parc span{color:var(--gray);font-weight:500}
 .vista small,.parc small{font-size:.62em;font-weight:600;margin-right:.25em}
-.prod .btn{margin-top:22px;width:100%}
-.nota-precos{margin-top:22px;font-size:14px;color:var(--muted)}
+.prod .btn{margin-top:18px;width:100%}
+
+.rail-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.dots{display:flex;gap:6px;align-items:center}
+.dot{width:8px;height:8px;border-radius:999px;background:rgba(241,241,241,.25);border:0;padding:0;cursor:pointer;transition:width .25s,background .25s}
+.dot.on{width:26px;background:var(--orange)}
+.contador{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.contador b{color:var(--white)}
+.dica{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+.dica svg{width:18px;height:18px;stroke:var(--orange);fill:none;stroke-width:2;animation:nudge 1.6s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+.nota{margin-top:16px;font-size:13.5px;color:var(--muted);line-height:1.5}
+
+/* CREDENCIAIS */
+.cred{border-block:1px solid var(--line);background:var(--deep)}
+.cred .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.cred-item{padding:22px 18px;border-left:1px solid var(--line)}
+.cred-item:first-child{border-left:0;padding-left:0}
+.cred-n{font-weight:800;font-size:clamp(24px,3vw,32px);letter-spacing:-.02em;color:var(--orange);font-variant-numeric:tabular-nums;line-height:1.1}
+.cred-l{margin-top:4px;font-size:14px;color:var(--gray);line-height:1.4}
 
 /* POR QUE */
-.porque{background:var(--deep);border-block:1px solid var(--line)}
-.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.card{background:var(--charcoal);border:1px solid var(--line);border-radius:var(--radius-card);padding:26px}
-.card-n{font-weight:800;font-size:15px;color:var(--orange);font-variant-numeric:tabular-nums;letter-spacing:.06em}
-.card h3{margin-top:14px;font-weight:700;font-size:20px;line-height:1.2;letter-spacing:-.01em}
-.card p{margin-top:10px;color:var(--gray);font-size:15.5px;line-height:1.55}
-
-/* PASSOS */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
-.step{border-top:2px solid var(--orange);padding-top:18px}
-.step b{display:block;font-weight:800;font-size:13px;letter-spacing:.14em;color:var(--orange)}
-.step h3{margin-top:8px;font-weight:700;font-size:19px;line-height:1.25}
-.step p{margin-top:8px;color:var(--gray);font-size:15.5px}
-
-/* FAQ */
-.faq{max-width:820px}
-.faq details{border-bottom:1px solid var(--line)}
-.faq summary{cursor:pointer;list-style:none;padding:20px 40px 20px 0;font-weight:700;font-size:18px;position:relative}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";position:absolute;right:4px;top:16px;font-size:26px;font-weight:500;color:var(--orange)}
-.faq details[open] summary::after{content:"–"}
-.faq-a{padding:0 0 22px;color:var(--gray)}
+.porque{padding:64px 0}
+.porque h2{margin-top:12px;font-weight:800;font-size:clamp(26px,3.6vw,40px);line-height:1.08;letter-spacing:-.03em}
+.grid-3{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--charcoal);border:1px solid var(--line);border-radius:var(--radius-card);padding:22px}
+.card h3{font-weight:700;font-size:19px;line-height:1.25}
+.card p{margin-top:8px;color:var(--gray);font-size:15.5px;line-height:1.55}
 
 /* CTA FINAL */
-.cta-final{text-align:left;padding:96px 0;background-image:linear-gradient(rgba(255,126,39,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,126,39,.05) 1px,transparent 1px);background-size:36px 36px;border-top:1px solid var(--line)}
-.cta-final h2{font-weight:800;font-size:clamp(34px,5vw,58px);line-height:1.05;letter-spacing:-.03em;max-width:820px}
-.cta-final p{margin-top:18px;color:var(--gray);font-size:18px;max-width:600px}
-.cta-final .btn{margin-top:30px;padding:18px 30px;font-size:17px}
-.cta-final .lc{margin-top:48px;width:min(734px,100%)}
+.cta-final{padding:72px 0 80px;border-top:1px solid var(--line)}
+.cta-final h2{margin-top:14px;font-weight:800;font-size:clamp(32px,5vw,56px);line-height:1.05;letter-spacing:-.03em;max-width:820px}
+.cta-final p{margin-top:16px;color:var(--gray);font-size:18px;max-width:600px}
+.cta-final .btn{margin-top:26px;min-height:58px;padding:0 30px;font-size:17px}
+.cta-final .lc{margin-top:40px;width:min(734px,100%)}
 
 /* FOOTER */
-.footer{padding:44px 0 110px;border-top:1px solid var(--line);background:var(--deep)}
-.footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:flex-end}
-.footer img{height:30px;width:auto}
-.footer p{margin-top:12px;font-size:14px;color:var(--muted);line-height:1.5}
+.footer{padding:36px 0 calc(120px + var(--safe-b));border-top:1px solid var(--line);background:var(--deep)}
+.footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:flex-end}
+.footer img{height:28px;width:auto}
+.footer p{margin-top:10px;font-size:14px;color:var(--muted);line-height:1.5}
 .footer-r{text-align:right;font-size:14px;color:var(--muted)}
 .footer-r a{text-decoration:none;color:var(--gray)}
 
-/* WHATS FLUTUANTE */
-.float-wa{position:fixed;right:20px;bottom:20px;z-index:30;width:60px;height:60px;border-radius:50%;background:var(--wa);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.35)}
-.float-wa svg{width:32px;height:32px;fill:#fff}
-.bar-wa{display:none}
+/* BARRA FIXA — acompanha o modelo em destaque */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(21,19,19,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:10px 0 calc(10px + var(--safe-b));transform:translateY(0);transition:transform .25s}
+.bar .wrap{display:flex;align-items:center;gap:14px}
+.bar-info{flex:1;min-width:0;line-height:1.25}
+.bar-info small{display:block;font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.bar-info b{display:block;font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-info span{display:block;font-size:13px;color:var(--orange);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .btn{flex:none;min-height:50px;padding:0 20px}
 
 @media (max-width:960px){
-  .grid-prod{grid-template-columns:repeat(2,1fr)}
-  .grid-4,.steps{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:1fr}
   .cred .wrap{grid-template-columns:repeat(2,1fr)}
   .cred-item:nth-child(3){border-left:0;padding-left:0}
   .cred-item:nth-child(n+3){border-top:1px solid var(--line)}
 }
 @media (max-width:720px){
-  .section{padding:64px 0}
-  .hero{padding:48px 0 44px}
-  .nav .btn span{display:none}
-  .grid-prod{grid-template-columns:1fr}
+  .hero{padding:26px 0 22px}
+  .hero h1{font-size:34px}
+  .hero-sub{margin-top:14px}
+  .hero-ctas{margin-top:20px}
+  .catalogo{padding-top:26px}
   .prod-foto{aspect-ratio:16/10}
-  .grid-4,.steps{grid-template-columns:1fr}
+  .prod-body{padding:16px 18px 18px}
+  .prod-kw strong{font-size:38px}
+  .vista{font-size:26px}
+  .prod .btn{margin-top:14px}
   .hero-ctas .btn{width:100%}
-  .float-wa{display:none}
-  .bar-wa{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(21,19,19,.96);border-top:1px solid var(--line)}
-  .bar-wa .btn{width:100%}
+  .hero-phone{width:100%;text-align:center}
+  .cat-arrows{display:none}
+  .nav .btn span{display:none}
+  .nav .btn{width:42px;padding:0}
   .footer-r{text-align:left}
+  .bar .btn span.lg{display:none}
+}
+@media (min-width:721px){
+  .dica{display:none}
 }
 </style>
 </head>
@@ -180,17 +199,43 @@ p{margin:0}
 </header>
 
 <main>
-<section class="hero">
+<section class="hero grade">
   <div class="wrap">
     <span class="kicker">Carregadores DC · Preço claro</span>
     <h1>Compre com quem entende e tem <span class="tarja">operação rodando.</span></h1>
-    <p class="hero-sub">Carregadores rápidos Livoltek, Growatt e Sennan, de 40&nbsp;kW a 90&nbsp;kW, à vista ou em 21x no cartão. Quem vende é quem projeta, instala e opera eletropostos no Ceará.</p>
+    <p class="hero-sub">Carregadores rápidos de 40&nbsp;kW a 90&nbsp;kW, à vista ou em 21x no cartão. Escolha o modelo e fale direto com um consultor pelo WhatsApp.</p>
     <div class="hero-ctas">
-      <a class="btn btn-primary js-wa" href="#" data-msg="Olá! Vim pela página de carregadores da Vertus Mob e quero falar com um consultor." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Falar pelo WhatsApp</a>
-      <a class="btn btn-ghost" href="#modelos">Ver modelos e preços</a>
+      <a class="btn btn-primary js-wa" href="#" data-msg="Olá! Vim pela página de carregadores da Vertus Mob e quero falar com um consultor." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Falar com um consultor</a>
+      <span class="hero-phone">WhatsApp <b class="js-wa-display">(85) 99223-0336</b></span>
     </div>
-    <p class="hero-phone">WhatsApp <b class="js-wa-display">(85) 99223-0336</b></p>
-    <img class="lc" src="assets/linha-de-carga.svg" alt="" width="734" height="40">
+  </div>
+</section>
+
+<section class="catalogo" id="modelos" aria-label="Catálogo de carregadores">
+  <div class="wrap">
+    <div class="cat-head">
+      <div>
+        <span class="kicker">Modelos e preços</span>
+        <h2>Deslize e escolha o seu.</h2>
+      </div>
+      <div class="cat-arrows">
+        <button class="arrow" id="prev" type="button" aria-label="Modelo anterior"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="arrow" id="next" type="button" aria-label="Próximo modelo"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+    <div class="chips" role="group" aria-label="Filtrar modelos">
+      <button class="chip" type="button" data-f="todos" aria-pressed="true">Todos</button>
+      <button class="chip" type="button" data-f="40" aria-pressed="false">40 kW</button>
+      <button class="chip" type="button" data-f="60+" aria-pressed="false">60 kW ou mais</button>
+      <button class="chip" type="button" data-f="2b" aria-pressed="false">2 bicos</button>
+    </div>
+    <div class="rail" id="rail" tabindex="0" aria-label="Carregadores — deslize para o lado"></div>
+    <div class="rail-foot">
+      <div class="dots" id="dots"></div>
+      <span class="dica" aria-hidden="true">Deslize para o lado <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <span class="contador" id="contador"></span>
+    </div>
+    <p class="nota">1 bico: um carro por vez · 2 bicos: dois carros conectados. Imagens dos fabricantes. Consulte condições de instalação e pagamento.</p>
   </div>
 </section>
 
@@ -203,69 +248,22 @@ p{margin:0}
   </div>
 </section>
 
-<section class="section" id="modelos">
+<section class="porque">
   <div class="wrap">
-    <div class="section-head">
-      <span class="kicker">Modelos e preços</span>
-      <h2 class="section-title">Escolha o carregador. O preço está aqui.</h2>
-      <p class="section-desc">Seis modelos de carga rápida em corrente contínua. Clique em "Quero este" e fale com um consultor sobre o modelo escolhido.</p>
-    </div>
-    <div class="grid-prod" id="gridProd"></div>
-    <p class="nota-precos">Imagens dos fabricantes. Consulte condições de instalação e pagamento.</p>
-  </div>
-</section>
-
-<section class="section porque">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="kicker">Por que a Vertus Mob</span>
-      <h2 class="section-title">A gente usa o que vende.</h2>
-      <p class="section-desc">A Vertus Mob tem rede própria de eletropostos funcionando. Você compra de quem projeta, instala e opera carregadores no dia a dia.</p>
-    </div>
-    <div class="grid-4">
-      <div class="card"><div class="card-n">01</div><h3>Operação rodando</h3><p>Rede própria de eletropostos no Ceará, em postos, condomínios, hotéis e comércios.</p></div>
-      <div class="card"><div class="card-n">02</div><h3>Projeto e instalação</h3><p>Equipe própria cuida do projeto elétrico, da instalação e da ativação do carregador.</p></div>
-      <div class="card"><div class="card-n">03</div><h3>Energia solar integrada</h3><p>Se quiser, o carregador pode ser ligado a uma usina solar da Vertus Solar.</p></div>
-      <div class="card"><div class="card-n">04</div><h3>Gestão opcional</h3><p>Você decide: opera sozinho ou deixa a gestão do eletroposto com a Vertus Mob.</p></div>
+    <span class="kicker">Por que a Vertus Mob</span>
+    <h2>Você compra de quem opera eletropostos.</h2>
+    <div class="grid-3">
+      <div class="card"><h3>Operação rodando</h3><p>Rede própria de eletropostos no Ceará, em postos, condomínios, hotéis e comércios.</p></div>
+      <div class="card"><h3>Projeto e instalação</h3><p>Equipe própria cuida do projeto elétrico, da instalação e da ativação do carregador.</p></div>
+      <div class="card"><h3>Gestão opcional</h3><p>Você decide: opera sozinho ou deixa a gestão do eletroposto com a Vertus Mob.</p></div>
     </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="kicker">Como funciona</span>
-      <h2 class="section-title">Do WhatsApp ao carregador ligado.</h2>
-    </div>
-    <div class="steps">
-      <div class="step"><b>PASSO 1</b><h3>Fale pelo WhatsApp</h3><p>Diga o modelo que interessa e onde ele vai ser instalado.</p></div>
-      <div class="step"><b>PASSO 2</b><h3>Análise do local</h3><p>A equipe avalia a infraestrutura elétrica e indica o melhor modelo.</p></div>
-      <div class="step"><b>PASSO 3</b><h3>Proposta</h3><p>Você recebe a proposta com o valor do equipamento e da instalação.</p></div>
-      <div class="step"><b>PASSO 4</b><h3>Instalação</h3><p>A Vertus Mob instala, testa e entrega o carregador funcionando.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="section porque">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="kicker">Dúvidas</span>
-      <h2 class="section-title">Perguntas frequentes</h2>
-    </div>
-    <div class="faq">
-      <details name="faq"><summary>Qual a diferença entre 1 bico e 2 bicos?</summary><div class="faq-a">O bico é o conector que vai no carro. Com 1 bico, o carregador atende um carro por vez. Com 2 bicos, dois carros podem ficar conectados ao mesmo tempo.</div></details>
-      <details name="faq"><summary>O preço inclui a instalação?</summary><div class="faq-a">Os preços da página são dos carregadores. A instalação depende da infraestrutura elétrica de cada local, por isso é avaliada caso a caso. Fale pelo WhatsApp para receber a proposta completa.</div></details>
-      <details name="faq"><summary>Quais as formas de pagamento?</summary><div class="faq-a">À vista ou em 21x no cartão. Consulte as condições com o consultor pelo WhatsApp.</div></details>
-      <details name="faq"><summary>Qual potência escolher?</summary><div class="faq-a">Depende do uso e da energia disponível no local. Carregadores de 40 kW atendem bem estacionamentos e comércios; 80 kW e 90 kW são indicados para postos e pontos de passagem com recarga rápida. O consultor ajuda a definir.</div></details>
-      <details name="faq"><summary>Vocês atendem fora de Fortaleza?</summary><div class="faq-a">Sim. A Vertus Mob tem eletropostos em Fortaleza e no interior do Ceará. Fale pelo WhatsApp e informe a cidade.</div></details>
-    </div>
-  </div>
-</section>
-
-<section class="cta-final">
+<section class="cta-final grade">
   <div class="wrap">
     <span class="kicker">Atendimento pelo WhatsApp</span>
-    <h2 style="margin-top:16px">Fale com quem tem <span class="tarja">eletroposto rodando.</span></h2>
+    <h2>Fale com quem tem <span class="tarja">eletroposto rodando.</span></h2>
     <p>Tire dúvidas sobre modelo, potência, instalação e pagamento direto com um consultor da Vertus Mob.</p>
     <a class="btn btn-primary js-wa" href="#" data-msg="Olá! Vim pela página de carregadores da Vertus Mob e quero falar com um consultor." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Falar pelo WhatsApp</a>
     <img class="lc" src="assets/linha-de-carga-100.svg" alt="" width="734" height="40">
@@ -286,8 +284,16 @@ p{margin:0}
   </div>
 </footer>
 
-<a class="float-wa js-wa" href="#" data-msg="Olá! Vim pela página de carregadores da Vertus Mob e quero falar com um consultor." target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg></a>
-<div class="bar-wa"><a class="btn btn-primary js-wa" href="#" data-msg="Olá! Vim pela página de carregadores da Vertus Mob e quero falar com um consultor." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Falar pelo WhatsApp</a></div>
+<div class="bar" id="bar">
+  <div class="wrap">
+    <div class="bar-info" aria-live="polite">
+      <small>Modelo escolhido</small>
+      <b id="barNome">Livoltek NDC 40 · 40 kW</b>
+      <span id="barPreco"></span>
+    </div>
+    <a class="btn btn-primary" id="barBtn" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg><span>Chamar<span class="lg"> no WhatsApp</span></span></a>
+  </div>
+</div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="ico-wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.1 4.3c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.3s1 2.7 1.1 2.9c.2.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.6z"/></symbol></svg>
 
@@ -297,46 +303,150 @@ p{margin:0}
   var PARCELAS = 21;
   var JUROS = 1.22;
   var MODELOS = [
-    { marca: 'Livoltek NDC 40',      kw: 40, bicos: 1, vista: 44400,   foto: 'livoltek-ndc40-w1b' },
-    { marca: 'Livoltek NDC 40 2B',   kw: 40, bicos: 2, vista: 55200,   foto: 'livoltek-ndc40-w2b' },
-    { marca: 'Growatt Thor 40DD-P',  kw: 40, bicos: 2, vista: 44696.4, foto: 'growatt-thor-40dd-p' },
-    { marca: 'Livoltek NDC 60 W2B',  kw: 60, bicos: 2, vista: 61200,   foto: 'livoltek-ndc60-w2b' },
-    { marca: 'Sennan SNEV-1000/80',  kw: 80, bicos: 2, vista: 69534,   foto: 'sennan-snev-80' },
-    { marca: 'Livoltek NDC 90',      kw: 90, bicos: 2, vista: 88800,   foto: 'livoltek-ndc90' }
+    { nome: 'Livoltek NDC 40',     kw: 40, bicos: 1, vista: 44400,   foto: 'livoltek-ndc40-w1b' },
+    { nome: 'Livoltek NDC 40 2B',  kw: 40, bicos: 2, vista: 55200,   foto: 'livoltek-ndc40-w2b' },
+    { nome: 'Growatt Thor 40DD-P', kw: 40, bicos: 2, vista: 44696.4, foto: 'growatt-thor-40dd-p' },
+    { nome: 'Livoltek NDC 60 W2B', kw: 60, bicos: 2, vista: 61200,   foto: 'livoltek-ndc60-w2b' },
+    { nome: 'Sennan SNEV-1000/80', kw: 80, bicos: 2, vista: 69534,   foto: 'sennan-snev-80' },
+    { nome: 'Livoltek NDC 90',     kw: 90, bicos: 2, vista: 88800,   foto: 'livoltek-ndc90' }
   ];
 
-  var body = document.body;
-  var waNumber = body.getAttribute('data-wa-number');
+  var waNumber = document.body.getAttribute('data-wa-number');
   var brl = function (v) { return v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
   var waLink = function (msg) { return 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(msg); };
+  var parcela = function (m) { return Math.round(m.vista * JUROS * 100 / PARCELAS) / 100; };
+  var rotulo = function (m) { return m.bicos === 1 ? '1 bico' : m.bicos + ' bicos'; };
+  var msgModelo = function (m) {
+    return 'Olá! Vim pela página da Vertus Mob e tenho interesse no carregador ' + m.nome + ' (' + m.kw + ' kW · ' + rotulo(m) +
+      '), de R$ ' + brl(m.vista) + ' à vista ou ' + PARCELAS + 'x de R$ ' + brl(parcela(m)) + '. Pode me passar mais informações?';
+  };
+  var track = function (modelo) {
+    if (window.fbq) window.fbq('track', 'Contact', { content_name: modelo });
+    if (window.gtag) window.gtag('event', 'whatsapp_click', { modelo: modelo, pagina: 'carregadores' });
+  };
 
-  var grid = document.getElementById('gridProd');
-  grid.innerHTML = MODELOS.map(function (m) {
-    var rot = m.bicos === 1 ? '1 BICO' : m.bicos + ' BICOS';
+  var rail = document.getElementById('rail');
+  rail.innerHTML = MODELOS.map(function (m, i) {
     var icones = new Array(m.bicos + 1).join('<i></i>') + new Array(3 - m.bicos).join('<i class="off"></i>');
-    var parcela = Math.round(m.vista * JUROS * 100 / PARCELAS) / 100;
-    var msg = 'Olá! Vim pela página da Vertus Mob e tenho interesse no carregador ' + m.marca +
-      ' (' + m.kw + ' kW · ' + rot.toLowerCase() + '), R$ ' + brl(m.vista) + ' à vista ou ' + PARCELAS + 'x de R$ ' + brl(parcela) + '.';
-    return '<article class="prod">' +
-      '<div class="prod-foto"><img src="assets/carregadores/' + m.foto + '.webp" alt="Carregador ' + m.marca + '" width="640" height="640" loading="lazy"></div>' +
+    return '<article class="prod" data-i="' + i + '" aria-label="' + m.nome + ', ' + m.kw + ' kW, ' + rotulo(m) + '">' +
+      '<div class="prod-foto"><img src="assets/carregadores/' + m.foto + '.webp" alt="Carregador ' + m.nome + '" width="640" height="640"' + (i > 1 ? ' loading="lazy"' : '') + ' draggable="false"><span class="prod-tag">' + m.kw + ' kW DC</span></div>' +
       '<div class="prod-body">' +
-        '<div class="prod-marca">' + m.marca + '</div>' +
-        '<div class="prod-kw"><strong>' + m.kw + '<small>kW</small></strong><span class="bicos' + (m.bicos === 1 ? ' um' : '') + '">' + icones + rot + '</span></div>' +
+        '<div class="prod-marca">' + m.nome + '</div>' +
+        '<div class="prod-kw"><strong>' + m.kw + '<small>kW</small></strong><span class="bicos' + (m.bicos === 1 ? ' um' : '') + '">' + icones + rotulo(m).toUpperCase() + '</span></div>' +
         '<div class="prod-precos"><div class="cap">À VISTA</div>' +
           '<div class="vista"><small>R$</small>' + brl(m.vista) + '</div>' +
-          '<div class="parc"><span>ou ' + PARCELAS + 'x de </span><small>R$</small>' + brl(parcela) + ' <span>no cartão</span></div></div>' +
-        '<a class="btn btn-primary js-wa" href="' + waLink(msg) + '" data-msg="' + msg.replace(/"/g, '&quot;') + '" data-modelo="' + m.marca + '" target="_blank" rel="noopener">Quero este</a>' +
+          '<div class="parc"><span>ou ' + PARCELAS + 'x de </span><small>R$</small>' + brl(parcela(m)) + ' <span>no cartão</span></div></div>' +
+        '<a class="btn btn-primary" href="' + waLink(msgModelo(m)) + '" data-i="' + i + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Quero este modelo</a>' +
       '</div></article>';
   }).join('');
 
-  document.querySelectorAll('.js-wa').forEach(function (a) {
-    a.href = waLink(a.getAttribute('data-msg'));
-    a.addEventListener('click', function () {
-      var modelo = a.getAttribute('data-modelo') || 'geral';
-      if (window.fbq) window.fbq('track', 'Contact', { content_name: modelo });
-      if (window.gtag) window.gtag('event', 'whatsapp_click', { modelo: modelo, pagina: 'carregadores' });
+  var cards = Array.prototype.slice.call(rail.querySelectorAll('.prod'));
+  var dotsBox = document.getElementById('dots');
+  var contador = document.getElementById('contador');
+  var prev = document.getElementById('prev');
+  var next = document.getElementById('next');
+  var barNome = document.getElementById('barNome');
+  var barPreco = document.getElementById('barPreco');
+  var barBtn = document.getElementById('barBtn');
+  var atual = 0;
+
+  var visiveis = function () { return cards.filter(function (c) { return !c.hidden; }); };
+
+  function selecionar(i) {
+    atual = i;
+    var m = MODELOS[i];
+    cards.forEach(function (c) { c.classList.toggle('ativo', +c.dataset.i === i); });
+    barNome.textContent = m.nome + ' · ' + m.kw + ' kW';
+    barPreco.textContent = PARCELAS + 'x de R$ ' + brl(parcela(m)) + ' no cartão';
+    barBtn.href = waLink(msgModelo(m));
+    barBtn.dataset.i = i;
+    var vis = visiveis();
+    var pos = vis.findIndex(function (c) { return +c.dataset.i === i; });
+    contador.innerHTML = '<b>' + (pos + 1) + '</b> de ' + vis.length;
+    Array.prototype.forEach.call(dotsBox.children, function (d, k) { d.classList.toggle('on', k === pos); });
+    prev.disabled = pos <= 0;
+    next.disabled = pos >= vis.length - 1;
+  }
+
+  function montarDots() {
+    dotsBox.innerHTML = visiveis().map(function (c, k) {
+      return '<button class="dot" type="button" aria-label="Ver modelo ' + (k + 1) + '"></button>';
+    }).join('');
+    Array.prototype.forEach.call(dotsBox.children, function (d, k) {
+      d.addEventListener('click', function () { irPara(visiveis()[k]); });
+    });
+  }
+
+  function irPara(card) {
+    if (!card) return;
+    rail.scrollTo({ left: card.offsetLeft - rail.offsetLeft - parseFloat(getComputedStyle(rail).paddingLeft), behavior: 'smooth' });
+  }
+
+  // Modelo em destaque = card mais à esquerda dentro da área visível
+  var raf;
+  rail.addEventListener('scroll', function () {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(function () {
+      var base = rail.getBoundingClientRect().left + parseFloat(getComputedStyle(rail).paddingLeft);
+      var melhor = null, dist = Infinity;
+      visiveis().forEach(function (c) {
+        var d = Math.abs(c.getBoundingClientRect().left - base);
+        if (d < dist) { dist = d; melhor = c; }
+      });
+      if (melhor && +melhor.dataset.i !== atual) selecionar(+melhor.dataset.i);
+    });
+  }, { passive: true });
+
+  cards.forEach(function (c) {
+    c.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      selecionar(+c.dataset.i);
+      irPara(c);
     });
   });
+
+  var passo = function (dir) {
+    var vis = visiveis();
+    var pos = vis.findIndex(function (c) { return +c.dataset.i === atual; });
+    irPara(vis[Math.min(vis.length - 1, Math.max(0, pos + dir))]);
+  };
+  prev.addEventListener('click', function () { passo(-1); });
+  next.addEventListener('click', function () { passo(1); });
+  rail.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { e.preventDefault(); passo(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); passo(-1); }
+  });
+
+  var FILTROS = {
+    'todos': function () { return true; },
+    '40': function (m) { return m.kw === 40; },
+    '60+': function (m) { return m.kw >= 60; },
+    '2b': function (m) { return m.bicos === 2; }
+  };
+  document.querySelectorAll('.chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      document.querySelectorAll('.chip').forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+      var f = FILTROS[chip.dataset.f];
+      cards.forEach(function (c) { c.hidden = !f(MODELOS[+c.dataset.i]); });
+      montarDots();
+      rail.scrollTo({ left: 0 });
+      selecionar(+visiveis()[0].dataset.i);
+    });
+  });
+
+  // Links gerais e dos cards
+  document.querySelectorAll('.js-wa').forEach(function (a) {
+    a.href = waLink(a.getAttribute('data-msg'));
+    a.addEventListener('click', function () { track('geral'); });
+  });
+  rail.addEventListener('click', function (e) {
+    var a = e.target.closest('a[data-i]');
+    if (a) track(MODELOS[+a.dataset.i].nome);
+  });
+  barBtn.addEventListener('click', function () { track(MODELOS[+barBtn.dataset.i].nome); });
+
+  montarDots();
+  selecionar(0);
 })();
 </script>
 </body>
