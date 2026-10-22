@@ -101,6 +101,10 @@
     {
       "source": "/motorista-app",
       "destination": "/motorista-app/index.html"
+    },
+    {
+      "source": "/carregadores",
+      "destination": "/carregadores.html"
     }
   ]
 }
