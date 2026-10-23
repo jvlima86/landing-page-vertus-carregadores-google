@@ -199,6 +199,63 @@ p{margin:0}
 .foto-op img{width:100%;height:100%;object-fit:cover}
 .foto-op figcaption{position:absolute;left:0;right:0;bottom:0;padding:64px 16px 14px;background:linear-gradient(0deg,rgba(21,19,19,.97) 0%,rgba(21,19,19,.88) 45%,rgba(21,19,19,0) 100%);font-weight:700;font-size:15px;line-height:1.3}
 .foto-op figcaption small{display:block;font-weight:600;font-size:11px;letter-spacing:.14em;color:var(--orange);text-transform:uppercase;margin-bottom:4px}
+
+/* CHAT — formulário em conversa */
+html.chat-aberto,html.chat-aberto body{overflow:hidden}
+.chat{position:fixed;inset:0;z-index:60;display:none}
+.chat.open{display:block}
+.chat-bg{position:absolute;inset:0;background:rgba(0,0,0,.6)}
+.chat-box{position:absolute;left:0;right:0;top:0;height:var(--vvh,100dvh);background:var(--black);display:flex;flex-direction:column;animation:sobe .28s ease-out}
+@keyframes sobe{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+.chat-top{display:flex;align-items:center;gap:12px;padding:calc(12px + env(safe-area-inset-top,0px)) 14px 12px;border-bottom:1px solid var(--line);background:var(--deep)}
+.chat-av{width:42px;height:42px;border-radius:50%;background:var(--black);border:1.5px solid var(--line-orange);display:flex;align-items:center;justify-content:center;flex:none}
+.chat-av svg{width:24px;height:auto}
+.chat-id{flex:1;min-width:0;line-height:1.25}
+.chat-id b{display:block;font-size:16px}
+.chat-id span{font-size:13px;color:var(--muted)}
+.chat-id span::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--orange);margin-right:6px;vertical-align:1px}
+.chat-x{width:44px;height:44px;border-radius:50%;border:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.chat-x svg{width:22px;height:22px;stroke:var(--white);stroke-width:2.2;fill:none}
+.chat-prog{height:3px;background:rgba(255,126,39,.18)}
+.chat-prog i{display:block;height:100%;width:0;background:var(--orange);transition:width .35s}
+.chat-log{flex:1;overflow-y:auto;padding:18px 14px 8px;display:flex;flex-direction:column;gap:8px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.msg{max-width:86%;padding:11px 15px;border-radius:20px;font-size:16px;line-height:1.42;animation:surge .22s ease-out;word-wrap:break-word}
+@keyframes surge{from{transform:translateY(6px);opacity:0}to{transform:none;opacity:1}}
+.msg.bot{align-self:flex-start;background:var(--charcoal);border-bottom-left-radius:6px}
+.msg.eu{align-self:flex-end;background:var(--orange);color:var(--black);font-weight:600;border-bottom-right-radius:6px}
+.msg b{font-weight:700}
+.msg-modelo{align-self:flex-start;display:flex;gap:12px;align-items:center;background:var(--charcoal);border:1.5px solid var(--line-orange);border-radius:16px;padding:10px 14px 10px 10px;max-width:92%;animation:surge .22s ease-out}
+.msg-modelo img{width:64px;height:64px;border-radius:10px;background:#fff;object-fit:contain;flex:none}
+.msg-modelo small{display:block;font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--orange);text-transform:uppercase}
+.msg-modelo strong{display:block;font-size:15px;line-height:1.3}
+.msg-modelo span{font-size:14px;color:var(--gray);font-variant-numeric:tabular-nums}
+.digitando{align-self:flex-start;background:var(--charcoal);border-radius:20px;border-bottom-left-radius:6px;padding:14px 16px;display:flex;gap:5px}
+.digitando i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:pula 1s infinite}
+.digitando i:nth-child(2){animation-delay:.15s}.digitando i:nth-child(3){animation-delay:.3s}
+@keyframes pula{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+.chat-opts{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;padding:6px 14px 14px}
+.chat-opts:empty{display:none}
+.chat-opts.lista{flex-direction:column;align-items:stretch}
+.opt{min-height:46px;padding:0 18px;border-radius:999px;border:1.5px solid var(--orange);background:transparent;color:var(--white);font-weight:700;font-size:15px;cursor:pointer;touch-action:manipulation;animation:surge .22s ease-out;transition:background .15s}
+.chat-opts.lista .opt{border-radius:14px;text-align:left;padding:10px 16px}
+.opt small{display:block;font-weight:500;font-size:13px;color:var(--gray)}
+@media (hover:hover){.opt:hover{background:rgba(255,126,39,.12)}}
+.opt:active{background:var(--orange);color:var(--black)}
+.opt.wa{background:var(--orange);color:var(--black);display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none}
+.opt.wa svg{width:20px;height:20px;fill:currentColor}
+.chat-form{display:flex;gap:8px;padding:10px 12px calc(10px + var(--safe-b));border-top:1px solid var(--line);background:var(--deep)}
+.chat-form[hidden]{display:none}
+.chat-form input{flex:1;min-width:0;min-height:48px;border-radius:999px;border:1.5px solid var(--line);background:var(--charcoal);color:var(--white);font:inherit;font-size:16px;padding:0 18px;outline:none}
+.chat-form input:focus{border-color:var(--orange)}
+.chat-form input[aria-invalid="true"]{border-color:#E5484D}
+.chat-form button{flex:none;width:48px;height:48px;border-radius:50%;border:0;background:var(--orange);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.chat-form button svg{width:22px;height:22px;fill:var(--black)}
+.chat-erro{padding:0 16px;font-size:13.5px;color:#FF9F9F}
+.chat-erro:not(:empty){padding-bottom:8px}
+@media (min-width:721px){
+  .chat-box{left:auto;top:auto;right:24px;bottom:24px;width:410px;height:min(660px,calc(100vh - 48px));border-radius:22px;border:1px solid var(--line);overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .chat-top{padding-top:12px}
+}
 </style>
 <!-- Meta Pixel (cyclovicosa) -->
 <script>
@@ -217,7 +274,7 @@ fbq('track','PageView');
 <header class="nav">
   <div class="wrap">
     <a class="nav-logo" href="https://vertus-mob.com/" aria-label="Vertus Mob"><img src="assets/logo-vertus-mob.svg" alt="Vertus Mob" width="160" height="34"></a>
-    <a class="btn btn-primary js-wa" href="#" data-msg="Olá! Vim pela página de carregadores da Vertus Mob e quero falar com um consultor." target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg><span>Falar pelo WhatsApp</span></a>
+    <a class="btn btn-primary js-wa" href="#" data-msg="Olá! Vim pela página de carregadores da Vertus Mob e quero falar com um consultor." target="_blank" rel="noopener" aria-label="Pedir proposta"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-chat"/></svg><span>Pedir proposta</span></a>
   </div>
 </header>
 
@@ -226,9 +283,9 @@ fbq('track','PageView');
   <div class="wrap">
     <span class="kicker">Carregadores DC · Preço claro</span>
     <h1>Compre com quem entende e tem <span class="tarja">operação rodando.</span></h1>
-    <p class="hero-sub">Carregadores rápidos de 40&nbsp;kW a 90&nbsp;kW, à vista ou em 21x no cartão. Escolha o modelo e fale direto com um consultor pelo WhatsApp.</p>
+    <p class="hero-sub">Carregadores rápidos de 40&nbsp;kW a 90&nbsp;kW, à vista ou em 21x no cartão. Escolha o modelo, responda algumas perguntas rápidas e receba sua proposta no WhatsApp.</p>
     <div class="hero-ctas">
-      <a class="btn btn-primary js-wa" href="#" data-msg="Olá! Vim pela página de carregadores da Vertus Mob e quero falar com um consultor." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Falar com um consultor</a>
+      <a class="btn btn-primary js-wa" href="#" data-msg="Olá! Vim pela página de carregadores da Vertus Mob e quero falar com um consultor." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-chat"/></svg>Pedir minha proposta</a>
       <span class="hero-phone">WhatsApp <b class="js-wa-display">(85) 99223-0336</b></span>
     </div>
   </div>
@@ -301,8 +358,8 @@ fbq('track','PageView');
   <div class="wrap">
     <span class="kicker">Atendimento pelo WhatsApp</span>
     <h2>Fale com quem tem <span class="tarja">eletroposto rodando.</span></h2>
-    <p>Tire dúvidas sobre modelo, potência, instalação e pagamento direto com um consultor da Vertus Mob.</p>
-    <a class="btn btn-primary js-wa" href="#" data-msg="Olá! Vim pela página de carregadores da Vertus Mob e quero falar com um consultor." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Falar pelo WhatsApp</a>
+    <p>Responda algumas perguntas rápidas e um consultor da Vertus Mob te chama no WhatsApp com a proposta do modelo escolhido.</p>
+    <a class="btn btn-primary js-wa" href="#" data-msg="Olá! Vim pela página de carregadores da Vertus Mob e quero falar com um consultor." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-chat"/></svg>Pedir minha proposta</a>
     <img class="lc" src="assets/linha-de-carga-100.svg" alt="" width="734" height="40">
   </div>
 </section>
@@ -328,11 +385,30 @@ fbq('track','PageView');
       <b id="barNome">Livoltek NDC 40 · 40 kW</b>
       <span id="barPreco"></span>
     </div>
-    <a class="btn btn-primary" id="barBtn" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg><span>Chamar<span class="lg"> no WhatsApp</span></span></a>
+    <a class="btn btn-primary" id="barBtn" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-chat"/></svg><span>Pedir<span class="lg"> proposta</span></span></a>
   </div>
 </div>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="ico-wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.1 4.3c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.3s1 2.7 1.1 2.9c.2.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.6z"/></symbol></svg>
+<div class="chat" id="chat" role="dialog" aria-modal="true" aria-label="Pedido de proposta" hidden>
+  <div class="chat-bg" data-fechar></div>
+  <div class="chat-box">
+    <div class="chat-top">
+      <div class="chat-av" aria-hidden="true"><svg viewBox="0 0 397.7 295.3"><path fill="#FF7E27" d="M90.1 0 L153.5 0 L202.4 93.8 L139 93.8 Z M161.4 0 L224.8 0 L273.8 93.8 L210.3 93.8 Z M232.7 0 L296.2 0 L345.1 93.8 L281.7 93.8 Z M0 100.8 L63.4 100.8 L112.4 194.5 L48.9 194.5 Z M71.3 100.8 L134.8 100.8 L183.7 194.5 L120.3 194.5 Z M142.7 100.8 L206.1 100.8 L255 194.5 L191.6 194.5 Z M214 100.8 L277.4 100.8 L326.4 194.5 L262.9 194.5 Z M285.3 100.8 L348.8 100.8 L397.7 194.5 L334.3 194.5 Z M52.6 201.5 L116 201.5 L165 295.3 L101.5 295.3 Z M123.9 201.5 L187.4 201.5 L236.3 295.3 L172.8 295.3 Z M195.2 201.5 L258.7 201.5 L307.6 295.3 L244.2 295.3 Z"/></svg></div>
+      <div class="chat-id"><b>Vertus Mob</b><span>Consultor de carregadores</span></div>
+      <button class="chat-x" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="chat-prog"><i id="chatProg"></i></div>
+    <div class="chat-log" id="chatLog" aria-live="polite"></div>
+    <div class="chat-opts" id="chatOpts"></div>
+    <div class="chat-erro" id="chatErro" role="alert"></div>
+    <form class="chat-form" id="chatForm" hidden autocomplete="on">
+      <input id="chatInput" name="resposta" type="text" enterkeyhint="send">
+      <button type="submit" aria-label="Enviar"><svg viewBox="0 0 24 24"><path d="M3.4 20.4l17.4-7.5c.8-.4.8-1.5 0-1.8L3.4 3.6c-.7-.3-1.4.3-1.3 1l1 6.1 10.4 1.3-10.4 1.3-1 6.1c-.1.7.6 1.3 1.3 1z"/></svg></button>
+    </form>
+  </div>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="ico-chat" viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 6.2a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6zm5 0a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6zm5 0a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6z"/></symbol><symbol id="ico-wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.1 4.3c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.3s1 2.7 1.1 2.9c.2.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.6z"/></symbol></svg>
 
 <script>
 (function () {
@@ -374,7 +450,7 @@ fbq('track','PageView');
         '<div class="prod-precos"><div class="cap">À VISTA</div>' +
           '<div class="vista"><small>R$</small>' + brl(m.vista) + '</div>' +
           '<div class="parc"><span>ou ' + PARCELAS + 'x de </span><small>R$</small>' + brl(parcela(m)) + ' <span>no cartão</span></div></div>' +
-        '<a class="btn btn-primary" href="' + waLink(msgModelo(m)) + '" data-i="' + i + '" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Quero este modelo</a>' +
+        '<a class="btn btn-primary" href="#chat" data-i="' + i + '"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-chat"/></svg>Quero este modelo</a>' +
       '</div></article>';
   }).join('');
 
@@ -402,7 +478,6 @@ fbq('track','PageView');
     cards.forEach(function (c) { c.classList.toggle('ativo', +c.dataset.i === i); });
     barNome.textContent = m.nome + ' · ' + m.kw + ' kW';
     barPreco.textContent = PARCELAS + 'x de R$ ' + brl(parcela(m)) + ' no cartão';
-    barBtn.href = waLink(msgModelo(m));
     barBtn.dataset.i = i;
     var vis = visiveis();
     var pos = vis.findIndex(function (c) { return +c.dataset.i === i; });
@@ -478,16 +553,230 @@ fbq('track','PageView');
     });
   });
 
-  // Links gerais e dos cards
+  /* ════════ CHAT: formulário em conversa (lead vai para a planilha) ════════ */
+  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwYLt1SL4Vry6mhzIhLUWZKWpDiwmRkI_wosoPBaGGjJn3DLe6AuBmbCeDkWeib42iW/exec';
+  var chat = document.getElementById('chat');
+  var log = document.getElementById('chatLog');
+  var opts = document.getElementById('chatOpts');
+  var erro = document.getElementById('chatErro');
+  var form = document.getElementById('chatForm');
+  var input = document.getElementById('chatInput');
+  var prog = document.getElementById('chatProg');
+  var params = new URLSearchParams(location.search);
+  var utm = {};
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'gclid'].forEach(function (k) { if (params.get(k)) utm[k] = params.get(k); });
+
+  var st = null;   // estado da conversa
+  var aberto = 0;
+  var gatilho = null;
+  var simples = function (lista) { return function () { return lista.map(function (t) { return { v: t, t: t }; }); }; };
+
+  var PASSOS = [
+    { id: 'modelo', se: function () { return st.modelo === null; }, pergunta: 'Qual carregador te interessa?', lista: true,
+      opcoes: function () { return MODELOS.map(function (m, i) { return { v: i, t: m.nome, sub: m.kw + ' kW · ' + rotulo(m) + ' · R$ ' + brl(m.vista) }; }).concat([{ v: -1, t: 'Ainda não sei, quero ajuda para escolher' }]); } },
+    { id: 'Local', pergunta: 'Onde o carregador vai ser instalado?', opcoes: simples(['Posto ou rodovia', 'Comércio ou estacionamento', 'Condomínio', 'Empresa ou frota', 'Residência', 'Outro']) },
+    { id: 'Energia trifásica', pergunta: 'O local já tem energia trifásica?', opcoes: simples(['Sim', 'Não', 'Não sei']) },
+    { id: 'Prazo', pergunta: 'Para quando você precisa do carregador?', opcoes: simples(['Até 30 dias', 'Em 1 a 3 meses', 'Só pesquisando preço']) },
+    { id: 'Pagamento', pergunta: 'Como prefere pagar?', opcoes: simples(['À vista', PARCELAS + 'x no cartão', 'Quero ver as opções']) },
+    { id: 'Cidade', pergunta: 'Em qual cidade vai ser a instalação?', texto: { type: 'text', placeholder: 'Ex.: Fortaleza', autocomplete: 'address-level2', inputmode: 'text' },
+      valida: function (v) { return v.length >= 2 ? '' : 'Digite o nome da cidade.'; } },
+    { id: 'Nome', pergunta: 'Para montar sua proposta, qual é o seu nome?', texto: { type: 'text', placeholder: 'Seu nome', autocomplete: 'name', inputmode: 'text' },
+      valida: function (v) { return v.length >= 2 ? '' : 'Digite seu nome.'; } },
+    { id: 'WhatsApp', pergunta: function () { return 'Prazer, ' + primeiro(st.r['Nome']) + '! Qual é o seu WhatsApp com DDD? O consultor vai te chamar por lá.'; },
+      texto: { type: 'tel', placeholder: '(85) 99999-9999', autocomplete: 'tel-national', inputmode: 'tel' },
+      valida: function (v) { var d = v.replace(/\D/g, ''); return (d.length === 10 || d.length === 11) ? '' : 'Digite um WhatsApp válido com DDD.'; } }
+  ];
+
+  function primeiro(n) { return (n || '').trim().split(/\s+/)[0] || ''; }
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function rolar() { requestAnimationFrame(function () { log.scrollTop = log.scrollHeight; }); }
+  function bolha(html, quem) {
+    var d = document.createElement('div'); d.className = 'msg ' + quem; d.innerHTML = html; log.appendChild(d); rolar();
+  }
+  function cartaoModelo(m) {
+    var d = document.createElement('div'); d.className = 'msg-modelo';
+    d.innerHTML = '<img src="assets/carregadores/' + m.foto + '.webp" alt=""><div><small>Modelo escolhido</small><strong>' + m.nome + ' · ' + m.kw + ' kW</strong><span>' + rotulo(m) + ' · R$ ' + brl(m.vista) + ' ou ' + PARCELAS + 'x de R$ ' + brl(parcela(m)) + '</span></div>';
+    log.appendChild(d); rolar();
+  }
+  // Mensagens do consultor, cada uma depois do "digitando…"
+  function diz(lista, depois) {
+    var fila = lista.slice();
+    (function prox() {
+      if (!fila.length) { if (depois) depois(); return; }
+      var item = fila.shift();
+      var txt = typeof item === 'function' ? '' : item;
+      var dig = document.createElement('div'); dig.className = 'digitando'; dig.innerHTML = '<i></i><i></i><i></i>';
+      log.appendChild(dig); rolar();
+      setTimeout(function () {
+        dig.remove();
+        if (typeof item === 'function') item(); else bolha(txt, 'bot');
+        prox();
+      }, Math.min(1100, 420 + txt.length * 9));
+    })();
+  }
+  function progresso() {
+    var total = PASSOS.length - (st.pediuModelo ? 0 : 1);
+    var feitos = Object.keys(st.r).length + (st.pediuModelo ? 1 : 0);
+    prog.style.width = Math.min(100, Math.round(feitos / total * 100)) + '%';
+  }
+  function limparEntrada() { opts.innerHTML = ''; opts.className = 'chat-opts'; form.hidden = true; erro.textContent = ''; }
+
+  function perguntar() {
+    limparEntrada(); progresso();
+    while (st.passo < PASSOS.length && PASSOS[st.passo].se && !PASSOS[st.passo].se()) st.passo++;
+    if (st.passo >= PASSOS.length) { finalizar(); return; }
+    var p = PASSOS[st.passo];
+    var q = typeof p.pergunta === 'function' ? p.pergunta() : p.pergunta;
+    diz([q], function () {
+      if (p.texto) {
+        form.hidden = false;
+        Object.keys(p.texto).forEach(function (k) { input.setAttribute(k, p.texto[k]); });
+        input.value = ''; input.removeAttribute('aria-invalid');
+        input.setAttribute('aria-label', q);
+        setTimeout(function () { input.focus({ preventScroll: true }); }, 60);
+      } else {
+        if (p.lista) opts.classList.add('lista');
+        p.opcoes().forEach(function (o) {
+          var b = document.createElement('button'); b.type = 'button'; b.className = 'opt';
+          b.innerHTML = esc(o.t) + (o.sub ? '<small>' + esc(o.sub) + '</small>' : '');
+          b.addEventListener('click', function () { responder(p, o); });
+          opts.appendChild(b);
+        });
+        rolar();
+      }
+    });
+  }
+
+  function responder(p, o) {
+    limparEntrada();
+    bolha(esc(o.t), 'eu');
+    st.passo++;
+    if (p.id === 'modelo') {
+      st.pediuModelo = true;
+      st.modelo = o.v;
+      if (o.v >= 0) diz([function () { cartaoModelo(MODELOS[o.v]); }, 'Ótima escolha. Agora umas perguntas rápidas sobre a instalação.'], perguntar);
+      else diz(['Sem problema: o consultor te ajuda a escolher. Me conta um pouco sobre a instalação.'], perguntar);
+      return;
+    }
+    st.r[p.id] = o.v;
+    perguntar();
+  }
+
+  function mascara(v) {
+    var d = v.replace(/\D/g, '').slice(0, 11);
+    if (d.length <= 2) return d.length ? '(' + d : '';
+    if (d.length <= 6) return '(' + d.slice(0, 2) + ') ' + d.slice(2);
+    if (d.length <= 10) return '(' + d.slice(0, 2) + ') ' + d.slice(2, 6) + '-' + d.slice(6);
+    return '(' + d.slice(0, 2) + ') ' + d.slice(2, 7) + '-' + d.slice(7);
+  }
+  input.addEventListener('input', function () {
+    if (input.type === 'tel') input.value = mascara(input.value);
+    if (input.getAttribute('aria-invalid')) { input.removeAttribute('aria-invalid'); erro.textContent = ''; }
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var p = PASSOS[st.passo]; if (!p || !p.texto) return;
+    var v = input.value.trim();
+    var msg = p.valida ? p.valida(v) : '';
+    if (msg) { input.setAttribute('aria-invalid', 'true'); erro.textContent = msg; input.focus(); return; }
+    st.r[p.id] = v; bolha(esc(v), 'eu'); st.passo++;
+    perguntar();
+  });
+
+  function resumo() {
+    var m = st.modelo >= 0 ? MODELOS[st.modelo] : null;
+    return 'Olá! Sou ' + st.r['Nome'] + ' e pedi uma proposta pela página da Vertus Mob.' +
+      (m ? '\nModelo: ' + m.nome + ' (' + m.kw + ' kW · ' + rotulo(m) + '), R$ ' + brl(m.vista) + ' ou ' + PARCELAS + 'x de R$ ' + brl(parcela(m)) : '\nModelo: quero ajuda para escolher') +
+      '\nLocal: ' + st.r['Local'] + '\nEnergia trifásica: ' + st.r['Energia trifásica'] + '\nPrazo: ' + st.r['Prazo'] +
+      '\nPagamento: ' + st.r['Pagamento'] + '\nCidade: ' + st.r['Cidade'];
+  }
+
+  function finalizar() {
+    limparEntrada(); prog.style.width = '100%';
+    var m = st.modelo >= 0 ? MODELOS[st.modelo] : null;
+    var nomeModelo = m ? m.nome : 'Ajuda para escolher';
+    var suspeito = Date.now() - aberto < 6000;
+    if (!suspeito && !st.enviado) {
+      st.enviado = true;
+      var dados = Object.assign({
+        nome: st.r['Nome'], whatsapp: st.r['WhatsApp'], cidade: st.r['Cidade'],
+        interesse: 'Carregador DC · ' + nomeModelo, profissao: st.r['Local'], pretencao: st.r['Pagamento'],
+        modelo: nomeModelo, potencia: m ? m.kw + ' kW' : '', bicos: m ? rotulo(m) : '',
+        preco_vista: m ? 'R$ ' + brl(m.vista) : '', parcela: m ? PARCELAS + 'x de R$ ' + brl(parcela(m)) : '',
+        local: st.r['Local'], energia_trifasica: st.r['Energia trifásica'], prazo: st.r['Prazo'], pagamento: st.r['Pagamento'],
+        origem: 'carregadores-chat', pagina: location.href, data: new Date().toISOString()
+      }, utm);
+      try {
+        fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(dados) }).catch(function () {});
+      } catch (_) {}
+      if (window.fbq) window.fbq('track', 'Lead', m ? { content_name: m.nome, content_category: 'carregador-dc', value: m.vista, currency: 'BRL' } : { content_name: nomeModelo, content_category: 'carregador-dc' });
+      if (window.gtag) window.gtag('event', 'generate_lead', { modelo: nomeModelo, pagina: 'carregadores' });
+    }
+    diz([
+      'Pronto, ' + esc(primeiro(st.r['Nome'])) + '! Recebi seu pedido' + (m ? ' do <b>' + esc(m.nome) + '</b>' : '') + '.',
+      'Um consultor da Vertus Mob vai te chamar no WhatsApp <b>' + esc(st.r['WhatsApp']) + '</b> com a proposta, em horário comercial.',
+      'Se preferir, já pode mandar uma mensagem agora:'
+    ], function () {
+      var a = document.createElement('a'); a.className = 'opt wa'; a.target = '_blank'; a.rel = 'noopener';
+      a.href = waLink(resumo());
+      a.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Chamar agora no WhatsApp';
+      a.addEventListener('click', function () { track(nomeModelo); });
+      opts.appendChild(a); rolar();
+    });
+  }
+
+  function mostrarChat() {
+    chat.hidden = false; chat.classList.add('open'); document.documentElement.classList.add('chat-aberto');
+    ajustaAltura();
+    if (!(history.state && history.state.chat)) history.pushState({ chat: 1 }, '');
+  }
+  function abrirChat(i, origem) {
+    gatilho = origem || null;
+    var modelo = (typeof i === 'number') ? i : null;
+    // Mantém a conversa se for o mesmo modelo ou se o pedido já foi enviado
+    if (st && (st.enviado || modelo === null || st.modeloInicial === modelo)) { mostrarChat(); return; }
+    st = { modelo: modelo, modeloInicial: modelo, pediuModelo: false, passo: 0, r: {}, enviado: false };
+    log.innerHTML = ''; limparEntrada(); prog.style.width = '0';
+    aberto = Date.now();
+    var m = modelo !== null ? MODELOS[modelo] : null;
+    var intro = ['Olá! Aqui é a equipe da Vertus Mob.'];
+    if (m) { intro.push(function () { cartaoModelo(m); }); intro.push('Ótima escolha. Para preparar sua proposta, leva menos de 1 minuto.'); }
+    else intro.push('Vou montar sua proposta de carregador. Leva menos de 1 minuto.');
+    if (window.fbq) window.fbq('trackCustom', 'ChatAberto', { content_name: m ? m.nome : 'geral' });
+    mostrarChat();
+    diz(intro, perguntar);
+  }
+  function fecharChat(viaHistorico) {
+    if (!chat.classList.contains('open')) return;
+    chat.classList.remove('open'); chat.hidden = true; document.documentElement.classList.remove('chat-aberto');
+    input.blur();
+    if (!viaHistorico && history.state && history.state.chat) history.back();
+    if (gatilho && gatilho.focus) gatilho.focus({ preventScroll: true });
+  }
+  chat.querySelectorAll('[data-fechar]').forEach(function (b) { b.addEventListener('click', function () { fecharChat(); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fecharChat(); });
+  window.addEventListener('popstate', function () { fecharChat(true); });
+
+  // iPhone: acompanha a área visível quando o teclado abre
+  function ajustaAltura() {
+    var vv = window.visualViewport;
+    chat.style.setProperty('--vvh', (vv ? vv.height : window.innerHeight) + 'px');
+    chat.querySelector('.chat-box').style.transform = (vv && window.innerWidth <= 720) ? 'translateY(' + vv.offsetTop + 'px)' : '';
+    rolar();
+  }
+  if (window.visualViewport) { visualViewport.addEventListener('resize', ajustaAltura); visualViewport.addEventListener('scroll', ajustaAltura); }
+
+  // Todos os botões de contato abrem o chat
   document.querySelectorAll('.js-wa').forEach(function (a) {
-    a.href = waLink(a.getAttribute('data-msg'));
-    a.addEventListener('click', function () { track('geral'); });
+    a.removeAttribute('target'); a.setAttribute('href', '#chat');
+    a.addEventListener('click', function (e) { e.preventDefault(); abrirChat(null, a); });
   });
   rail.addEventListener('click', function (e) {
     var a = e.target.closest('a[data-i]');
-    if (a) track(MODELOS[+a.dataset.i].nome);
+    if (a) { e.preventDefault(); abrirChat(+a.dataset.i, a); }
   });
-  barBtn.addEventListener('click', function () { track(MODELOS[+barBtn.dataset.i].nome); });
+  barBtn.removeAttribute('target'); barBtn.setAttribute('href', '#chat');
+  barBtn.addEventListener('click', function (e) { e.preventDefault(); abrirChat(+barBtn.dataset.i, barBtn); });
 
   ['pointerdown', 'wheel', 'keydown'].forEach(function (ev) {
     rail.addEventListener(ev, function () { interagiu = true; }, { passive: true });
