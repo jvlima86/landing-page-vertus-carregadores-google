@@ -99,8 +99,19 @@ html.chat-aberto,html.chat-aberto body{overflow:hidden}
   .chat-top{padding-top:12px}
 }
 </style>
+<!-- Meta Pixel (cyclovicosa) -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1216146000327968');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1216146000327968&ev=PageView&noscript=1"></noscript>
 </head>
-<body data-wa-number="5585984313152" data-wa-display="(85) 98431-3152">
+<body data-wa-number="5585992230336" data-wa-display="(85) 99223-0336">
 
 <div class="vm" style="font-family: Archivo, system-ui, sans-serif; color: #F1F1F1; background: #1E1C1C; min-height: 100vh; font-size: 17px; line-height: 1.6;">
 
@@ -435,7 +446,7 @@ html.chat-aberto,html.chat-aberto body{overflow:hidden}
       <p style="margin-top: 4px; font-size: 14px; color: #9A9A9A;">Eletropostos próprios · Energia solar integrada · Gestão Vertus</p>
     </div>
     <div style="flex: 1 1 280px; min-width: 0; font-size: 14px; color: #9A9A9A; display: flex; flex-direction: column; gap: 6px;">
-      <p>WhatsApp <a href="https://wa.me/5585984313152" style="color: #F1F1F1;">(85) 98431-3152</a></p>
+      <p>WhatsApp <a href="https://wa.me/5585992230336" style="color: #F1F1F1;">(85) 99223-0336</a></p>
       <p>Sede em Fortaleza (CE) · <b style="color:#F1F1F1;">Atendemos todo o Nordeste</b> · vertus-mob.com</p>
       <p>Uma unidade Vertus Solar · <a href="https://vertus-mob.com/privacidade.html" style="color: #E0E0E0;">Política de privacidade</a></p>
     </div>
@@ -582,6 +593,7 @@ html.chat-aberto,html.chat-aberto body{overflow:hidden}
       } catch (_) {}
       // Conversão do Google Ads: a mesma que a página de obrigado registra, uma por lead
       if (window.gtag) window.gtag('event', 'conversion', { send_to: 'AW-17006818606' });
+      if (window.fbq) window.fbq('track', 'Lead', { content_name: 'chat-eletroposto' });
     }
     diz((antes || []).concat([
       'Pronto, ' + esc(primeiro(st.r['Nome'])) + '! Recebi seu pedido de simulação.',
@@ -591,6 +603,7 @@ html.chat-aberto,html.chat-aberto body{overflow:hidden}
       var a = document.createElement('a'); a.className = 'opt wa'; a.target = '_blank'; a.rel = 'noopener';
       a.href = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(resumo());
       a.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Chamar agora no WhatsApp';
+      a.addEventListener('click', function () { if (window.fbq) window.fbq('track', 'Contact', { content_name: 'chat-eletroposto' }); });
       opts.appendChild(a); rolar();
     });
   }
