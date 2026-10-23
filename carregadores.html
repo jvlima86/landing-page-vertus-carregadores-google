@@ -569,23 +569,51 @@ fbq('track','PageView');
   var st = null;   // estado da conversa
   var aberto = 0;
   var gatilho = null;
-  var simples = function (lista) { return function () { return lista.map(function (t) { return { v: t, t: t }; }); }; };
+  // Conversa livre: toda resposta é digitada
+  var TEXTO = { type: 'text', placeholder: 'Digite sua resposta…', autocomplete: 'off', inputmode: 'text', autocapitalize: 'sentences' };
+  var preenchido = function (aviso) { return function (v) { return v.length >= 1 ? '' : aviso; }; };
+  var naoSabe = /n[aã]o sei|nao tenho certeza|não tenho certeza|sei l[aá]/i;
+  var nao = /^\s*(n[aã]o|nop|negativo)\b/i;
 
   var PASSOS = [
-    { id: 'modelo', se: function () { return st.modelo === null; }, pergunta: 'Qual carregador te interessa?', lista: true,
-      opcoes: function () { return MODELOS.map(function (m, i) { return { v: i, t: m.nome, sub: m.kw + ' kW · ' + rotulo(m) + ' · R$ ' + brl(m.vista) }; }).concat([{ v: -1, t: 'Ainda não sei, quero ajuda para escolher' }]); } },
-    { id: 'Local', pergunta: 'Onde o carregador vai ser instalado?', opcoes: simples(['Posto ou rodovia', 'Comércio ou estacionamento', 'Condomínio', 'Empresa ou frota', 'Residência', 'Outro']) },
-    { id: 'Energia trifásica', pergunta: 'O local já tem energia trifásica?', opcoes: simples(['Sim', 'Não', 'Não sei']) },
-    { id: 'Prazo', pergunta: 'Para quando você precisa do carregador?', opcoes: simples(['Até 30 dias', 'Em 1 a 3 meses', 'Só pesquisando preço']) },
-    { id: 'Pagamento', pergunta: 'Como prefere pagar?', opcoes: simples(['À vista', PARCELAS + 'x no cartão', 'Quero ver as opções']) },
-    { id: 'Cidade', pergunta: 'Em qual cidade vai ser a instalação?', texto: { type: 'text', placeholder: 'Ex.: Fortaleza', autocomplete: 'address-level2', inputmode: 'text' },
-      valida: function (v) { return v.length >= 2 ? '' : 'Digite o nome da cidade.'; } },
-    { id: 'Nome', pergunta: 'Para montar sua proposta, qual é o seu nome?', texto: { type: 'text', placeholder: 'Seu nome', autocomplete: 'name', inputmode: 'text' },
+    { id: 'Modelo informado', se: function () { return st.modelo === null; },
+      pergunta: 'Qual carregador você está procurando? Pode me dizer a potência (40, 60, 80 ou 90 kW) ou o modelo.',
+      texto: TEXTO, valida: preenchido('Me conta qual carregador você procura.') },
+    { id: 'Local', pergunta: 'Onde você pretende instalar? Pode ser posto, comércio, condomínio, empresa, casa…',
+      texto: TEXTO, valida: preenchido('Me conta onde vai ser a instalação.'), reage: function () { return 'Perfeito.'; } },
+    { id: 'Energia trifásica', pergunta: 'E o local já tem energia trifásica? Se não souber, tudo bem, é só falar.',
+      texto: TEXTO, valida: preenchido('Pode responder sim, não ou não sei.'),
+      reage: function (v) { return naoSabe.test(v) ? 'Sem problema, o consultor verifica isso com você.' : nao.test(v) ? 'Tudo bem, o consultor te orienta sobre isso.' : 'Ótimo, isso ajuda bastante.'; } },
+    { id: 'Prazo', pergunta: 'Para quando você precisa dele funcionando?',
+      texto: TEXTO, valida: preenchido('Me conta o prazo, mesmo que seja aproximado.'), reage: function () { return 'Entendido.'; } },
+    { id: 'Pagamento', pergunta: 'Você prefere pagar à vista ou parcelar em ' + PARCELAS + 'x no cartão?',
+      texto: TEXTO, valida: preenchido('Me conta como prefere pagar.'), reage: function () { return 'Anotado.'; } },
+    { id: 'Cidade', pergunta: 'Em qual cidade vai ser a instalação?',
+      texto: { type: 'text', placeholder: 'Ex.: Fortaleza', autocomplete: 'address-level2', inputmode: 'text', autocapitalize: 'words' },
+      valida: function (v) { return v.length >= 2 ? '' : 'Digite o nome da cidade.'; }, reage: function () { return 'Certo.'; } },
+    { id: 'Nome', pergunta: 'Para eu montar sua proposta, como posso te chamar?',
+      texto: { type: 'text', placeholder: 'Seu nome', autocomplete: 'name', inputmode: 'text', autocapitalize: 'words' },
       valida: function (v) { return v.length >= 2 ? '' : 'Digite seu nome.'; } },
     { id: 'WhatsApp', pergunta: function () { return 'Prazer, ' + primeiro(st.r['Nome']) + '! Qual é o seu WhatsApp com DDD? O consultor vai te chamar por lá.'; },
       texto: { type: 'tel', placeholder: '(85) 99999-9999', autocomplete: 'tel-national', inputmode: 'tel' },
       valida: function (v) { var d = v.replace(/\D/g, ''); return (d.length === 10 || d.length === 11) ? '' : 'Digite um WhatsApp válido com DDD.'; } }
   ];
+
+  // Tenta reconhecer o modelo pelo que a pessoa escreveu
+  function reconhecerModelo(t) {
+    var s = t.toLowerCase();
+    if (/growatt|thor/.test(s)) return 2;
+    if (/sennan/.test(s)) return 4;
+    var kw = (s.match(/\b(40|60|80|90)\b/) || [])[1];
+    if (kw === '60') return 3;
+    if (kw === '80') return 4;
+    if (kw === '90') return 5;
+    if (kw === '40') {
+      if (/2\s*b\b|2\s*bicos?|dois bicos?|duplo/.test(s)) return 1;
+      if (/1\s*bico|um bico|simples/.test(s)) return 0;
+    }
+    return -1;
+  }
 
   function primeiro(n) { return (n || '').trim().split(/\s+/)[0] || ''; }
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -616,50 +644,25 @@ fbq('track','PageView');
   }
   function progresso() {
     var total = PASSOS.length - (st.pediuModelo ? 0 : 1);
-    var feitos = Object.keys(st.r).length + (st.pediuModelo ? 1 : 0);
+    var feitos = Object.keys(st.r).length;
     prog.style.width = Math.min(100, Math.round(feitos / total * 100)) + '%';
   }
   function limparEntrada() { opts.innerHTML = ''; opts.className = 'chat-opts'; form.hidden = true; erro.textContent = ''; }
 
-  function perguntar() {
+  // antes: falas de reação à resposta anterior, ditas antes da próxima pergunta
+  function perguntar(antes) {
     limparEntrada(); progresso();
     while (st.passo < PASSOS.length && PASSOS[st.passo].se && !PASSOS[st.passo].se()) st.passo++;
-    if (st.passo >= PASSOS.length) { finalizar(); return; }
+    if (st.passo >= PASSOS.length) { finalizar(antes); return; }
     var p = PASSOS[st.passo];
     var q = typeof p.pergunta === 'function' ? p.pergunta() : p.pergunta;
-    diz([q], function () {
-      if (p.texto) {
-        form.hidden = false;
-        Object.keys(p.texto).forEach(function (k) { input.setAttribute(k, p.texto[k]); });
-        input.value = ''; input.removeAttribute('aria-invalid');
-        input.setAttribute('aria-label', q);
-        setTimeout(function () { input.focus({ preventScroll: true }); }, 60);
-      } else {
-        if (p.lista) opts.classList.add('lista');
-        p.opcoes().forEach(function (o) {
-          var b = document.createElement('button'); b.type = 'button'; b.className = 'opt';
-          b.innerHTML = esc(o.t) + (o.sub ? '<small>' + esc(o.sub) + '</small>' : '');
-          b.addEventListener('click', function () { responder(p, o); });
-          opts.appendChild(b);
-        });
-        rolar();
-      }
+    diz((antes || []).concat([q]), function () {
+      form.hidden = false;
+      Object.keys(p.texto).forEach(function (k) { input.setAttribute(k, p.texto[k]); });
+      input.value = ''; input.removeAttribute('aria-invalid');
+      input.setAttribute('aria-label', q);
+      setTimeout(function () { input.focus({ preventScroll: true }); }, 60);
     });
-  }
-
-  function responder(p, o) {
-    limparEntrada();
-    bolha(esc(o.t), 'eu');
-    st.passo++;
-    if (p.id === 'modelo') {
-      st.pediuModelo = true;
-      st.modelo = o.v;
-      if (o.v >= 0) diz([function () { cartaoModelo(MODELOS[o.v]); }, 'Ótima escolha. Agora umas perguntas rápidas sobre a instalação.'], perguntar);
-      else diz(['Sem problema: o consultor te ajuda a escolher. Me conta um pouco sobre a instalação.'], perguntar);
-      return;
-    }
-    st.r[p.id] = o.v;
-    perguntar();
   }
 
   function mascara(v) {
@@ -680,21 +683,28 @@ fbq('track','PageView');
     var msg = p.valida ? p.valida(v) : '';
     if (msg) { input.setAttribute('aria-invalid', 'true'); erro.textContent = msg; input.focus(); return; }
     st.r[p.id] = v; bolha(esc(v), 'eu'); st.passo++;
-    perguntar();
+    var antes = [];
+    if (p.id === 'Modelo informado') {
+      st.pediuModelo = true;
+      st.modelo = reconhecerModelo(v);
+      if (st.modelo >= 0) { var mm = MODELOS[st.modelo]; antes = ['Boa! Temos o ' + mm.nome + ':', function () { cartaoModelo(mm); }]; }
+      else antes = ['Anotado. O consultor te ajuda a fechar o modelo certo.'];
+    } else if (p.reage) antes = [p.reage(v)];
+    perguntar(antes);
   });
 
   function resumo() {
     var m = st.modelo >= 0 ? MODELOS[st.modelo] : null;
     return 'Olá! Sou ' + st.r['Nome'] + ' e pedi uma proposta pela página da Vertus Mob.' +
-      (m ? '\nModelo: ' + m.nome + ' (' + m.kw + ' kW · ' + rotulo(m) + '), R$ ' + brl(m.vista) + ' ou ' + PARCELAS + 'x de R$ ' + brl(parcela(m)) : '\nModelo: quero ajuda para escolher') +
+      (m ? '\nModelo: ' + m.nome + ' (' + m.kw + ' kW · ' + rotulo(m) + '), R$ ' + brl(m.vista) + ' ou ' + PARCELAS + 'x de R$ ' + brl(parcela(m)) : '\nModelo: ' + (st.r['Modelo informado'] || 'quero ajuda para escolher')) +
       '\nLocal: ' + st.r['Local'] + '\nEnergia trifásica: ' + st.r['Energia trifásica'] + '\nPrazo: ' + st.r['Prazo'] +
       '\nPagamento: ' + st.r['Pagamento'] + '\nCidade: ' + st.r['Cidade'];
   }
 
-  function finalizar() {
+  function finalizar(antes) {
     limparEntrada(); prog.style.width = '100%';
     var m = st.modelo >= 0 ? MODELOS[st.modelo] : null;
-    var nomeModelo = m ? m.nome : 'Ajuda para escolher';
+    var nomeModelo = m ? m.nome : (st.r['Modelo informado'] || 'Ajuda para escolher');
     var suspeito = Date.now() - aberto < 6000;
     if (!suspeito && !st.enviado) {
       st.enviado = true;
@@ -712,11 +722,11 @@ fbq('track','PageView');
       if (window.fbq) window.fbq('track', 'Lead', m ? { content_name: m.nome, content_category: 'carregador-dc', value: m.vista, currency: 'BRL' } : { content_name: nomeModelo, content_category: 'carregador-dc' });
       if (window.gtag) window.gtag('event', 'generate_lead', { modelo: nomeModelo, pagina: 'carregadores' });
     }
-    diz([
+    diz((antes || []).concat([
       'Pronto, ' + esc(primeiro(st.r['Nome'])) + '! Recebi seu pedido' + (m ? ' do <b>' + esc(m.nome) + '</b>' : '') + '.',
       'Um consultor da Vertus Mob vai te chamar no WhatsApp <b>' + esc(st.r['WhatsApp']) + '</b> com a proposta, em horário comercial.',
       'Se preferir, já pode mandar uma mensagem agora:'
-    ], function () {
+    ]), function () {
       var a = document.createElement('a'); a.className = 'opt wa'; a.target = '_blank'; a.rel = 'noopener';
       a.href = waLink(resumo());
       a.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>Chamar agora no WhatsApp';
