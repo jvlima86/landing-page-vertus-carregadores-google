@@ -105,6 +105,10 @@
     {
       "source": "/carregadores",
       "destination": "/carregadores.html"
+    },
+    {
+      "source": "/novo",
+      "destination": "/novo.html"
     }
   ]
 }
