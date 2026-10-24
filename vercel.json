@@ -112,7 +112,11 @@
     },
     {
       "source": "/simulacao",
-      "destination": "/simulacao.html"
+      "destination": "/novo.html"
+    },
+    {
+      "source": "/antiga",
+      "destination": "/antiga.html"
     }
   ]
 }
