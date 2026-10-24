@@ -109,6 +109,10 @@
     {
       "source": "/novo",
       "destination": "/novo.html"
+    },
+    {
+      "source": "/simulacao",
+      "destination": "/simulacao.html"
     }
   ]
 }
