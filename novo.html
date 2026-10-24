@@ -471,10 +471,10 @@ fbq('track','PageView');
       </div>
     </div>
     <div id="formStarter" style="flex: 1 1 420px; min-width: 0; background: #2A2828; border: 1px solid rgba(241,241,241,0.1); border-radius: 20px; padding: clamp(22px,3vw,32px); display: flex; flex-direction: column; gap: 14px;">
-      <p style="font-weight: 600; font-size: 12px; letter-spacing: 0.14em; color: #FF7E27;">SIMULAÇÃO EM 5 TOQUES</p>
+      <p style="font-weight: 600; font-size: 12px; letter-spacing: 0.14em; color: #FF7E27;">SIMULAÇÃO EM 4 TOQUES</p>
       <h3 style="font-weight: 800; font-size: 26px; line-height: 1.15; letter-spacing: -0.02em;">Responda rapidinho e receba a simulação no WhatsApp.</h3>
       <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 16px; color: #E0E0E0;">
-        <li>• Onde vai ser o eletroposto</li><li>• Potência e investimento</li><li>• Prazo e seu contato</li>
+        <li>• Onde vai ser o eletroposto</li><li>• Investimento e prazo</li><li>• Seu contato</li>
       </ul>
       <button type="button" class="js-form" style="margin-top: 6px; min-height: 58px; border: 0; border-radius: 999px; background: #FF7E27; color: #1E1C1C; font: inherit; font-weight: 800; font-size: 17px; cursor: pointer;">Começar minha simulação</button>
       <p style="font-size: 13px; color: #9A9A9A;">Leva menos de 1 minuto. Seus dados ficam só com a Vertus. <a href="/privacidade.html" style="color: #E0E0E0;">Política de privacidade</a>.</p>
@@ -505,7 +505,7 @@ fbq('track','PageView');
   <form class="sim-box" id="simForm" novalidate autocomplete="on">
     <div class="sim-top">
       <button class="sim-ic" type="button" id="simVoltar" aria-label="Voltar"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <span class="sim-etapa" id="simEtapa">Etapa 1 de 5</span>
+      <span class="sim-etapa" id="simEtapa">Etapa 1 de 4</span>
       <button class="sim-ic" type="button" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
     <div class="sim-prog" aria-hidden="true"><i id="simProg"></i></div>
@@ -519,20 +519,7 @@ fbq('track','PageView');
           <button type="button" class="sim-op" data-v="Comércio"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></svg></span><span>Comércio<small>Loja, supermercado, restaurante, shopping</small></span></button>
           <button type="button" class="sim-op" data-v="Posto de combustível"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16M3 21h12M14 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0V8l-3-3M7 8h4"/></svg></span><span>Posto de combustível<small>Posto urbano ou de rodovia</small></span></button>
           <button type="button" class="sim-op" data-v="Hub de recarga"><span class="ico"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></span><span>Hub de recarga<small>Vários carregadores no mesmo lugar</small></span></button>
-          <button type="button" class="sim-op" data-v="Ainda não tenho ponto"><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span>Ainda não tenho ponto<small>Quero ajuda para escolher o local</small></span></button>
-        </div>
-      </fieldset>
-
-      <fieldset class="sim-passo" data-campo="potencia" style="border:0;margin:0;padding:0">
-        <legend><h2>Qual potência você procura?</h2></legend>
-        <p class="sub">Quanto maior a potência, mais rápido o carro carrega e mais carros o ponto atende por dia.</p>
-        <div class="sim-ops">
-          <button type="button" class="sim-op" data-v="30 a 40 kW"><span>30 a 40 kW<small>Comércio e estacionamento, carga em cerca de 1 hora</small></span></button>
-          <button type="button" class="sim-op" data-v="60 kW"><span>60 kW<small>Supermercado e posto urbano, 2 carros ao mesmo tempo</small></span></button>
-          <button type="button" class="sim-op" data-v="80 a 90 kW"><span>80 a 90 kW<small>Posto com bastante fluxo</small></span></button>
-          <button type="button" class="sim-op" data-v="120 kW ou mais"><span>120 kW ou mais<small>Rodovia e hub de recarga rápida</small></span></button>
-          <button type="button" class="sim-op" data-v="Ainda não sei"><span>Ainda não sei<small>O consultor indica a melhor opção</small></span></button>
-        </div>
+                  </div>
       </fieldset>
 
       <fieldset class="sim-passo" data-campo="investimento" style="border:0;margin:0;padding:0">
@@ -561,7 +548,6 @@ fbq('track','PageView');
         <legend><h2>Para onde enviamos sua simulação?</h2></legend>
         <p class="sub">Um consultor da Vertus Mob continua com você pelo WhatsApp.</p>
         <div class="sim-campo"><label for="simNome">Nome</label><input id="simNome" name="name" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" placeholder="Seu nome"><p class="sim-erro" id="simNomeErro"></p></div>
-        <div class="sim-campo"><label for="simCidade">Cidade</label><input id="simCidade" name="address-level2" type="text" autocomplete="address-level2" autocapitalize="words" enterkeyhint="next" placeholder="Ex.: Fortaleza, CE"><p class="sim-erro" id="simCidadeErro"></p></div>
         <div class="sim-campo"><label for="simTel">WhatsApp</label><input id="simTel" name="tel" type="tel" autocomplete="tel-national" inputmode="tel" enterkeyhint="send" placeholder="(85) 99999-9999"><p class="sim-erro" id="simTelErro"></p></div>
         <input type="text" name="site" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
       </fieldset>
@@ -588,7 +574,6 @@ fbq('track','PageView');
   var pe = document.getElementById('simPe');
   var enviar = document.getElementById('simEnviar');
   var nome = document.getElementById('simNome');
-  var cidade = document.getElementById('simCidade');
   var tel = document.getElementById('simTel');
   var params = new URLSearchParams(location.search);
   var utm = {};
@@ -640,14 +625,13 @@ fbq('track','PageView');
     if (msg) campo.setAttribute('aria-invalid', 'true'); else campo.removeAttribute('aria-invalid');
     return !msg;
   }
-  [nome, cidade, tel].forEach(function (c) { c.addEventListener('input', function () { erro(c, ''); }); });
-  nome.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); cidade.focus(); } });
-  cidade.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); tel.focus(); } });
+  [nome, tel].forEach(function (c) { c.addEventListener('input', function () { erro(c, ''); }); });
+  nome.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); tel.focus(); } });
 
   function textoWhats() {
     return 'Olá! Quero uma simulação de eletroposto com a Vertus Mob.' +
-      '\n\nNome: ' + resp.nome + '\nCidade: ' + resp.cidade + '\nWhatsApp: ' + resp.tel +
-      '\nLocal: ' + (resp.local || '-') + '\nPotência: ' + (resp.potencia || '-') +
+      '\n\nNome: ' + resp.nome + '\nWhatsApp: ' + resp.tel +
+      '\nLocal: ' + (resp.local || '-') +
       '\nInvestimento: ' + (resp.investimento || '-') + '\nPrazo: ' + (resp.prazo || '-');
   }
 
@@ -655,11 +639,10 @@ fbq('track','PageView');
     e.preventDefault();
     if (passos[atual].dataset.campo !== 'contato' || enviado) return;
     var ok = erro(nome, nome.value.trim().length >= 2 ? '' : 'Digite seu nome.');
-    ok = erro(cidade, cidade.value.trim().length >= 2 ? '' : 'Digite sua cidade.') && ok;
     var d = tel.value.replace(/\D/g, '');
     ok = erro(tel, (d.length === 10 || d.length === 11) ? '' : 'Digite um WhatsApp válido com DDD.') && ok;
     if (!ok) { var bad = form.querySelector('[aria-invalid="true"]'); if (bad) bad.focus(); return; }
-    resp.nome = nome.value.trim(); resp.cidade = cidade.value.trim(); resp.tel = tel.value.trim();
+    resp.nome = nome.value.trim(); resp.tel = tel.value.trim();
     enviado = true;
     enviar.setAttribute('aria-busy', 'true'); enviar.lastChild.textContent = 'Abrindo o WhatsApp…';
 
@@ -667,9 +650,9 @@ fbq('track','PageView');
     var wa = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(textoWhats());
     if (!suspeito) {
       var dados = Object.assign({
-        nome: resp.nome, whatsapp: resp.tel, cidade: resp.cidade,
-        interesse: 'Eletroposto · ' + (resp.potencia || ''), profissao: resp.local || '', pretencao: resp.investimento || '',
-        local: resp.local || '', potencia: resp.potencia || '', prazo: resp.prazo || '',
+        nome: resp.nome, whatsapp: resp.tel,
+        interesse: 'Eletroposto', profissao: resp.local || '', pretencao: resp.investimento || '',
+        local: resp.local || '', prazo: resp.prazo || '',
         origem: 'home-formulario', pagina: location.href, data: new Date().toISOString()
       }, utm);
       try {
