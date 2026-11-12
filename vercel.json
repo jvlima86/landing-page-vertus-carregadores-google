@@ -117,6 +117,10 @@
     {
       "source": "/antiga",
       "destination": "/antiga.html"
+    },
+    {
+      "source": "/vaga",
+      "destination": "/vaga.html"
     }
   ]
 }
