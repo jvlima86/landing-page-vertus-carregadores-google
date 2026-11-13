@@ -121,6 +121,10 @@
     {
       "source": "/vaga",
       "destination": "/vaga.html"
+    },
+    {
+      "source": "/energia",
+      "destination": "/energia.html"
     }
   ]
 }

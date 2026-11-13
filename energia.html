@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Compramos a energia da sua usina · Vertus Solar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E1C1C">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Tem uma usina solar com geração acima de 4.000 kWh/mês? A Vertus Solar compra a energia que ela gera, com contrato formal.">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Google Ads: dataLayer inline; o gtag.js é injetado pelo app.js após o load -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17006818606');
+</script>
+<style>
+html,body{margin:0;background:#1E1C1C;color:#F1F1F1;font-family:Archivo,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:#F1F1F1}
+/* FORMULÁRIO EM ETAPAS — mobile first */
+.sim{display:block;min-height:100dvh;background:#1E1C1C}
+.sim *,.sim *::before,.sim *::after{box-sizing:border-box}
+.sim fieldset{min-width:0}
+.sim legend{padding:0}
+.sim-box{min-height:100dvh;background:#1E1C1C;color:#F1F1F1;display:flex;flex-direction:column;font-family:Archivo,system-ui,sans-serif;animation:simIn .25s ease-out}
+@keyframes simIn{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
+.sim-top{position:sticky;top:0;z-index:2;background:#1E1C1C;display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top,0px)) 10px 10px;border-bottom:1px solid rgba(241,241,241,.1)}
+.sim-ic{width:44px;height:44px;border:0;background:transparent;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#F1F1F1}
+.sim-ic svg{width:22px;height:22px;stroke:currentColor;stroke-width:2.2;fill:none}
+.sim-ic[disabled]{opacity:0;pointer-events:none}
+.sim-etapa{flex:1;text-align:center;font-size:13px;font-weight:600;letter-spacing:.12em;color:#9A9A9A;text-transform:uppercase}
+.sim-prog{height:4px;background:rgba(255,126,39,.18)}
+.sim-prog i{display:block;height:100%;width:20%;background:#FF7E27;transition:width .3s}
+.sim-corpo{flex:1;overflow-x:hidden;padding:18px 18px 18px;-webkit-overflow-scrolling:touch}
+.sim-passo{display:none;animation:simIn .22s ease-out}
+.sim-passo.ativo{display:block}
+.sim-passo h2{font-weight:800;font-size:clamp(25px,6.4vw,32px);line-height:1.12;letter-spacing:-.02em;margin:0}
+.sim-passo .sub{margin:10px 0 0;color:#E0E0E0;font-size:15.5px;line-height:1.45}
+.sim-ops{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+.sim-op{display:flex;align-items:center;gap:14px;width:100%;min-height:62px;padding:12px 16px;border:1.5px solid rgba(241,241,241,.16);border-radius:16px;background:#2A2828;color:#F1F1F1;font:inherit;font-size:17px;font-weight:700;text-align:left;cursor:pointer;touch-action:manipulation;transition:border-color .15s,background .15s}
+.sim-op small{display:block;font-size:13.5px;font-weight:500;color:#9A9A9A;margin-top:2px}
+.sim-op .ico{flex:none;width:40px;height:40px;border-radius:12px;background:rgba(255,126,39,.14);display:flex;align-items:center;justify-content:center}
+.sim-op .ico svg{width:22px;height:22px;stroke:#FF7E27;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.sim-op[aria-pressed="true"]{border-color:#FF7E27;background:rgba(255,126,39,.12)}
+@media (hover:hover){.sim-op:hover{border-color:rgba(255,126,39,.6)}}
+.sim-campo{margin-top:16px}
+.sim-campo label{display:block;font-size:14px;font-weight:600;margin-bottom:6px;color:#E0E0E0}
+.sim-campo input{width:100%;min-height:56px;border-radius:14px;border:1.5px solid rgba(241,241,241,.16);background:#2A2828;color:#F1F1F1;font:inherit;font-size:17px;padding:0 16px;outline:none;-webkit-appearance:none}
+.sim-campo select{width:100%;min-height:56px;border-radius:14px;border:1.5px solid rgba(241,241,241,.16);background:#2A2828;color:#F1F1F1;font:inherit;font-size:17px;padding:0 16px;outline:none;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23E0E0E0' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.sim-campo input:focus,.sim-campo select:focus{border-color:#FF7E27}
+.sim-un{position:relative}.sim-un input{padding-right:96px}.sim-un span{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:#9A9A9A;font-size:15px;font-weight:600;pointer-events:none}
+.sim-dica{margin:6px 0 0;font-size:13.5px;color:#9A9A9A;line-height:1.4}
+.sim-linha{display:grid;grid-template-columns:1fr 104px;gap:10px}
+.sim-req{display:inline-flex;align-items:baseline;gap:6px;margin-top:12px;padding:8px 12px;border-radius:10px;background:#2A2828;border-left:3px solid #FF7E27;font-size:14px;color:#E0E0E0}.sim-req b{color:#FF7E27;font-size:17px;font-weight:800}
+.sim-campo input[aria-invalid="true"]{border-color:#E5484D}
+.sim-continuar{margin-top:20px;width:100%;min-height:56px;border:0;border-radius:999px;background:#FF7E27;color:#1E1C1C;font:inherit;font-size:17px;font-weight:800;cursor:pointer}
+.sim-erro{margin:6px 0 0;font-size:13.5px;color:#FF9F9F;min-height:0}
+.sim-pe{position:sticky;bottom:0;padding:12px 18px calc(12px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(241,241,241,.1);background:#151313}
+.sim-pe button{width:100%;min-height:58px;border:0;border-radius:999px;background:#FF7E27;color:#1E1C1C;font:inherit;font-size:17px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px}
+.sim-pe button svg{width:22px;height:22px;fill:currentColor}
+.sim-pe button[aria-busy="true"]{opacity:.7}
+.sim-pe p{margin:8px 0 0;text-align:center;font-size:12.5px;color:#9A9A9A}
+.sim-pe[hidden]{display:none}
+@media (min-width:721px){
+  .sim-box{max-width:520px;margin:0 auto;border-left:1px solid rgba(241,241,241,.08);border-right:1px solid rgba(241,241,241,.08);animation:none}
+}
+.sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sim-intro{margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid rgba(241,241,241,.1)}
+.sim-intro[hidden]{display:none}
+.sim-intro-t{margin:0;font-weight:800;font-size:clamp(24px,6.4vw,30px);line-height:1.12;letter-spacing:-.02em}
+.sim-intro-t b{color:#FF7E27}
+.sim-intro-s{margin:6px 0 0;color:#E0E0E0;font-size:14.5px;line-height:1.45}
+</style>
+<!-- Meta Pixel (cyclovicosa) -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1216146000327968');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1216146000327968&ev=PageView&noscript=1"></noscript>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17006818606"></script>
+</head>
+<body data-wa-number="5585992230336" data-wa-display="(85) 99223-0336">
+<main class="sim" id="sim">
+  <form class="sim-box" id="simForm" novalidate autocomplete="on">
+    <div class="sim-top">
+      <button class="sim-ic" type="button" id="simVoltar" aria-label="Voltar"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <img src="/assets/logo-vertus-solar-branca.png" alt="Vertus Solar" style="height:34px;width:auto;display:block;margin:0 auto">
+      <span class="sim-etapa" id="simEtapa" style="flex:none;min-width:44px;text-align:right;padding-right:6px">1/4</span>
+    </div>
+    <div class="sim-prog" aria-hidden="true"><i id="simProg"></i></div>
+    <h1 class="sr-only">Compramos a energia da sua usina · Vertus Solar</h1>
+    <div class="sim-corpo">
+      <div class="sim-intro" id="simIntro">
+        <p class="sim-intro-t">Compramos a <b>energia</b> da sua usina.</p>
+        <p class="sim-intro-s">Tem uma usina solar? A Vertus Solar compra a energia que ela gera, com contrato formal. Cadastre a usina em 1 minuto.</p>
+        <p class="sim-req"><b>+4.000 kWh/mês</b> de geração mínima</p>
+      </div>
+
+      <fieldset class="sim-passo ativo" data-campo="operacao" style="border:0;margin:0;padding:0">
+        <legend><h2>A usina já está em operação?</h2></legend>
+        <p class="sub">Escolha a opção que descreve a usina hoje.</p>
+        <div class="sim-ops">
+          <button type="button" class="sim-op" data-v="Sim, já está gerando"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span>Sim, já está gerando<small>Conectada à rede e injetando energia</small></span></button>
+          <button type="button" class="sim-op" data-v="Em construção"><span class="ico"><svg viewBox="0 0 24 24"><path d="M2 20h20M5 20V10l7-5 7 5v10M10 20v-5h4v5"/></svg></span><span>Em construção<small>Obra ou homologação em andamento</small></span></button>
+          <button type="button" class="sim-op" data-v="Ainda é projeto"><span class="ico"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6M8 13h8M8 17h5"/></svg></span><span>Ainda é projeto<small>Terreno ou projeto, sem obra iniciada</small></span></button>
+        </div>
+      </fieldset>
+
+      <fieldset class="sim-passo" data-campo="usina" style="border:0;margin:0;padding:0">
+        <legend><h2>Potência e geração da usina</h2></legend>
+        <p class="sub">Pode ser aproximado. A equipe confere tudo na análise técnica.</p>
+        <div class="sim-campo"><label for="simPot">Potência da usina</label><div class="sim-un"><input id="simPot" name="potencia" type="text" inputmode="decimal" enterkeyhint="next" placeholder="Ex.: 75"><span>kWp</span></div><p class="sim-erro" id="simPotErro"></p></div>
+        <div class="sim-campo"><label for="simGer">Geração média por mês</label><div class="sim-un"><input id="simGer" name="geracao" type="text" inputmode="numeric" enterkeyhint="next" placeholder="Ex.: 9.000"><span>kWh/mês</span></div><p class="sim-dica" id="simGerDica">Se ainda não gera, informe a geração prevista no projeto.</p><p class="sim-erro" id="simGerErro"></p></div>
+        <button type="button" class="sim-continuar" data-acao="usina">Continuar</button>
+      </fieldset>
+
+      <fieldset class="sim-passo" data-campo="local" style="border:0;margin:0;padding:0">
+        <legend><h2>Onde fica a usina?</h2></legend>
+        <p class="sub">A localização define a distribuidora e a viabilidade do contrato.</p>
+        <div class="sim-linha">
+          <div class="sim-campo"><label for="simCidade">Cidade</label><input id="simCidade" name="cidade" type="text" autocapitalize="words" enterkeyhint="next" placeholder="Ex.: Aracoiaba"><p class="sim-erro" id="simCidadeErro"></p></div>
+          <div class="sim-campo"><label for="simUf">Estado</label><select id="simUf" name="estado"><option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option selected>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option></select></div>
+        </div>
+        <div class="sim-campo"><label for="simRef">Localidade ou referência <span style="color:#9A9A9A;font-weight:500">(opcional)</span></label><input id="simRef" name="referencia" type="text" enterkeyhint="next" placeholder="Distrito, rodovia, sítio…"></div>
+        <button type="button" class="sim-continuar" data-acao="local">Continuar</button>
+      </fieldset>
+
+      <fieldset class="sim-passo" data-campo="contato" style="border:0;margin:0;padding:0">
+        <legend><h2>Quem é o responsável pela usina?</h2></legend>
+        <p class="sub">A equipe da Vertus Solar continua com você pelo WhatsApp.</p>
+        <div class="sim-campo"><label for="simNome">Nome</label><input id="simNome" name="name" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" placeholder="Seu nome"><p class="sim-erro" id="simNomeErro"></p></div>
+        <div class="sim-campo"><label for="simTel">WhatsApp</label><input id="simTel" name="tel" type="tel" autocomplete="tel-national" inputmode="tel" enterkeyhint="send" placeholder="(85) 99999-9999"><p class="sim-erro" id="simTelErro"></p></div>
+        <input type="text" name="site" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
+      </fieldset>
+
+    </div>
+    <div class="sim-pe" id="simPe" hidden>
+      <button type="submit" id="simEnviar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.1 4.3c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.3s1 2.7 1.1 2.9c.2.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.6z"/></svg>Enviar no WhatsApp</button>
+      <p>Seus dados ficam só com a Vertus. <a href="/privacidade.html" style="color:#E0E0E0">Privacidade</a></p>
+    </div>
+  </form>
+</main>
+
+<script>
+(function () {
+  /* ════════ FORMULÁRIO EM ETAPAS: planilha + WhatsApp ════════ */
+  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwYLt1SL4Vry6mhzIhLUWZKWpDiwmRkI_wosoPBaGGjJn3DLe6AuBmbCeDkWeib42iW/exec';
+  var waNumber = document.body.getAttribute('data-wa-number');
+  var form = document.getElementById('simForm');
+  var passos = Array.prototype.slice.call(form.querySelectorAll('.sim-passo'));
+  var etapa = document.getElementById('simEtapa');
+  var prog = document.getElementById('simProg');
+  var voltar = document.getElementById('simVoltar');
+  var pe = document.getElementById('simPe');
+  var enviar = document.getElementById('simEnviar');
+  var $ = function (id) { return document.getElementById(id); };
+  var nome = $('simNome'), tel = $('simTel'), pot = $('simPot'), ger = $('simGer'), cidade = $('simCidade'), uf = $('simUf'), ref = $('simRef');
+  var params = new URLSearchParams(location.search);
+  var utm = {};
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'gclid'].forEach(function (k) { if (params.get(k)) utm[k] = params.get(k); });
+
+  var resp = {};
+  var atual = 0, aberto = 0, enviado = false;
+
+  function mostrar(i) {
+    atual = i;
+    passos.forEach(function (p, k) { p.classList.toggle('ativo', k === i); });
+    etapa.textContent = (i + 1) + '/' + passos.length;
+    prog.style.width = Math.round((i + 1) / passos.length * 100) + '%';
+    voltar.disabled = i === 0;
+    pe.hidden = passos[i].dataset.campo !== 'contato';
+    $('simIntro').hidden = i !== 0;
+    window.scrollTo(0, 0);
+    var foco = { usina: pot, local: cidade, contato: nome }[passos[i].dataset.campo];
+    if (foco && !foco.value) setTimeout(function () { foco.focus({ preventScroll: true }); }, 250);
+  }
+
+  // Opções: um toque marca e avança
+  form.querySelectorAll('.sim-op').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var passo = b.closest('.sim-passo');
+      passo.querySelectorAll('.sim-op').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      resp[passo.dataset.campo] = b.dataset.v;
+      if (window.fbq && passo.dataset.campo === 'operacao') window.fbq('trackCustom', 'CadastroUsinaIniciado', { operacao: b.dataset.v });
+      $('simGerDica').hidden = b.dataset.v === 'Sim, já está gerando';
+      setTimeout(function () { mostrar(Math.min(atual + 1, passos.length - 1)); }, 180);
+    });
+  });
+  voltar.addEventListener('click', function () { if (atual > 0) mostrar(atual - 1); });
+
+  function mascara(v) {
+    var d = v.replace(/\D/g, '').replace(/^55(?=\d{10,11}$)/, '').slice(0, 11);
+    if (d.length <= 2) return d.length ? '(' + d : '';
+    if (d.length <= 6) return '(' + d.slice(0, 2) + ') ' + d.slice(2);
+    if (d.length <= 10) return '(' + d.slice(0, 2) + ') ' + d.slice(2, 6) + '-' + d.slice(6);
+    return '(' + d.slice(0, 2) + ') ' + d.slice(2, 7) + '-' + d.slice(7);
+  }
+  tel.addEventListener('input', function () { tel.value = mascara(tel.value); });
+  tel.addEventListener('change', function () { tel.value = mascara(tel.value); });
+
+  // Números: "1.250,5" ou "1250.5" → 1250.5 ; milhar com ponto e decimal com vírgula
+  function numero(s) {
+    s = String(s).trim().replace(/\s/g, '');
+    if (!s) return NaN;
+    if (s.indexOf(',') >= 0) s = s.replace(/\./g, '').replace(',', '.');
+    else if (/^\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, '');
+    return parseFloat(s);
+  }
+  function fmt(n) { return n.toLocaleString('pt-BR', { maximumFractionDigits: 2 }); }
+  ger.addEventListener('blur', function () { var n = numero(ger.value); if (n > 0) ger.value = fmt(Math.round(n)); });
+  pot.addEventListener('blur', function () { var n = numero(pot.value); if (n > 0) pot.value = fmt(n); });
+
+  function erro(campo, msg) {
+    var p = $(campo.id + 'Erro');
+    p.textContent = msg || '';
+    if (msg) campo.setAttribute('aria-invalid', 'true'); else campo.removeAttribute('aria-invalid');
+    return !msg;
+  }
+  [nome, tel, pot, ger, cidade].forEach(function (c) { c.addEventListener('input', function () { erro(c, ''); }); });
+  function primeiroErro() { var bad = form.querySelector('.sim-passo.ativo [aria-invalid="true"]'); if (bad) bad.focus(); }
+
+  form.querySelectorAll('.sim-continuar').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (b.dataset.acao === 'usina') {
+        var p = numero(pot.value), g = numero(ger.value);
+        var ok = erro(pot, p > 0 ? '' : 'Informe a potência em kWp (pode ser aproximada).');
+        ok = erro(ger, g > 0 ? '' : 'Informe a geração média em kWh por mês.') && ok;
+        if (!ok) return primeiroErro();
+        resp.potencia = fmt(p) + ' kWp'; resp.geracao = fmt(Math.round(g)) + ' kWh/mês'; resp.geracao_num = Math.round(g);
+      } else if (b.dataset.acao === 'local') {
+        if (!erro(cidade, cidade.value.trim().length >= 2 ? '' : 'Digite a cidade da usina.')) return primeiroErro();
+        resp.cidade = cidade.value.trim(); resp.estado = uf.value; resp.referencia = ref.value.trim();
+      }
+      mostrar(atual + 1);
+    });
+  });
+  pot.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); ger.focus(); } });
+  ger.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); form.querySelector('[data-acao="usina"]').click(); } });
+  cidade.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); ref.focus(); } });
+  ref.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); form.querySelector('[data-acao="local"]').click(); } });
+  nome.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); tel.focus(); } });
+
+  function localTxt() { return resp.cidade + ' - ' + resp.estado + (resp.referencia ? ' (' + resp.referencia + ')' : ''); }
+  function textoWhats() {
+    return 'Olá! Tenho uma usina solar e quero vender a energia para a Vertus Solar.' +
+      '\n\nNome: ' + resp.nome + '\nWhatsApp: ' + resp.tel +
+      '\nUsina em operação: ' + (resp.operacao || '-') +
+      '\nPotência: ' + resp.potencia + '\nGeração média: ' + resp.geracao +
+      '\nLocal: ' + localTxt();
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (passos[atual].dataset.campo !== 'contato' || enviado) return;
+    var ok = erro(nome, nome.value.trim().length >= 2 ? '' : 'Digite seu nome.');
+    var d = tel.value.replace(/\D/g, '');
+    ok = erro(tel, (d.length === 10 || d.length === 11) ? '' : 'Digite um WhatsApp válido com DDD.') && ok;
+    if (!ok) return primeiroErro();
+    resp.nome = nome.value.trim(); resp.tel = tel.value.trim();
+    enviado = true;
+    enviar.setAttribute('aria-busy', 'true'); enviar.lastChild.textContent = 'Abrindo o WhatsApp…';
+
+    var suspeito = (form.site && form.site.value) || (Date.now() - aberto < 4000);
+    var wa = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(textoWhats());
+    if (!suspeito) {
+      var dados = Object.assign({
+        nome: resp.nome, whatsapp: resp.tel,
+        cidade: resp.cidade, estado: resp.estado, referencia: resp.referencia,
+        interesse: 'Compra de energia da usina', profissao: resp.operacao || '', pretencao: resp.geracao,
+        operacao: resp.operacao || '', potencia: resp.potencia, geracao: resp.geracao,
+        local: localTxt(),
+        origem: 'anuncio-compra-energia', pagina: location.href, data: new Date().toISOString()
+      }, utm);
+      try {
+        fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(dados) }).catch(function () {});
+      } catch (_) {}
+      if (window.fbq) window.fbq('track', 'Lead', { content_name: 'compra-energia-usina', geracao_kwh: resp.geracao_num, operacao: resp.operacao || '' });
+      if (window.gtag) window.gtag('event', 'conversion', { send_to: 'AW-17006818606' });
+    }
+    setTimeout(function () { window.location.href = wa; }, 600);
+  });
+
+  aberto = Date.now();
+  window.addEventListener('pageshow', function (e) { if (e.persisted) { enviado = false; enviar.removeAttribute('aria-busy'); enviar.lastChild.textContent = 'Enviar no WhatsApp'; } });
+  mostrar(0);
+})();
+</script>
+
+</body>
+</html>
