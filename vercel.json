@@ -122,6 +122,7 @@
       "source": "/vaga",
       "destination": "/vaga.html"
     },
+    {"source":"/valparaiso","destination":"/valparaiso.html"},
     {
       "source": "/energia",
       "destination": "/energia.html"
