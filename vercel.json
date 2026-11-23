@@ -123,6 +123,8 @@
       "destination": "/vaga.html"
     },
     {"source":"/valparaiso","destination":"/valparaiso.html"},
+    {"source":"/black-theberge","destination":"/black-theberge.html"},
+    {"source":"/black-lauro-maia","destination":"/black-lauro-maia.html"},
     {
       "source": "/energia",
       "destination": "/energia.html"
