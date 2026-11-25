@@ -1,0 +1,492 @@
+/* Pontos prospectados pela Vertus Mob — página /pontos (clientes).
+   Só o que o cliente pode ver: tipo de local, bairro/cidade, aluguel (quando há) e pino.
+   SEM nomes, telefones, links de anúncio ou nota interna. aluguel null = "Em negociação".
+   aprox: true = pino pela rua/bairro (endereço sem número ou sem pin exato).
+   cat: vaga (dono ofereceu a vaga) · aluguel (imóvel anunciado) · parceria (centro comercial).
+   Fonte: levantamento de 25/11/2026. */
+window.PONTOS = [
+ {
+  "id": "v01",
+  "cat": "vaga",
+  "titulo": "Restaurante",
+  "local": "Castelão · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Dono do local oferece vaga para o eletroposto",
+  "lat": -3.798541,
+  "lng": -38.519356,
+  "aprox": false
+ },
+ {
+  "id": "v02",
+  "cat": "vaga",
+  "titulo": "Restaurante na CE-040",
+  "local": "Centro · Eusébio",
+  "aluguel": null,
+  "detalhe": "Dono do local oferece vaga para o eletroposto",
+  "lat": -3.888155,
+  "lng": -38.436867,
+  "aprox": false
+ },
+ {
+  "id": "v03",
+  "cat": "vaga",
+  "titulo": "Mall comercial na CE-040",
+  "local": "Tamatanduba · Eusébio",
+  "aluguel": null,
+  "detalhe": "Ao lado de uma grande rede de farmácias",
+  "lat": -3.8738,
+  "lng": -38.46474,
+  "aprox": true
+ },
+ {
+  "id": "v04",
+  "cat": "vaga",
+  "titulo": "Arena esportiva",
+  "local": "Castelão · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Esquina com a Av. Alberto Craveiro",
+  "lat": -3.804165,
+  "lng": -38.5182,
+  "aprox": false
+ },
+ {
+  "id": "v05",
+  "cat": "vaga",
+  "titulo": "Bolsão de motoristas de app",
+  "local": "Aeroporto · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Área de espera de motoristas de aplicativo",
+  "lat": -3.779964,
+  "lng": -38.53635,
+  "aprox": false
+ },
+ {
+  "id": "v06",
+  "cat": "vaga",
+  "titulo": "Autoescola",
+  "local": "Maraponga · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Na Av. Godofredo Maciel",
+  "lat": -3.801207,
+  "lng": -38.571094,
+  "aprox": false
+ },
+ {
+  "id": "v07",
+  "cat": "vaga",
+  "titulo": "Revenda de veículos e estacionamento",
+  "local": "Messejana · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Dono do local oferece vaga para o eletroposto",
+  "lat": -3.832722,
+  "lng": -38.495799,
+  "aprox": false
+ },
+ {
+  "id": "v08",
+  "cat": "vaga",
+  "titulo": "Academia",
+  "local": "Parque Dois Irmãos · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Na Av. Bernardo Manuel",
+  "lat": -3.811149,
+  "lng": -38.555079,
+  "aprox": false
+ },
+ {
+  "id": "v09",
+  "cat": "vaga",
+  "titulo": "Imobiliária",
+  "local": "Porto das Dunas · Aquiraz",
+  "aluguel": null,
+  "detalhe": "Na rotatória principal da Av. Caminho do Sol",
+  "lat": -3.849337,
+  "lng": -38.39595,
+  "aprox": true
+ },
+ {
+  "id": "v10",
+  "cat": "vaga",
+  "titulo": "Pousada",
+  "local": "Praia da Taíba · São Gonçalo do Amarante",
+  "aluguel": null,
+  "detalhe": "Dono do local oferece vaga para o eletroposto",
+  "lat": -3.528678,
+  "lng": -38.893562,
+  "aprox": true
+ },
+ {
+  "id": "v11",
+  "cat": "vaga",
+  "titulo": "Estacionamento",
+  "local": "Centro · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Dono do local oferece vaga para o eletroposto",
+  "lat": -3.725262,
+  "lng": -38.533286,
+  "aprox": false
+ },
+ {
+  "id": "v12",
+  "cat": "vaga",
+  "titulo": "Auto elétrica",
+  "local": "Antônio Bezerra · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Dono do local oferece vaga para o eletroposto",
+  "lat": -3.742706,
+  "lng": -38.586202,
+  "aprox": false
+ },
+ {
+  "id": "v13",
+  "cat": "vaga",
+  "titulo": "Revenda de veículos",
+  "local": "Henrique Jorge · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Na Av. Cel. Matos Dourado",
+  "lat": -3.755452,
+  "lng": -38.585313,
+  "aprox": true
+ },
+ {
+  "id": "v14",
+  "cat": "vaga",
+  "titulo": "Estacionamento",
+  "local": "Centro · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Dono do local oferece vaga para o eletroposto",
+  "lat": -3.72951,
+  "lng": -38.52568,
+  "aprox": true
+ },
+ {
+  "id": "v15",
+  "cat": "vaga",
+  "titulo": "Dois estacionamentos",
+  "local": "Centro · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Dois estacionamentos frente a frente",
+  "lat": -3.723563,
+  "lng": -38.527367,
+  "aprox": false
+ },
+ {
+  "id": "v16",
+  "cat": "vaga",
+  "titulo": "Loja de materiais de construção",
+  "local": "Genibaú · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Dono do local oferece vaga para o eletroposto",
+  "lat": -3.756744,
+  "lng": -38.602441,
+  "aprox": false
+ },
+ {
+  "id": "v17",
+  "cat": "vaga",
+  "titulo": "Condomínio residencial",
+  "local": "Passaré · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Recarga para os moradores",
+  "lat": -3.816901,
+  "lng": -38.523445,
+  "aprox": false
+ },
+ {
+  "id": "v18",
+  "cat": "vaga",
+  "titulo": "Condomínio residencial",
+  "local": "Maraponga · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Recarga para os moradores",
+  "lat": -3.793434,
+  "lng": -38.569083,
+  "aprox": true
+ },
+ {
+  "id": "v19",
+  "cat": "vaga",
+  "titulo": "Condomínio residencial",
+  "local": "Messejana · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Recarga para os moradores",
+  "lat": -3.822825,
+  "lng": -38.487755,
+  "aprox": false
+ },
+ {
+  "id": "v20",
+  "cat": "vaga",
+  "titulo": "Ponto comercial",
+  "local": "Jacarecanga · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Na Av. Francisco Sá",
+  "lat": -3.721186,
+  "lng": -38.546369,
+  "aprox": false
+ },
+ {
+  "id": "v21",
+  "cat": "vaga",
+  "titulo": "Ponto comercial",
+  "local": "Luciano Cavalcante · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Na Av. Cel. Miguel Dias",
+  "lat": -3.770437,
+  "lng": -38.487843,
+  "aprox": true
+ },
+ {
+  "id": "v22",
+  "cat": "vaga",
+  "titulo": "Terreno",
+  "local": "Centro · Eusébio",
+  "aluguel": null,
+  "detalhe": "Dono do terreno oferece área para o eletroposto",
+  "lat": -3.89555,
+  "lng": -38.455645,
+  "aprox": false
+ },
+ {
+  "id": "v23",
+  "cat": "vaga",
+  "titulo": "Ponto comercial",
+  "local": "Centro · Fortim",
+  "aluguel": null,
+  "detalhe": "Dono do local oferece vaga para o eletroposto",
+  "lat": -4.461513,
+  "lng": -37.799008,
+  "aprox": false
+ },
+ {
+  "id": "a01",
+  "cat": "aluguel",
+  "titulo": "Ponto comercial de 144 m² com 11 vagas",
+  "local": "Cambeba · Fortaleza",
+  "aluguel": 4900,
+  "detalhe": "Na Av. Washington Soares",
+  "lat": -3.795728,
+  "lng": -38.480037,
+  "aprox": true
+ },
+ {
+  "id": "a02",
+  "cat": "aluguel",
+  "titulo": "Galpão de 200 m² com estacionamento na frente",
+  "local": "Jurema · Caucaia",
+  "aluguel": 2800,
+  "detalhe": "Na Av. Dom Almeida Lustosa",
+  "lat": -3.750542,
+  "lng": -38.615464,
+  "aprox": false
+ },
+ {
+  "id": "a03",
+  "cat": "aluguel",
+  "titulo": "Terreno de 2.720 m²",
+  "local": "Sapiranga · Fortaleza",
+  "aluguel": 4000,
+  "detalhe": "Na Av. Edilson Brasil Soares",
+  "lat": -3.787936,
+  "lng": -38.462481,
+  "aprox": true
+ },
+ {
+  "id": "a04",
+  "cat": "aluguel",
+  "titulo": "Terreno de 966 m² (21 × 46 m)",
+  "local": "Jacundá · Eusébio",
+  "aluguel": 2500,
+  "detalhe": "Na CE-040",
+  "lat": -3.907553,
+  "lng": -38.444602,
+  "aprox": true
+ },
+ {
+  "id": "a05",
+  "cat": "aluguel",
+  "titulo": "Terreno de 550 m²",
+  "local": "Cidade dos Funcionários · Fortaleza",
+  "aluguel": 2500,
+  "detalhe": "Na Av. Desembargador Gonzaga",
+  "lat": -3.80098,
+  "lng": -38.497382,
+  "aprox": true
+ },
+ {
+  "id": "a06",
+  "cat": "aluguel",
+  "titulo": "Ponto de 150 m² com terreno lateral",
+  "local": "Antônio Bezerra · Fortaleza",
+  "aluguel": 3000,
+  "detalhe": "Na Av. Cel. Matos Dourado (Perimetral)",
+  "lat": -3.744072,
+  "lng": -38.585087,
+  "aprox": true
+ },
+ {
+  "id": "a07",
+  "cat": "aluguel",
+  "titulo": "Terreno de esquina com 1.200 m²",
+  "local": "Cambeba · Fortaleza",
+  "aluguel": 3000,
+  "detalhe": "A uma quadra da Av. Washington Soares",
+  "lat": -3.806325,
+  "lng": -38.473733,
+  "aprox": false
+ },
+ {
+  "id": "a08",
+  "cat": "aluguel",
+  "titulo": "Terreno de esquina com 1.914 m²",
+  "local": "Edson Queiroz · Fortaleza",
+  "aluguel": 4500,
+  "detalhe": "Próximo à Unifor",
+  "lat": -3.776318,
+  "lng": -38.454733,
+  "aprox": false
+ },
+ {
+  "id": "a09",
+  "cat": "aluguel",
+  "titulo": "Galpão de 380 m² com 20 vagas",
+  "local": "Sapiranga · Fortaleza",
+  "aluguel": 7500,
+  "detalhe": "Na Av. Conselheiro Gomes de Freitas",
+  "lat": -3.795084,
+  "lng": -38.472996,
+  "aprox": true
+ },
+ {
+  "id": "a10",
+  "cat": "aluguel",
+  "titulo": "Terreno de 2.398 m² de frente para a BR-116",
+  "local": "Cajazeiras · Fortaleza",
+  "aluguel": 3500,
+  "detalhe": "Frente para a BR-116",
+  "lat": -3.803618,
+  "lng": -38.508608,
+  "aprox": true
+ },
+ {
+  "id": "a11",
+  "cat": "aluguel",
+  "titulo": "Galpão de 457 m² no trevo BR-222 × BR-020",
+  "local": "Tabapuá · Caucaia",
+  "aluguel": 4500,
+  "detalhe": "No trevo das rodovias",
+  "lat": -3.743081,
+  "lng": -38.619498,
+  "aprox": false
+ },
+ {
+  "id": "a12",
+  "cat": "aluguel",
+  "titulo": "Ponto comercial / galpão",
+  "local": "Passaré · Fortaleza",
+  "aluguel": 3100,
+  "detalhe": "Ponto comercial com galpão",
+  "lat": -3.815416,
+  "lng": -38.520643,
+  "aprox": false
+ },
+ {
+  "id": "a13",
+  "cat": "aluguel",
+  "titulo": "Terreno",
+  "local": "Cajazeiras · Fortaleza",
+  "aluguel": 3500,
+  "detalhe": "Terreno para aluguel",
+  "lat": -3.80424,
+  "lng": -38.504637,
+  "aprox": false
+ },
+ {
+  "id": "s01",
+  "cat": "parceria",
+  "titulo": "Shopping center",
+  "local": "Antônio Bezerra · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Parceria de vaga no estacionamento",
+  "lat": -3.733803,
+  "lng": -38.584208,
+  "aprox": true
+ },
+ {
+  "id": "s02",
+  "cat": "parceria",
+  "titulo": "Shopping center na BR-116",
+  "local": "Pacajus",
+  "aluguel": null,
+  "detalhe": "Parceria de vaga no estacionamento",
+  "lat": -4.151038,
+  "lng": -38.4732,
+  "aprox": false
+ },
+ {
+  "id": "s03",
+  "cat": "parceria",
+  "titulo": "Shopping center",
+  "local": "Prefeito José Walter · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Parceria de vaga no estacionamento",
+  "lat": -3.824209,
+  "lng": -38.549727,
+  "aprox": false
+ },
+ {
+  "id": "s04",
+  "cat": "parceria",
+  "titulo": "Shopping center",
+  "local": "Centro · Caucaia",
+  "aluguel": null,
+  "detalhe": "Parceria de vaga no estacionamento",
+  "lat": -3.734048,
+  "lng": -38.655904,
+  "aprox": false
+ },
+ {
+  "id": "s05",
+  "cat": "parceria",
+  "titulo": "Mall com academia 24 h e 51 vagas",
+  "local": "Maraponga · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Parceria de vaga no estacionamento",
+  "lat": -3.784038,
+  "lng": -38.566005,
+  "aprox": true
+ },
+ {
+  "id": "s06",
+  "cat": "parceria",
+  "titulo": "Shopping center",
+  "local": "Maraponga · Fortaleza",
+  "aluguel": null,
+  "detalhe": "Parceria de vaga no estacionamento",
+  "lat": -3.820853,
+  "lng": -38.556391,
+  "aprox": false
+ },
+ {
+  "id": "s07",
+  "cat": "parceria",
+  "titulo": "Centro comercial",
+  "local": "Icaraí · Caucaia",
+  "aluguel": null,
+  "detalhe": "Parceria de vaga no estacionamento",
+  "lat": -3.670802,
+  "lng": -38.67248,
+  "aprox": false
+ },
+ {
+  "id": "s08",
+  "cat": "parceria",
+  "titulo": "Shopping center",
+  "local": "Centro · Maranguape",
+  "aluguel": null,
+  "detalhe": "Parceria de vaga no estacionamento",
+  "lat": -3.894655,
+  "lng": -38.68422,
+  "aprox": false
+ }
+];

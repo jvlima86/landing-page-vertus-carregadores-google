@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Pontos em prospecção · Vertus Mob</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E1C1C">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Pontos que a Vertus Mob está prospectando para novos eletropostos. Marque os que interessam a você.">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<style>
+:root{
+  --o:#FF7E27;--o-soft:#FF9F54;--k:#1E1C1C;--c:#2A2828;--g:#E0E0E0;--w:#F1F1F1;--mut:#9A9A9A;
+  --fg2:rgba(241,241,241,.78);--line:rgba(241,241,241,.09);--line2:rgba(241,241,241,.16);--lo:rgba(255,126,39,.45);
+  --r:12px;--rc:8px;--shadow:0 24px 60px rgba(0,0,0,.45);--panel:400px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--k);color:var(--w);font-family:Archivo,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+#map{position:fixed;inset:0;background:#181717;z-index:0}
+.leaflet-container{font-family:inherit;background:#181717}
+.leaflet-control-attribution{background:rgba(30,28,28,.75)!important;color:var(--mut)!important;font-size:10px}
+.leaflet-control-attribution a{color:var(--g)!important}
+.leaflet-control-zoom a{background:var(--c)!important;color:var(--w)!important;border-color:var(--line2)!important}
+
+/* topo */
+.top{position:fixed;top:0;left:0;right:0;z-index:500;padding:calc(12px + env(safe-area-inset-top,0px)) 16px 12px;display:flex;align-items:center;gap:14px;background:linear-gradient(#1E1C1C 0%,rgba(30,28,28,.92) 70%,rgba(30,28,28,0) 100%);pointer-events:none}
+.top>*{pointer-events:auto}
+.top img{height:30px;display:block}
+.top .tt{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.top .tt b{font-size:15px;font-weight:800;letter-spacing:-.01em}
+.top .tt span{font-size:12px;color:var(--mut)}
+.top .sp{flex:1}
+.me{display:flex;align-items:center;gap:8px;background:var(--c);border:1px solid var(--line2);border-radius:100px;padding:7px 14px 7px 8px;font-size:13px;font-weight:600;white-space:nowrap}
+.me i{width:22px;height:22px;border-radius:50%;background:var(--o);color:var(--k);display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:800;font-size:11px}
+.me:hover{border-color:var(--lo)}
+
+/* filtros + contador */
+.bar{position:fixed;left:16px;top:calc(68px + env(safe-area-inset-top,0px));z-index:500;display:flex;flex-wrap:wrap;gap:8px;max-width:calc(100% - 32px)}
+.chip{display:inline-flex;align-items:center;gap:7px;background:rgba(42,40,40,.94);border:1px solid var(--line2);border-radius:100px;padding:7px 12px;font-size:12.5px;font-weight:600;color:var(--fg2)}
+.chip .dot{width:10px;height:10px;border-radius:50%}
+.chip[aria-pressed="true"]{border-color:var(--o);color:var(--w)}
+.chip small{color:var(--mut);font-weight:500}
+.count{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:500;background:rgba(42,40,40,.94);border:1px solid var(--line2);border-radius:var(--rc);padding:9px 13px;font-size:12.5px;color:var(--fg2)}
+.count b{color:var(--o);font-weight:800}
+
+/* pinos */
+.pin{width:30px;height:38px;position:relative;filter:drop-shadow(0 4px 6px rgba(0,0,0,.5))}
+.pin svg{width:30px;height:38px;display:block}
+.pin .ok{position:absolute;right:-5px;top:-5px;width:17px;height:17px;border-radius:50%;background:#F1F1F1;color:var(--k);display:none;align-items:center;justify-content:center;font-size:11px;font-weight:800;border:2px solid var(--k)}
+.pin.sim .ok{display:flex}
+.pin.nao{opacity:.38}
+.pin.sel svg{transform:scale(1.18);transform-origin:50% 100%}
+.pin.aprox svg path:first-child{stroke-dasharray:3 2}
+
+/* painel lateral */
+.panel{position:fixed;z-index:600;top:0;right:0;bottom:0;width:var(--panel);max-width:100%;background:var(--k);border-left:1px solid var(--line2);box-shadow:var(--shadow);transform:translateX(105%);transition:transform .28s ease;display:flex;flex-direction:column}
+.panel.open{transform:none}
+.ph{display:flex;align-items:center;gap:8px;padding:calc(14px + env(safe-area-inset-top,0px)) 14px 12px 20px;border-bottom:1px solid var(--line)}
+.ph .k{flex:1;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--o)}
+.ic{width:38px;height:38px;border-radius:50%;border:1px solid var(--line2);background:var(--c);display:flex;align-items:center;justify-content:center}
+.ic svg{width:18px;height:18px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ic:hover{border-color:var(--lo)}
+.pb{flex:1;overflow-y:auto;padding:22px 20px 20px}
+.pb h2{margin:0;font-size:24px;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.pb .loc{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:14px;color:var(--fg2)}
+.pb .loc svg{width:15px;height:15px;stroke:var(--o);stroke-width:2;fill:none;flex:none}
+.val{margin-top:22px;border:1px solid var(--line2);border-radius:var(--r);background:var(--c);padding:18px}
+.val .l{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.val .v{margin-top:6px;font-size:30px;font-weight:800;letter-spacing:-.02em;color:var(--o);line-height:1.05}
+.val .v small{font-size:14px;font-weight:600;color:var(--fg2);letter-spacing:0}
+.val.neg .v{font-size:22px;color:var(--w)}
+.val .n{margin-top:6px;font-size:12.5px;color:var(--mut)}
+.det{margin-top:16px;font-size:14px;line-height:1.55;color:var(--fg2)}
+.pb .aprox{margin-top:12px;font-size:12px;color:var(--mut);display:flex;gap:6px;align-items:flex-start}
+.pb .aprox[hidden]{display:none}
+.pb .aprox::before{content:"";flex:none;width:10px;height:10px;margin-top:3px;border-radius:50%;border:1.5px dashed var(--mut)}
+.q{margin-top:26px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.vote{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.vote button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;border-radius:var(--rc);border:1px solid var(--line2);background:var(--c);font-size:15px;font-weight:700}
+.vote button svg{width:18px;height:18px;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.vote .s:hover{border-color:var(--o)}
+.vote .s[aria-pressed="true"]{background:var(--o);border-color:var(--o);color:var(--k)}
+.vote .x[aria-pressed="true"]{background:#3a3737;border-color:var(--g);color:var(--w)}
+.saved{margin-top:10px;min-height:18px;font-size:12.5px;color:var(--mut)}
+.pf{display:flex;gap:10px;padding:12px 20px calc(14px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
+.pf button{flex:1;min-height:44px;border-radius:var(--rc);border:1px solid var(--line2);background:transparent;font-size:13.5px;font-weight:600;color:var(--fg2);display:flex;align-items:center;justify-content:center;gap:6px}
+.pf button:hover{border-color:var(--lo);color:var(--w)}
+.pf svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* modal do nome */
+.modal{position:fixed;inset:0;z-index:900;background:rgba(15,14,14,.72);display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.mbox{width:100%;max-width:420px;background:var(--k);border:1px solid var(--line2);border-radius:var(--r);padding:26px 22px 22px;box-shadow:var(--shadow)}
+.mbox .k{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--o)}
+.mbox h3{margin:8px 0 0;font-size:22px;font-weight:800;letter-spacing:-.02em}
+.mbox p{margin:8px 0 0;font-size:14px;line-height:1.5;color:var(--fg2)}
+.mbox label{display:block;margin-top:18px;font-size:12.5px;font-weight:600;color:var(--fg2)}
+.mbox input{display:block;width:100%;margin-top:6px;min-height:50px;border-radius:var(--rc);border:1px solid var(--line2);background:var(--c);padding:0 14px;font-size:16px}
+.mbox input:focus{outline:none;border-color:var(--o)}
+.mbox .err{min-height:18px;margin-top:6px;font-size:12.5px;color:var(--o-soft)}
+.mbox .go{width:100%;min-height:50px;margin-top:6px;border:0;border-radius:var(--rc);background:var(--o);color:var(--k);font-size:15px;font-weight:800}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;z-index:950;background:var(--w);color:var(--k);border-radius:100px;padding:10px 18px;font-size:13.5px;font-weight:700;transition:.25s;pointer-events:none;white-space:nowrap}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* intro (primeira visita) */
+.hint{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:500;background:rgba(42,40,40,.96);border:1px solid var(--lo);border-radius:100px;padding:9px 16px;font-size:13px;font-weight:600;white-space:nowrap}
+
+body.p-open .top{right:var(--panel);transition:right .28s ease}
+@media (max-width:720px){
+  body.p-open .top{right:0}
+  .top{padding-left:12px;padding-right:12px;gap:10px}
+  .top img{height:24px}
+  .top .tt span{display:none}
+  .me{padding:6px 10px 6px 6px;font-size:12px}
+  .me .nm{max-width:90px;overflow:hidden;text-overflow:ellipsis}
+  .bar{left:12px;top:calc(58px + env(safe-area-inset-top,0px));flex-wrap:nowrap;overflow-x:auto;max-width:calc(100% - 24px);scrollbar-width:none;padding-bottom:4px}
+  .bar::-webkit-scrollbar{display:none}
+  .chip{flex:none}
+  .count{left:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+  .hint{bottom:calc(58px + env(safe-area-inset-bottom,0px))}
+  .panel{top:auto;left:0;width:100%;max-height:86dvh;border-left:0;border-top:1px solid var(--line2);border-radius:16px 16px 0 0;transform:translateY(105%)}
+  .panel.open{transform:none}
+  .ph{padding-top:14px}
+  .ph::before{content:"";position:absolute;left:50%;top:6px;width:40px;height:4px;margin-left:-20px;border-radius:4px;background:var(--line2)}
+  .pb{padding-top:16px}
+  .pb h2{font-size:21px}
+  .val .v{font-size:26px}
+  .leaflet-control-zoom{display:none}
+}
+@media (prefers-reduced-motion:reduce){.panel,.toast{transition:none}}
+</style>
+</head>
+<body>
+
+<div id="map" role="region" aria-label="Mapa dos pontos em prospecção"></div>
+
+<header class="top">
+  <a href="/" aria-label="Vertus Mob"><img src="/assets/logo-vertus-mob.svg" alt="Vertus Mob"></a>
+  <div class="tt"><b>Pontos em prospecção</b><span>Toque em um pino para ver o ponto</span></div>
+  <div class="sp"></div>
+  <button class="me" type="button" id="meBtn" aria-label="Informar ou trocar seu nome"><i id="meIni">?</i><span class="nm" id="meNome">Seu nome</span></button>
+</header>
+
+<nav class="bar" aria-label="Filtrar pontos">
+  <button class="chip" type="button" data-f="todos" aria-pressed="true">Todos <small id="c-todos"></small></button>
+  <button class="chip" type="button" data-f="vaga" aria-pressed="false"><span class="dot" style="background:#FF7E27"></span>Vagas oferecidas <small id="c-vaga"></small></button>
+  <button class="chip" type="button" data-f="aluguel" aria-pressed="false"><span class="dot" style="background:#F1F1F1"></span>Imóveis para alugar <small id="c-aluguel"></small></button>
+  <button class="chip" type="button" data-f="parceria" aria-pressed="false"><span class="dot" style="background:#2A2828;box-shadow:inset 0 0 0 2px #FF7E27"></span>Centros comerciais <small id="c-parceria"></small></button>
+</nav>
+
+<div class="count" id="count" aria-live="polite"></div>
+<div class="hint" id="hint">Toque em um pino para ver o ponto e marcar seu interesse</div>
+
+<aside class="panel" id="panel" aria-hidden="true" aria-labelledby="pTitulo">
+  <div class="ph">
+    <span class="k" id="pCat"></span>
+    <button class="ic" type="button" id="pClose" aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="pb">
+    <h2 id="pTitulo"></h2>
+    <p class="loc"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><span id="pLocal"></span></p>
+    <div class="val" id="pVal"><p class="l" id="pValL"></p><p class="v" id="pValV"></p><p class="n" id="pValN"></p></div>
+    <p class="det" id="pDet"></p>
+    <p class="aprox" id="pAprox" hidden>Localização aproximada: o pino está na rua ou no bairro, não no número exato.</p>
+    <p class="q">Este ponto interessa a você?</p>
+    <div class="vote">
+      <button class="s" type="button" id="vSim" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Interessante</button>
+      <button class="x" type="button" id="vNao" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>Não interessa</button>
+    </div>
+    <p class="saved" id="pSaved" aria-live="polite"></p>
+  </div>
+  <div class="pf">
+    <button type="button" id="pPrev"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>Anterior</button>
+    <button type="button" id="pNext">Próximo<svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+  </div>
+</aside>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTit">
+  <form class="mbox" id="mForm" novalidate>
+    <p class="k">Antes de marcar</p>
+    <h3 id="mTit">Qual é o seu nome?</h3>
+    <p>Assim a equipe da Vertus Mob sabe quais pontos interessaram a você.</p>
+    <label for="mNome">Nome completo</label>
+    <input id="mNome" name="nome" autocomplete="name" maxlength="80" required>
+    <div class="hp" aria-hidden="true"><input name="site" tabindex="-1" autocomplete="off"></div>
+    <p class="err" id="mErr"></p>
+    <button class="go" type="submit">Continuar</button>
+  </form>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="/pontos/pontos.js?v=1"></script>
+<script>
+(function () {
+  'use strict';
+  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwYLt1SL4Vry6mhzIhLUWZKWpDiwmRkI_wosoPBaGGjJn3DLe6AuBmbCeDkWeib42iW/exec';
+  var CAT = {
+    vaga: { nome: 'Vaga oferecida', fill: '#FF7E27', stroke: '#1E1C1C', dot: '#1E1C1C' },
+    aluguel: { nome: 'Imóvel para alugar', fill: '#F1F1F1', stroke: '#1E1C1C', dot: '#FF7E27' },
+    parceria: { nome: 'Centro comercial', fill: '#2A2828', stroke: '#FF7E27', dot: '#FF7E27' }
+  };
+  var PONTOS = window.PONTOS || [];
+  var aberto = Date.now();
+
+  /* ---------- estado local (só conveniência do visitante) ---------- */
+  function ler(k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (_) { return d; } }
+  function gravar(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} }
+  var nome = ler('vmPontosNome', '');
+  var votos = ler('vmPontosVotos', {});
+
+  /* ---------- mapa ---------- */
+  var map = L.map('map', { zoomControl: true, attributionControl: true, minZoom: 7, maxZoom: 16 });
+  map.zoomControl.setPosition('bottomright');
+  var ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/';
+  L.tileLayer(ESRI + 'World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 16, attribution: 'Mapa &copy; Esri, HERE, Garmin, &copy; colaboradores do OpenStreetMap'
+  }).addTo(map);
+  L.tileLayer(ESRI + 'World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16, pane: 'shadowPane' }).addTo(map);
+
+  function pinHtml(p) {
+    var c = CAT[p.cat];
+    return '<div class="pin' + (p.aprox ? ' aprox' : '') + '"><svg viewBox="0 0 30 38" aria-hidden="true">' +
+      '<path d="M15 1.5C7.5 1.5 1.5 7.4 1.5 14.8c0 9.6 11.6 20.4 12.6 21.3a1.3 1.3 0 0 0 1.8 0c1-.9 12.6-11.7 12.6-21.3C28.5 7.4 22.5 1.5 15 1.5z" fill="' + c.fill + '" stroke="' + c.stroke + '" stroke-width="2"/>' +
+      '<path d="M16.6 7.5 10.4 16h4.2l-1.2 7.5 6.2-8.5h-4.2z" fill="' + c.dot + '"/></svg><span class="ok">✓</span></div>';
+  }
+  var markers = {};
+  PONTOS.forEach(function (p) {
+    var m = L.marker([p.lat, p.lng], {
+      icon: L.divIcon({ className: '', html: pinHtml(p), iconSize: [30, 38], iconAnchor: [15, 37] }),
+      title: p.titulo + ' · ' + p.local, keyboard: true, riseOnHover: true
+    }).addTo(map);
+    m.on('click', function () { abrir(p.id); });
+    markers[p.id] = m;
+  });
+
+  // enquadramento inicial: Região Metropolitana (os pontos distantes aparecem ao afastar)
+  var nucleo = PONTOS.filter(function (p) { return p.lat > -3.95 && p.lat < -3.6 && p.lng > -38.75 && p.lng < -38.35; });
+  map.fitBounds(L.latLngBounds(nucleo.map(function (p) { return [p.lat, p.lng]; })), { paddingTopLeft: [20, 120], paddingBottomRight: [20, 50] });
+
+  function pinEl(id) { var m = markers[id]; return m && m.getElement() ? m.getElement().querySelector('.pin') : null; }
+  function pintar(id) {
+    var el = pinEl(id); if (!el) return;
+    el.classList.toggle('sim', votos[id] === 'sim');
+    el.classList.toggle('nao', votos[id] === 'nao');
+    el.classList.toggle('sel', id === atual);
+  }
+
+  /* ---------- filtros e contadores ---------- */
+  var filtro = 'todos';
+  function visiveis() { return PONTOS.filter(function (p) { return filtro === 'todos' || p.cat === filtro; }); }
+  ['todos', 'vaga', 'aluguel', 'parceria'].forEach(function (f) {
+    var n = f === 'todos' ? PONTOS.length : PONTOS.filter(function (p) { return p.cat === f; }).length;
+    document.getElementById('c-' + f).textContent = n;
+  });
+  document.querySelectorAll('.chip').forEach(function (b) {
+    b.addEventListener('click', function () {
+      filtro = b.getAttribute('data-f');
+      document.querySelectorAll('.chip').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      PONTOS.forEach(function (p) {
+        var ok = filtro === 'todos' || p.cat === filtro;
+        if (ok && !map.hasLayer(markers[p.id])) { markers[p.id].addTo(map); pintar(p.id); }
+        if (!ok && map.hasLayer(markers[p.id])) map.removeLayer(markers[p.id]);
+      });
+      var vs = visiveis();
+      if (vs.length) map.flyToBounds(L.latLngBounds(vs.map(function (p) { return [p.lat, p.lng]; })), { paddingTopLeft: [20, 120], paddingBottomRight: [20, 50], duration: .6, maxZoom: 13 });
+    });
+  });
+  function contar() {
+    var s = 0, n = 0;
+    Object.keys(votos).forEach(function (k) { if (votos[k] === 'sim') s++; else if (votos[k] === 'nao') n++; });
+    document.getElementById('count').innerHTML = (s + n)
+      ? 'Você marcou <b>' + s + '</b> interessante' + (s === 1 ? '' : 's') + ' e <b>' + n + '</b> não · ' + (s + n) + ' de ' + PONTOS.length
+      : '<b>' + PONTOS.length + '</b> pontos em prospecção';
+  }
+
+  /* ---------- painel ---------- */
+  var panel = document.getElementById('panel');
+  var atual = null;
+  function brl(v) { return 'R$ ' + Number(v).toLocaleString('pt-BR'); }
+  function abrir(id) {
+    var p = PONTOS.find(function (x) { return x.id === id; }); if (!p) return;
+    var antes = atual; atual = id; if (antes) pintar(antes); pintar(id);
+    document.getElementById('hint').hidden = true;
+    document.getElementById('pCat').textContent = CAT[p.cat].nome;
+    document.getElementById('pTitulo').textContent = p.titulo;
+    document.getElementById('pLocal').textContent = p.local;
+    var val = document.getElementById('pVal');
+    if (p.aluguel) {
+      val.classList.remove('neg');
+      document.getElementById('pValL').textContent = 'Aluguel';
+      document.getElementById('pValV').innerHTML = brl(p.aluguel) + ' <small>/mês</small>';
+      document.getElementById('pValN').textContent = 'Valor anunciado pelo proprietário';
+    } else {
+      val.classList.add('neg');
+      document.getElementById('pValL').textContent = 'Valor';
+      document.getElementById('pValV').textContent = 'Em negociação';
+      document.getElementById('pValN').textContent = 'A Vertus Mob está negociando as condições com o local';
+    }
+    document.getElementById('pDet').textContent = p.detalhe;
+    document.getElementById('pAprox').hidden = !p.aprox;
+    marcarBotoes();
+    document.getElementById('pSaved').textContent = '';
+    panel.classList.add('open'); panel.setAttribute('aria-hidden', 'false'); document.body.classList.add('p-open');
+    var px = window.innerWidth > 720 ? [-200, 0] : [0, window.innerHeight * .22];
+    var pt = map.project([p.lat, p.lng], Math.max(map.getZoom(), 13)).add(L.point(-px[0], px[1]));
+    map.flyTo(map.unproject(pt, Math.max(map.getZoom(), 13)), Math.max(map.getZoom(), 13), { duration: .5 });
+  }
+  function fechar() {
+    panel.classList.remove('open'); panel.setAttribute('aria-hidden', 'true'); document.body.classList.remove('p-open');
+    var a = atual; atual = null; if (a) pintar(a);
+  }
+  function marcarBotoes() {
+    document.getElementById('vSim').setAttribute('aria-pressed', String(votos[atual] === 'sim'));
+    document.getElementById('vNao').setAttribute('aria-pressed', String(votos[atual] === 'nao'));
+  }
+  function passo(d) {
+    var vs = visiveis(); var i = vs.findIndex(function (p) { return p.id === atual; });
+    abrir(vs[(i + d + vs.length) % vs.length].id);
+  }
+  document.getElementById('pClose').addEventListener('click', fechar);
+  document.getElementById('pPrev').addEventListener('click', function () { passo(-1); });
+  document.getElementById('pNext').addEventListener('click', function () { passo(1); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { if (modal.classList.contains('open')) fecharModal(); else fechar(); }
+  });
+  map.on('click', fechar);
+
+  /* ---------- nome ---------- */
+  var modal = document.getElementById('modal');
+  var pendente = null;
+  function mostrarNome() {
+    document.getElementById('meNome').textContent = nome || 'Seu nome';
+    document.getElementById('meIni').textContent = nome ? nome.trim().charAt(0).toUpperCase() : '?';
+  }
+  function abrirModal(acao) {
+    pendente = acao || null;
+    document.getElementById('mNome').value = nome;
+    document.getElementById('mErr').textContent = '';
+    modal.classList.add('open');
+    setTimeout(function () { document.getElementById('mNome').focus(); }, 30);
+  }
+  function fecharModal() { modal.classList.remove('open'); pendente = null; }
+  modal.addEventListener('click', function (e) { if (e.target === modal) fecharModal(); });
+  document.getElementById('meBtn').addEventListener('click', function () { abrirModal(null); });
+  document.getElementById('mForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = document.getElementById('mNome').value.replace(/\s+/g, ' ').trim();
+    if (v.length < 3 || v.indexOf(' ') < 0) { document.getElementById('mErr').textContent = 'Digite seu nome e sobrenome.'; return; }
+    var trocou = nome && nome !== v;
+    nome = v; gravar('vmPontosNome', nome); mostrarNome();
+    var acao = pendente; modal.classList.remove('open'); pendente = null;
+    if (acao) acao();
+    else if (trocou) toast('Nome atualizado');
+  });
+
+  /* ---------- voto ---------- */
+  function votar(valor) {
+    if (!atual) return;
+    if (!nome) { abrirModal(function () { votar(valor); }); return; }
+    var p = PONTOS.find(function (x) { return x.id === atual; });
+    if (votos[atual] === valor) return;
+    votos[atual] = valor; gravar('vmPontosVotos', votos);
+    marcarBotoes(); pintar(atual); contar();
+    enviar(p, valor);
+    document.getElementById('pSaved').textContent = valor === 'sim' ? 'Marcado como interessante. Você pode mudar quando quiser.' : 'Marcado como não interessa. Você pode mudar quando quiser.';
+    toast(valor === 'sim' ? 'Ponto marcado como interessante' : 'Ponto marcado como não interessa');
+  }
+  document.getElementById('vSim').addEventListener('click', function () { votar('sim'); });
+  document.getElementById('vNao').addEventListener('click', function () { votar('nao'); });
+
+  function enviar(p, valor) {
+    var hp = document.querySelector('.hp input');
+    if ((hp && hp.value) || Date.now() - aberto < 2000) return;
+    var dados = {
+      nome: nome, whatsapp: '',
+      cidade: p.local, bairro: p.local, endereco: '',
+      interesse: valor === 'sim' ? 'Ponto interessante' : 'Ponto não interessa',
+      profissao: p.titulo, pretencao: p.aluguel ? brl(p.aluguel) + '/mês' : 'Em negociação',
+      local: '[' + p.id + '] ' + p.titulo + ' · ' + p.local,
+      origem: 'pontos-prospectados', pagina: location.href, data: new Date().toISOString()
+    };
+    try {
+      fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(dados) }).catch(function () {});
+    } catch (_) {}
+  }
+
+  var tt;
+  function toast(t) {
+    var el = document.getElementById('toast'); el.textContent = t; el.classList.add('on');
+    clearTimeout(tt); tt = setTimeout(function () { el.classList.remove('on'); }, 2200);
+  }
+
+  mostrarNome(); contar();
+  PONTOS.forEach(function (p) { pintar(p.id); });
+})();
+</script>
+</body>
+</html>
